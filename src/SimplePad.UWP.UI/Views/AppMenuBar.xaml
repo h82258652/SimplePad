@@ -58,6 +58,23 @@
             </MenuFlyoutItem>
         </MenuBarItem>
         <MenuBarItem Title="View">
+            <MenuFlyoutSubItem Text="Zoom">
+                <MenuFlyoutItem KeyboardAcceleratorTextOverride="Ctrl+Plus" Text="Zoom in">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="Add" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem KeyboardAcceleratorTextOverride="Ctrl+Minus" Text="Zoom out">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="Subtract" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Restore default zoom">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="Number0" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuFlyoutSubItem>
             <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsStatusBarVisible, Mode=TwoWay}" Text="Status bar" />
             <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}" Text="Word wrap" />
         </MenuBarItem>
