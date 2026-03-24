@@ -15,6 +15,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock
             x:Name="PositionIndicator"
@@ -30,9 +31,14 @@
             Grid.Column="2"
             FontSize="12"
             Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+        <Rectangle
+            Grid.Column="4"
+            Width="1"
+            Margin="8,0"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <TextBlock
             x:Name="ZoomFactorIndicator"
-            Grid.Column="4"
+            Grid.Column="5"
             FontSize="12"
             Foreground="{ThemeResource TextFillColorSecondaryBrush}"
             Text="{x:Bind GetZoomFactorText(_appState.ZoomFactor), Mode=OneWay}" />
