@@ -11,143 +11,154 @@
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
     mc:Ignorable="d">
-    <MenuBar>
-        <MenuBarItem Title="File">
-            <MenuFlyoutItem Click="OnNewTabClick" Text="New tab">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="N" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnNewWindowClick" Text="New window">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="N" Modifiers="Control,Shift" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnOpenClick" Text="Open">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="O" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutSubItem Text="Recent" />
-            <MenuFlyoutItem Click="OnSaveClick" Text="Save">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="S" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnSaveAsClick" Text="Save as">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="S" Modifiers="Control,Shift" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnSaveAllClick" Text="Save all">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="S" Modifiers="Control,Menu" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutSeparator />
-            <MenuFlyoutItem
-                x:Name="PrintMenuItem"
-                Click="OnPrintClick"
-                Text="Print">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="P" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutSeparator />
-            <MenuFlyoutItem Click="OnCloseTabClick" Text="Close tab">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="W" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Close window">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="W" Modifiers="Control,Shift" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Exit" />
-        </MenuBarItem>
-        <MenuBarItem Title="Edit">
-            <MenuFlyoutItem
-                Click="OnUndoClick"
-                IsEnabled="{x:Bind TextBox.CanUndo, Mode=OneWay}"
-                Text="Undo">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="Z" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutSeparator />
-            <MenuFlyoutItem Click="OnCutClick" Text="Cut">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="X" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnCopyClick" Text="Copy">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="C" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnPasteClick" Text="Paste">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="V" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem
-                Click="OnDeleteClick"
-                KeyboardAcceleratorTextOverride="Del"
-                Text="Delete">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="Delete" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnFindClick" Text="Find">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="F" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnReplaceClick" Text="Replace">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="H" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnGoToClick" Text="Go to">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="G" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutSeparator />
-            <MenuFlyoutItem Click="OnSelectAllClick" Text="Select all">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="A" Modifiers="Control" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnTimeDateClick" Text="Time/Date">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="F5" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutSeparator />
-            <MenuFlyoutItem Click="OnFontClick" Text="Font" />
-        </MenuBarItem>
-        <MenuBarItem Title="View">
-            <MenuFlyoutSubItem Text="Zoom">
-                <MenuFlyoutItem KeyboardAcceleratorTextOverride="Ctrl+Plus" Text="Zoom in">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <MenuBar>
+            <MenuBarItem Title="File">
+                <MenuFlyoutItem Click="OnNewTabClick" Text="New tab">
                     <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Key="Add" Modifiers="Control" />
+                        <KeyboardAccelerator Key="N" Modifiers="Control" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem KeyboardAcceleratorTextOverride="Ctrl+Minus" Text="Zoom out">
+                <MenuFlyoutItem Click="OnNewWindowClick" Text="New window">
                     <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Key="Subtract" Modifiers="Control" />
+                        <KeyboardAccelerator Key="N" Modifiers="Control,Shift" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Restore default zoom">
+                <MenuFlyoutItem Click="OnOpenClick" Text="Open">
                     <MenuFlyoutItem.KeyboardAccelerators>
-                        <KeyboardAccelerator Key="Number0" Modifiers="Control" />
+                        <KeyboardAccelerator Key="O" Modifiers="Control" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-            </MenuFlyoutSubItem>
-            <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsStatusBarVisible, Mode=TwoWay}" Text="Status bar" />
-            <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}" Text="Word wrap" />
-        </MenuBarItem>
-    </MenuBar>
+                <MenuFlyoutSubItem Text="Recent" />
+                <MenuFlyoutItem Click="OnSaveClick" Text="Save">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="S" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnSaveAsClick" Text="Save as">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="S" Modifiers="Control,Shift" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnSaveAllClick" Text="Save all">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="S" Modifiers="Control,Menu" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem
+                    x:Name="PrintMenuItem"
+                    Click="OnPrintClick"
+                    Text="Print">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="P" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem Click="OnCloseTabClick" Text="Close tab">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="W" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Close window">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="W" Modifiers="Control,Shift" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Exit" />
+            </MenuBarItem>
+            <MenuBarItem Title="Edit">
+                <MenuFlyoutItem
+                    Click="OnUndoClick"
+                    IsEnabled="{x:Bind TextBox.CanUndo, Mode=OneWay}"
+                    Text="Undo">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="Z" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem Click="OnCutClick" Text="Cut">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="X" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnCopyClick" Text="Copy">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="C" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnPasteClick" Text="Paste">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="V" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem
+                    Click="OnDeleteClick"
+                    KeyboardAcceleratorTextOverride="Del"
+                    Text="Delete">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="Delete" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnFindClick" Text="Find">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="F" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnReplaceClick" Text="Replace">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="H" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnGoToClick" Text="Go to">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="G" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem Click="OnSelectAllClick" Text="Select all">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="A" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Click="OnTimeDateClick" Text="Time/Date">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="F5" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem Click="OnFontClick" Text="Font" />
+            </MenuBarItem>
+            <MenuBarItem Title="View">
+                <MenuFlyoutSubItem Text="Zoom">
+                    <MenuFlyoutItem KeyboardAcceleratorTextOverride="Ctrl+Plus" Text="Zoom in">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Add" Modifiers="Control" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem KeyboardAcceleratorTextOverride="Ctrl+Minus" Text="Zoom out">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Subtract" Modifiers="Control" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="Restore default zoom">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Number0" Modifiers="Control" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                </MenuFlyoutSubItem>
+                <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsStatusBarVisible, Mode=TwoWay}" Text="Status bar" />
+                <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}" Text="Word wrap" />
+            </MenuBarItem>
+        </MenuBar>
+        <Button Grid.Column="1">
+            <Button.Content>
+                <SymbolIcon Symbol="Setting" />
+            </Button.Content>
+        </Button>
+    </Grid>
 </UserControl>
