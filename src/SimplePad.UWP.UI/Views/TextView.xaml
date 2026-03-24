@@ -18,7 +18,8 @@
         <TextBox
             x:Name="TextBox"
             Grid.Row="1"
-            AcceptsReturn="True" />
+            AcceptsReturn="True"
+            TextWrapping="{x:Bind GetTextWrapping(_appSettings.IsWordWrap), Mode=OneWay}" />
         <local:StatusBar
             Grid.Row="2"
             TextBox="{x:Bind TextBox}"

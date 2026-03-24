@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Settings;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -14,6 +16,8 @@ public sealed partial class AppMenuBar : UserControl
         typeof(TextBox),
         typeof(AppMenuBar),
         null);
+
+    private readonly IAppSettings _appSettings;
 
     public AppMenuBar()
     {
@@ -38,18 +42,24 @@ public sealed partial class AppMenuBar : UserControl
         TextBox?.CutSelectionToClipboard();
     }
 
-    private readonly IAppSettings _appSettings;
-
     private void OnPasteClick(object sender, RoutedEventArgs e)
     {
         TextBox?.PasteFromClipboard();
     }
 
-    private void OnSaveAsClick(object sender, RoutedEventArgs e)
+    private async void OnSaveAsClick(object sender, RoutedEventArgs e)
     {
-        FileSavePicker fileSavePicker = new();
+        if (TextBox is not { } textBox)
+        {
+            return;
+        }
 
-        // TODO
+        FileSavePicker fileSavePicker = new();
+        StorageFile? saveFile = await fileSavePicker.PickSaveFileAsync();
+        if (saveFile is not null)
+        {
+            await FileIO.WriteTextAsync(saveFile, textBox.Text);
+        }
     }
 
     private void OnSaveClick(object sender, RoutedEventArgs e)
