@@ -15,7 +15,7 @@ public sealed partial class ShellView : UserControl
         TabViewItem tabViewItem = new()
         {
             Header = "Untitled",
-            Content = new TextView()
+            Content = new EditorView()
         };
 
         sender.TabItems.Add(tabViewItem);

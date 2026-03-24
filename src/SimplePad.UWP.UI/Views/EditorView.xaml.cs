@@ -6,11 +6,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.UWP.UI.Views;
 
-public sealed partial class TextView : UserControl
+public sealed partial class EditorView : UserControl
 {
     private readonly IAppSettings _appSettings;
 
-    public TextView()
+    public EditorView()
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
 
