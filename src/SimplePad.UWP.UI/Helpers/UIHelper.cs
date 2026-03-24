@@ -1,9 +1,11 @@
-﻿namespace SimplePad.UWP.UI.Helpers;
+﻿using Windows.UI.Xaml;
+
+namespace SimplePad.UWP.UI.Helpers;
 
 public static class UIHelper
 {
-    public static bool IsStringNotNullOrEmpty(string? str)
+    public static Visibility InverseBoolToVisibility(bool isVisible)
     {
-        return !string.IsNullOrEmpty(str);
+        return isVisible ? Visibility.Collapsed : Visibility.Visible;
     }
 }

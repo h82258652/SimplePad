@@ -170,7 +170,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnRestoreDefaultZoomClick(object sender, RoutedEventArgs e)
     {
-        _appState.ZoomFactor = 1;
+        _appState.ResetZoomFactor();
     }
 
     private void OnSaveAllClick(object sender, RoutedEventArgs e)
@@ -231,11 +231,11 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnZoomInClick(object sender, RoutedEventArgs e)
     {
-        _appState.ZoomFactor = Math.Min(5, _appState.ZoomFactor + 0.1);
+        _appState.ZoomIn();
     }
 
     private void OnZoomOutClick(object sender, RoutedEventArgs e)
     {
-        _appState.ZoomFactor = Math.Max(0.1, _appState.ZoomFactor - 0.1);
+        _appState.ZoomOut();
     }
 }

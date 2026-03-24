@@ -137,6 +137,7 @@
                 <MenuFlyoutSubItem Text="Zoom">
                     <MenuFlyoutItem
                         Click="OnZoomInClick"
+                        IsEnabled="{x:Bind _appState.CanZoomIn, Mode=OneWay}"
                         KeyboardAcceleratorTextOverride="Ctrl+Plus"
                         Text="Zoom in">
                         <MenuFlyoutItem.KeyboardAccelerators>

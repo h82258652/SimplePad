@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.UWP.UI.Helpers;
 using Windows.UI.Xaml;
@@ -75,14 +76,25 @@ public sealed partial class StatusBar : UserControl
             return;
         }
 
+        StringBuilder characterIndicatorTextBuilder = new();
         if (TextBox.SelectionLength > 0)
         {
-            CharacterIndicator.Text = $"{TextBox.SelectionLength} of {TextBox.Text.Length} characters";
+            characterIndicatorTextBuilder.Append(TextBox.SelectionLength.ToString("N0"));
+            characterIndicatorTextBuilder.Append(" of ");
+        }
+
+        int textLength = TextBox.Text.Length;
+        characterIndicatorTextBuilder.Append(textLength.ToString("N0"));
+        if (textLength == 1)
+        {
+            characterIndicatorTextBuilder.Append(" character");
         }
         else
         {
-            CharacterIndicator.Text = $"{TextBox.Text.Length} characters";
+            characterIndicatorTextBuilder.Append(" characters");
         }
+
+        CharacterIndicator.Text = characterIndicatorTextBuilder.ToString();
     }
 
     private void UpdatePositionIndicator()
