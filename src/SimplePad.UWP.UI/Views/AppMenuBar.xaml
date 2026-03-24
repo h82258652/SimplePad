@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:SimplePad.UWP.UI.Helpers"
     xmlns:local="using:SimplePad.UWP.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
@@ -13,7 +14,7 @@
     <MenuBar>
         <MenuBarItem Title="File">
             <MenuFlyoutItem Text="New tab" />
-            <MenuFlyoutItem Text="Open">
+            <MenuFlyoutItem Click="OnOpenClick" Text="Open">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="O" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -41,6 +42,15 @@
             <MenuFlyoutItem Text="Close tab" />
         </MenuBarItem>
         <MenuBarItem Title="Edit">
+            <MenuFlyoutItem
+                Click="OnUndoClick"
+                IsEnabled="{x:Bind TextBox.CanUndo, Mode=OneWay}"
+                Text="Undo">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Z" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutSeparator />
             <MenuFlyoutItem Click="OnCutClick" Text="Cut">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="X" Modifiers="Control" />
@@ -54,6 +64,16 @@
             <MenuFlyoutItem Click="OnPasteClick" Text="Paste">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="V" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnDeleteClick" Text="Delete">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Delete" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnSelectAllClick" Text="Select all">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="A" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
         </MenuBarItem>

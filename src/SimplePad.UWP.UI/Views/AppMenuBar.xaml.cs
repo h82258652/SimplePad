@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Settings;
@@ -49,12 +50,37 @@ public sealed partial class AppMenuBar : UserControl
         TextBox?.CutSelectionToClipboard();
     }
 
+    private void OnDeleteClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         if (PrintManager.IsSupported())
         {
             PrintManager.GetForCurrentView().PrintTaskRequested += OnPrintTaskRequested;
         }
+    }
+
+    private async void OnOpenClick(object sender, RoutedEventArgs e)
+    {
+        if (TextBox is not { } textBox)
+        {
+            return;
+        }
+
+        FileOpenPicker fileOpenPicker = new();
+        fileOpenPicker.FileTypeFilter.Add(".txt");
+        fileOpenPicker.FileTypeFilter.Add("*");
+        StorageFile? file = await fileOpenPicker.PickSingleFileAsync();
+        if (file is null)
+        {
+            return;
+        }
+
+        string text = await FileIO.ReadTextAsync(file);
+        textBox.Text = text;
     }
 
     private void OnPasteClick(object sender, RoutedEventArgs e)
@@ -107,15 +133,29 @@ public sealed partial class AppMenuBar : UserControl
         }
 
         FileSavePicker fileSavePicker = new();
-        StorageFile? saveFile = await fileSavePicker.PickSaveFileAsync();
-        if (saveFile is not null)
+        fileSavePicker.FileTypeChoices.Add("Text documents", new List<string>() { ".txt" });
+        StorageFile? file = await fileSavePicker.PickSaveFileAsync();
+        if (file is not null)
         {
-            await FileIO.WriteTextAsync(saveFile, textBox.Text);
+            await FileIO.WriteTextAsync(file, textBox.Text);
         }
     }
 
     private void OnSaveClick(object sender, RoutedEventArgs e)
     {
+    }
+
+    private void OnSelectAllClick(object sender, RoutedEventArgs e)
+    {
+        TextBox?.SelectAll();
+    }
+
+    private void OnUndoClick(object sender, RoutedEventArgs e)
+    {
+        if (TextBox is { CanUndo: true } textBox)
+        {
+            textBox.Undo();
+        }
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)

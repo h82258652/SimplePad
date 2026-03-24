@@ -19,6 +19,7 @@
             x:Name="TextBox"
             Grid.Row="1"
             AcceptsReturn="True"
+            SelectionHighlightColorWhenNotFocused="{x:Bind TextBox.SelectionHighlightColor, Mode=OneWay}"
             TextWrapping="{x:Bind GetTextWrapping(_appSettings.IsWordWrap), Mode=OneWay}" />
         <local:StatusBar
             Grid.Row="2"
