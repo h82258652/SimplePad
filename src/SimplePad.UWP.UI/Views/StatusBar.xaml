@@ -8,9 +8,18 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-
     <StackPanel Orientation="Horizontal">
-        <TextBlock x:Name="PositionIndicator" />
-        <TextBlock x:Name="Indicator" />
+        <TextBlock
+            x:Name="PositionIndicator"
+            FontSize="12"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+        <Rectangle
+            Width="1"
+            Margin="8,0"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <TextBlock
+            x:Name="CharacterIndicator"
+            FontSize="12"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
     </StackPanel>
 </UserControl>

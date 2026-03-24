@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.UWP.UI.Views;
@@ -45,7 +44,30 @@ public sealed partial class StatusBar : UserControl
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
     {
         UpdatePositionIndicator();
-        UpdateIndicatorText();
+        UpdateCharacterIndicator();
+    }
+
+    private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    {
+        UpdateCharacterIndicator();
+    }
+
+    private void UpdateCharacterIndicator()
+    {
+        if (TextBox is null)
+        {
+            CharacterIndicator.Text = string.Empty;
+            return;
+        }
+
+        if (TextBox.SelectionLength > 0)
+        {
+            CharacterIndicator.Text = $"{TextBox.SelectionLength} of {TextBox.Text.Length} characters";
+        }
+        else
+        {
+            CharacterIndicator.Text = $"{TextBox.Text.Length} characters";
+        }
     }
 
     private void UpdatePositionIndicator()
@@ -56,29 +78,40 @@ public sealed partial class StatusBar : UserControl
             return;
         }
 
-        TextBox.GetRectFromCharacterIndex(0, true);
+        var rc = CursorPosition(TextBox);
+        PositionIndicator.Text = $"Ln {rc.row}, Col {rc.col}";
     }
 
-    private void UpdateIndicatorText()
+    private static (int row, int col) CursorPosition(TextBox tb)
     {
-        if (TextBox is null)
+        int endMarker = tb.SelectionStart;
+
+        if (endMarker == 0)
         {
-            Indicator.Text = string.Empty;
-            return;
+            return new (1, 1);
         }
 
-        if (TextBox.SelectionLength > 0)
-        {
-            Indicator.Text = TextBox.SelectionLength + " of " + TextBox.Text.Length + " characters";
-        }
-        else
-        {
-            Indicator.Text = TextBox.Text.Length + " characters";
-        }
-    }
+        int i = 0;
+        int col = 1;
+        int row = 1;
 
-    private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
-    {
-        UpdateIndicatorText();
+        foreach (char c in tb.Text)
+        {
+            i++;
+            col++;
+
+            if (c == '\r')
+            {
+                row++;
+                col = 1;
+            }
+
+            if (i == endMarker)
+            {
+                return new (row, col);
+            }
+        }
+
+        return new (row, col);
     }
 }
