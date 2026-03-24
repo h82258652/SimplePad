@@ -40,6 +40,11 @@ public sealed partial class AppMenuBar : UserControl
         set => SetValue(TextBoxProperty, value);
     }
 
+    private void OnCloseTabClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     private void OnCopyClick(object sender, RoutedEventArgs e)
     {
         TextBox?.CopySelectionToClipboard();
@@ -55,12 +60,27 @@ public sealed partial class AppMenuBar : UserControl
 
     }
 
+    private void OnFontClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         if (PrintManager.IsSupported())
         {
             PrintManager.GetForCurrentView().PrintTaskRequested += OnPrintTaskRequested;
         }
+    }
+
+    private void OnNewTabClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OnNewWindowClick(object sender, RoutedEventArgs e)
+    {
+
     }
 
     private async void OnOpenClick(object sender, RoutedEventArgs e)
@@ -150,6 +170,12 @@ public sealed partial class AppMenuBar : UserControl
         TextBox?.SelectAll();
     }
 
+    private void OnTimeDateClick(object sender, RoutedEventArgs e)
+    {
+        TextBox.SelectedText = DateTime.Now.ToString("hh:mm tt MM/dd/yyyy");
+        TextBox.SelectionLength = 0;
+    }
+
     private void OnUndoClick(object sender, RoutedEventArgs e)
     {
         if (TextBox is { CanUndo: true } textBox)
@@ -164,5 +190,25 @@ public sealed partial class AppMenuBar : UserControl
         {
             PrintManager.GetForCurrentView().PrintTaskRequested -= OnPrintTaskRequested;
         }
+    }
+
+    private void OnSaveAllClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OnFindClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OnReplaceClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OnGoToClick(object sender, RoutedEventArgs e)
+    {
+
     }
 }

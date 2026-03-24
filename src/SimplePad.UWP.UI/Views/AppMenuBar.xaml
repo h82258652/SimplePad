@@ -13,12 +13,22 @@
     mc:Ignorable="d">
     <MenuBar>
         <MenuBarItem Title="File">
-            <MenuFlyoutItem Text="New tab" />
+            <MenuFlyoutItem Click="OnNewTabClick" Text="New tab">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="N" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnNewWindowClick" Text="New window">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="N" Modifiers="Control,Shift" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
             <MenuFlyoutItem Click="OnOpenClick" Text="Open">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="O" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
+            <MenuFlyoutSubItem Text="Recent" />
             <MenuFlyoutItem Click="OnSaveClick" Text="Save">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="S" Modifiers="Control" />
@@ -27,6 +37,11 @@
             <MenuFlyoutItem Click="OnSaveAsClick" Text="Save as">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="S" Modifiers="Control,Shift" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnSaveAllClick" Text="Save all">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="S" Modifiers="Control,Menu" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutSeparator />
@@ -39,7 +54,17 @@
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutSeparator />
-            <MenuFlyoutItem Text="Close tab" />
+            <MenuFlyoutItem Click="OnCloseTabClick" Text="Close tab">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="W" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Close window">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="W" Modifiers="Control,Shift" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="Exit" />
         </MenuBarItem>
         <MenuBarItem Title="Edit">
             <MenuFlyoutItem
@@ -66,16 +91,42 @@
                     <KeyboardAccelerator Key="V" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Click="OnDeleteClick" Text="Delete">
+            <MenuFlyoutItem
+                Click="OnDeleteClick"
+                KeyboardAcceleratorTextOverride="Del"
+                Text="Delete">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="Delete" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnFindClick" Text="Find">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="F" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnReplaceClick" Text="Replace">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="H" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnGoToClick" Text="Go to">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="G" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutSeparator />
             <MenuFlyoutItem Click="OnSelectAllClick" Text="Select all">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="A" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
+            <MenuFlyoutItem Click="OnTimeDateClick" Text="Time/Date">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="F5" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem Click="OnFontClick" Text="Font" />
         </MenuBarItem>
         <MenuBarItem Title="View">
             <MenuFlyoutSubItem Text="Zoom">
