@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using SimplePad.UWP.UI.Helpers;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.UWP.UI.Views;
@@ -39,6 +40,10 @@ public sealed partial class StatusBar : UserControl
             newTextBox.TextChanged += self.OnTextBoxTextChanged;
             newTextBox.SelectionChanged += self.OnSelectionChanged;
         }
+
+        self.UpdatePositionIndicator();
+        self.UpdateCharacterIndicator();
+        self.UpdateZoomFactorIndicator();
     }
 
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
@@ -78,40 +83,11 @@ public sealed partial class StatusBar : UserControl
             return;
         }
 
-        var rc = CursorPosition(TextBox);
-        PositionIndicator.Text = $"Ln {rc.row}, Col {rc.col}";
+        CursorPosition cursorPosition = TextBoxHelper.GetCursorPosition(TextBox);
+        PositionIndicator.Text = $"Ln {cursorPosition.Row}, Col {cursorPosition.Column}";
     }
 
-    private static (int row, int col) CursorPosition(TextBox tb)
+    private void UpdateZoomFactorIndicator()
     {
-        int endMarker = tb.SelectionStart;
-
-        if (endMarker == 0)
-        {
-            return new (1, 1);
-        }
-
-        int i = 0;
-        int col = 1;
-        int row = 1;
-
-        foreach (char c in tb.Text)
-        {
-            i++;
-            col++;
-
-            if (c == '\r')
-            {
-                row++;
-                col = 1;
-            }
-
-            if (i == endMarker)
-            {
-                return new (row, col);
-            }
-        }
-
-        return new (row, col);
     }
 }

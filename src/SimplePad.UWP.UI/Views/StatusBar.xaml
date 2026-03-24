@@ -8,18 +8,32 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-    <StackPanel Orientation="Horizontal">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
         <TextBlock
             x:Name="PositionIndicator"
             FontSize="12"
             Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
         <Rectangle
+            Grid.Column="1"
             Width="1"
             Margin="8,0"
             Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <TextBlock
             x:Name="CharacterIndicator"
+            Grid.Column="2"
             FontSize="12"
             Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
-    </StackPanel>
+        <TextBlock
+            x:Name="ZoomFactorIndicator"
+            Grid.Column="4"
+            FontSize="12"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+    </Grid>
 </UserControl>
