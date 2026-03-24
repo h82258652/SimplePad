@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
     d:DesignWidth="400"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     mc:Ignorable="d">
     <MenuBar>
         <MenuBarItem Title="File">
@@ -27,7 +29,10 @@
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutSeparator />
-            <MenuFlyoutItem Text="Print">
+            <MenuFlyoutItem
+                x:Name="PrintMenuItem"
+                Click="OnPrintClick"
+                Text="Print">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="P" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
