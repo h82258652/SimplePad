@@ -19,6 +19,9 @@
             x:Name="TextBox"
             Grid.Row="1"
             AcceptsReturn="True" />
-        <local:StatusBar Grid.Row="2" TextBox="{x:Bind TextBox}" />
+        <local:StatusBar
+            Grid.Row="2"
+            TextBox="{x:Bind TextBox}"
+            Visibility="{x:Bind _appSettings.IsStatusBarVisible, Mode=OneWay}" />
     </Grid>
 </UserControl>

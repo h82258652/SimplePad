@@ -1,4 +1,7 @@
-﻿using Windows.Storage.Pickers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Settings;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -14,6 +17,8 @@ public sealed partial class AppMenuBar : UserControl
 
     public AppMenuBar()
     {
+        _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
+
         InitializeComponent();
     }
 
@@ -32,6 +37,8 @@ public sealed partial class AppMenuBar : UserControl
     {
         TextBox?.CutSelectionToClipboard();
     }
+
+    private readonly IAppSettings _appSettings;
 
     private void OnPasteClick(object sender, RoutedEventArgs e)
     {
