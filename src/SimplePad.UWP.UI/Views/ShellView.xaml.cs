@@ -22,4 +22,9 @@ public sealed partial class ShellView : UserControl
 
         sender.SelectedItem = tabViewItem;
     }
+
+    private void OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+    {
+
+    }
 }

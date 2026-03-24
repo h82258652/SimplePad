@@ -10,6 +10,10 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
     <Grid>
-        <winui:TabView VerticalAlignment="Stretch" AddTabButtonClick="OnTabViewAddTabButtonClick" />
+        <winui:TabView
+            VerticalAlignment="Stretch"
+            AddTabButtonClick="OnTabViewAddTabButtonClick"
+            TabCloseRequested="OnTabCloseRequested" />
+        <local:SettingsView Visibility="Collapsed" />
     </Grid>
 </UserControl>

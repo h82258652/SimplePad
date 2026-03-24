@@ -8,6 +8,25 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-
-    <Grid />
+    <ScrollViewer>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="AboutSection">
+                <TextBlock Text="About this app" />
+                <TextBlock Text="Simple Pad" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
