@@ -15,6 +15,12 @@ namespace SimplePad.UWP.UI.Views;
 
 public sealed partial class AppMenuBar : UserControl
 {
+    public static readonly DependencyProperty ShellViewModelProperty = DependencyProperty.Register(
+        nameof(ShellViewModel),
+        typeof(ShellViewModel),
+        typeof(AppMenuBar),
+        null);
+
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(TextBox),
@@ -37,6 +43,12 @@ public sealed partial class AppMenuBar : UserControl
         PrintMenuItem.Visibility = PrintManager.IsSupported() ? Visibility.Visible : Visibility.Collapsed;
     }
 
+    public ShellViewModel? ShellViewModel
+    {
+        get => (ShellViewModel?)GetValue(ShellViewModelProperty);
+        set => SetValue(ShellViewModelProperty, value);
+    }
+
     public TextBox? TextBox
     {
         get => (TextBox?)GetValue(TextBoxProperty);
@@ -45,18 +57,6 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnCloseTabClick(object sender, RoutedEventArgs e)
     {
-    }
-
-    public static readonly DependencyProperty ShellViewModelProperty = DependencyProperty.Register(
-        nameof(ShellViewModel),
-        typeof(ShellViewModel),
-        typeof(AppMenuBar),
-        null);
-
-    public ShellViewModel? ShellViewModel
-    {
-        get => (ShellViewModel?)GetValue(ShellViewModelProperty);
-        set => SetValue(ShellViewModelProperty, value);
     }
 
     private void OnCopyClick(object sender, RoutedEventArgs e)
@@ -95,6 +95,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnNewTabClick(object sender, RoutedEventArgs e)
     {
+        ShellViewModel?.AddEditor();
     }
 
     private void OnNewWindowClick(object sender, RoutedEventArgs e)
@@ -201,6 +202,11 @@ public sealed partial class AppMenuBar : UserControl
         TextBox?.SelectAll();
     }
 
+    private void OnSettingsButtonClick(object sender, RoutedEventArgs e)
+    {
+        ShellViewModel?.IsSettingsViewVisible = true;
+    }
+
     private void OnTimeDateClick(object sender, RoutedEventArgs e)
     {
         TextBox.SelectedText = DateTime.Now.ToString("hh:mm tt MM/dd/yyyy");
@@ -231,10 +237,5 @@ public sealed partial class AppMenuBar : UserControl
     private void OnZoomOutClick(object sender, RoutedEventArgs e)
     {
         _appState.ZoomFactor = Math.Max(0.1, _appState.ZoomFactor - 0.1);
-    }
-
-    private void OnSettingsButtonClick(object sender, RoutedEventArgs e)
-    {
-        ShellViewModel?.IsSettingsViewVisible = true;
     }
 }

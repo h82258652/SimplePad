@@ -19,14 +19,6 @@ public sealed partial class ShellView : UserControl
 
     private void OnTabViewAddTabButtonClick(TabView sender, object args)
     {
-        TabViewItem tabViewItem = new()
-        {
-            Header = "Untitled",
-            Content = new EditorView(ViewModel)
-        };
-
-        sender.TabItems.Add(tabViewItem);
-
-        sender.SelectedItem = tabViewItem;
+        ViewModel.AddEditor();
     }
 }

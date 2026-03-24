@@ -143,12 +143,15 @@
                             <KeyboardAccelerator Key="Add" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Click="OnZoomOutClick" KeyboardAcceleratorTextOverride="Ctrl+Minus" Text="Zoom out">
+                    <MenuFlyoutItem
+                        Click="OnZoomOutClick"
+                        KeyboardAcceleratorTextOverride="Ctrl+Minus"
+                        Text="Zoom out">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="Subtract" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Restore default zoom" Click="OnRestoreDefaultZoomClick">
+                    <MenuFlyoutItem Click="OnRestoreDefaultZoomClick" Text="Restore default zoom">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="Number0" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>

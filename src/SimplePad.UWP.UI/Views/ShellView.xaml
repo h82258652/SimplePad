@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SimplePad.UWP.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="using:SimplePad.UWP.UI.ViewModels"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -13,7 +14,17 @@
         <winui:TabView
             VerticalAlignment="Stretch"
             AddTabButtonClick="OnTabViewAddTabButtonClick"
-            TabCloseRequested="OnTabCloseRequested" />
+            SelectedItem="{x:Bind ViewModel.SelectedEditor, Mode=TwoWay}"
+            TabCloseRequested="OnTabCloseRequested"
+            TabItemsSource="{x:Bind ViewModel.Editors, Mode=OneWay}">
+            <winui:TabView.TabItemTemplate>
+                <DataTemplate x:DataType="viewmodels:EditorViewModel">
+                    <winui:TabViewItem Header="{x:Bind Title, Mode=OneWay}">
+                        <local:EditorView ViewModel="{x:Bind}" />
+                    </winui:TabViewItem>
+                </DataTemplate>
+            </winui:TabView.TabItemTemplate>
+        </winui:TabView>
         <local:SettingsView Visibility="{x:Bind ViewModel.IsSettingsViewVisible, Mode=OneWay}" />
     </Grid>
 </UserControl>

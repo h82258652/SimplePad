@@ -9,20 +9,28 @@ namespace SimplePad.UWP.UI.Views;
 
 public sealed partial class EditorView : UserControl
 {
+    public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+        nameof(ViewModel),
+        typeof(EditorViewModel),
+        typeof(EditorView),
+        null);
+
     private readonly IAppSettings _appSettings;
     private readonly AppState _appState;
 
-    public EditorView(ShellViewModel shellViewModel)
+    public EditorView()
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
         _appState = ServiceLocator.Current.GetRequiredService<AppState>();
 
         InitializeComponent();
-
-        ShellViewModel = shellViewModel;
     }
 
-    public ShellViewModel ShellViewModel { get; }
+    public EditorViewModel? ViewModel
+    {
+        get => (EditorViewModel?)GetValue(ViewModelProperty);
+        set => SetValue(ViewModelProperty, value);
+    }
 
     private TextWrapping GetTextWrapping(bool isWordWrap)
     {
