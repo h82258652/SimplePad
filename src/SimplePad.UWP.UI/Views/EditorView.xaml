@@ -21,6 +21,7 @@
             Grid.Row="1"
             AcceptsReturn="True"
             CornerRadius="0"
+            FontFamily="Consolas"
             SelectionHighlightColorWhenNotFocused="{x:Bind TextBox.SelectionHighlightColor, Mode=OneWay}"
             TextWrapping="{x:Bind GetTextWrapping(_appSettings.IsWordWrap), Mode=OneWay}" />
         <local:StatusBar

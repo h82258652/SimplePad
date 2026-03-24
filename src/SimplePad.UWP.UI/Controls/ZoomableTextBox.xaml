@@ -113,6 +113,7 @@
                             Margin="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}"
                             AutomationProperties.AccessibilityView="Raw"
+                            FontSize="{TemplateBinding ComputedFontSize}"
                             Foreground="{TemplateBinding Foreground}"
                             HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                             HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
@@ -120,8 +121,6 @@
                             IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
                             IsTabStop="False"
                             IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                            MaxZoomFactor="5"
-                            MinZoomFactor="0.1"
                             VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
                             VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
                             ZoomMode="Disabled" />
