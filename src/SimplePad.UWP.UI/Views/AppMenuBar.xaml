@@ -158,7 +158,7 @@
                 <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}" Text="Word wrap" />
             </MenuBarItem>
         </MenuBar>
-        <Button Grid.Column="1">
+        <Button Grid.Column="1" Click="OnSettingsButtonClick">
             <Button.Content>
                 <SymbolIcon Symbol="Setting" />
             </Button.Content>

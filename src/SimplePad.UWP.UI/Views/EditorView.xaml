@@ -15,7 +15,7 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <local:AppMenuBar TextBox="{x:Bind TextBox}" />
+        <local:AppMenuBar ShellViewModel="{x:Bind ShellViewModel}" TextBox="{x:Bind TextBox}" />
         <controls:ZoomableTextBox
             x:Name="TextBox"
             Grid.Row="1"

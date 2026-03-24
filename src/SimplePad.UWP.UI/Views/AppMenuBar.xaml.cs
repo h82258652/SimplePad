@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Settings;
+using SimplePad.UWP.UI.ViewModels;
 using Windows.Graphics.Printing;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -44,6 +45,18 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnCloseTabClick(object sender, RoutedEventArgs e)
     {
+    }
+
+    public static readonly DependencyProperty ShellViewModelProperty = DependencyProperty.Register(
+        nameof(ShellViewModel),
+        typeof(ShellViewModel),
+        typeof(AppMenuBar),
+        null);
+
+    public ShellViewModel? ShellViewModel
+    {
+        get => (ShellViewModel?)GetValue(ShellViewModelProperty);
+        set => SetValue(ShellViewModelProperty, value);
     }
 
     private void OnCopyClick(object sender, RoutedEventArgs e)
@@ -218,5 +231,10 @@ public sealed partial class AppMenuBar : UserControl
     private void OnZoomOutClick(object sender, RoutedEventArgs e)
     {
         _appState.ZoomFactor = Math.Max(0.1, _appState.ZoomFactor - 0.1);
+    }
+
+    private void OnSettingsButtonClick(object sender, RoutedEventArgs e)
+    {
+        ShellViewModel?.IsSettingsViewVisible = true;
     }
 }
