@@ -1,4 +1,6 @@
-﻿using SimplePad.UWP.UI.Helpers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.UWP.UI.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -12,8 +14,12 @@ public sealed partial class StatusBar : UserControl
         typeof(StatusBar),
         new PropertyMetadata(null, OnTextBoxChanged));
 
+    private readonly AppState _appState;
+
     public StatusBar()
     {
+        _appState = ServiceLocator.Current.GetRequiredService<AppState>();
+
         InitializeComponent();
     }
 
@@ -43,7 +49,11 @@ public sealed partial class StatusBar : UserControl
 
         self.UpdatePositionIndicator();
         self.UpdateCharacterIndicator();
-        self.UpdateZoomFactorIndicator();
+    }
+
+    private string GetZoomFactorText(double zoomFactor)
+    {
+        return zoomFactor.ToString("P0");
     }
 
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
@@ -85,9 +95,5 @@ public sealed partial class StatusBar : UserControl
 
         CursorPosition cursorPosition = TextBoxHelper.GetCursorPosition(TextBox);
         PositionIndicator.Text = $"Ln {cursorPosition.Row}, Col {cursorPosition.Column}";
-    }
-
-    private void UpdateZoomFactorIndicator()
-    {
     }
 }

@@ -34,6 +34,7 @@
             x:Name="ZoomFactorIndicator"
             Grid.Column="4"
             FontSize="12"
-            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+            Text="{x:Bind GetZoomFactorText(_appState.ZoomFactor), Mode=OneWay}" />
     </Grid>
 </UserControl>

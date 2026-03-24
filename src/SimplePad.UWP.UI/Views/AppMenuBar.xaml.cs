@@ -21,6 +21,7 @@ public sealed partial class AppMenuBar : UserControl
         null);
 
     private readonly IAppSettings _appSettings;
+    private readonly AppState _appState;
 
     private PrintDocument? _printDocument;
     private IPrintDocumentSource? _printDocumentSource;
@@ -28,6 +29,7 @@ public sealed partial class AppMenuBar : UserControl
     public AppMenuBar()
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
+        _appState = ServiceLocator.Current.GetRequiredService<AppState>();
 
         InitializeComponent();
 
@@ -42,7 +44,6 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnCloseTabClick(object sender, RoutedEventArgs e)
     {
-
     }
 
     private void OnCopyClick(object sender, RoutedEventArgs e)
@@ -57,12 +58,18 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnDeleteClick(object sender, RoutedEventArgs e)
     {
+    }
 
+    private void OnFindClick(object sender, RoutedEventArgs e)
+    {
     }
 
     private void OnFontClick(object sender, RoutedEventArgs e)
     {
+    }
 
+    private void OnGoToClick(object sender, RoutedEventArgs e)
+    {
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -75,12 +82,10 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnNewTabClick(object sender, RoutedEventArgs e)
     {
-
     }
 
     private void OnNewWindowClick(object sender, RoutedEventArgs e)
     {
-
     }
 
     private async void OnOpenClick(object sender, RoutedEventArgs e)
@@ -145,6 +150,19 @@ public sealed partial class AppMenuBar : UserControl
         });
     }
 
+    private void OnReplaceClick(object sender, RoutedEventArgs e)
+    {
+    }
+
+    private void OnRestoreDefaultZoomClick(object sender, RoutedEventArgs e)
+    {
+        _appState.ZoomFactor = 1;
+    }
+
+    private void OnSaveAllClick(object sender, RoutedEventArgs e)
+    {
+    }
+
     private async void OnSaveAsClick(object sender, RoutedEventArgs e)
     {
         if (TextBox is not { } textBox)
@@ -192,23 +210,13 @@ public sealed partial class AppMenuBar : UserControl
         }
     }
 
-    private void OnSaveAllClick(object sender, RoutedEventArgs e)
+    private void OnZoomInClick(object sender, RoutedEventArgs e)
     {
-
+        _appState.ZoomFactor = Math.Min(5, _appState.ZoomFactor + 0.1);
     }
 
-    private void OnFindClick(object sender, RoutedEventArgs e)
+    private void OnZoomOutClick(object sender, RoutedEventArgs e)
     {
-
-    }
-
-    private void OnReplaceClick(object sender, RoutedEventArgs e)
-    {
-
-    }
-
-    private void OnGoToClick(object sender, RoutedEventArgs e)
-    {
-
+        _appState.ZoomFactor = Math.Max(0.1, _appState.ZoomFactor - 0.1);
     }
 }
