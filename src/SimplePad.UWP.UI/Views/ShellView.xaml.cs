@@ -19,5 +19,7 @@ public sealed partial class ShellView : UserControl
         };
 
         sender.TabItems.Add(tabViewItem);
+
+        sender.SelectedItem = tabViewItem;
     }
 }
