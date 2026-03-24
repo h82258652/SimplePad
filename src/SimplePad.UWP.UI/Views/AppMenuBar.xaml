@@ -54,7 +54,7 @@
         </MenuBarItem>
         <MenuBarItem Title="View">
             <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsStatusBarVisible, Mode=TwoWay}" Text="Status bar" />
-            <ToggleMenuFlyoutItem Text="Word wrap" />
+            <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}" Text="Word wrap" />
         </MenuBarItem>
     </MenuBar>
 </UserControl>
