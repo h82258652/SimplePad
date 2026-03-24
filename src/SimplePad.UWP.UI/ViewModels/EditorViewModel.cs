@@ -12,6 +12,10 @@ public sealed partial class EditorViewModel : ObservableObject
     [ObservableProperty]
     public partial string Content { get; set; } = string.Empty;
 
+    public bool IsModified => Content != OriginalContent;
+
+    public string OriginalContent { get; set; } = string.Empty;
+
     public ShellViewModel ShellViewModel { get; }
 
     [ObservableProperty]

@@ -25,7 +25,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             SelectionHighlightColorWhenNotFocused="{x:Bind TextBox.SelectionHighlightColor, Mode=OneWay}"
-            Text="{x:Bind ViewModel.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            Text="{x:Bind ViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="{x:Bind GetTextWrapping(_appSettings.IsWordWrap), Mode=OneWay}"
             ZoomFactor="{x:Bind _appState.ZoomFactor, Mode=TwoWay}" />
         <local:StatusBar

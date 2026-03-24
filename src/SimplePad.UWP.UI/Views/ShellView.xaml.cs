@@ -13,8 +13,12 @@ public sealed partial class ShellView : UserControl
 
     public ShellViewModel ViewModel { get; } = new ShellViewModel();
 
-    private void OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+    private async void OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
     {
+        if (args.Item is EditorViewModel editorViewModel)
+        {
+            await ViewModel.CloseEditorAsync(editorViewModel);
+        }
     }
 
     private void OnTabViewAddTabButtonClick(TabView sender, object args)

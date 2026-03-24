@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SimplePad.UWP.UI.ViewModels;
@@ -21,5 +22,25 @@ public sealed partial class ShellViewModel : ObservableObject
         EditorViewModel newEditorViewModel = new(this);
         _editors.Add(newEditorViewModel);
         SelectedEditor = newEditorViewModel;
+    }
+
+    public async Task CloseEditorAsync(EditorViewModel editorViewModel)
+    {
+        if (editorViewModel.IsModified)
+        {
+            // TODO Save
+        }
+
+        _editors.Remove(editorViewModel);
+        if (_editors.Count <= 0)
+        {
+            AddEditor();
+            return;
+        }
+
+        if (SelectedEditor == editorViewModel)
+        {
+            SelectedEditor = _editors[^1];
+        }
     }
 }
