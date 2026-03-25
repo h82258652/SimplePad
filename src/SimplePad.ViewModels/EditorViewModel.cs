@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace SimplePad.UWP.UI.ViewModels;
+namespace SimplePad.ViewModels;
 
 public sealed partial class EditorViewModel : ObservableObject
 {

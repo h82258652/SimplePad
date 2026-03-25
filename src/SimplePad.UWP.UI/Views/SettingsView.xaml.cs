@@ -1,4 +1,4 @@
-﻿using SimplePad.UWP.UI.ViewModels;
+﻿using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

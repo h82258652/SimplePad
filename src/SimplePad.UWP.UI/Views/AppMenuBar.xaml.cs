@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Settings;
-using SimplePad.UWP.UI.ViewModels;
+using SimplePad.ViewModels;
 using Windows.Graphics.Printing;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -17,9 +17,9 @@ namespace SimplePad.UWP.UI.Views;
 
 public sealed partial class AppMenuBar : UserControl
 {
-    public static readonly DependencyProperty ShellViewModelProperty = DependencyProperty.Register(
-        nameof(ShellViewModel),
-        typeof(ShellViewModel),
+    public static readonly DependencyProperty EditorViewModelProperty = DependencyProperty.Register(
+        nameof(EditorViewModel),
+        typeof(EditorViewModel),
         typeof(AppMenuBar),
         null);
 
@@ -45,10 +45,10 @@ public sealed partial class AppMenuBar : UserControl
         PrintMenuItem.Visibility = PrintManager.IsSupported() ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    public ShellViewModel? ShellViewModel
+    public EditorViewModel? EditorViewModel
     {
-        get => (ShellViewModel?)GetValue(ShellViewModelProperty);
-        set => SetValue(ShellViewModelProperty, value);
+        get => (EditorViewModel?)GetValue(EditorViewModelProperty);
+        set => SetValue(EditorViewModelProperty, value);
     }
 
     public TextBox? TextBox
@@ -75,8 +75,12 @@ public sealed partial class AppMenuBar : UserControl
         self.UpdateUndoMenuFlyoutItem();
     }
 
-    private void OnCloseTabClick(object sender, RoutedEventArgs e)
+    private async void OnCloseTabClick(object sender, RoutedEventArgs e)
     {
+        if (EditorViewModel is { } editorViewModel)
+        {
+            await editorViewModel.ShellViewModel.CloseEditorAsync(EditorViewModel);
+        }
     }
 
     private void OnCopyClick(object sender, RoutedEventArgs e)
@@ -115,7 +119,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnNewTabClick(object sender, RoutedEventArgs e)
     {
-        ShellViewModel?.AddEditor();
+        EditorViewModel?.ShellViewModel.AddEditor();
     }
 
     private async void OnNewWindowClick(object sender, RoutedEventArgs e)
@@ -228,7 +232,10 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnSettingsButtonClick(object sender, RoutedEventArgs e)
     {
-        ShellViewModel?.IsSettingsViewVisible = true;
+        if (EditorViewModel is { ShellViewModel: { } shellViewModel })
+        {
+            shellViewModel.IsSettingsViewVisible = true;
+        }
     }
 
     private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)

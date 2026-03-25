@@ -7,7 +7,7 @@
     xmlns:helpers="using:SimplePad.UWP.UI.Helpers"
     xmlns:local="using:SimplePad.UWP.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodels="using:SimplePad.UWP.UI.ViewModels"
+    xmlns:viewmodels="using:SimplePad.ViewModels"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"

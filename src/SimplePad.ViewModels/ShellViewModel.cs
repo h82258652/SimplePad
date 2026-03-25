@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace SimplePad.UWP.UI.ViewModels;
+namespace SimplePad.ViewModels;
 
 public sealed partial class ShellViewModel : ObservableObject
 {
@@ -34,6 +34,7 @@ public sealed partial class ShellViewModel : ObservableObject
         _editors.Remove(editorViewModel);
         if (_editors.Count <= 0)
         {
+            // TODO close current window instead of add editor
             AddEditor();
             return;
         }
