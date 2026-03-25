@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Services.UWP;
@@ -76,17 +77,9 @@ public sealed partial class AppMenuBar : UserControl
         }
 
         self.UpdateUndoMenuFlyoutItem();
+        self.UpdateCutMenuFlyoutItem();
+        self.UpdateCopyMenuFlyoutItem();
         self.UpdateDeleteMenuFlyoutItem();
-    }
-
-    private void UpdateDeleteMenuFlyoutItem()
-    {
-        DeleteMenuFlyoutItem .IsEnabled = TextBox is { SelectedText.Length: > 0 };
-    }
-
-    private void OnTextBoxSelectionChanged(object sender, RoutedEventArgs e)
-    {
-        UpdateDeleteMenuFlyoutItem();
     }
 
     private async void OnCloseTabClick(object sender, RoutedEventArgs e)
@@ -95,6 +88,11 @@ public sealed partial class AppMenuBar : UserControl
         {
             await editorViewModel.ShellViewModel.CloseEditorAsync(EditorViewModel);
         }
+    }
+
+    private void OnCloseWindowClick(object sender, RoutedEventArgs e)
+    {
+        Window.Current.Close();
     }
 
     private void OnCopyClick(object sender, RoutedEventArgs e)
@@ -137,11 +135,16 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnNewTabClick(object sender, RoutedEventArgs e)
     {
-        EditorViewModel?.ShellViewModel.AddBlankEditor();
+        if (EditorViewModel is { ShellViewModel: { } shellViewModel })
+        {
+            shellViewModel.AddBlankEditor();
+        }
     }
 
     private async void OnNewWindowClick(object sender, RoutedEventArgs e)
     {
+        // TODO switch to legacy multiple window solution
+
         AppWindow appWindow = await AppWindow.TryCreateAsync();
         appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
         ElementCompositionPreview.SetAppWindowContent(appWindow, new ShellView());
@@ -218,13 +221,17 @@ public sealed partial class AppMenuBar : UserControl
         _appState.ResetZoomFactor();
     }
 
-    private void OnSaveAllClick(object sender, RoutedEventArgs e)
+    private async void OnSaveAllClick(object sender, RoutedEventArgs e)
     {
+        if (EditorViewModel is { ShellViewModel: { } shellViewModel })
+        {
+            await shellViewModel.SaveAllAsync();
+        }
     }
 
     private async void OnSaveAsClick(object sender, RoutedEventArgs e)
     {
-        if (TextBox is not { } textBox)
+        if (EditorViewModel is not { } editorViewModel)
         {
             return;
         }
@@ -234,12 +241,17 @@ public sealed partial class AppMenuBar : UserControl
         StorageFile? file = await fileSavePicker.PickSaveFileAsync();
         if (file is not null)
         {
-            await FileIO.WriteTextAsync(file, textBox.Text);
+            editorViewModel.File = new UWPFile(file);
+            await editorViewModel.SaveAsync();
         }
     }
 
-    private void OnSaveClick(object sender, RoutedEventArgs e)
+    private async void OnSaveClick(object sender, RoutedEventArgs e)
     {
+        if (EditorViewModel is { } editorViewModel)
+        {
+            await editorViewModel.SaveAsync();
+        }
     }
 
     private void OnSelectAllClick(object sender, RoutedEventArgs e)
@@ -255,6 +267,13 @@ public sealed partial class AppMenuBar : UserControl
         }
     }
 
+    private void OnTextBoxSelectionChanged(object sender, RoutedEventArgs e)
+    {
+        UpdateCutMenuFlyoutItem();
+        UpdateCopyMenuFlyoutItem();
+        UpdateDeleteMenuFlyoutItem();
+    }
+
     private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
     {
         UpdateUndoMenuFlyoutItem();
@@ -262,8 +281,15 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnTimeDateClick(object sender, RoutedEventArgs e)
     {
-        TextBox.SelectedText = DateTime.Now.ToString("hh:mm tt MM/dd/yyyy");
-        TextBox.SelectionLength = 0;
+        if (TextBox is not { } textBox)
+        {
+            return;
+        }
+
+        string timeDateText = DateTime.Now.ToString("hh:mm tt MM/dd/yyyy");
+        textBox.SelectedText = timeDateText;
+        textBox.SelectionLength = 0;
+        textBox.SelectionStart += timeDateText.Length;
     }
 
     private void OnUndoClick(object sender, RoutedEventArgs e)
@@ -290,6 +316,21 @@ public sealed partial class AppMenuBar : UserControl
     private void OnZoomOutClick(object sender, RoutedEventArgs e)
     {
         _appState.ZoomOut();
+    }
+
+    private void UpdateCopyMenuFlyoutItem()
+    {
+        DeleteMenuFlyoutItem.IsEnabled = TextBox is { SelectedText.Length: > 0 };
+    }
+
+    private void UpdateCutMenuFlyoutItem()
+    {
+        DeleteMenuFlyoutItem.IsEnabled = TextBox is { SelectedText.Length: > 0 };
+    }
+
+    private void UpdateDeleteMenuFlyoutItem()
+    {
+        DeleteMenuFlyoutItem.IsEnabled = TextBox is { SelectedText.Length: > 0 };
     }
 
     private void UpdateUndoMenuFlyoutItem()

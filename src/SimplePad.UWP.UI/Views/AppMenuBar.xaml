@@ -103,6 +103,7 @@
                         <KeyboardAccelerator Key="O" Modifiers="Control" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
+                <!--  TODO  -->
                 <MenuFlyoutSubItem Text="Recent" />
                 <MenuFlyoutItem Click="OnSaveClick" Text="Save">
                     <MenuFlyoutItem.KeyboardAccelerators>
@@ -134,7 +135,7 @@
                         <KeyboardAccelerator Key="W" Modifiers="Control" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Close window">
+                <MenuFlyoutItem Click="OnCloseWindowClick" Text="Close window">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Key="W" Modifiers="Control,Shift" />
                     </MenuFlyoutItem.KeyboardAccelerators>

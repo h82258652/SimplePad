@@ -33,6 +33,18 @@ public sealed partial class ShellViewModel : ObservableObject
         SelectedEditor = newEditorViewModel;
     }
 
+    public async Task SaveAllAsync()
+    {
+        foreach (var editor in Editors)
+        {
+            bool saveSuccess = await editor.SaveAsync();
+            if (!saveSuccess)
+            {
+                return;
+            }
+        }
+    }
+
     public async Task CloseEditorAsync(EditorViewModel editorViewModel)
     {
         if (editorViewModel.IsModified)

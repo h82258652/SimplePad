@@ -52,7 +52,7 @@ public sealed partial class EditorViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Title))]
-    private partial IFile? File { get; set; }
+    public partial IFile? File { get; set; }
 
     public static EditorViewModel CreateBlank(ShellViewModel shellViewModel)
     {
