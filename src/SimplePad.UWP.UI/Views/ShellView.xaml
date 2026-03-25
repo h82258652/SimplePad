@@ -14,12 +14,13 @@
     mc:Ignorable="d">
     <Grid>
         <controls:AppTabView
+            x:Name="TabView"
             VerticalAlignment="Stretch"
             AddTabButtonClick="OnTabViewAddTabButtonClick"
             CloseButtonOverlayMode="OnPointerOver"
             SelectedItem="{x:Bind ViewModel.SelectedEditor, Mode=TwoWay}"
+            SelectionChanged="OnAppTabViewSelectionChanged"
             TabCloseRequested="OnTabCloseRequested"
-            TabItemsChanged="OnAppTabViewTabItemsChanged"
             TabItemsSource="{x:Bind ViewModel.Editors, Mode=OneWay}"
             Visibility="{x:Bind helpers:UIHelper.InverseBoolToVisibility(ViewModel.IsSettingsViewVisible), Mode=OneWay}">
             <controls:AppTabView.TitleBar>

@@ -87,7 +87,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <MenuBar Height="30">
-            <MenuBarItem Title="File">
+            <MenuBarItem Title="File" Margin="4,0,0,0">
                 <MenuFlyoutItem Click="OnNewTabClick" Text="New tab">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Key="N" Modifiers="Control" />
@@ -135,14 +135,17 @@
                         <KeyboardAccelerator Key="W" Modifiers="Control" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Click="OnCloseWindowClick" Text="Close window">
+                <MenuFlyoutItem
+                    MinWidth="230"
+                    Click="OnCloseWindowClick"
+                    Text="Close window">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Key="W" Modifiers="Control,Shift" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
                 <MenuFlyoutItem Text="Exit" />
             </MenuBarItem>
-            <MenuBarItem Title="Edit">
+            <MenuBarItem Title="Edit" Margin="4,0,0,0">
                 <MenuFlyoutItem
                     x:Name="UndoMenuFlyoutItem"
                     Click="OnUndoClick"
@@ -204,11 +207,14 @@
                         <KeyboardAccelerator Key="F5" />
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutSeparator />
-                <MenuFlyoutItem Click="OnFontClick" Text="Font" />
+                <MenuFlyoutSeparator MinWidth="230" />
+                <MenuFlyoutItem
+                    MinWidth="230"
+                    Click="OnFontClick"
+                    Text="Font" />
             </MenuBarItem>
-            <MenuBarItem Title="View">
-                <MenuFlyoutSubItem Text="Zoom">
+            <MenuBarItem Title="View" Margin="4,0,0,0">
+                <MenuFlyoutSubItem MinWidth="230" Text="Zoom">
                     <MenuFlyoutItem
                         Click="OnZoomInClick"
                         IsEnabled="{x:Bind _appState.CanZoomIn, Mode=OneWay}"
@@ -233,8 +239,14 @@
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
                 </MenuFlyoutSubItem>
-                <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsStatusBarVisible, Mode=TwoWay}" Text="Status bar" />
-                <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}" Text="Word wrap" />
+                <ToggleMenuFlyoutItem
+                    MinWidth="230"
+                    IsChecked="{x:Bind _appSettings.IsStatusBarVisible, Mode=TwoWay}"
+                    Text="Status bar" />
+                <ToggleMenuFlyoutItem
+                    MinWidth="230"
+                    IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}"
+                    Text="Word wrap" />
             </MenuBarItem>
         </MenuBar>
         <Button
