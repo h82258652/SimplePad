@@ -6,17 +6,87 @@
     xmlns:helpers="using:SimplePad.UWP.UI.Helpers"
     xmlns:local="using:SimplePad.UWP.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SettingsButtonStyle" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                winui:AnimatedIcon.State="Normal"
+                                AutomationProperties.AccessibilityView="Raw"
+                                Background="{TemplateBinding Background}"
+                                BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                                <ContentPresenter.BackgroundTransition>
+                                    <BrushTransition Duration="0:0:0.083" />
+                                </ContentPresenter.BackgroundTransition>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                            <VisualState.Setters>
+                                                <Setter Target="ContentPresenter.(winui:AnimatedIcon.State)" Value="PointerOver" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                            <VisualState.Setters>
+                                                <Setter Target="ContentPresenter.(winui:AnimatedIcon.State)" Value="Pressed" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </ContentPresenter>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <MenuBar>
+        <MenuBar Height="30">
             <MenuBarItem Title="File">
                 <MenuFlyoutItem Click="OnNewTabClick" Text="New tab">
                     <MenuFlyoutItem.KeyboardAccelerators>
@@ -164,10 +234,9 @@
                 <ToggleMenuFlyoutItem IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}" Text="Word wrap" />
             </MenuBarItem>
         </MenuBar>
-        <Button Grid.Column="1" Click="OnSettingsButtonClick">
-            <Button.Content>
-                <SymbolIcon Symbol="Setting" />
-            </Button.Content>
-        </Button>
+        <Button
+            Grid.Column="1"
+            Click="OnSettingsButtonClick"
+            Style="{StaticResource SettingsButtonStyle}" />
     </Grid>
 </UserControl>
