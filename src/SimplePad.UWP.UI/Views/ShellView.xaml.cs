@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using SimplePad.UWP.UI.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.UWP.UI.Views;
@@ -9,6 +10,8 @@ public sealed partial class ShellView : UserControl
     public ShellView()
     {
         InitializeComponent();
+
+        Window.Current.SetTitleBar(TitleBar);
     }
 
     public ShellViewModel ViewModel { get; } = new ShellViewModel();

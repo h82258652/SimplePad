@@ -2,6 +2,7 @@
     x:Class="SimplePad.UWP.UI.Views.ShellView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SimplePad.UWP.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:SimplePad.UWP.UI.Helpers"
     xmlns:local="using:SimplePad.UWP.UI.Views"
@@ -12,21 +13,31 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
     <Grid>
-        <winui:TabView
+        <controls:AppTabView
             VerticalAlignment="Stretch"
             AddTabButtonClick="OnTabViewAddTabButtonClick"
             SelectedItem="{x:Bind ViewModel.SelectedEditor, Mode=TwoWay}"
             TabCloseRequested="OnTabCloseRequested"
             TabItemsSource="{x:Bind ViewModel.Editors, Mode=OneWay}"
             Visibility="{x:Bind helpers:UIHelper.InverseBoolToVisibility(ViewModel.IsSettingsViewVisible), Mode=OneWay}">
-            <winui:TabView.TabItemTemplate>
+            <controls:AppTabView.TitleBar>
+                <Border x:Name="TitleBar" Background="Transparent" />
+            </controls:AppTabView.TitleBar>
+            <controls:AppTabView.TabStripHeader>
+                <Border
+                    Width="32"
+                    Height="32"
+                    Background="LightBlue"
+                    IsHitTestVisible="False" />
+            </controls:AppTabView.TabStripHeader>
+            <controls:AppTabView.TabItemTemplate>
                 <DataTemplate x:DataType="viewmodels:EditorViewModel">
                     <winui:TabViewItem Header="{x:Bind Title, Mode=OneWay}">
                         <local:EditorView ViewModel="{x:Bind}" />
                     </winui:TabViewItem>
                 </DataTemplate>
-            </winui:TabView.TabItemTemplate>
-        </winui:TabView>
+            </controls:AppTabView.TabItemTemplate>
+        </controls:AppTabView>
         <local:SettingsView ShellViewModel="{x:Bind ViewModel}" Visibility="{x:Bind ViewModel.IsSettingsViewVisible, Mode=OneWay}" />
     </Grid>
 </UserControl>

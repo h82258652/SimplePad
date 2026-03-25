@@ -1,10 +1,10 @@
-﻿using System;
-using SimplePad.UWP.UI.Views;
+﻿using SimplePad.UWP.UI.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace SimplePad.UWP.App
 {
@@ -39,6 +39,8 @@ namespace SimplePad.UWP.App
                     // TODO: Load state from previously suspended application
                 }
 
+                ExtendViewIntoTitleBar();
+
                 // Place the frame in the current Window                
                 Window.Current.Content = shellView;
             }
@@ -50,14 +52,14 @@ namespace SimplePad.UWP.App
             }
         }
 
-        /// <summary>
-        /// Invoked when Navigation to a certain page fails.
-        /// </summary>
-        /// <param name="sender">The Frame which failed navigation.</param>
-        /// <param name="e">Details about the navigation failure.</param>
-        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private static void ExtendViewIntoTitleBar()
         {
-            throw new Exception($"Failed to load page '{e.SourcePageType.FullName}'.");
+            CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
+
+            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         /// <summary>
