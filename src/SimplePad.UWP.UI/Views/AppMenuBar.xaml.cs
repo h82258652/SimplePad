@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Services.UWP;
 using SimplePad.Settings;
 using SimplePad.ViewModels;
 using Windows.Graphics.Printing;
@@ -119,7 +120,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnNewTabClick(object sender, RoutedEventArgs e)
     {
-        EditorViewModel?.ShellViewModel.AddEditor();
+        EditorViewModel?.ShellViewModel.AddBlankEditor();
     }
 
     private async void OnNewWindowClick(object sender, RoutedEventArgs e)
@@ -132,7 +133,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private async void OnOpenClick(object sender, RoutedEventArgs e)
     {
-        if (TextBox is not { } textBox)
+        if (EditorViewModel is not { } editorViewModel)
         {
             return;
         }
@@ -146,8 +147,7 @@ public sealed partial class AppMenuBar : UserControl
             return;
         }
 
-        string text = await FileIO.ReadTextAsync(file);
-        textBox.Text = text;
+        editorViewModel.ShellViewModel.AddEditorFromFile(new UWPFile(file));
     }
 
     private void OnPasteClick(object sender, RoutedEventArgs e)

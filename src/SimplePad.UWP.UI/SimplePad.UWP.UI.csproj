@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
+    <ProjectReference Include="..\SimplePad.Services.UWP\SimplePad.Services.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.ViewModels\SimplePad.ViewModels.csproj" />
   </ItemGroup>

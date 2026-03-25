@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using SimplePad.Services;
+using Windows.UI.Xaml;
 
 namespace SimplePad.ViewModels;
 
@@ -17,9 +19,16 @@ public sealed partial class ShellViewModel : ObservableObject
     [ObservableProperty]
     public partial EditorViewModel? SelectedEditor { get; set; }
 
-    public void AddEditor()
+    public void AddBlankEditor()
     {
-        EditorViewModel newEditorViewModel = new(this);
+        EditorViewModel newEditorViewModel = EditorViewModel.CreateBlank(this);
+        _editors.Add(newEditorViewModel);
+        SelectedEditor = newEditorViewModel;
+    }
+
+    public void AddEditorFromFile(IFile file)
+    {
+        EditorViewModel newEditorViewModel = EditorViewModel.CreateFromFile(this, file);
         _editors.Add(newEditorViewModel);
         SelectedEditor = newEditorViewModel;
     }
@@ -28,14 +37,19 @@ public sealed partial class ShellViewModel : ObservableObject
     {
         if (editorViewModel.IsModified)
         {
-            // TODO Save
+            // TODO: Prompt the user to save changes before closing the editor.
+
+            bool saveSuccess = await editorViewModel.SaveAsync();
+            if (!saveSuccess)
+            {
+                return;
+            }
         }
 
         _editors.Remove(editorViewModel);
         if (_editors.Count <= 0)
         {
-            // TODO close current window instead of add editor
-            AddEditor();
+            Window.Current.Close(); // TODO this is UWP limit API, need to find a better way to close the app
             return;
         }
 

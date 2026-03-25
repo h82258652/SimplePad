@@ -26,6 +26,6 @@ public sealed partial class ShellView : UserControl
 
     private void OnTabViewAddTabButtonClick(TabView sender, object args)
     {
-        ViewModel.AddEditor();
+        ViewModel.AddBlankEditor();
     }
 }
