@@ -7,8 +7,10 @@ using SimplePad.UWP.UI.ViewModels;
 using Windows.Graphics.Printing;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Printing;
 
 namespace SimplePad.UWP.UI.Views;
@@ -116,8 +118,12 @@ public sealed partial class AppMenuBar : UserControl
         ShellViewModel?.AddEditor();
     }
 
-    private void OnNewWindowClick(object sender, RoutedEventArgs e)
+    private async void OnNewWindowClick(object sender, RoutedEventArgs e)
     {
+        AppWindow appWindow = await AppWindow.TryCreateAsync();
+        appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+        ElementCompositionPreview.SetAppWindowContent(appWindow, new ShellView());
+        _ = await appWindow.TryShowAsync();
     }
 
     private async void OnOpenClick(object sender, RoutedEventArgs e)
