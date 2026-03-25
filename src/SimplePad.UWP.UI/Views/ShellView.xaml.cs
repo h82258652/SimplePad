@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using SimplePad.ViewModels;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -15,6 +16,11 @@ public sealed partial class ShellView : UserControl
     }
 
     public ShellViewModel ViewModel { get; } = new ShellViewModel();
+
+    private void OnAppTabViewTabItemsChanged(TabView sender, IVectorChangedEventArgs args)
+    {
+        sender.CloseButtonOverlayMode = TabViewCloseButtonOverlayMode.OnPointerOver;
+    }
 
     private async void OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
     {

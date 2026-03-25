@@ -16,8 +16,10 @@
         <controls:AppTabView
             VerticalAlignment="Stretch"
             AddTabButtonClick="OnTabViewAddTabButtonClick"
+            CloseButtonOverlayMode="OnPointerOver"
             SelectedItem="{x:Bind ViewModel.SelectedEditor, Mode=TwoWay}"
             TabCloseRequested="OnTabCloseRequested"
+            TabItemsChanged="OnAppTabViewTabItemsChanged"
             TabItemsSource="{x:Bind ViewModel.Editors, Mode=OneWay}"
             Visibility="{x:Bind helpers:UIHelper.InverseBoolToVisibility(ViewModel.IsSettingsViewVisible), Mode=OneWay}">
             <controls:AppTabView.TitleBar>
@@ -30,6 +32,9 @@
                     Background="LightBlue"
                     IsHitTestVisible="False" />
             </controls:AppTabView.TabStripHeader>
+            <controls:AppTabView.TabStripFooter>
+                <Border Width="192" />
+            </controls:AppTabView.TabStripFooter>
             <controls:AppTabView.TabItemTemplate>
                 <DataTemplate x:DataType="viewmodels:EditorViewModel">
                     <winui:TabViewItem Header="{x:Bind Title, Mode=OneWay}">

@@ -1,9 +1,10 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using SimplePad.Core;
 using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
 using SimplePad.Services;
+using UtfUnknown;
 
 namespace SimplePad.ViewModels;
 
@@ -23,12 +24,18 @@ public sealed partial class EditorViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(IsModified))]
     public partial string Content { get; set; } = string.Empty;
 
+    [ObservableProperty]
+    public partial Encoding Encoding { get; private set; } = Encoding.UTF8;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Title))]
+    public partial IFile? File { get; set; }
+
     public bool IsModified => Content != OriginalContent;
 
     public string OriginalContent { get; set; } = string.Empty;
 
     public ShellViewModel ShellViewModel { get; }
-
     public string Title
     {
         get
@@ -49,10 +56,6 @@ public sealed partial class EditorViewModel : ObservableObject
             return "Untitled";
         }
     }
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Title))]
-    public partial IFile? File { get; set; }
 
     public static EditorViewModel CreateBlank(ShellViewModel shellViewModel)
     {
@@ -99,7 +102,18 @@ public sealed partial class EditorViewModel : ObservableObject
     private async Task LoadContentAsync(IFile file)
     {
         byte[] bytes = await file.ReadAllBytesAsync();
-        string text = Encoding.UTF8.GetString(bytes);
+
+        DetectionResult detectionResult = CharsetDetector.DetectFromBytes(bytes);
+        if (detectionResult.Detected is null)
+        {
+            Encoding = Encoding.ASCII;
+        }
+        else
+        {
+            Encoding = detectionResult.Detected.Encoding;
+        }
+
+        string text = Encoding.GetString(bytes);
         OriginalContent = text;
         Content = text;
     }

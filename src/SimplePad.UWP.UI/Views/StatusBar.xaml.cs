@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.UWP.UI.Helpers;
+using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -9,6 +10,12 @@ namespace SimplePad.UWP.UI.Views;
 
 public sealed partial class StatusBar : UserControl
 {
+    public static readonly DependencyProperty EditorViewModelProperty = DependencyProperty.Register(
+        nameof(EditorViewModel),
+        typeof(EditorViewModel),
+        typeof(StatusBar),
+        null);
+
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(TextBox),
@@ -22,6 +29,12 @@ public sealed partial class StatusBar : UserControl
         _appState = ServiceLocator.Current.GetRequiredService<AppState>();
 
         InitializeComponent();
+    }
+
+    public EditorViewModel? EditorViewModel
+    {
+        get => (EditorViewModel?)GetValue(EditorViewModelProperty);
+        set => SetValue(EditorViewModelProperty, value);
     }
 
     public TextBox? TextBox
@@ -50,6 +63,11 @@ public sealed partial class StatusBar : UserControl
 
         self.UpdatePositionIndicator();
         self.UpdateCharacterIndicator();
+    }
+
+    private string GetEncodingName(Encoding encoding)
+    {
+        return encoding.EncodingName;
     }
 
     private string GetZoomFactorText(double zoomFactor)
