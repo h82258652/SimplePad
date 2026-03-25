@@ -168,7 +168,9 @@
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
                 <MenuFlyoutItem
+                    x:Name="DeleteMenuFlyoutItem"
                     Click="OnDeleteClick"
+                    IsEnabled="False"
                     KeyboardAcceleratorTextOverride="Del"
                     Text="Delete">
                     <MenuFlyoutItem.KeyboardAccelerators>

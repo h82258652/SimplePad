@@ -65,15 +65,28 @@ public sealed partial class AppMenuBar : UserControl
         if (oldTextBox is not null)
         {
             oldTextBox.TextChanged -= self.OnTextBoxTextChanged;
+            oldTextBox.SelectionChanged -= self.OnTextBoxSelectionChanged;
         }
 
         TextBox? newTextBox = (TextBox?)e.NewValue;
         if (newTextBox is not null)
         {
             newTextBox.TextChanged += self.OnTextBoxTextChanged;
+            newTextBox.SelectionChanged += self.OnTextBoxSelectionChanged;
         }
 
         self.UpdateUndoMenuFlyoutItem();
+        self.UpdateDeleteMenuFlyoutItem();
+    }
+
+    private void UpdateDeleteMenuFlyoutItem()
+    {
+        DeleteMenuFlyoutItem .IsEnabled = TextBox is { SelectedText.Length: > 0 };
+    }
+
+    private void OnTextBoxSelectionChanged(object sender, RoutedEventArgs e)
+    {
+        UpdateDeleteMenuFlyoutItem();
     }
 
     private async void OnCloseTabClick(object sender, RoutedEventArgs e)
@@ -96,6 +109,10 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnDeleteClick(object sender, RoutedEventArgs e)
     {
+        if (TextBox is { SelectedText.Length: > 0 } textBox)
+        {
+            textBox.SelectedText = string.Empty;
+        }
     }
 
     private void OnFindClick(object sender, RoutedEventArgs e)
