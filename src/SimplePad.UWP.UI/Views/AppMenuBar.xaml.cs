@@ -25,7 +25,7 @@ public sealed partial class AppMenuBar : UserControl
         nameof(TextBox),
         typeof(TextBox),
         typeof(AppMenuBar),
-        null);
+        new PropertyMetadata(null, OnTextBoxChanged));
 
     private readonly IAppSettings _appSettings;
     private readonly AppState _appState;
@@ -53,6 +53,24 @@ public sealed partial class AppMenuBar : UserControl
     {
         get => (TextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
+    }
+
+    private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppMenuBar self = (AppMenuBar)d;
+        TextBox? oldTextBox = (TextBox?)e.OldValue;
+        if (oldTextBox is not null)
+        {
+            oldTextBox.TextChanged -= self.OnTextBoxTextChanged;
+        }
+
+        TextBox? newTextBox = (TextBox?)e.NewValue;
+        if (newTextBox is not null)
+        {
+            newTextBox.TextChanged += self.OnTextBoxTextChanged;
+        }
+
+        self.UpdateUndoMenuFlyoutItem();
     }
 
     private void OnCloseTabClick(object sender, RoutedEventArgs e)
@@ -207,6 +225,11 @@ public sealed partial class AppMenuBar : UserControl
         ShellViewModel?.IsSettingsViewVisible = true;
     }
 
+    private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    {
+        UpdateUndoMenuFlyoutItem();
+    }
+
     private void OnTimeDateClick(object sender, RoutedEventArgs e)
     {
         TextBox.SelectedText = DateTime.Now.ToString("hh:mm tt MM/dd/yyyy");
@@ -237,5 +260,10 @@ public sealed partial class AppMenuBar : UserControl
     private void OnZoomOutClick(object sender, RoutedEventArgs e)
     {
         _appState.ZoomOut();
+    }
+
+    private void UpdateUndoMenuFlyoutItem()
+    {
+        UndoMenuFlyoutItem.IsEnabled = TextBox is { CanUndo: true };
     }
 }

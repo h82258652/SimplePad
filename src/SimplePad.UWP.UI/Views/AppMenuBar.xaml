@@ -73,8 +73,9 @@
             </MenuBarItem>
             <MenuBarItem Title="Edit">
                 <MenuFlyoutItem
+                    x:Name="UndoMenuFlyoutItem"
                     Click="OnUndoClick"
-                    IsEnabled="{x:Bind TextBox.CanUndo, Mode=OneWay}"
+                    IsEnabled="False"
                     Text="Undo">
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Key="Z" Modifiers="Control" />
@@ -146,6 +147,7 @@
                     </MenuFlyoutItem>
                     <MenuFlyoutItem
                         Click="OnZoomOutClick"
+                        IsEnabled="{x:Bind _appState.CanZoomOut, Mode=OneWay}"
                         KeyboardAcceleratorTextOverride="Ctrl+Minus"
                         Text="Zoom out">
                         <MenuFlyoutItem.KeyboardAccelerators>
