@@ -20,6 +20,7 @@
             x:Name="TextBox"
             Grid.Row="1"
             AcceptsReturn="True"
+            BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
             CornerRadius="0"
             FontFamily="Consolas"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
