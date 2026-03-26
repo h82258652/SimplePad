@@ -20,14 +20,25 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="646" />
                     </VisualState.StateTriggers>
-                    <!--  TODO increase padding  -->
+                    <VisualState.Setters>
+                        <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
+                    </VisualState.Setters>
                 </VisualState>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <!--  TODO  -->
-                        <AdaptiveTrigger MinWindowWidth="1111" />
+                        <AdaptiveTrigger MinWindowWidth="958" />
                     </VisualState.StateTriggers>
-                    <!--  TODO move about to right  -->
+                    <VisualState.Setters>
+                        <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
+                        <Setter Target="SettingsSection.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="SettingsSection.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="AboutSection.(Grid.Column)" Value="1" />
+                        <Setter Target="AboutSection.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="AboutSection.(Grid.Row)" Value="0" />
+                        <Setter Target="AboutSection.(Grid.RowSpan)" Value="2" />
+                    </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
@@ -43,8 +54,11 @@
                 Source="/Assets/Square44x44Logo.png" />
             <TextBlock VerticalAlignment="Center" Text="Simple Pad" />
         </StackPanel>
-        <ScrollViewer Grid.Row="1">
-            <Grid>
+        <ScrollViewer
+            x:Name="ContentScrollViewer"
+            Grid.Row="1"
+            Padding="18,0">
+            <Grid ColumnSpacing="58" RowSpacing="24">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -53,10 +67,16 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <TextBlock Style="{StaticResource TitleLargeTextBlockStyle}" Text="Settings" />
+                <StackPanel x:Name="SettingsSection" Grid.ColumnSpan="2">
+                    <TextBlock
+                        x:Name="TitleText"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="Settings" />
                     <TextBlock Text="Appearance" />
-                    <controls:SettingsExpander Description="Select which app theme to display" Header="App theme">
+                    <controls:SettingsExpander
+                        Margin="0,12,0,0"
+                        Description="Select which app theme to display"
+                        Header="App theme">
                         <controls:SettingsExpander.HeaderIcon>
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE790;" />
                         </controls:SettingsExpander.HeaderIcon>
@@ -70,8 +90,8 @@
                             </controls:SettingsCard>
                         </controls:SettingsExpander.Items>
                     </controls:SettingsExpander>
-                    <TextBlock Text="Text Formatting" />
-                    <controls:SettingsExpander Header="Font">
+                    <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
+                    <controls:SettingsExpander Margin="0,12,0,0" Header="Font">
                         <controls:SettingsExpander.HeaderIcon>
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8D2;" />
                         </controls:SettingsExpander.HeaderIcon>
@@ -88,25 +108,51 @@
                                 </ComboBox>
                             </controls:SettingsCard>
                             <controls:SettingsCard Header="Size">
-                                <ComboBox IsEditable="True" />
+                                <!--  TODO limit to [8,99]  -->
+                                <ComboBox IsEditable="True">
+                                    <ComboBoxItem Content="8" />
+                                    <ComboBoxItem Content="9" />
+                                    <ComboBoxItem Content="10" />
+                                    <ComboBoxItem Content="11" />
+                                    <ComboBoxItem Content="12" />
+                                    <ComboBoxItem Content="14" />
+                                    <ComboBoxItem Content="16" />
+                                    <ComboBoxItem Content="18" />
+                                    <ComboBoxItem Content="20" />
+                                    <ComboBoxItem Content="22" />
+                                    <ComboBoxItem Content="24" />
+                                    <ComboBoxItem Content="26" />
+                                    <ComboBoxItem Content="28" />
+                                    <ComboBoxItem Content="36" />
+                                    <ComboBoxItem Content="48" />
+                                </ComboBox>
                             </controls:SettingsCard>
                             <controls:SettingsCard>
                                 <TextBlock Text="The sound of ocean waves calms my soul." />
                             </controls:SettingsCard>
                         </controls:SettingsExpander.Items>
                     </controls:SettingsExpander>
-                    <controls:SettingsCard Description="Fit text within window by default" Header="Word wrap">
+                    <controls:SettingsCard
+                        Margin="0,4,0,0"
+                        Description="Fit text within window by default"
+                        Header="Word wrap">
                         <ToggleSwitch />
                     </controls:SettingsCard>
-                    <TextBlock Text="Opening Simple Pad" />
-                    <controls:SettingsCard Description="Choose where your files are opened" Header="Opening files">
+                    <TextBlock Margin="0,12,0,0" Text="Opening Simple Pad" />
+                    <controls:SettingsCard
+                        Margin="0,12,0,0"
+                        Description="Choose where your files are opened"
+                        Header="Opening files">
                         <ComboBox>
                             <ComboBoxItem Content="Open in a new tab" />
                             <ComboBoxItem Content="Open in a new window" />
                         </ComboBox>
                     </controls:SettingsCard>
                 </StackPanel>
-                <StackPanel x:Name="AboutSection" Grid.Row="1">
+                <StackPanel
+                    x:Name="AboutSection"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2">
                     <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="About this app" />
                     <TextBlock Text="Simple Pad" />
                 </StackPanel>
