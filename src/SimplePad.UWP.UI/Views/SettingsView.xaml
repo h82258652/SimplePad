@@ -148,8 +148,8 @@
                             <ComboBoxItem Content="Open in a new window" />
                         </ComboBox>
                     </controls:SettingsCard>
-                    <TextBlock Text="Spelling" />
-                    <controls:SettingsCard Header="Spell check">
+                    <TextBlock Margin="0,12,0,0" Text="Spelling" />
+                    <controls:SettingsCard Margin="0,12,0,0" Header="Spell check">
                         <ToggleSwitch IsOn="{x:Bind _appSettings.IsSpellCheckEnabled, Mode=OneWay}" />
                     </controls:SettingsCard>
                 </StackPanel>

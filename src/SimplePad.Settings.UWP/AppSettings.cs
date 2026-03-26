@@ -5,6 +5,24 @@ namespace SimplePad.Settings.UWP;
 
 public sealed partial class AppSettings : ObservableObject, IAppSettings
 {
+    public AppTheme AppTheme
+    {
+        get
+        {
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(AppTheme), out object? value))
+            {
+                return (AppTheme)value;
+            }
+
+            return AppTheme.UseSystemSettings;
+        }
+        set
+        {
+            ApplicationData.Current.LocalSettings.Values[nameof(AppTheme)] = value;
+            OnPropertyChanged();
+        }
+    }
+
     public double FontSize
     {
         get => ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(FontSize), out object? value) ? (double)value : 11;

@@ -23,6 +23,7 @@
             BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
             CornerRadius="0"
             FontFamily="Consolas"
+            FontSize="{x:Bind _appSettings.FontSize, Mode=OneWay}"
             IsSpellCheckEnabled="{x:Bind _appSettings.IsSpellCheckEnabled, Mode=OneWay}"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
             ScrollViewer.VerticalScrollBarVisibility="Auto"

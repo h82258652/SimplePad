@@ -12,6 +12,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
+    RequestedTheme="{x:Bind GetRequestedTheme(_appSettings.AppTheme), Mode=OneWay}"
     mc:Ignorable="d">
     <Grid>
         <controls:AppTabView
