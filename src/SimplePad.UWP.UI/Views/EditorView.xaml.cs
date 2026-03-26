@@ -34,42 +34,28 @@ public sealed partial class EditorView : UserControl
         set => SetValue(ViewModelProperty, value);
     }
 
+    private FontStyle GetFontStyle(AppFontStyle fontStyle)
+    {
+        return fontStyle switch
+        {
+            AppFontStyle.Regular or AppFontStyle.Bold => FontStyle.Normal,
+            AppFontStyle.Italic or AppFontStyle.BoldItalic => FontStyle.Italic,
+            _ => throw new ArgumentOutOfRangeException(nameof(fontStyle)),
+        };
+    }
+
     private FontWeight GetFontWeight(AppFontStyle fontStyle)
     {
-        switch (fontStyle)
+        return fontStyle switch
         {
-            case AppFontStyle.Regular:
-            case AppFontStyle.Italic:
-                return FontWeights.Normal;
-                
-            case AppFontStyle.Bold:
-            case AppFontStyle.BoldItalic:
-                return FontWeights.Bold;
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(fontStyle));
-        }
+            AppFontStyle.Regular or AppFontStyle.Italic => FontWeights.Normal,
+            AppFontStyle.Bold or AppFontStyle.BoldItalic => FontWeights.Bold,
+            _ => throw new ArgumentOutOfRangeException(nameof(fontStyle)),
+        };
     }
 
     private TextWrapping GetTextWrapping(bool isWordWrap)
     {
         return isWordWrap ? TextWrapping.Wrap : TextWrapping.NoWrap;
-    }
-
-    private FontStyle GetFontStyle(AppFontStyle fontStyle)
-    {
-        switch (fontStyle)
-        {
-            case AppFontStyle.Regular:
-            case AppFontStyle.Bold:
-                return FontStyle.Normal;
-
-            case AppFontStyle.Italic:
-            case AppFontStyle.BoldItalic:
-                return FontStyle.Italic;
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(fontStyle));
-        }
     }
 }
