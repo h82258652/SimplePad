@@ -19,6 +19,8 @@ public sealed partial class ShellViewModel : ObservableObject
     [ObservableProperty]
     public partial EditorViewModel? SelectedEditor { get; set; }
 
+    public SettingsViewModel SettingsViewModel { get; } = new SettingsViewModel();
+
     public void AddBlankEditor()
     {
         EditorViewModel newEditorViewModel = EditorViewModel.CreateBlank(this);
@@ -31,18 +33,6 @@ public sealed partial class ShellViewModel : ObservableObject
         EditorViewModel newEditorViewModel = EditorViewModel.CreateFromFile(this, file);
         _editors.Add(newEditorViewModel);
         SelectedEditor = newEditorViewModel;
-    }
-
-    public async Task SaveAllAsync()
-    {
-        foreach (var editor in Editors)
-        {
-            bool saveSuccess = await editor.SaveAsync();
-            if (!saveSuccess)
-            {
-                return;
-            }
-        }
     }
 
     public async Task CloseEditorAsync(EditorViewModel editorViewModel)
@@ -68,6 +58,18 @@ public sealed partial class ShellViewModel : ObservableObject
         if (SelectedEditor == editorViewModel)
         {
             SelectedEditor = _editors[^1];
+        }
+    }
+
+    public async Task SaveAllAsync()
+    {
+        foreach (var editor in Editors)
+        {
+            bool saveSuccess = await editor.SaveAsync();
+            if (!saveSuccess)
+            {
+                return;
+            }
         }
     }
 }

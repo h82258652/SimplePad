@@ -104,7 +104,10 @@
                         </controls:SettingsExpander.Items>
                     </controls:SettingsExpander>
                     <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
-                    <controls:SettingsExpander Margin="0,12,0,0" Header="Font">
+                    <controls:SettingsExpander
+                        Margin="0,12,0,0"
+                        Header="Font"
+                        IsExpanded="{x:Bind ShellViewModel.SettingsViewModel.IsFontSettingsExpanded, Mode=TwoWay}">
                         <controls:SettingsExpander.HeaderIcon>
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8D2;" />
                         </controls:SettingsExpander.HeaderIcon>
@@ -125,7 +128,10 @@
                             </controls:SettingsCard>
                             <controls:SettingsCard Header="Size">
                                 <!--  TODO limit to [8,99]  -->
-                                <ComboBox MinWidth="198" IsEditable="True">
+                                <ComboBox
+                                    x:Name="FontSizeComboBox"
+                                    MinWidth="198"
+                                    IsEditable="True">
                                     <ComboBoxItem Content="8" />
                                     <ComboBoxItem Content="9" />
                                     <ComboBoxItem Content="10" />

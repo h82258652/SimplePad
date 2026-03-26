@@ -36,7 +36,7 @@ public sealed partial class AppState : ObservableObject
     public void ResetZoomFactor()
     {
         ZoomFactor = DefaultZoomFactor;
-    }
+    } 
 
     public void ZoomIn()
     {

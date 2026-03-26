@@ -120,6 +120,11 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnFontClick(object sender, RoutedEventArgs e)
     {
+        if (EditorViewModel is { ShellViewModel: { } shellViewModel })
+        {
+            shellViewModel.IsSettingsViewVisible = true;
+            shellViewModel.SettingsViewModel.IsFontSettingsExpanded = true;
+        }
     }
 
     private async void OnGoToClick(object sender, RoutedEventArgs e)
