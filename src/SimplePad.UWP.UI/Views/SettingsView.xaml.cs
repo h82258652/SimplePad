@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graphics.Canvas.Text;
 using SimplePad.Core;
 using SimplePad.Settings;
@@ -11,9 +10,9 @@ namespace SimplePad.UWP.UI.Views;
 
 public sealed partial class SettingsView : UserControl
 {
-    public static readonly DependencyProperty ShellViewModelProperty = DependencyProperty.Register(
-        nameof(ShellViewModel),
-        typeof(ShellViewModel),
+    public static readonly DependencyProperty SettingsViewModelProperty = DependencyProperty.Register(
+        nameof(SettingsViewModel),
+        typeof(SettingsViewModel),
         typeof(SettingsView),
         null);
 
@@ -28,10 +27,10 @@ public sealed partial class SettingsView : UserControl
         FontFamilyComboBox.ItemsSource = CanvasTextFormat.GetSystemFontFamilies();
     }
 
-    public ShellViewModel? ShellViewModel
+    public SettingsViewModel? ViewModel
     {
-        get => (ShellViewModel?)GetValue(ShellViewModelProperty);
-        set => SetValue(ShellViewModelProperty, value);
+        get => (SettingsViewModel?)GetValue(SettingsViewModelProperty);
+        set => SetValue(SettingsViewModelProperty, value);
     }
 
     private bool GetIsThemeEquals(AppTheme appTheme, AppTheme targetTheme)
@@ -41,7 +40,7 @@ public sealed partial class SettingsView : UserControl
 
     private void OnBackButtonClick(object sender, RoutedEventArgs e)
     {
-        ShellViewModel?.IsSettingsViewVisible = false;
+        ViewModel.ShellViewModel.IsSettingsViewVisible = false;
     }
 
     private void OnDarkThemeRadioButtonChecked(object sender, RoutedEventArgs e)
@@ -59,4 +58,11 @@ public sealed partial class SettingsView : UserControl
         _appSettings.AppTheme = AppTheme.UseSystemSettings;
     }
      
+    private void OnFontStyleComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (FontStyleComboBox.SelectedItem is AppFontStyle appFontStyle)
+        {
+            _appSettings.FontStyle = appFontStyle;
+        }
+    }
 }

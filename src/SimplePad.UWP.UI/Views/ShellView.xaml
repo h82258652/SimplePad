@@ -47,6 +47,6 @@
                 </DataTemplate>
             </controls:AppTabView.TabItemTemplate>
         </controls:AppTabView>
-        <local:SettingsView ShellViewModel="{x:Bind ViewModel}" Visibility="{x:Bind ViewModel.IsSettingsViewVisible, Mode=OneWay}" />
+        <local:SettingsView ViewModel="{x:Bind ViewModel.SettingsViewModel, Mode=OneWay}" Visibility="{x:Bind ViewModel.IsSettingsViewVisible, Mode=OneWay}" />
     </Grid>
 </UserControl>

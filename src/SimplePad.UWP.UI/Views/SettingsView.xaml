@@ -107,7 +107,7 @@
                     <controls:SettingsExpander
                         Margin="0,12,0,0"
                         Header="Font"
-                        IsExpanded="{x:Bind ShellViewModel.SettingsViewModel.IsFontSettingsExpanded, Mode=TwoWay}">
+                        IsExpanded="{x:Bind ViewModel.IsFontSettingsExpanded, Mode=TwoWay}">
                         <controls:SettingsExpander.HeaderIcon>
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8D2;" />
                         </controls:SettingsExpander.HeaderIcon>
@@ -119,12 +119,12 @@
                                     IsEditable="True" />
                             </controls:SettingsCard>
                             <controls:SettingsCard Header="Style">
-                                <ComboBox MinWidth="198">
-                                    <ComboBoxItem Content="Regular" />
-                                    <ComboBoxItem Content="Italic" />
-                                    <ComboBoxItem Content="Bold" />
-                                    <ComboBoxItem Content="Bold Italic" />
-                                </ComboBox>
+                                <ComboBox
+                                    x:Name="FontStyleComboBox"
+                                    MinWidth="198"
+                                    ItemsSource="{x:Bind ViewModel.FontStyles, Mode=OneWay}"
+                                    SelectedItem="{x:Bind _appSettings.FontStyle, Mode=OneWay}"
+                                    SelectionChanged="OnFontStyleComboBoxSelectionChanged" />
                             </controls:SettingsCard>
                             <controls:SettingsCard Header="Size">
                                 <!--  TODO limit to [8,99]  -->

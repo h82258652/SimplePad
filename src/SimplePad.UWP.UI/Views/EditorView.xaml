@@ -24,6 +24,8 @@
             CornerRadius="0"
             FontFamily="Consolas"
             FontSize="{x:Bind _appSettings.FontSize, Mode=OneWay}"
+            FontStyle="{x:Bind GetFontStyle(_appSettings.FontStyle), Mode=OneWay}"
+            FontWeight="{x:Bind GetFontWeight(_appSettings.FontStyle), Mode=OneWay}"
             IsSpellCheckEnabled="{x:Bind _appSettings.IsSpellCheckEnabled, Mode=OneWay}"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
             ScrollViewer.VerticalScrollBarVisibility="Auto"

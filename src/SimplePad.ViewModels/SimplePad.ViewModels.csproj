@@ -16,5 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
     <ProjectReference Include="..\SimplePad.Services\SimplePad.Services.csproj" />
+    <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
   </ItemGroup>
 </Project>

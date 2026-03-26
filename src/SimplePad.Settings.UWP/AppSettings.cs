@@ -33,6 +33,27 @@ public sealed partial class AppSettings : ObservableObject, IAppSettings
         }
     }
 
+    public AppFontStyle FontStyle
+    {
+        get
+        {
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(FontStyle), out object? value))
+            {
+                return (AppFontStyle)value;
+            }
+
+            return AppFontStyle.Regular;
+        }
+        set
+        {
+            if (FontStyle != value)
+            {
+                ApplicationData.Current.LocalSettings.Values[nameof(FontStyle)] = (int)value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public bool IsSpellCheckEnabled
     {
         get => !ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(IsSpellCheckEnabled), out object? value) || (bool)value;

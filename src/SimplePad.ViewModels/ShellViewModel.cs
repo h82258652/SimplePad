@@ -11,6 +11,11 @@ public sealed partial class ShellViewModel : ObservableObject
 {
     private readonly ObservableCollection<EditorViewModel> _editors = [];
 
+    public ShellViewModel()
+    {
+        SettingsViewModel = new SettingsViewModel(this);
+    }
+
     public IReadOnlyList<EditorViewModel> Editors => _editors;
 
     [ObservableProperty]
@@ -19,7 +24,7 @@ public sealed partial class ShellViewModel : ObservableObject
     [ObservableProperty]
     public partial EditorViewModel? SelectedEditor { get; set; }
 
-    public SettingsViewModel SettingsViewModel { get; } = new SettingsViewModel();
+    public SettingsViewModel SettingsViewModel { get; }  
 
     public void AddBlankEditor()
     {
