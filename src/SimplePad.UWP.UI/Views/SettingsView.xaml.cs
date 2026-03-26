@@ -1,4 +1,5 @@
-﻿using SimplePad.ViewModels;
+﻿using Microsoft.Graphics.Canvas.Text;
+using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -15,6 +16,8 @@ public sealed partial class SettingsView : UserControl
     public SettingsView()
     {
         InitializeComponent();
+
+        FontFamilyComboBox.ItemsSource = CanvasTextFormat.GetSystemFontFamilies();
     }
 
     public ShellViewModel? ShellViewModel

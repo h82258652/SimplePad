@@ -97,7 +97,7 @@
                         </controls:SettingsExpander.HeaderIcon>
                         <controls:SettingsExpander.Items>
                             <controls:SettingsCard Header="Family">
-                                <ComboBox IsEditable="True" />
+                                <ComboBox x:Name="FontFamilyComboBox" IsEditable="True" />
                             </controls:SettingsCard>
                             <controls:SettingsCard Header="Style">
                                 <ComboBox>

@@ -11,42 +11,41 @@
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
+    winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
-    <UserControl winui:BackdropMaterial.ApplyToRootOrPageBackground="True">
-        <Grid>
-            <controls:AppTabView
-                x:Name="TabView"
-                VerticalAlignment="Stretch"
-                AddTabButtonClick="OnTabViewAddTabButtonClick"
-                CloseButtonOverlayMode="OnPointerOver"
-                SelectedItem="{x:Bind ViewModel.SelectedEditor, Mode=TwoWay}"
-                SelectionChanged="OnAppTabViewSelectionChanged"
-                TabCloseRequested="OnTabCloseRequested"
-                TabItemsSource="{x:Bind ViewModel.Editors, Mode=OneWay}"
-                Visibility="{x:Bind helpers:UIHelper.InverseBoolToVisibility(ViewModel.IsSettingsViewVisible), Mode=OneWay}">
-                <controls:AppTabView.TitleBar>
-                    <Border x:Name="TitleBar" Background="Transparent" />
-                </controls:AppTabView.TitleBar>
-                <controls:AppTabView.TabStripHeader>
-                    <Image
-                        Width="22"
-                        Height="22"
-                        Margin="10,0"
-                        IsHitTestVisible="False"
-                        Source="/Assets/Square44x44Logo.png" />
-                </controls:AppTabView.TabStripHeader>
-                <controls:AppTabView.TabStripFooter>
-                    <Border Width="192" />
-                </controls:AppTabView.TabStripFooter>
-                <controls:AppTabView.TabItemTemplate>
-                    <DataTemplate x:DataType="viewmodels:EditorViewModel">
-                        <controls:AppTabViewItem Header="{x:Bind Title, Mode=OneWay}" IsModified="{x:Bind IsModified, Mode=OneWay}">
-                            <local:EditorView ViewModel="{x:Bind}" />
-                        </controls:AppTabViewItem>
-                    </DataTemplate>
-                </controls:AppTabView.TabItemTemplate>
-            </controls:AppTabView>
-            <local:SettingsView ShellViewModel="{x:Bind ViewModel}" Visibility="{x:Bind ViewModel.IsSettingsViewVisible, Mode=OneWay}" />
-        </Grid>
-    </UserControl>
+    <Grid>
+        <controls:AppTabView
+            x:Name="TabView"
+            VerticalAlignment="Stretch"
+            AddTabButtonClick="OnTabViewAddTabButtonClick"
+            CloseButtonOverlayMode="OnPointerOver"
+            SelectedItem="{x:Bind ViewModel.SelectedEditor, Mode=TwoWay}"
+            SelectionChanged="OnAppTabViewSelectionChanged"
+            TabCloseRequested="OnTabCloseRequested"
+            TabItemsSource="{x:Bind ViewModel.Editors, Mode=OneWay}"
+            Visibility="{x:Bind helpers:UIHelper.InverseBoolToVisibility(ViewModel.IsSettingsViewVisible), Mode=OneWay}">
+            <controls:AppTabView.TitleBar>
+                <Border x:Name="TitleBar" Background="Transparent" />
+            </controls:AppTabView.TitleBar>
+            <controls:AppTabView.TabStripHeader>
+                <Image
+                    Width="22"
+                    Height="22"
+                    Margin="10,0"
+                    IsHitTestVisible="False"
+                    Source="/Assets/Square44x44Logo.png" />
+            </controls:AppTabView.TabStripHeader>
+            <controls:AppTabView.TabStripFooter>
+                <Border Width="192" />
+            </controls:AppTabView.TabStripFooter>
+            <controls:AppTabView.TabItemTemplate>
+                <DataTemplate x:DataType="viewmodels:EditorViewModel">
+                    <controls:AppTabViewItem Header="{x:Bind Title, Mode=OneWay}" IsModified="{x:Bind IsModified, Mode=OneWay}">
+                        <local:EditorView ViewModel="{x:Bind}" />
+                    </controls:AppTabViewItem>
+                </DataTemplate>
+            </controls:AppTabView.TabItemTemplate>
+        </controls:AppTabView>
+        <local:SettingsView ShellViewModel="{x:Bind ViewModel}" Visibility="{x:Bind ViewModel.IsSettingsViewVisible, Mode=OneWay}" />
+    </Grid>
 </UserControl>
