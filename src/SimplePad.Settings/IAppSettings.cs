@@ -7,4 +7,6 @@ public interface IAppSettings : INotifyPropertyChanged
     bool IsStatusBarVisible { get; set; }
 
     bool IsWordWrap { get; set; }
+
+    bool IsSpellCheckEnabled { get; set; }
 }

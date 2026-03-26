@@ -24,4 +24,14 @@ public sealed partial class AppSettings : ObservableObject, IAppSettings
             OnPropertyChanged();
         }
     }
+
+    public bool IsSpellCheckEnabled
+    {
+        get => !ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(IsSpellCheckEnabled), out object? value) || (bool)value;
+        set 
+        {
+            ApplicationData.Current.LocalSettings.Values[nameof(IsSpellCheckEnabled)] = value;
+            OnPropertyChanged();
+        }
+    }
 }

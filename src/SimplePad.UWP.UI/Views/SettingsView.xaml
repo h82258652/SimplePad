@@ -136,7 +136,7 @@
                         Margin="0,4,0,0"
                         Description="Fit text within window by default"
                         Header="Word wrap">
-                        <ToggleSwitch />
+                        <ToggleSwitch IsOn="{x:Bind _appSettings.IsWordWrap, Mode=OneWay}" />
                     </controls:SettingsCard>
                     <TextBlock Margin="0,12,0,0" Text="Opening Simple Pad" />
                     <controls:SettingsCard
@@ -147,6 +147,10 @@
                             <ComboBoxItem Content="Open in a new tab" />
                             <ComboBoxItem Content="Open in a new window" />
                         </ComboBox>
+                    </controls:SettingsCard>
+                    <TextBlock Text="Spelling" />
+                    <controls:SettingsCard Header="Spell check">
+                        <ToggleSwitch IsOn="{x:Bind _appSettings.IsSpellCheckEnabled, Mode=OneWay}" />
                     </controls:SettingsCard>
                 </StackPanel>
                 <StackPanel
