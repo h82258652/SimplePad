@@ -25,20 +25,13 @@ public sealed partial class ShellView : UserControl
 
     private ElementTheme GetRequestedTheme(AppTheme appTheme)
     {
-        switch (appTheme)
+        return appTheme switch
         {
-            case AppTheme.UseSystemSettings:
-                return ElementTheme.Default;
-
-            case AppTheme.Light:
-                return ElementTheme.Light;
-
-            case AppTheme.Dark:
-                return ElementTheme.Dark;
-
-            default:
-                throw new System.ArgumentOutOfRangeException(nameof(appTheme));
-        }
+            AppTheme.UseSystemSettings => ElementTheme.Default,
+            AppTheme.Light => ElementTheme.Light,
+            AppTheme.Dark => ElementTheme.Dark,
+            _ => throw new System.ArgumentOutOfRangeException(nameof(appTheme)),
+        };
     }
 
     private void OnAppTabViewSelectionChanged(object sender, SelectionChangedEventArgs e)
