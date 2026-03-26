@@ -39,9 +39,9 @@
             </controls:AppTabView.TabStripFooter>
             <controls:AppTabView.TabItemTemplate>
                 <DataTemplate x:DataType="viewmodels:EditorViewModel">
-                    <winui:TabViewItem Header="{x:Bind Title, Mode=OneWay}">
+                    <controls:AppTabViewItem Header="{x:Bind Title, Mode=OneWay}" IsModified="{x:Bind IsModified, Mode=OneWay}">
                         <local:EditorView ViewModel="{x:Bind}" />
-                    </winui:TabViewItem>
+                    </controls:AppTabViewItem>
                 </DataTemplate>
             </controls:AppTabView.TabItemTemplate>
         </controls:AppTabView>
