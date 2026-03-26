@@ -97,10 +97,13 @@
                         </controls:SettingsExpander.HeaderIcon>
                         <controls:SettingsExpander.Items>
                             <controls:SettingsCard Header="Family">
-                                <ComboBox x:Name="FontFamilyComboBox" IsEditable="True" />
+                                <ComboBox
+                                    x:Name="FontFamilyComboBox"
+                                    MinWidth="198"
+                                    IsEditable="True" />
                             </controls:SettingsCard>
                             <controls:SettingsCard Header="Style">
-                                <ComboBox>
+                                <ComboBox MinWidth="198">
                                     <ComboBoxItem Content="Regular" />
                                     <ComboBoxItem Content="Italic" />
                                     <ComboBoxItem Content="Bold" />
@@ -109,7 +112,7 @@
                             </controls:SettingsCard>
                             <controls:SettingsCard Header="Size">
                                 <!--  TODO limit to [8,99]  -->
-                                <ComboBox IsEditable="True">
+                                <ComboBox MinWidth="198" IsEditable="True">
                                     <ComboBoxItem Content="8" />
                                     <ComboBoxItem Content="9" />
                                     <ComboBoxItem Content="10" />
