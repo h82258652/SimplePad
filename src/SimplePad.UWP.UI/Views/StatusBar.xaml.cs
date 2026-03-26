@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.UWP.UI.Helpers;
+using SimplePad.UWP.UI.Controls;
 using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,7 +18,7 @@ public sealed partial class StatusBar : UserControl
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
-        typeof(TextBox),
+        typeof(AppTextBox),
         typeof(StatusBar),
         new PropertyMetadata(null, OnTextBoxChanged));
 
@@ -37,9 +37,9 @@ public sealed partial class StatusBar : UserControl
         set => SetValue(EditorViewModelProperty, value);
     }
 
-    public TextBox? TextBox
+    public AppTextBox? TextBox
     {
-        get => (TextBox?)GetValue(TextBoxProperty);
+        get => (AppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
     }
 
@@ -61,7 +61,6 @@ public sealed partial class StatusBar : UserControl
             newTextBox.SelectionChanged += self.OnSelectionChanged;
         }
 
-        self.UpdatePositionIndicator();
         self.UpdateCharacterIndicator();
     }
 
@@ -77,8 +76,12 @@ public sealed partial class StatusBar : UserControl
 
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
     {
-        UpdatePositionIndicator();
         UpdateCharacterIndicator();
+    }
+
+    private string GetPositionText(CursorPosition cursorPosition)
+    {
+        return $"Ln {cursorPosition.Row}, Col {cursorPosition.Column}";
     }
 
     private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
@@ -113,17 +116,5 @@ public sealed partial class StatusBar : UserControl
         }
 
         CharacterIndicator.Text = characterIndicatorTextBuilder.ToString();
-    }
-
-    private void UpdatePositionIndicator()
-    {
-        if (TextBox is null)
-        {
-            PositionIndicator.Text = string.Empty;
-            return;
-        }
-
-        CursorPosition cursorPosition = TextBoxHelper.GetCursorPosition(TextBox);
-        PositionIndicator.Text = $"Ln {cursorPosition.Row}, Col {cursorPosition.Column}";
     }
 }

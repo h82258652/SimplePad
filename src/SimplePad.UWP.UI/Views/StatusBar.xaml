@@ -34,7 +34,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="PositionIndicator" Style="{StaticResource IndicatorStyle}" />
+        <TextBlock Style="{StaticResource IndicatorStyle}" Text="{x:Bind GetPositionText(TextBox.CursorPosition), Mode=OneWay}" />
         <Rectangle Grid.Column="1" Style="{StaticResource DividerStyle}" />
         <TextBlock
             x:Name="CharacterIndicator"

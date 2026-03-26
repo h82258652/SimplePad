@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Services.UWP;
 using SimplePad.Settings;
+using SimplePad.UWP.UI.Controls;
+using SimplePad.UWP.UI.Dialogs;
 using SimplePad.ViewModels;
 using Windows.Graphics.Printing;
 using Windows.Storage;
@@ -27,7 +28,7 @@ public sealed partial class AppMenuBar : UserControl
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
-        typeof(TextBox),
+        typeof(AppTextBox),
         typeof(AppMenuBar),
         new PropertyMetadata(null, OnTextBoxChanged));
 
@@ -53,9 +54,9 @@ public sealed partial class AppMenuBar : UserControl
         set => SetValue(EditorViewModelProperty, value);
     }
 
-    public TextBox? TextBox
+    public AppTextBox? TextBox
     {
-        get => (TextBox?)GetValue(TextBoxProperty);
+        get => (AppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
     }
 
@@ -121,8 +122,36 @@ public sealed partial class AppMenuBar : UserControl
     {
     }
 
-    private void OnGoToClick(object sender, RoutedEventArgs e)
+    private async void OnGoToClick(object sender, RoutedEventArgs e)
     {
+        if (TextBox is not { } textBox)
+        {
+            return;
+        }
+
+        string text = TextBox.Text;
+        int totalLines = text.Split('\r').Length;
+
+        GoToLineDialog goToLineDialog = new(textBox.CursorPosition.Row, totalLines);
+        ContentDialogResult dialogResult = await goToLineDialog.ShowAsync();
+        if (dialogResult == ContentDialogResult.Primary)
+        {
+            int i = 0;
+            int row = 1;
+
+            for (int index = 0; index < text.Length && row < goToLineDialog.LineNumber; index++)
+            {
+                char c = text[index];
+                i++;
+
+                if (c == '\r')
+                {
+                    row++;
+                }
+            }
+
+            textBox.SelectionStart = i;
+        }
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -336,5 +365,15 @@ public sealed partial class AppMenuBar : UserControl
     private void UpdateUndoMenuFlyoutItem()
     {
         UndoMenuFlyoutItem.IsEnabled = TextBox is { CanUndo: true };
+    }
+
+    private void OnFindNextClick(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OnFindPreviousClick(object sender, RoutedEventArgs e)
+    {
+
     }
 }

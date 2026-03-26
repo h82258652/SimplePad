@@ -1,4 +1,4 @@
-﻿namespace SimplePad.UWP.UI.Helpers;
+﻿namespace SimplePad.UWP.UI.Controls;
 
 public sealed class CursorPosition
 {

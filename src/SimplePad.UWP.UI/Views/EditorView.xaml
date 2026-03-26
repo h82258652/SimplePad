@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <local:AppMenuBar EditorViewModel="{x:Bind ViewModel, Mode=OneWay}" TextBox="{x:Bind TextBox}" />
-        <controls:ZoomableTextBox
+        <controls:AppTextBox
             x:Name="TextBox"
             Grid.Row="1"
             AcceptsReturn="True"

@@ -6,39 +6,53 @@ using Windows.UI.Xaml.Input;
 
 namespace SimplePad.UWP.UI.Controls;
 
-public sealed partial class ZoomableTextBox : TextBox
+public sealed partial class AppTextBox : TextBox
 {
+    public static readonly DependencyProperty CursorPositionProperty = DependencyProperty.Register(
+        nameof(CursorPosition),
+        typeof(CursorPosition),
+        typeof(AppTextBox),
+        PropertyMetadata.Create(() => new CursorPosition(1, 1)));
+
     public static readonly DependencyProperty MaxZoomFactorProperty = DependencyProperty.Register(
         nameof(MaxZoomFactor),
         typeof(double),
-        typeof(ZoomableTextBox),
+        typeof(AppTextBox),
         new PropertyMetadata(5d, OnMaxZoomFactorChanged));
 
     public static readonly DependencyProperty MinZoomFactorProperty = DependencyProperty.Register(
         nameof(MinZoomFactor),
         typeof(double),
-        typeof(ZoomableTextBox),
+        typeof(AppTextBox),
         new PropertyMetadata(0.1d, OnMinZoomFactorChanged));
 
     public static readonly DependencyProperty ZoomFactorProperty = DependencyProperty.Register(
         nameof(ZoomFactor),
         typeof(double),
-        typeof(ZoomableTextBox),
+        typeof(AppTextBox),
         new PropertyMetadata(1d, OnZoomFactorChanged));
 
     private static readonly DependencyProperty ComputedFontSizeProperty = DependencyProperty.Register(
         nameof(ComputedFontSize),
         typeof(double),
-        typeof(ZoomableTextBox),
+        typeof(AppTextBox),
         new PropertyMetadata(14d));
 
-    public ZoomableTextBox()
+    public AppTextBox()
     {
-        DefaultStyleKey = typeof(ZoomableTextBox);
+        DefaultStyleKey = typeof(AppTextBox);
 
         RegisterPropertyChangedCallback(FontSizeProperty, OnFontSizeChanged);
 
+        SelectionChanged += OnSelectionChanged;
+
         ComputedFontSize = FontSize * ZoomFactor;
+    }
+
+    public CursorPosition CursorPosition
+    {
+        get => (CursorPosition)GetValue(CursorPositionProperty);
+        private set => SetValue(CursorPositionProperty, value);
     }
 
     public double MaxZoomFactor
@@ -76,22 +90,55 @@ public sealed partial class ZoomableTextBox : TextBox
 
     private static void OnMaxZoomFactorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ZoomableTextBox self = (ZoomableTextBox)d;
+        AppTextBox self = (AppTextBox)d;
         double maxZoomFactor = (double)e.NewValue;
         self.ZoomFactor = Math.Min(self.ZoomFactor, maxZoomFactor);
     }
 
     private static void OnMinZoomFactorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ZoomableTextBox self = (ZoomableTextBox)d;
+        AppTextBox self = (AppTextBox)d;
         double minZoomFactor = (double)e.NewValue;
         self.ZoomFactor = Math.Max(self.ZoomFactor, minZoomFactor);
     }
 
     private static void OnZoomFactorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        ZoomableTextBox self = (ZoomableTextBox)d;
+        AppTextBox self = (AppTextBox)d;
         self.ComputedFontSize = self.FontSize * self.ZoomFactor;
+    }
+
+    private CursorPosition GetCursorPosition()
+    {
+        int endMarker = SelectionStart + SelectionLength;
+
+        if (endMarker == 0)
+        {
+            return new CursorPosition(1, 1);
+        }
+
+        int i = 0;
+        int col = 1;
+        int row = 1;
+
+        foreach (char c in Text)
+        {
+            i++;
+            col++;
+
+            if (c == '\r')
+            {
+                row++;
+                col = 1;
+            }
+
+            if (i == endMarker)
+            {
+                return new CursorPosition(row, col);
+            }
+        }
+
+        return new CursorPosition(row, col);
     }
 
     private void OnContentElementPointerWheelChanged(object sender, PointerRoutedEventArgs e)
@@ -115,5 +162,10 @@ public sealed partial class ZoomableTextBox : TextBox
     private void OnFontSizeChanged(DependencyObject sender, DependencyProperty dp)
     {
         ComputedFontSize = FontSize * ZoomFactor;
+    }
+
+    private void OnSelectionChanged(object sender, RoutedEventArgs e)
+    {
+        CursorPosition = GetCursorPosition();
     }
 }

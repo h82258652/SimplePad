@@ -2,10 +2,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SimplePad.UWP.UI.Controls">
-    <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="controls:ZoomableTextBox">
+    <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="controls:AppTextBox">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ZoomableTextBox">
+                <ControlTemplate TargetType="controls:AppTextBox">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
