@@ -82,7 +82,7 @@
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE790;" />
                         </controls:SettingsExpander.HeaderIcon>
                         <controls:SettingsExpander.Items>
-                            <controls:SettingsCard>
+                            <controls:SettingsCard ContentAlignment="Left">
                                 <StackPanel>
                                     <RadioButton
                                         Checked="OnLightThemeRadioButtonChecked"
@@ -149,8 +149,12 @@
                                     <ComboBoxItem Content="48" />
                                 </ComboBox>
                             </controls:SettingsCard>
-                            <controls:SettingsCard>
-                                <TextBlock Text="The sound of ocean waves calms my soul." />
+                            <controls:SettingsCard HorizontalContentAlignment="Center" ContentAlignment="Vertical">
+                                <TextBlock
+                                    FontSize="{x:Bind _appSettings.FontSize, Mode=OneWay}"
+                                    Text="The sound of ocean waves calms my soul."
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
                             </controls:SettingsCard>
                         </controls:SettingsExpander.Items>
                     </controls:SettingsExpander>
