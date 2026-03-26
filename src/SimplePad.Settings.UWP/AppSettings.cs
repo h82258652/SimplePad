@@ -18,7 +18,7 @@ public sealed partial class AppSettings : ObservableObject, IAppSettings
         }
         set
         {
-            ApplicationData.Current.LocalSettings.Values[nameof(AppTheme)] = value;
+            ApplicationData.Current.LocalSettings.Values[nameof(AppTheme)] = (int)value;
             OnPropertyChanged();
         }
     }

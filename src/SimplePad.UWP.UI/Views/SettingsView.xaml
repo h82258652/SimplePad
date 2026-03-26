@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SimplePad.UWP.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="using:SimplePad.Settings"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -83,9 +84,21 @@
                         <controls:SettingsExpander.Items>
                             <controls:SettingsCard>
                                 <StackPanel>
-                                    <RadioButton Content="Light" GroupName="AppTheme" />
-                                    <RadioButton Content="Dark" GroupName="AppTheme" />
-                                    <RadioButton Content="Use system setting" GroupName="AppTheme" />
+                                    <RadioButton
+                                        Checked="OnLightThemeRadioButtonChecked"
+                                        Content="Light"
+                                        GroupName="AppTheme"
+                                        IsChecked="{x:Bind GetIsThemeEquals(_appSettings.AppTheme, settings:AppTheme.Light), Mode=OneWay}" />
+                                    <RadioButton
+                                        Checked="OnDarkThemeRadioButtonChecked"
+                                        Content="Dark"
+                                        GroupName="AppTheme"
+                                        IsChecked="{x:Bind GetIsThemeEquals(_appSettings.AppTheme, settings:AppTheme.Dark), Mode=OneWay}" />
+                                    <RadioButton
+                                        Checked="OnUseSystemSettingsThemeRadioButtonChecked"
+                                        Content="Use system setting"
+                                        GroupName="AppTheme"
+                                        IsChecked="{x:Bind GetIsThemeEquals(_appSettings.AppTheme, settings:AppTheme.UseSystemSettings), Mode=OneWay}" />
                                 </StackPanel>
                             </controls:SettingsCard>
                         </controls:SettingsExpander.Items>
@@ -139,6 +152,9 @@
                         Margin="0,4,0,0"
                         Description="Fit text within window by default"
                         Header="Word wrap">
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B3;" />
+                        </controls:SettingsCard.HeaderIcon>
                         <ToggleSwitch IsOn="{x:Bind _appSettings.IsWordWrap, Mode=OneWay}" />
                     </controls:SettingsCard>
                     <TextBlock Margin="0,12,0,0" Text="Opening Simple Pad" />

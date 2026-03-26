@@ -18,6 +18,11 @@ public sealed partial class SettingsView : UserControl
 
     private readonly IAppSettings _appSettings;
 
+    private bool GetIsThemeEquals(AppTheme appTheme, AppTheme targetTheme)
+    {
+        return appTheme == targetTheme;
+    }
+
     public SettingsView()
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
@@ -36,5 +41,20 @@ public sealed partial class SettingsView : UserControl
     private void OnBackButtonClick(object sender, RoutedEventArgs e)
     {
         ShellViewModel?.IsSettingsViewVisible = false;
+    }
+
+    private void OnLightThemeRadioButtonChecked(object sender, RoutedEventArgs e)
+    {
+        _appSettings.AppTheme = AppTheme.Light;
+    }
+
+    private void OnDarkThemeRadioButtonChecked(object sender, RoutedEventArgs e)
+    {
+        _appSettings.AppTheme = AppTheme.Dark;
+    }
+
+    private void OnUseSystemSettingsThemeRadioButtonChecked(object sender, RoutedEventArgs e)
+    {
+        _appSettings.AppTheme = AppTheme.UseSystemSettings;
     }
 }
