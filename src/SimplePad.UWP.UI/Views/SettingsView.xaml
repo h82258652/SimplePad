@@ -79,6 +79,7 @@
                 <StackPanel x:Name="SettingsSection" Grid.ColumnSpan="2">
                     <TextBlock
                         x:Name="TitleText"
+                        Margin="0,14"
                         Style="{StaticResource TitleTextBlockStyle}"
                         Text="Settings" />
                     <TextBlock Text="Appearance" />
@@ -90,8 +91,8 @@
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE790;" />
                         </controls:SettingsExpander.HeaderIcon>
                         <controls:SettingsExpander.Items>
-                            <controls:SettingsCard ContentAlignment="Left">
-                                <StackPanel>
+                            <controls:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" ContentAlignment="Left">
+                                <StackPanel Spacing="8">
                                     <RadioButton
                                         Checked="OnLightThemeRadioButtonChecked"
                                         Content="Light"
