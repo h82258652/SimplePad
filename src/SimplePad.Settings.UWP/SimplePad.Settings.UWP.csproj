@@ -9,9 +9,6 @@
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
   </ItemGroup>

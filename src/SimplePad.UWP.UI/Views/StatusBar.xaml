@@ -44,8 +44,7 @@
         <TextBlock
             x:Name="ZoomFactorIndicator"
             Grid.Column="5"
-            Style="{StaticResource IndicatorStyle}"
-            Text="{x:Bind GetZoomFactorText(_appState.ZoomFactor), Mode=OneWay}" />
+            Style="{StaticResource IndicatorStyle}" />
         <Rectangle Grid.Column="6" Style="{StaticResource DividerStyle}" />
         <TextBlock
             x:Name="EncodingIndicator"

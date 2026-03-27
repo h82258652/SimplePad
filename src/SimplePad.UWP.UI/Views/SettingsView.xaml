@@ -117,20 +117,20 @@
                                 <controls:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" ContentAlignment="Left">
                                     <StackPanel Spacing="8">
                                         <RadioButton
+                                            x:Name="LightThemeRadioButton"
                                             Checked="OnLightThemeRadioButtonChecked"
                                             Content="Light"
-                                            GroupName="AppTheme"
-                                            IsChecked="{x:Bind GetIsThemeEquals(_appSettings.AppTheme, settings:AppTheme.Light), Mode=OneWay}" />
+                                            GroupName="AppTheme" />
                                         <RadioButton
+                                            x:Name="DarkThemeRadioButton"
                                             Checked="OnDarkThemeRadioButtonChecked"
                                             Content="Dark"
-                                            GroupName="AppTheme"
-                                            IsChecked="{x:Bind GetIsThemeEquals(_appSettings.AppTheme, settings:AppTheme.Dark), Mode=OneWay}" />
+                                            GroupName="AppTheme" />
                                         <RadioButton
+                                            x:Name="UseSystemSettingsThemeRadioButton"
                                             Checked="OnUseSystemSettingsThemeRadioButtonChecked"
                                             Content="Use system setting"
-                                            GroupName="AppTheme"
-                                            IsChecked="{x:Bind GetIsThemeEquals(_appSettings.AppTheme, settings:AppTheme.UseSystemSettings), Mode=OneWay}" />
+                                            GroupName="AppTheme" />
                                     </StackPanel>
                                 </controls:SettingsCard>
                             </controls:SettingsExpander.Items>
@@ -155,7 +155,6 @@
                                         x:Name="FontStyleComboBox"
                                         MinWidth="198"
                                         ItemsSource="{x:Bind ViewModel.FontStyles, Mode=OneWay}"
-                                        SelectedItem="{x:Bind _appSettings.FontStyle, Mode=OneWay}"
                                         SelectionChanged="OnFontStyleComboBoxSelectionChanged" />
                                 </controls:SettingsCard>
                                 <controls:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" Header="Size">
@@ -186,7 +185,6 @@
                                     Background="{ThemeResource ControlFillColorSecondaryBrush}"
                                     ContentAlignment="Vertical">
                                     <TextBlock
-                                        FontSize="{x:Bind _appSettings.FontSize, Mode=OneWay}"
                                         Text="The sound of ocean waves calms my soul."
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
@@ -200,7 +198,7 @@
                             <controls:SettingsCard.HeaderIcon>
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE751;" />
                             </controls:SettingsCard.HeaderIcon>
-                            <ToggleSwitch IsOn="{x:Bind _appSettings.IsWordWrap, Mode=OneWay}" />
+                            <ToggleSwitch x:Name="IsWordWrapToggleSwitch" />
                         </controls:SettingsCard>
                         <TextBlock Margin="0,12,0,0" Text="Opening Simple Pad" />
                         <controls:SettingsCard
@@ -217,7 +215,7 @@
                         </controls:SettingsCard>
                         <TextBlock Margin="0,12,0,0" Text="Spelling" />
                         <controls:SettingsCard Margin="0,12,0,0" Header="Spell check">
-                            <ToggleSwitch IsOn="{x:Bind _appSettings.IsSpellCheckEnabled, Mode=OneWay}" />
+                            <ToggleSwitch x:Name="IsSpellCheckEnabledToggleSwitch" />
                         </controls:SettingsCard>
                     </StackPanel>
                     <StackPanel

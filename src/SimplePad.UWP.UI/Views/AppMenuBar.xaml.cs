@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Services.UWP;
 using SimplePad.Settings;
 using SimplePad.UWP.UI.Controls;
 using SimplePad.UWP.UI.Dialogs;
+using SimplePad.UWP.UI.Extensions;
 using SimplePad.ViewModels;
+using Windows.ApplicationModel.Core;
 using Windows.Graphics.Printing;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using Windows.UI.WindowManagement;
+using Windows.UI;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Printing;
 
 namespace SimplePad.UWP.UI.Views;
@@ -44,8 +49,15 @@ public sealed partial class AppMenuBar : UserControl
         _appState = ServiceLocator.Current.GetRequiredService<AppState>();
 
         InitializeComponent();
-
         PrintMenuItem.Visibility = PrintManager.IsSupported() ? Visibility.Visible : Visibility.Collapsed;
+
+        _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
+        _appState.PropertyChanged += OnAppStatePropertyChanged;
+
+        _ = UpdateZoomInMenuFlyoutItem();
+        _ = UpdateZoomOutMenuFlyoutItem();
+        _ = UpdateIsStatusBarVisibleToggleMenuFlyoutItem();
+        _ = UpdateIsWordWrapToggleMenuFlyoutItem();
     }
 
     public EditorViewModel? EditorViewModel
@@ -83,6 +95,30 @@ public sealed partial class AppMenuBar : UserControl
         self.UpdateDeleteMenuFlyoutItem();
     }
 
+    private async void OnAppSettingsPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(_appSettings.IsStatusBarVisible))
+        {
+            await UpdateIsStatusBarVisibleToggleMenuFlyoutItem();
+        }
+        else if (e.PropertyName == nameof(_appSettings.IsWordWrap))
+        {
+            await UpdateIsWordWrapToggleMenuFlyoutItem();
+        }
+    }
+
+    private async void OnAppStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(_appState.CanZoomIn))
+        {
+            await UpdateZoomInMenuFlyoutItem();
+        }
+        else if (e.PropertyName == nameof(_appState.CanZoomOut))
+        {
+            await UpdateZoomOutMenuFlyoutItem();
+        }
+    }
+
     private async void OnCloseTabClick(object sender, RoutedEventArgs e)
     {
         if (EditorViewModel is { } editorViewModel)
@@ -93,6 +129,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnCloseWindowClick(object sender, RoutedEventArgs e)
     {
+        // TODO
         Window.Current.Close();
     }
 
@@ -116,6 +153,17 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnFindClick(object sender, RoutedEventArgs e)
     {
+        // TODO
+    }
+
+    private void OnFindNextClick(object sender, RoutedEventArgs e)
+    {
+        // TODO
+    }
+
+    private void OnFindPreviousClick(object sender, RoutedEventArgs e)
+    {
+        // TODO
     }
 
     private void OnFontClick(object sender, RoutedEventArgs e)
@@ -159,6 +207,18 @@ public sealed partial class AppMenuBar : UserControl
         }
     }
 
+    private async void OnIsStatusBarVisibleToggleMenuFlyoutItemClick(object sender, RoutedEventArgs e)
+    {
+        _appSettings.IsStatusBarVisible = IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked;
+        await _appSettings.SaveAsync();
+    }
+
+    private async void OnIsWordWrapToggleMenuFlyoutItemClick(object sender, RoutedEventArgs e)
+    {
+        _appSettings.IsWordWrap = IsWordWrapToggleMenuFlyoutItem.IsChecked;
+        await _appSettings.SaveAsync();
+    }
+
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         if (PrintManager.IsSupported())
@@ -177,12 +237,24 @@ public sealed partial class AppMenuBar : UserControl
 
     private async void OnNewWindowClick(object sender, RoutedEventArgs e)
     {
-        // TODO switch to legacy multiple window solution
+        CoreApplicationView newView = CoreApplication.CreateNewView();
+        int newViewId = 0;
+        await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        {
+            CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
 
-        AppWindow appWindow = await AppWindow.TryCreateAsync();
-        appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
-        ElementCompositionPreview.SetAppWindowContent(appWindow, new ShellView());
-        _ = await appWindow.TryShowAsync();
+            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+
+            Window.Current.Content = new ShellView();
+            Window.Current.Activate();
+
+            newViewId = ApplicationView.GetForCurrentView().Id;
+        });
+
+        _ = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
     }
 
     private async void OnOpenClick(object sender, RoutedEventArgs e)
@@ -248,6 +320,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnReplaceClick(object sender, RoutedEventArgs e)
     {
+        // TODO
     }
 
     private void OnRestoreDefaultZoomClick(object sender, RoutedEventArgs e)
@@ -367,18 +440,40 @@ public sealed partial class AppMenuBar : UserControl
         DeleteMenuFlyoutItem.IsEnabled = TextBox is { SelectedText.Length: > 0 };
     }
 
+    private Task UpdateIsStatusBarVisibleToggleMenuFlyoutItem()
+    {
+        return Dispatcher.SafeRunAsync(() =>
+        {
+            IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked = _appSettings.IsStatusBarVisible;
+        });
+    }
+
+    private Task UpdateIsWordWrapToggleMenuFlyoutItem()
+    {
+        return Dispatcher.SafeRunAsync(() =>
+                    {
+                        IsWordWrapToggleMenuFlyoutItem.IsChecked = _appSettings.IsWordWrap;
+                    });
+    }
+
     private void UpdateUndoMenuFlyoutItem()
     {
         UndoMenuFlyoutItem.IsEnabled = TextBox is { CanUndo: true };
     }
 
-    private void OnFindNextClick(object sender, RoutedEventArgs e)
+    private Task UpdateZoomInMenuFlyoutItem()
     {
-
+        return Dispatcher.SafeRunAsync(() =>
+             {
+                 ZoomInMenuFlyoutItem.IsEnabled = _appState.CanZoomIn;
+             });
     }
 
-    private void OnFindPreviousClick(object sender, RoutedEventArgs e)
+    private Task UpdateZoomOutMenuFlyoutItem()
     {
-
+        return Dispatcher.SafeRunAsync(() =>
+             {
+                 ZoomOutMenuFlyoutItem.IsEnabled = _appState.CanZoomOut;
+             });
     }
 }

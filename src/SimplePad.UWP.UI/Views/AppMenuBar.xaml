@@ -227,8 +227,8 @@
             <MenuBarItem Title="View" Margin="4,0,0,0">
                 <MenuFlyoutSubItem MinWidth="230" Text="Zoom">
                     <MenuFlyoutItem
+                        x:Name="ZoomInMenuFlyoutItem"
                         Click="OnZoomInClick"
-                        IsEnabled="{x:Bind _appState.CanZoomIn, Mode=OneWay}"
                         KeyboardAcceleratorTextOverride="Ctrl+Plus"
                         Text="Zoom in">
                         <MenuFlyoutItem.KeyboardAccelerators>
@@ -236,8 +236,8 @@
                         </MenuFlyoutItem.KeyboardAccelerators>
                     </MenuFlyoutItem>
                     <MenuFlyoutItem
+                        x:Name="ZoomOutMenuFlyoutItem"
                         Click="OnZoomOutClick"
-                        IsEnabled="{x:Bind _appState.CanZoomOut, Mode=OneWay}"
                         KeyboardAcceleratorTextOverride="Ctrl+Minus"
                         Text="Zoom out">
                         <MenuFlyoutItem.KeyboardAccelerators>
@@ -251,12 +251,14 @@
                     </MenuFlyoutItem>
                 </MenuFlyoutSubItem>
                 <ToggleMenuFlyoutItem
+                    x:Name="IsStatusBarVisibleToggleMenuFlyoutItem"
                     MinWidth="230"
-                    IsChecked="{x:Bind _appSettings.IsStatusBarVisible, Mode=TwoWay}"
+                    Click="OnIsStatusBarVisibleToggleMenuFlyoutItemClick"
                     Text="Status bar" />
                 <ToggleMenuFlyoutItem
+                    x:Name="IsWordWrapToggleMenuFlyoutItem"
                     MinWidth="230"
-                    IsChecked="{x:Bind _appSettings.IsWordWrap, Mode=TwoWay}"
+                    Click="OnIsWordWrapToggleMenuFlyoutItemClick"
                     Text="Word wrap" />
             </MenuBarItem>
         </MenuBar>

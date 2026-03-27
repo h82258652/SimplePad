@@ -2,13 +2,17 @@
 
 namespace SimplePad.Settings;
 
-public interface IAppSettings : INotifyPropertyChanged
+public interface IAppSettings
 {
+    event PropertyChangedEventHandler? PropertyChanged;
+
     AppTheme AppTheme { get; set; }
 
-    AppFontStyle FontStyle { get; set; }
+    string FontFamily { get; set; }
 
     double FontSize { get; set; }
+
+    AppFontStyle FontStyle { get; set; }
 
     bool IsSpellCheckEnabled { get; set; }
 
@@ -17,4 +21,8 @@ public interface IAppSettings : INotifyPropertyChanged
     bool IsWordWrap { get; set; }
 
     OpenFileBehavior OpenFileBehavior { get; set; }
+
+    Task LoadAsync();
+
+    Task SaveAsync();
 }

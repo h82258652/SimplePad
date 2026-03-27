@@ -1,10 +1,15 @@
-﻿using System.Text;
+﻿using System;
+using System.ComponentModel;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.UWP.UI.Controls;
+using SimplePad.UWP.UI.Extensions;
 using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SimplePad.UWP.UI.Views;
 
@@ -29,6 +34,26 @@ public sealed partial class StatusBar : UserControl
         _appState = ServiceLocator.Current.GetRequiredService<AppState>();
 
         InitializeComponent();
+
+        _ = UpdateZoomFactorIndicator();
+
+        _appState.PropertyChanged += OnAppStatePropertyChanged;
+    }
+
+    private async void OnAppStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(_appState.ZoomFactor))
+        {
+            await UpdateZoomFactorIndicator();
+        }
+    }
+
+    private Task UpdateZoomFactorIndicator()
+    {
+        return Dispatcher.SafeRunAsync(() =>
+        {
+            ZoomFactorIndicator.Text = GetZoomFactorText(_appState.ZoomFactor);
+        });
     }
 
     public EditorViewModel? EditorViewModel

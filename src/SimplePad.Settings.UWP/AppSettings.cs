@@ -1,107 +1,187 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
+using Windows.Foundation.Collections;
 using Windows.Storage;
 
 namespace SimplePad.Settings.UWP;
 
-public sealed partial class AppSettings : ObservableObject, IAppSettings
+public sealed partial class AppSettings : IAppSettings
 {
+    private AppTheme _appTheme = AppTheme.UseSystemSettings;
+    private string _fontFamily = "Consolas";
+    private double _fontSize = 11;
+    private AppFontStyle _fontStyle = AppFontStyle.Regular;
+    private bool _isSpellCheckEnabled = true;
+    private bool _isStatusBarVisible = true;
+    private bool _isWordWrap = true;
+    private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
     public AppTheme AppTheme
     {
-        get
-        {
-            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(AppTheme), out object? value))
-            {
-                return (AppTheme)value;
-            }
-
-            return AppTheme.UseSystemSettings;
-        }
+        get => _appTheme;
         set
         {
-            ApplicationData.Current.LocalSettings.Values[nameof(AppTheme)] = (int)value;
-            OnPropertyChanged();
+            if (_appTheme != value)
+            {
+                _appTheme = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AppTheme)));
+            }
+        }
+    }
+
+    public string FontFamily
+    {
+        get => _fontFamily;
+        set
+        {
+            if (_fontFamily != value)
+            {
+                _fontFamily = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontFamily)));
+            }
         }
     }
 
     public double FontSize
     {
-        get => ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(FontSize), out object? value) ? (double)value : 11;
+        get => _fontSize;
         set
         {
-            ApplicationData.Current.LocalSettings.Values[nameof(FontSize)] = value;
-            OnPropertyChanged();
+            if (_fontSize != value)
+            {
+                _fontSize = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontSize)));
+            }
         }
     }
 
     public AppFontStyle FontStyle
     {
-        get
-        {
-            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(FontStyle), out object? value))
-            {
-                return (AppFontStyle)value;
-            }
-
-            return AppFontStyle.Regular;
-        }
+        get => _fontStyle;
         set
         {
-            if (FontStyle != value)
+            if (_fontStyle != value)
             {
-                ApplicationData.Current.LocalSettings.Values[nameof(FontStyle)] = (int)value;
-                OnPropertyChanged();
+                _fontStyle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontStyle)));
             }
         }
     }
 
     public bool IsSpellCheckEnabled
     {
-        get => !ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(IsSpellCheckEnabled), out object? value) || (bool)value;
+        get => _isSpellCheckEnabled;
         set
         {
-            ApplicationData.Current.LocalSettings.Values[nameof(IsSpellCheckEnabled)] = value;
-            OnPropertyChanged();
+            if (_isSpellCheckEnabled != value)
+            {
+                _isSpellCheckEnabled = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsSpellCheckEnabled)));
+            }
         }
     }
 
     public bool IsStatusBarVisible
     {
-        get => !ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(IsStatusBarVisible), out object? value) || (bool)value;
+        get => _isStatusBarVisible;
         set
         {
-            ApplicationData.Current.LocalSettings.Values[nameof(IsStatusBarVisible)] = value;
-            OnPropertyChanged();
+            if (_isStatusBarVisible != value)
+            {
+                _isStatusBarVisible = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsStatusBarVisible)));
+            }
         }
     }
 
     public bool IsWordWrap
     {
-        get => !ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(IsWordWrap), out object? value) || (bool)value;
+        get => _isWordWrap;
         set
         {
-            ApplicationData.Current.LocalSettings.Values[nameof(IsWordWrap)] = value;
-            OnPropertyChanged();
+            if (_isWordWrap != value)
+            {
+                _isWordWrap = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsWordWrap)));
+            }
         }
     }
 
     public OpenFileBehavior OpenFileBehavior
     {
-        get
-        {
-            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(OpenFileBehavior), out object? value))
-            {
-                return (OpenFileBehavior)value;
-            }
-
-            return OpenFileBehavior.NewTab;
-        }
+        get => _openFileBehavior;
         set
         {
-            if (OpenFileBehavior != value)
+            if (_openFileBehavior != value)
             {
-                ApplicationData.Current.LocalSettings.Values[nameof(OpenFileBehavior)] = (int)value;
-                OnPropertyChanged();
+                _openFileBehavior = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OpenFileBehavior)));
             }
         }
+    }
+
+    public Task LoadAsync()
+    {
+        IPropertySet settingValues = ApplicationData.Current.LocalSettings.Values;
+
+        if (settingValues.TryGetValue(nameof(AppTheme), out object? appTheme))
+        {
+            AppTheme = (AppTheme)appTheme;
+        }
+
+        if (settingValues.TryGetValue(nameof(FontFamily), out object? fontFamily))
+        {
+            FontFamily = (string)fontFamily;
+        }
+
+        if (settingValues.TryGetValue(nameof(FontSize), out object? fontSize))
+        {
+            FontSize = (double)fontSize;
+        }
+
+        if (settingValues.TryGetValue(nameof(FontStyle), out object? fontStyle))
+        {
+            FontStyle = (AppFontStyle)fontStyle;
+        }
+
+        if (settingValues.TryGetValue(nameof(IsSpellCheckEnabled), out object? isSpellCheckEnabled))
+        {
+            IsSpellCheckEnabled = (bool)isSpellCheckEnabled;
+        }
+
+        if (settingValues.TryGetValue(nameof(IsStatusBarVisible), out object? isStatusBarVisible))
+        {
+            IsStatusBarVisible = (bool)isStatusBarVisible;
+        }
+
+        if (settingValues.TryGetValue(nameof(IsWordWrap), out object? isWordWrap))
+        {
+            IsWordWrap = (bool)isWordWrap;
+        }
+
+        if (settingValues.TryGetValue(nameof(OpenFileBehavior), out object? openFileBehavior))
+        {
+            OpenFileBehavior = (OpenFileBehavior)openFileBehavior;
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public Task SaveAsync()
+    {
+        IPropertySet settingValues = ApplicationData.Current.LocalSettings.Values;
+
+        settingValues[nameof(AppTheme)] = (int)AppTheme;
+        settingValues[nameof(FontFamily)] = FontFamily;
+        settingValues[nameof(FontSize)] = FontSize;
+        settingValues[nameof(FontStyle)] = (int)FontStyle;
+        settingValues[nameof(IsSpellCheckEnabled)] = IsSpellCheckEnabled;
+        settingValues[nameof(IsStatusBarVisible)] = IsStatusBarVisible;
+        settingValues[nameof(IsWordWrap)] = IsWordWrap;
+        settingValues[nameof(OpenFileBehavior)] = (int)OpenFileBehavior;
+
+        return Task.CompletedTask;
     }
 }

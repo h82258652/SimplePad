@@ -23,20 +23,14 @@
             BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
             CornerRadius="0"
             FontFamily="Consolas"
-            FontSize="{x:Bind _appSettings.FontSize, Mode=OneWay}"
-            FontStyle="{x:Bind GetFontStyle(_appSettings.FontStyle), Mode=OneWay}"
-            FontWeight="{x:Bind GetFontWeight(_appSettings.FontStyle), Mode=OneWay}"
-            IsSpellCheckEnabled="{x:Bind _appSettings.IsSpellCheckEnabled, Mode=OneWay}"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             SelectionHighlightColorWhenNotFocused="{x:Bind TextBox.SelectionHighlightColor, Mode=OneWay}"
-            Text="{x:Bind ViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            TextWrapping="{x:Bind GetTextWrapping(_appSettings.IsWordWrap), Mode=OneWay}"
-            ZoomFactor="{x:Bind _appState.ZoomFactor, Mode=TwoWay}" />
+            Text="{x:Bind ViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <local:StatusBar
+            x:Name="StatusBar"
             Grid.Row="2"
             EditorViewModel="{x:Bind ViewModel, Mode=OneWay}"
-            TextBox="{x:Bind TextBox}"
-            Visibility="{x:Bind _appSettings.IsStatusBarVisible, Mode=OneWay}" />
+            TextBox="{x:Bind TextBox}" />
     </Grid>
 </UserControl>

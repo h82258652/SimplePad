@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
@@ -24,6 +25,33 @@ public sealed partial class ShellView : UserControl
         ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
         Window.Current.SetTitleBar(TitleBar);
+
+        _ = UpdateRequestedTheme();
+
+        _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
+    }
+
+    private async void OnAppSettingsPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(_appSettings.AppTheme))
+        {
+            await UpdateRequestedTheme();
+        }
+    }
+
+    private async Task UpdateRequestedTheme()
+    {
+        if (Dispatcher.HasThreadAccess)
+        {
+            this.RequestedTheme = GetRequestedTheme(_appSettings.AppTheme);
+        }
+        else
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                this.RequestedTheme = GetRequestedTheme(_appSettings.AppTheme);
+            });
+        }
     }
 
     private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -41,7 +69,7 @@ public sealed partial class ShellView : UserControl
         }
     }
 
-    public ShellViewModel ViewModel { get; } 
+    public ShellViewModel ViewModel { get; }
 
     private ElementTheme GetRequestedTheme(AppTheme appTheme)
     {
@@ -70,5 +98,5 @@ public sealed partial class ShellView : UserControl
     private void OnTabViewAddTabButtonClick(TabView sender, object args)
     {
         ViewModel.AddBlankEditor();
-    } 
+    }
 }

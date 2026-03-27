@@ -1,14 +1,16 @@
 ﻿using System;
-using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
 
 namespace SimplePad.Core;
 
-public sealed partial class AppState : ObservableObject
+public sealed partial class AppState
 {
     private const double DefaultZoomFactor = 1d;
     private const double ZoomChangeDelta = 0.1d;
 
     private double _zoomFactor = DefaultZoomFactor;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     public bool CanZoomIn => ZoomFactor < MaxZoomFactor;
 
@@ -26,9 +28,10 @@ public sealed partial class AppState : ObservableObject
             double clampedValue = Math.Clamp(value, MinZoomFactor, MaxZoomFactor);
             if (clampedValue != _zoomFactor)
             {
-                SetProperty(ref _zoomFactor, clampedValue);
-                OnPropertyChanged(nameof(CanZoomIn));
-                OnPropertyChanged(nameof(CanZoomOut));
+                _zoomFactor = clampedValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ZoomFactor)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanZoomIn)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanZoomOut)));
             }
         }
     }
@@ -36,7 +39,7 @@ public sealed partial class AppState : ObservableObject
     public void ResetZoomFactor()
     {
         ZoomFactor = DefaultZoomFactor;
-    } 
+    }
 
     public void ZoomIn()
     {
