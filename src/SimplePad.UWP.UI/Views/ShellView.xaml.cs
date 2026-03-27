@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Settings;
@@ -18,10 +20,28 @@ public sealed partial class ShellView : UserControl
 
         InitializeComponent();
 
+        ViewModel = new ShellViewModel();
+        ViewModel.PropertyChanged += OnViewModelPropertyChanged;
+
         Window.Current.SetTitleBar(TitleBar);
     }
 
-    public ShellViewModel ViewModel { get; } = new ShellViewModel();
+    private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(ViewModel.IsSettingsViewVisible))
+        {
+            if (ViewModel.IsSettingsViewVisible)
+            {
+                Window.Current.SetTitleBar(SettingsView.TitleBar);
+            }
+            else
+            {
+                Window.Current.SetTitleBar(TitleBar);
+            }
+        }
+    }
+
+    public ShellViewModel ViewModel { get; } 
 
     private ElementTheme GetRequestedTheme(AppTheme appTheme)
     {
@@ -50,5 +70,5 @@ public sealed partial class ShellView : UserControl
     private void OnTabViewAddTabButtonClick(TabView sender, object args)
     {
         ViewModel.AddBlankEditor();
-    }
+    } 
 }
