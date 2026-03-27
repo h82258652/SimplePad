@@ -30,6 +30,7 @@
                         <AdaptiveTrigger MinWindowWidth="646" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="TitleText.Margin" Value="0,22" />
                         <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
                         <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
                     </VisualState.Setters>
@@ -39,6 +40,7 @@
                         <AdaptiveTrigger MinWindowWidth="958" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="TitleText.Margin" Value="0,22" />
                         <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
                         <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
                         <Setter Target="SettingsSection.(Grid.ColumnSpan)" Value="1" />
@@ -67,7 +69,10 @@
             x:Name="ContentScrollViewer"
             Grid.Row="1"
             Padding="18,0">
-            <Grid ColumnSpacing="58" RowSpacing="24">
+            <Grid
+                Margin="0,0,0,20"
+                ColumnSpacing="58"
+                RowSpacing="24">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
