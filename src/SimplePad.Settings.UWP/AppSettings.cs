@@ -83,4 +83,25 @@ public sealed partial class AppSettings : ObservableObject, IAppSettings
             OnPropertyChanged();
         }
     }
+
+    public OpenFileBehavior OpenFileBehavior
+    {
+        get
+        {
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(OpenFileBehavior), out object? value))
+            {
+                return (OpenFileBehavior)value;
+            }
+
+            return OpenFileBehavior.NewTab;
+        }
+        set
+        {
+            if (OpenFileBehavior != value)
+            {
+                ApplicationData.Current.LocalSettings.Values[nameof(OpenFileBehavior)] = (int)value;
+                OnPropertyChanged();
+            }
+        }
+    }
 }
