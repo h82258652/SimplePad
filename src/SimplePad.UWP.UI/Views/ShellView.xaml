@@ -30,9 +30,9 @@
             </controls:AppTabView.TitleBar>
             <controls:AppTabView.TabStripHeader>
                 <Image
-                    Width="22"
-                    Height="22"
-                    Margin="10,0"
+                    Width="28"
+                    Height="28"
+                    Margin="9,0,5,0"
                     IsHitTestVisible="False"
                     Source="/Assets/Square44x44Logo.png" />
             </controls:AppTabView.TabStripHeader>

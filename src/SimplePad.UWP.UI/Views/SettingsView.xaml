@@ -10,6 +10,14 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="BackButtonStyle"
+                BasedOn="{StaticResource NavigationBackButtonNormalStyle}"
+                TargetType="Button" />
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -47,7 +55,7 @@
             <Button
                 VerticalAlignment="Center"
                 Click="OnBackButtonClick"
-                Style="{StaticResource NavigationBackButtonNormalStyle}" />
+                Style="{StaticResource BackButtonStyle}" />
             <Image
                 Width="22"
                 Height="22"
