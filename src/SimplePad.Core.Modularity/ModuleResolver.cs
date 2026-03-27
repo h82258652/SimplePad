@@ -45,7 +45,11 @@ internal sealed class ModuleResolver
     /// <param name="module">The current module to resolve dependencies for.</param>
     /// <param name="resolvedModuleTypes">A set of already resolved module types to prevent duplicates.</param>
     /// <param name="modules">The list to which resolved modules are added.</param>
-    private static void ResolveInternal(AppModuleBase module, HashSet<Type> resolvedModuleTypes, List<AppModuleBase> modules)
+    private static void ResolveInternal(
+        AppModuleBase module,
+        HashSet<Type> resolvedModuleTypes,
+        List<AppModuleBase> modules
+    )
     {
         foreach (DependentDescriptor dependent in module.DependModules.Dependents)
         {

@@ -9,10 +9,12 @@ namespace SimplePad.UWP.App;
 
 public sealed class SimplePadUWPAppModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<
-        SimplePadSettingsUWPModule,
-        SimplePadServiceUWPModule,
-        SimplePadUWPUIModule>();
+    public override DependsOn DependModules =>
+        DependsOn.Create<
+            SimplePadSettingsUWPModule,
+            SimplePadServiceUWPModule,
+            SimplePadUWPUIModule
+        >();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

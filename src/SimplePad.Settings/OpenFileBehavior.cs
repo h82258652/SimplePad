@@ -3,5 +3,5 @@
 public enum OpenFileBehavior
 {
     NewTab,
-    NewWindow
+    NewWindow,
 }

@@ -1,5 +1,3 @@
 ﻿namespace SimplePad.Services.UWP;
 
-public sealed class UWPDialogService : IDialogService
-{
-}
+public sealed class UWPDialogService : IDialogService { }

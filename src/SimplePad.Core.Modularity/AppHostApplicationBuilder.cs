@@ -21,14 +21,21 @@ public sealed class AppHostApplicationBuilder : IHostApplicationBuilder
     /// </summary>
     /// <param name="hostApplicationBuilder">The <see cref="HostApplicationBuilder"/> instance.</param>
     /// <param name="rootModuleDescriptor">The dependent descriptor for the root module.</param>
-    internal AppHostApplicationBuilder(HostApplicationBuilder hostApplicationBuilder, DependentDescriptor rootModuleDescriptor)
+    internal AppHostApplicationBuilder(
+        HostApplicationBuilder hostApplicationBuilder,
+        DependentDescriptor rootModuleDescriptor
+    )
     {
         _hostApplicationBuilder = hostApplicationBuilder;
 
         ModuleResolver moduleResolver = new(rootModuleDescriptor);
         _modules = moduleResolver.Resolve();
 
-        ServiceConfigurationContext serviceConfigurationContext = new(_hostApplicationBuilder.Configuration, _hostApplicationBuilder.Environment, _hostApplicationBuilder.Services);
+        ServiceConfigurationContext serviceConfigurationContext = new(
+            _hostApplicationBuilder.Configuration,
+            _hostApplicationBuilder.Environment,
+            _hostApplicationBuilder.Services
+        );
         foreach (AppModuleBase module in _modules)
         {
             module.ConfigureServices(serviceConfigurationContext);
@@ -48,7 +55,8 @@ public sealed class AppHostApplicationBuilder : IHostApplicationBuilder
     public IMetricsBuilder Metrics => _hostApplicationBuilder.Metrics;
 
     /// <inheritdoc/>
-    public IDictionary<object, object> Properties => ((IHostApplicationBuilder)_hostApplicationBuilder).Properties;
+    public IDictionary<object, object> Properties =>
+        ((IHostApplicationBuilder)_hostApplicationBuilder).Properties;
 
     /// <inheritdoc/>
     public IServiceCollection Services => _hostApplicationBuilder.Services;
@@ -60,7 +68,11 @@ public sealed class AppHostApplicationBuilder : IHostApplicationBuilder
     }
 
     /// <inheritdoc/>
-    public void ConfigureContainer<TContainerBuilder>(IServiceProviderFactory<TContainerBuilder> factory, Action<TContainerBuilder>? configure = null) where TContainerBuilder : notnull
+    public void ConfigureContainer<TContainerBuilder>(
+        IServiceProviderFactory<TContainerBuilder> factory,
+        Action<TContainerBuilder>? configure = null
+    )
+        where TContainerBuilder : notnull
     {
         _hostApplicationBuilder.ConfigureContainer(factory, configure);
     }

@@ -29,13 +29,15 @@ public sealed partial class AppMenuBar : UserControl
         nameof(EditorViewModel),
         typeof(EditorViewModel),
         typeof(AppMenuBar),
-        null);
+        null
+    );
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(AppTextBox),
         typeof(AppMenuBar),
-        new PropertyMetadata(null, OnTextBoxChanged));
+        new PropertyMetadata(null, OnTextBoxChanged)
+    );
 
     private readonly IAppSettings _appSettings;
     private readonly AppState _appState;
@@ -49,7 +51,9 @@ public sealed partial class AppMenuBar : UserControl
         _appState = ServiceLocator.Current.GetRequiredService<AppState>();
 
         InitializeComponent();
-        PrintMenuItem.Visibility = PrintManager.IsSupported() ? Visibility.Visible : Visibility.Collapsed;
+        PrintMenuItem.Visibility = PrintManager.IsSupported()
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
         _appState.PropertyChanged += OnAppStatePropertyChanged;
@@ -207,7 +211,10 @@ public sealed partial class AppMenuBar : UserControl
         }
     }
 
-    private async void OnIsStatusBarVisibleToggleMenuFlyoutItemClick(object sender, RoutedEventArgs e)
+    private async void OnIsStatusBarVisibleToggleMenuFlyoutItemClick(
+        object sender,
+        RoutedEventArgs e
+    )
     {
         _appSettings.IsStatusBarVisible = IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked;
         await _appSettings.SaveAsync();
@@ -239,20 +246,25 @@ public sealed partial class AppMenuBar : UserControl
     {
         CoreApplicationView newView = CoreApplication.CreateNewView();
         int newViewId = 0;
-        await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-        {
-            CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-            coreTitleBar.ExtendViewIntoTitleBar = true;
+        await newView.Dispatcher.RunAsync(
+            CoreDispatcherPriority.Normal,
+            () =>
+            {
+                CoreApplicationViewTitleBar coreTitleBar = CoreApplication
+                    .GetCurrentView()
+                    .TitleBar;
+                coreTitleBar.ExtendViewIntoTitleBar = true;
 
-            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ButtonBackgroundColor = Colors.Transparent;
-            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                titleBar.ButtonBackgroundColor = Colors.Transparent;
+                titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
-            Window.Current.Content = new ShellView();
-            Window.Current.Activate();
+                Window.Current.Content = new ShellView();
+                Window.Current.Activate();
 
-            newViewId = ApplicationView.GetForCurrentView().Id;
-        });
+                newViewId = ApplicationView.GetForCurrentView().Id;
+            }
+        );
 
         _ = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
     }
@@ -306,16 +318,17 @@ public sealed partial class AppMenuBar : UserControl
         _printDocument.SetPreviewPage(e.PageNumber, TextBox);
     }
 
-    private void OnPrintDocumentPaginate(object sender, PaginateEventArgs e)
-    {
-    }
+    private void OnPrintDocumentPaginate(object sender, PaginateEventArgs e) { }
 
     private void OnPrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
     {
-        args.Request.CreatePrintTask("SimplePad", printTaskSourceRequested =>
-        {
-            printTaskSourceRequested.SetSource(_printDocumentSource);
-        });
+        args.Request.CreatePrintTask(
+            "SimplePad",
+            printTaskSourceRequested =>
+            {
+                printTaskSourceRequested.SetSource(_printDocumentSource);
+            }
+        );
     }
 
     private void OnReplaceClick(object sender, RoutedEventArgs e)
@@ -451,9 +464,9 @@ public sealed partial class AppMenuBar : UserControl
     private Task UpdateIsWordWrapToggleMenuFlyoutItem()
     {
         return Dispatcher.SafeRunAsync(() =>
-                    {
-                        IsWordWrapToggleMenuFlyoutItem.IsChecked = _appSettings.IsWordWrap;
-                    });
+        {
+            IsWordWrapToggleMenuFlyoutItem.IsChecked = _appSettings.IsWordWrap;
+        });
     }
 
     private void UpdateUndoMenuFlyoutItem()
@@ -464,16 +477,16 @@ public sealed partial class AppMenuBar : UserControl
     private Task UpdateZoomInMenuFlyoutItem()
     {
         return Dispatcher.SafeRunAsync(() =>
-             {
-                 ZoomInMenuFlyoutItem.IsEnabled = _appState.CanZoomIn;
-             });
+        {
+            ZoomInMenuFlyoutItem.IsEnabled = _appState.CanZoomIn;
+        });
     }
 
     private Task UpdateZoomOutMenuFlyoutItem()
     {
         return Dispatcher.SafeRunAsync(() =>
-             {
-                 ZoomOutMenuFlyoutItem.IsEnabled = _appState.CanZoomOut;
-             });
+        {
+            ZoomOutMenuFlyoutItem.IsEnabled = _appState.CanZoomOut;
+        });
     }
 }

@@ -13,7 +13,7 @@ public sealed partial class SettingsViewModel : ObservableObject
     }
 
     public IReadOnlyList<AppFontStyle> FontStyles { get; } = Enum.GetValues<AppFontStyle>();
-    
+
     [ObservableProperty]
     public partial bool IsFontSettingsExpanded { get; set; }
 

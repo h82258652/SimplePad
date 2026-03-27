@@ -12,31 +12,37 @@ public sealed partial class AppTextBox : TextBox
         nameof(CursorPosition),
         typeof(CursorPosition),
         typeof(AppTextBox),
-        PropertyMetadata.Create(() => new CursorPosition(1, 1)));
+        PropertyMetadata.Create(() => new CursorPosition(1, 1))
+    );
 
     public static readonly DependencyProperty MaxZoomFactorProperty = DependencyProperty.Register(
         nameof(MaxZoomFactor),
         typeof(double),
         typeof(AppTextBox),
-        new PropertyMetadata(5d, OnMaxZoomFactorChanged));
+        new PropertyMetadata(5d, OnMaxZoomFactorChanged)
+    );
 
     public static readonly DependencyProperty MinZoomFactorProperty = DependencyProperty.Register(
         nameof(MinZoomFactor),
         typeof(double),
         typeof(AppTextBox),
-        new PropertyMetadata(0.1d, OnMinZoomFactorChanged));
+        new PropertyMetadata(0.1d, OnMinZoomFactorChanged)
+    );
 
     public static readonly DependencyProperty ZoomFactorProperty = DependencyProperty.Register(
         nameof(ZoomFactor),
         typeof(double),
         typeof(AppTextBox),
-        new PropertyMetadata(1d, OnZoomFactorChanged));
+        new PropertyMetadata(1d, OnZoomFactorChanged)
+    );
 
-    private static readonly DependencyProperty ComputedFontSizeProperty = DependencyProperty.Register(
-        nameof(ComputedFontSize),
-        typeof(double),
-        typeof(AppTextBox),
-        new PropertyMetadata(14d));
+    private static readonly DependencyProperty ComputedFontSizeProperty =
+        DependencyProperty.Register(
+            nameof(ComputedFontSize),
+            typeof(double),
+            typeof(AppTextBox),
+            new PropertyMetadata(14d)
+        );
 
     public AppTextBox()
     {
@@ -88,21 +94,30 @@ public sealed partial class AppTextBox : TextBox
         scrollViewer.PointerWheelChanged += OnContentElementPointerWheelChanged;
     }
 
-    private static void OnMaxZoomFactorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnMaxZoomFactorChanged(
+        DependencyObject d,
+        DependencyPropertyChangedEventArgs e
+    )
     {
         AppTextBox self = (AppTextBox)d;
         double maxZoomFactor = (double)e.NewValue;
         self.ZoomFactor = Math.Min(self.ZoomFactor, maxZoomFactor);
     }
 
-    private static void OnMinZoomFactorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnMinZoomFactorChanged(
+        DependencyObject d,
+        DependencyPropertyChangedEventArgs e
+    )
     {
         AppTextBox self = (AppTextBox)d;
         double minZoomFactor = (double)e.NewValue;
         self.ZoomFactor = Math.Max(self.ZoomFactor, minZoomFactor);
     }
 
-    private static void OnZoomFactorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnZoomFactorChanged(
+        DependencyObject d,
+        DependencyPropertyChangedEventArgs e
+    )
     {
         AppTextBox self = (AppTextBox)d;
         self.ComputedFontSize = self.FontSize * self.ZoomFactor;

@@ -14,9 +14,13 @@ public static class ApplicationFactory
     /// <typeparam name="TRootModule">The root module type.</typeparam>
     /// <param name="hostBuilderCreationDelegate">The delegate to create the <see cref="IHostBuilder"/> instance.</param>
     /// <returns>A <see cref="IHostBuilder"/> instance.</returns>
-    public static IHostBuilder Create<TRootModule>(Func<IHostBuilder> hostBuilderCreationDelegate) where TRootModule : AppModuleBase, new()
+    public static IHostBuilder Create<TRootModule>(Func<IHostBuilder> hostBuilderCreationDelegate)
+        where TRootModule : AppModuleBase, new()
     {
-        return new AppHostBuilder(hostBuilderCreationDelegate(), new DependentDescriptor(typeof(TRootModule), () => new TRootModule()));
+        return new AppHostBuilder(
+            hostBuilderCreationDelegate(),
+            new DependentDescriptor(typeof(TRootModule), () => new TRootModule())
+        );
     }
 
     /// <summary>
@@ -25,8 +29,14 @@ public static class ApplicationFactory
     /// <typeparam name="TRootModule">The root module type.</typeparam>
     /// <param name="hostBuilderCreationDelegate">The delegate to create the <see cref="HostApplicationBuilder"/> instance.</param>
     /// <returns>A <see cref="AppHostApplicationBuilder"/> instance.</returns>
-    public static AppHostApplicationBuilder Create<TRootModule>(Func<HostApplicationBuilder> hostBuilderCreationDelegate) where TRootModule : AppModuleBase, new()
+    public static AppHostApplicationBuilder Create<TRootModule>(
+        Func<HostApplicationBuilder> hostBuilderCreationDelegate
+    )
+        where TRootModule : AppModuleBase, new()
     {
-        return new AppHostApplicationBuilder(hostBuilderCreationDelegate(), new DependentDescriptor(typeof(TRootModule), () => new TRootModule()));
+        return new AppHostApplicationBuilder(
+            hostBuilderCreationDelegate(),
+            new DependentDescriptor(typeof(TRootModule), () => new TRootModule())
+        );
     }
 }

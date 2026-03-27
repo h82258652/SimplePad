@@ -1,5 +1,3 @@
 ﻿namespace SimplePad.Services;
 
-public interface IDialogService
-{
-}
+public interface IDialogService { }

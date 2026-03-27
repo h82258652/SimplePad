@@ -18,7 +18,9 @@ public static class ServiceLocator
         {
             if (_currentProvider is null)
             {
-                throw new InvalidOperationException("The service provider has not been set. Please ensure that SetLocatorProvider is called during application initialization.");
+                throw new InvalidOperationException(
+                    "The service provider has not been set. Please ensure that SetLocatorProvider is called during application initialization."
+                );
             }
 
             return _currentProvider;
@@ -33,7 +35,9 @@ public static class ServiceLocator
     {
         if (_currentProvider is not null)
         {
-            throw new InvalidOperationException("The service provider has already been set and cannot be changed.");
+            throw new InvalidOperationException(
+                "The service provider has already been set and cannot be changed."
+            );
         }
 
         _currentProvider = serviceProvider;

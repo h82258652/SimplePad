@@ -18,7 +18,8 @@ public sealed class ServiceConfigurationContext
     internal ServiceConfigurationContext(
         IConfiguration configuration,
         IHostEnvironment hostEnvironment,
-        IServiceCollection services)
+        IServiceCollection services
+    )
     {
         Configuration = configuration;
         HostEnvironment = hostEnvironment;

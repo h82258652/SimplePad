@@ -19,13 +19,15 @@ public sealed partial class StatusBar : UserControl
         nameof(EditorViewModel),
         typeof(EditorViewModel),
         typeof(StatusBar),
-        null);
+        null
+    );
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(AppTextBox),
         typeof(StatusBar),
-        new PropertyMetadata(null, OnTextBoxChanged));
+        new PropertyMetadata(null, OnTextBoxChanged)
+    );
 
     private readonly AppState _appState;
 

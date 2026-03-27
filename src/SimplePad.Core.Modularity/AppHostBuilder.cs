@@ -26,15 +26,21 @@ internal sealed class AppHostBuilder : IHostBuilder
         ModuleResolver moduleResolver = new(rootModuleDescriptor);
         _modules = moduleResolver.Resolve();
 
-        hostBuilder.ConfigureServices((context, services) =>
-        {
-            ServiceConfigurationContext serviceConfigurationContext = new(context.Configuration, context.HostingEnvironment, services);
-
-            foreach (AppModuleBase module in _modules)
+        hostBuilder.ConfigureServices(
+            (context, services) =>
             {
-                module.ConfigureServices(serviceConfigurationContext);
+                ServiceConfigurationContext serviceConfigurationContext = new(
+                    context.Configuration,
+                    context.HostingEnvironment,
+                    services
+                );
+
+                foreach (AppModuleBase module in _modules)
+                {
+                    module.ConfigureServices(serviceConfigurationContext);
+                }
             }
-        });
+        );
     }
 
     /// <inheritdoc/>
@@ -47,13 +53,17 @@ internal sealed class AppHostBuilder : IHostBuilder
     }
 
     /// <inheritdoc/>
-    public IHostBuilder ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureDelegate)
+    public IHostBuilder ConfigureAppConfiguration(
+        Action<HostBuilderContext, IConfigurationBuilder> configureDelegate
+    )
     {
         return _hostBuilder.ConfigureAppConfiguration(configureDelegate);
     }
 
     /// <inheritdoc/>
-    public IHostBuilder ConfigureContainer<TContainerBuilder>(Action<HostBuilderContext, TContainerBuilder> configureDelegate)
+    public IHostBuilder ConfigureContainer<TContainerBuilder>(
+        Action<HostBuilderContext, TContainerBuilder> configureDelegate
+    )
     {
         return _hostBuilder.ConfigureContainer(configureDelegate);
     }
@@ -65,19 +75,27 @@ internal sealed class AppHostBuilder : IHostBuilder
     }
 
     /// <inheritdoc/>
-    public IHostBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureDelegate)
+    public IHostBuilder ConfigureServices(
+        Action<HostBuilderContext, IServiceCollection> configureDelegate
+    )
     {
         return _hostBuilder.ConfigureServices(configureDelegate);
     }
 
     /// <inheritdoc/>
-    public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(IServiceProviderFactory<TContainerBuilder> factory) where TContainerBuilder : notnull
+    public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(
+        IServiceProviderFactory<TContainerBuilder> factory
+    )
+        where TContainerBuilder : notnull
     {
         return _hostBuilder.UseServiceProviderFactory(factory);
     }
 
     /// <inheritdoc/>
-    public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factory) where TContainerBuilder : notnull
+    public IHostBuilder UseServiceProviderFactory<TContainerBuilder>(
+        Func<HostBuilderContext, IServiceProviderFactory<TContainerBuilder>> factory
+    )
+        where TContainerBuilder : notnull
     {
         return _hostBuilder.UseServiceProviderFactory(factory);
     }

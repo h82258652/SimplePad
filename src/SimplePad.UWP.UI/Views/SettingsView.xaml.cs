@@ -12,11 +12,13 @@ namespace SimplePad.UWP.UI.Views;
 
 public sealed partial class SettingsView : UserControl
 {
-    public static readonly DependencyProperty SettingsViewModelProperty = DependencyProperty.Register(
-        nameof(SettingsViewModel),
-        typeof(SettingsViewModel),
-        typeof(SettingsView),
-        null);
+    public static readonly DependencyProperty SettingsViewModelProperty =
+        DependencyProperty.Register(
+            nameof(SettingsViewModel),
+            typeof(SettingsViewModel),
+            typeof(SettingsView),
+            null
+        );
 
     private readonly IAppSettings _appSettings;
 
@@ -44,7 +46,10 @@ public sealed partial class SettingsView : UserControl
         set => SetValue(SettingsViewModelProperty, value);
     }
 
-    private async void OnAppSettingsPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    private async void OnAppSettingsPropertyChanged(
+        object? sender,
+        System.ComponentModel.PropertyChangedEventArgs e
+    )
     {
         if (e.PropertyName == nameof(_appSettings.AppTheme))
         {
@@ -82,7 +87,10 @@ public sealed partial class SettingsView : UserControl
         await _appSettings.SaveAsync();
     }
 
-    private async void OnFontStyleComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void OnFontStyleComboBoxSelectionChanged(
+        object sender,
+        SelectionChangedEventArgs e
+    )
     {
         if (FontStyleComboBox.SelectedItem is AppFontStyle appFontStyle)
         {
@@ -105,8 +113,7 @@ public sealed partial class SettingsView : UserControl
 
     private Task UpdateFontFamilyComboBox()
     {
-        return Dispatcher.SafeRunAsync(() =>
-        {
+        return Dispatcher.SafeRunAsync(() => {
             // TODO
         });
     }
@@ -145,8 +152,7 @@ public sealed partial class SettingsView : UserControl
 
     private Task UpdateOpenFileBehaviorComboBox()
     {
-        return Dispatcher.SafeRunAsync(() =>
-        {
+        return Dispatcher.SafeRunAsync(() => {
             // TODO
         });
     }

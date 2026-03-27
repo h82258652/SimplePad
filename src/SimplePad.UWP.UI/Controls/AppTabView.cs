@@ -10,7 +10,8 @@ public sealed partial class AppTabView : TabView
         nameof(TitleBar),
         typeof(UIElement),
         typeof(AppTabView),
-        null);
+        null
+    );
 
     public AppTabView()
     {

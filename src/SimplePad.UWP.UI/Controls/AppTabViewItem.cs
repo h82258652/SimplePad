@@ -10,12 +10,15 @@ public sealed partial class AppTabViewItem : TabViewItem
         nameof(IsModified),
         typeof(bool),
         typeof(AppTabViewItem),
-        new PropertyMetadata(false));
+        new PropertyMetadata(false)
+    );
 
     public AppTabViewItem()
     {
         DefaultStyleKey = typeof(AppTabViewItem);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.UWP.UI/Controls/AppTabViewItem.xaml");
+        DefaultStyleResourceUri = new Uri(
+            "ms-appx:///SimplePad.UWP.UI/Controls/AppTabViewItem.xaml"
+        );
     }
 
     public bool IsModified

@@ -41,7 +41,7 @@ namespace SimplePad.UWP.App
 
                 ExtendViewIntoTitleBar();
 
-                // Place the frame in the current Window                
+                // Place the frame in the current Window
                 Window.Current.Content = shellView;
             }
 

@@ -78,7 +78,10 @@ public sealed partial class AppSettings : IAppSettings
             if (_isSpellCheckEnabled != value)
             {
                 _isSpellCheckEnabled = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsSpellCheckEnabled)));
+                PropertyChanged?.Invoke(
+                    this,
+                    new PropertyChangedEventArgs(nameof(IsSpellCheckEnabled))
+                );
             }
         }
     }
@@ -91,7 +94,10 @@ public sealed partial class AppSettings : IAppSettings
             if (_isStatusBarVisible != value)
             {
                 _isStatusBarVisible = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsStatusBarVisible)));
+                PropertyChanged?.Invoke(
+                    this,
+                    new PropertyChangedEventArgs(nameof(IsStatusBarVisible))
+                );
             }
         }
     }
@@ -117,7 +123,10 @@ public sealed partial class AppSettings : IAppSettings
             if (_openFileBehavior != value)
             {
                 _openFileBehavior = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(OpenFileBehavior)));
+                PropertyChanged?.Invoke(
+                    this,
+                    new PropertyChangedEventArgs(nameof(OpenFileBehavior))
+                );
             }
         }
     }

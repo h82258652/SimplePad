@@ -47,10 +47,13 @@ public sealed partial class ShellView : UserControl
         }
         else
         {
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                this.RequestedTheme = GetRequestedTheme(_appSettings.AppTheme);
-            });
+            await Dispatcher.RunAsync(
+                Windows.UI.Core.CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    this.RequestedTheme = GetRequestedTheme(_appSettings.AppTheme);
+                }
+            );
         }
     }
 

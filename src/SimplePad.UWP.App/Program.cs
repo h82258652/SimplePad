@@ -14,17 +14,23 @@ public static class Program
 {
     public static async Task Main(string[] args)
     {
-        var host = ApplicationFactory.Create<SimplePadUWPAppModule>(() => Host.CreateDefaultBuilder(args)).Build();
+        var host = ApplicationFactory
+            .Create<SimplePadUWPAppModule>(() => Host.CreateDefaultBuilder(args))
+            .Build();
         host.Start();
         ServiceLocator.SetLocatorProvider(host.Services);
 
         await host.Services.GetRequiredService<IAppSettings>().LoadAsync();
 
-        Application.Start((p) =>
-        {
-            DispatcherQueueSynchronizationContext context = new(DispatcherQueue.GetForCurrentThread());
-            SynchronizationContext.SetSynchronizationContext(context);
-            _ = new App();
-        });
+        Application.Start(
+            (p) =>
+            {
+                DispatcherQueueSynchronizationContext context = new(
+                    DispatcherQueue.GetForCurrentThread()
+                );
+                SynchronizationContext.SetSynchronizationContext(context);
+                _ = new App();
+            }
+        );
     }
 }

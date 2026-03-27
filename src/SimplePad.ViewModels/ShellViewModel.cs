@@ -24,7 +24,7 @@ public sealed partial class ShellViewModel : ObservableObject
     [ObservableProperty]
     public partial EditorViewModel? SelectedEditor { get; set; }
 
-    public SettingsViewModel SettingsViewModel { get; }  
+    public SettingsViewModel SettingsViewModel { get; }
 
     public void AddBlankEditor()
     {

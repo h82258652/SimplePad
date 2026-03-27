@@ -14,15 +14,11 @@ public abstract class AppModuleBase
     /// Adds services to the application's service collection.
     /// </summary>
     /// <param name="context">The <see cref="ServiceConfigurationContext"/> instance.</param>
-    public virtual void ConfigureServices(ServiceConfigurationContext context)
-    {
-    }
+    public virtual void ConfigureServices(ServiceConfigurationContext context) { }
 
     /// <summary>
     /// Executed during the application initialization phase.
     /// </summary>
     /// <param name="context">The <see cref="ApplicationInitializationContext"/> instance.</param>
-    public virtual void OnApplicationInitialization(ApplicationInitializationContext context)
-    {
-    }
+    public virtual void OnApplicationInitialization(ApplicationInitializationContext context) { }
 }

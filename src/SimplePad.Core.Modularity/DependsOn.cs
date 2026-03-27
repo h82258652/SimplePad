@@ -31,9 +31,7 @@ public sealed class DependsOn
     public static DependsOn Create<TModule1>()
         where TModule1 : AppModuleBase, new()
     {
-        return new DependsOn([
-            new DependentDescriptor(typeof(TModule1), () => new TModule1()),
-        ]);
+        return new DependsOn([new DependentDescriptor(typeof(TModule1), () => new TModule1())]);
     }
 
     /// <summary>
@@ -157,7 +155,15 @@ public sealed class DependsOn
     /// <typeparam name="TModule6">The sixth module type.</typeparam>
     /// <typeparam name="TModule7">The seventh module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -189,7 +195,16 @@ public sealed class DependsOn
     /// <typeparam name="TModule7">The seventh module type.</typeparam>
     /// <typeparam name="TModule8">The eighth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -224,7 +239,17 @@ public sealed class DependsOn
     /// <typeparam name="TModule8">The eighth module type.</typeparam>
     /// <typeparam name="TModule9">The ninth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -262,7 +287,18 @@ public sealed class DependsOn
     /// <typeparam name="TModule9">The ninth module type.</typeparam>
     /// <typeparam name="TModule10">The tenth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9, TModule10>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9,
+        TModule10
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -303,7 +339,19 @@ public sealed class DependsOn
     /// <typeparam name="TModule10">The tenth module type.</typeparam>
     /// <typeparam name="TModule11">The eleventh module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9, TModule10, TModule11>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9,
+        TModule10,
+        TModule11
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -347,7 +395,20 @@ public sealed class DependsOn
     /// <typeparam name="TModule11">The eleventh module type.</typeparam>
     /// <typeparam name="TModule12">The twelfth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9, TModule10, TModule11, TModule12>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9,
+        TModule10,
+        TModule11,
+        TModule12
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -394,7 +455,21 @@ public sealed class DependsOn
     /// <typeparam name="TModule12">The twelfth module type.</typeparam>
     /// <typeparam name="TModule13">The thirteenth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9, TModule10, TModule11, TModule12, TModule13>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9,
+        TModule10,
+        TModule11,
+        TModule12,
+        TModule13
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -444,7 +519,22 @@ public sealed class DependsOn
     /// <typeparam name="TModule13">The thirteenth module type.</typeparam>
     /// <typeparam name="TModule14">The fourteenth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9, TModule10, TModule11, TModule12, TModule13, TModule14>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9,
+        TModule10,
+        TModule11,
+        TModule12,
+        TModule13,
+        TModule14
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -497,7 +587,23 @@ public sealed class DependsOn
     /// <typeparam name="TModule14">The fourteenth module type.</typeparam>
     /// <typeparam name="TModule15">The fifteenth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9, TModule10, TModule11, TModule12, TModule13, TModule14, TModule15>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9,
+        TModule10,
+        TModule11,
+        TModule12,
+        TModule13,
+        TModule14,
+        TModule15
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()
@@ -553,7 +659,24 @@ public sealed class DependsOn
     /// <typeparam name="TModule15">The fifteenth module type.</typeparam>
     /// <typeparam name="TModule16">The sixteenth module type.</typeparam>
     /// <returns>The <see cref="DependsOn"/> instance.</returns>
-    public static DependsOn Create<TModule1, TModule2, TModule3, TModule4, TModule5, TModule6, TModule7, TModule8, TModule9, TModule10, TModule11, TModule12, TModule13, TModule14, TModule15, TModule16>()
+    public static DependsOn Create<
+        TModule1,
+        TModule2,
+        TModule3,
+        TModule4,
+        TModule5,
+        TModule6,
+        TModule7,
+        TModule8,
+        TModule9,
+        TModule10,
+        TModule11,
+        TModule12,
+        TModule13,
+        TModule14,
+        TModule15,
+        TModule16
+    >()
         where TModule1 : AppModuleBase, new()
         where TModule2 : AppModuleBase, new()
         where TModule3 : AppModuleBase, new()

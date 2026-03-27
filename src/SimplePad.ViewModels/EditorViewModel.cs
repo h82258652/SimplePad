@@ -64,10 +64,7 @@ public sealed partial class EditorViewModel : ObservableObject
 
     public static EditorViewModel CreateFromFile(ShellViewModel shellViewModel, IFile file)
     {
-        EditorViewModel editorViewModel = new(shellViewModel)
-        {
-            File = file
-        };
+        EditorViewModel editorViewModel = new(shellViewModel) { File = file };
 
         _ = editorViewModel.LoadContentAsync(file);
 

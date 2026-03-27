@@ -19,7 +19,8 @@ public sealed partial class EditorView : UserControl
         nameof(ViewModel),
         typeof(EditorViewModel),
         typeof(EditorView),
-        null);
+        null
+    );
 
     private readonly IAppSettings _appSettings;
     private readonly AppState _appState;
@@ -36,7 +37,10 @@ public sealed partial class EditorView : UserControl
         _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
         _appState.PropertyChanged += OnAppStatePropertyChanged;
 
-        TextBox.RegisterPropertyChangedCallback(AppTextBox.ZoomFactorProperty, OnTextBoxZoomFactorChanged);
+        TextBox.RegisterPropertyChangedCallback(
+            AppTextBox.ZoomFactorProperty,
+            OnTextBoxZoomFactorChanged
+        );
 
         _ = UpdateStatusBar();
 
@@ -118,14 +122,21 @@ public sealed partial class EditorView : UserControl
     {
         if (Dispatcher.HasThreadAccess)
         {
-            StatusBar.Visibility = _appSettings.IsStatusBarVisible ? Visibility.Visible : Visibility.Collapsed;
+            StatusBar.Visibility = _appSettings.IsStatusBarVisible
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
         else
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                StatusBar.Visibility = _appSettings.IsStatusBarVisible ? Visibility.Visible : Visibility.Collapsed;
-            });
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    StatusBar.Visibility = _appSettings.IsStatusBarVisible
+                        ? Visibility.Visible
+                        : Visibility.Collapsed;
+                }
+            );
         }
     }
 
@@ -137,10 +148,13 @@ public sealed partial class EditorView : UserControl
         }
         else
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                TextBox.FontSize = _appSettings.FontSize;
-            });
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    TextBox.FontSize = _appSettings.FontSize;
+                }
+            );
         }
     }
 
@@ -153,11 +167,14 @@ public sealed partial class EditorView : UserControl
         }
         else
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                TextBox.FontStyle = GetFontStyle(_appSettings.FontStyle);
-                TextBox.FontWeight = GetFontWeight(_appSettings.FontStyle);
-            });
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    TextBox.FontStyle = GetFontStyle(_appSettings.FontStyle);
+                    TextBox.FontWeight = GetFontWeight(_appSettings.FontStyle);
+                }
+            );
         }
     }
 
@@ -169,10 +186,13 @@ public sealed partial class EditorView : UserControl
         }
         else
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                TextBox.IsSpellCheckEnabled = _appSettings.IsSpellCheckEnabled;
-            });
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    TextBox.IsSpellCheckEnabled = _appSettings.IsSpellCheckEnabled;
+                }
+            );
         }
     }
 
@@ -184,10 +204,13 @@ public sealed partial class EditorView : UserControl
         }
         else
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                TextBox.TextWrapping = GetTextWrapping(_appSettings.IsWordWrap);
-            });
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    TextBox.TextWrapping = GetTextWrapping(_appSettings.IsWordWrap);
+                }
+            );
         }
     }
 
@@ -199,10 +222,13 @@ public sealed partial class EditorView : UserControl
         }
         else
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                TextBox.ZoomFactor = _appState.ZoomFactor;
-            });
+            await Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    TextBox.ZoomFactor = _appState.ZoomFactor;
+                }
+            );
         }
     }
 }

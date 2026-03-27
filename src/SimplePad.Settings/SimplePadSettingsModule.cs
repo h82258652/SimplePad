@@ -2,6 +2,4 @@
 
 namespace SimplePad.Settings;
 
-public sealed class SimplePadSettingsModule : AppModuleBase
-{
-}
+public sealed class SimplePadSettingsModule : AppModuleBase { }
