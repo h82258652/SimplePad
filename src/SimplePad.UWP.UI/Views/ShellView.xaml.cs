@@ -50,7 +50,7 @@ public sealed partial class ShellView : UserControl
             AppTheme.UseSystemSettings => ElementTheme.Default,
             AppTheme.Light => ElementTheme.Light,
             AppTheme.Dark => ElementTheme.Dark,
-            _ => throw new System.ArgumentOutOfRangeException(nameof(appTheme)),
+            _ => throw new ArgumentOutOfRangeException(nameof(appTheme)),
         };
     }
 
