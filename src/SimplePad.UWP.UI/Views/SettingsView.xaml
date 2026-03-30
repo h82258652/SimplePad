@@ -171,6 +171,9 @@
                         </controls:SettingsCard>
                         <TextBlock Margin="0,12,0,0" Text="Spelling" />
                         <controls:SettingsCard Margin="0,12,0,0" Header="Spell check">
+                            <controls:SettingsCard.HeaderIcon>
+                                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF87B;" />
+                            </controls:SettingsCard.HeaderIcon>
                             <ToggleSwitch x:Name="IsSpellCheckEnabledToggleSwitch" />
                         </controls:SettingsCard>
                     </StackPanel>

@@ -10,7 +10,6 @@ public sealed partial class AppSettings : IAppSettings
     private bool _isSpellCheckEnabled = true;
     private bool _isStatusBarVisible = true;
     private bool _isWordWrap = true;
-    private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -59,22 +58,6 @@ public sealed partial class AppSettings : IAppSettings
         }
     }
 
-    public OpenFileBehavior OpenFileBehavior
-    {
-        get => _openFileBehavior;
-        set
-        {
-            if (_openFileBehavior != value)
-            {
-                _openFileBehavior = value;
-                PropertyChanged?.Invoke(
-                    this,
-                    new PropertyChangedEventArgs(nameof(OpenFileBehavior))
-                );
-            }
-        }
-    }
-
     public Task LoadAsync()
     {
         IPropertySet settingValues = ApplicationData.Current.LocalSettings.Values;
@@ -94,11 +77,6 @@ public sealed partial class AppSettings : IAppSettings
             IsWordWrap = (bool)isWordWrap;
         }
 
-        if (settingValues.TryGetValue(nameof(OpenFileBehavior), out object? openFileBehavior))
-        {
-            OpenFileBehavior = (OpenFileBehavior)openFileBehavior;
-        }
-
         return Task.CompletedTask;
     }
 
@@ -109,7 +87,6 @@ public sealed partial class AppSettings : IAppSettings
         settingValues[nameof(IsSpellCheckEnabled)] = IsSpellCheckEnabled;
         settingValues[nameof(IsStatusBarVisible)] = IsStatusBarVisible;
         settingValues[nameof(IsWordWrap)] = IsWordWrap;
-        settingValues[nameof(OpenFileBehavior)] = (int)OpenFileBehavior;
 
         return Task.CompletedTask;
     }

@@ -12,8 +12,6 @@ public interface IAppSettings
 
     bool IsWordWrap { get; set; }
 
-    OpenFileBehavior OpenFileBehavior { get; set; }
-
     Task LoadAsync();
 
     Task SaveAsync();
