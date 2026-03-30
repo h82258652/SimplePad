@@ -1,8 +1,9 @@
 ﻿using System;
+using SimplePad.Core.Settings;
 
 namespace SimplePad.Themes.Settings;
 
-public interface IThemeSettings
+public interface IThemeSettings : IAppSettings
 {
     AppTheme AppTheme { get; set; }
 

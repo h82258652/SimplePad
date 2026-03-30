@@ -9,6 +9,7 @@
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Themes\SimplePad.Themes.csproj" />
   </ItemGroup>
 </Project>

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SimplePad.Core.UWP.Settings;
 using SimplePad.Fonts.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
 namespace SimplePad.Fonts.UWP.Settings;
 
-public sealed class UWPFontSettings : IFontSettings
+public sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 {
     private string _fontFamily = "Consolas";
 
@@ -59,7 +60,7 @@ public sealed class UWPFontSettings : IFontSettings
         }
     }
 
-    public Task LoadAsync()
+    public override Task LoadAsync()
     {
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
         if (settingsValue.TryGetValue(nameof(FontFamily), out object? fontFamily))
@@ -80,7 +81,7 @@ public sealed class UWPFontSettings : IFontSettings
         return Task.CompletedTask;
     }
 
-    public Task SaveAsync()
+    public override Task SaveAsync()
     {
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
         settingsValue[nameof(FontFamily)] = FontFamily;

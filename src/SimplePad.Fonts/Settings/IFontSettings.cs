@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
+using SimplePad.Core.Settings;
 
 namespace SimplePad.Fonts.Settings;
 
-public interface IFontSettings
+public interface IFontSettings : IAppSettings
 {
     event EventHandler<string>? FontFamilyChanged;
 
@@ -16,8 +16,4 @@ public interface IFontSettings
     int FontSize { get; set; }
 
     AppFontStyle FontStyle { get; set; }
-
-    Task LoadAsync();
-
-    Task SaveAsync();
 }
