@@ -5,7 +5,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/src/">
-    <Project Path="src/SimplePad.Editor.UWP/SimplePad.Editor.UWP.csproj" Id="501647df-dd37-44eb-b036-5408009becdb" />
     <Project Path="src/SimplePad.Services.UWP/SimplePad.Services.UWP.csproj" Id="21c159fc-b40d-4888-9e0b-06aca7a8b319" />
     <Project Path="src/SimplePad.Services/SimplePad.Services.csproj" Id="7c36a7df-6863-4be9-b670-e709ebfd1ffd" />
     <Project Path="src/SimplePad.Settings.UWP/SimplePad.Settings.UWP.csproj" Id="727ab450-311c-4550-86e5-b709c999025e" />
@@ -24,6 +23,10 @@
     <Project Path="src/SimplePad.Core.UWP/SimplePad.Core.UWP.csproj" Id="752857f5-0db1-41a1-89fa-90ee4ce3fbd6" />
     <Project Path="src/SimplePad.Core/SimplePad.Core.csproj" Id="7bd6b997-f727-44f4-8983-855db6c3d6dc" />
   </Folder>
+  <Folder Name="/src/Editor/">
+    <Project Path="src/SimplePad.Editor.UWP/SimplePad.Editor.UWP.csproj" Id="501647df-dd37-44eb-b036-5408009becdb" />
+    <Project Path="src/SimplePad.Editor/SimplePad.Editor.csproj" Id="45aa27a6-2ed8-41a0-8aff-b5e0b306bd0d" />
+  </Folder>
   <Folder Name="/src/Fonts/">
     <Project Path="src/SimplePad.Fonts.UWP.App/SimplePad.Fonts.UWP.App.csproj" Id="a2822358-0d0b-4837-a21e-d37646d0414f">
       <Platform Solution="*|arm64" Project="arm64" />
@@ -34,6 +37,7 @@
     <Project Path="src/SimplePad.Fonts.UWP/SimplePad.Fonts.UWP.csproj" Id="fd561f56-062b-4198-b4ae-e504582ba883" />
     <Project Path="src/SimplePad.Fonts/SimplePad.Fonts.csproj" Id="ae213d3d-1755-4b75-9f8e-60282907e9e0" />
   </Folder>
+  <Folder Name="/src/MultiTab/" />
   <Folder Name="/src/Themes/">
     <Project Path="src/SimplePad.Themes.UWP/SimplePad.Themes.UWP.csproj" Id="ed7a6847-27f2-4107-8778-15cc3c560a42" />
     <Project Path="src/SimplePad.Themes/SimplePad.Themes.csproj" Id="3be60e45-351f-429a-8d79-d6579abbafb1" />

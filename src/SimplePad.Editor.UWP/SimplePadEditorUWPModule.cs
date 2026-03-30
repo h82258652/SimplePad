@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SimplePad.Core.Modularity;
 
 namespace SimplePad.Editor.UWP;
 
-public sealed class SimplePadEditorUWPModule
+public sealed class SimplePadEditorUWPModule : AppModuleBase
 {
+    public override DependsOn DependModules => DependsOn.Create<SimplePadEditorUWPModule>();
 }
