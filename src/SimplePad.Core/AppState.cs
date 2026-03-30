@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace SimplePad.Core;
 
@@ -10,7 +9,11 @@ public sealed partial class AppState
 
     private double _zoomFactor = DefaultZoomFactor;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public event EventHandler<bool>? CanZoomInChanged;
+
+    public event EventHandler<bool>? CanZoomOutChanged;
+
+    public event EventHandler<double>? ZoomFactorChanged;
 
     public bool CanZoomIn => ZoomFactor < MaxZoomFactor;
 
@@ -29,9 +32,9 @@ public sealed partial class AppState
             if (clampedValue != _zoomFactor)
             {
                 _zoomFactor = clampedValue;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ZoomFactor)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanZoomIn)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanZoomOut)));
+                ZoomFactorChanged?.Invoke(this, _zoomFactor);
+                CanZoomInChanged?.Invoke(this, CanZoomIn);
+                CanZoomOutChanged?.Invoke(this, CanZoomOut);
             }
         }
     }

@@ -7,6 +7,8 @@ namespace SimplePad.Fonts.UWP;
 
 public sealed class SimplePadFontsUWPModule : AppModuleBase
 {
+    public override DependsOn DependModules => DependsOn.Create<SimplePadFontsModule>();
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         base.ConfigureServices(context);

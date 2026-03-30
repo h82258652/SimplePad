@@ -56,12 +56,23 @@ public sealed partial class AppMenuBar : UserControl
             : Visibility.Collapsed;
 
         _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
-        _appState.PropertyChanged += OnAppStatePropertyChanged;
+        _appState.CanZoomInChanged += OnAppStateCanZoomInChanged;
+        _appState.CanZoomOutChanged += OnAppStateCanZoomOutChanged;
 
         _ = UpdateZoomInMenuFlyoutItem();
         _ = UpdateZoomOutMenuFlyoutItem();
         _ = UpdateIsStatusBarVisibleToggleMenuFlyoutItem();
         _ = UpdateIsWordWrapToggleMenuFlyoutItem();
+    }
+
+    private async void OnAppStateCanZoomOutChanged(object? sender, bool e)
+    {
+        await UpdateZoomOutMenuFlyoutItem();
+    }
+
+    private async void OnAppStateCanZoomInChanged(object? sender, bool e)
+    {
+        await UpdateZoomInMenuFlyoutItem();
     }
 
     public EditorViewModel? EditorViewModel
@@ -108,18 +119,6 @@ public sealed partial class AppMenuBar : UserControl
         else if (e.PropertyName == nameof(_appSettings.IsWordWrap))
         {
             await UpdateIsWordWrapToggleMenuFlyoutItem();
-        }
-    }
-
-    private async void OnAppStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName == nameof(_appState.CanZoomIn))
-        {
-            await UpdateZoomInMenuFlyoutItem();
-        }
-        else if (e.PropertyName == nameof(_appState.CanZoomOut))
-        {
-            await UpdateZoomOutMenuFlyoutItem();
         }
     }
 

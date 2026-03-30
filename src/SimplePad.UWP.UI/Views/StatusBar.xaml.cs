@@ -39,16 +39,14 @@ public sealed partial class StatusBar : UserControl
 
         _ = UpdateZoomFactorIndicator();
 
-        _appState.PropertyChanged += OnAppStatePropertyChanged;
+        _appState.ZoomFactorChanged += OnAppStateZoomFactorChanged;
     }
 
-    private async void OnAppStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private async void OnAppStateZoomFactorChanged(object? sender, double e)
     {
-        if (e.PropertyName == nameof(_appState.ZoomFactor))
-        {
-            await UpdateZoomFactorIndicator();
-        }
+        await UpdateZoomFactorIndicator();
     }
+     
 
     private Task UpdateZoomFactorIndicator()
     {

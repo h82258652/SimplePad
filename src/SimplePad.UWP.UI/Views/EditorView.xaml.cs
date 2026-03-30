@@ -35,7 +35,7 @@ public sealed partial class EditorView : UserControl
         _ = UpdateTextBoxZoomFactor();
 
         _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
-        _appState.PropertyChanged += OnAppStatePropertyChanged;
+        _appState.ZoomFactorChanged += OnAppStateZoomFactorChanged;
 
         TextBox.RegisterPropertyChangedCallback(
             AppTextBox.ZoomFactorProperty,
@@ -48,6 +48,11 @@ public sealed partial class EditorView : UserControl
         _ = UpdateTextBoxFontSize();
         _ = UpdateTextBoxTextWrapping();
         _ = UpdateTextBoxIsSpellCheck();
+    }
+
+    private async void OnAppStateZoomFactorChanged(object? sender, double e)
+    {
+        await UpdateTextBoxZoomFactor();
     }
 
     public EditorViewModel? ViewModel
@@ -109,7 +114,6 @@ public sealed partial class EditorView : UserControl
     {
         if (e.PropertyName == nameof(_appState.ZoomFactor))
         {
-            await UpdateTextBoxZoomFactor();
         }
     }
 
