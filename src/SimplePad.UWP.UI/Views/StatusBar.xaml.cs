@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Editor;
 using SimplePad.UWP.UI.Controls;
 using SimplePad.UWP.UI.Extensions;
 using SimplePad.ViewModels;
