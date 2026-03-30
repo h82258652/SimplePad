@@ -8,12 +8,4 @@
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
-    <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
-  </ItemGroup>
 </Project>

@@ -8,7 +8,6 @@
     <Project Path="src/SimplePad.Services.UWP/SimplePad.Services.UWP.csproj" Id="21c159fc-b40d-4888-9e0b-06aca7a8b319" />
     <Project Path="src/SimplePad.Services/SimplePad.Services.csproj" Id="7c36a7df-6863-4be9-b670-e709ebfd1ffd" />
     <Project Path="src/SimplePad.Settings.UWP/SimplePad.Settings.UWP.csproj" Id="727ab450-311c-4550-86e5-b709c999025e" />
-    <Project Path="src/SimplePad.Settings/SimplePad.Settings.csproj" Id="8c2a786b-e304-4f8c-954f-d8d2c49320c4" />
     <Project Path="src/SimplePad.UWP.App/SimplePad.UWP.App.csproj" Id="92198b67-4390-4eba-b8ab-e10b51409a38">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
@@ -37,7 +36,13 @@
     <Project Path="src/SimplePad.Fonts.UWP/SimplePad.Fonts.UWP.csproj" Id="fd561f56-062b-4198-b4ae-e504582ba883" />
     <Project Path="src/SimplePad.Fonts/SimplePad.Fonts.csproj" Id="ae213d3d-1755-4b75-9f8e-60282907e9e0" />
   </Folder>
-  <Folder Name="/src/MultiTab/" />
+  <Folder Name="/src/MultiTab/">
+    <Project Path="src/SimplePad.MultiTab.UWP/SimplePad.MultiTab.UWP.csproj" Id="59b83d37-34e2-4c74-9a78-ba5753949c02" />
+    <Project Path="src/SimplePad.MultiTab/SimplePad.MultiTab.csproj" Id="ec185396-cd63-4328-8574-272f6902edbb" />
+  </Folder>
+  <Folder Name="/src/Settings/">
+    <Project Path="src/SimplePad.Settings/SimplePad.Settings.csproj" Id="8c2a786b-e304-4f8c-954f-d8d2c49320c4" />
+  </Folder>
   <Folder Name="/src/Themes/">
     <Project Path="src/SimplePad.Themes.UWP/SimplePad.Themes.UWP.csproj" Id="ed7a6847-27f2-4107-8778-15cc3c560a42" />
     <Project Path="src/SimplePad.Themes/SimplePad.Themes.csproj" Id="3be60e45-351f-429a-8d79-d6579abbafb1" />
