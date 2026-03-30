@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "SimplePad.Fonts.UWP.App": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
