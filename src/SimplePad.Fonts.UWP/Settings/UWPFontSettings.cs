@@ -70,7 +70,7 @@ public sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 
         if (settingsValue.TryGetValue(nameof(FontSize), out object? fontSize))
         {
-            FontSize = (int)fontSize;
+            FontSize = (int)Convert.ChangeType(fontSize, typeof(int));
         }
 
         if (settingsValue.TryGetValue(nameof(FontStyle), out object? fontStyle))

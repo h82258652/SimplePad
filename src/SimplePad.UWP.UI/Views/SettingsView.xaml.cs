@@ -26,14 +26,10 @@ public sealed partial class SettingsView : UserControl
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
 
-        InitializeComponent();
-        FontFamilyComboBox.ItemsSource = CanvasTextFormat.GetSystemFontFamilies();
+        InitializeComponent(); 
 
         _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
-
-        _ = UpdateFontFamilyComboBox();
-        _ = UpdateFontStyleComboBox();
-        _ = UpdateFontSizeComboBox();
+         
         _ = UpdateIsWordWrapToggleSwitch();
         _ = UpdateOpenFileBehaviorComboBox();
         _ = UpdateIsSpellCheckEnabledToggleSwitch();
@@ -49,16 +45,8 @@ public sealed partial class SettingsView : UserControl
         object? sender,
         System.ComponentModel.PropertyChangedEventArgs e
     )
-    {
-        if (e.PropertyName == nameof(_appSettings.FontFamily))
-        {
-            // TODO
-        }
-        else if (e.PropertyName == nameof(_appSettings.FontStyle))
-        {
-            await UpdateFontStyleComboBox();
-        }
-        else if (e.PropertyName == nameof(_appSettings.IsWordWrap))
+    { 
+        if (e.PropertyName == nameof(_appSettings.IsWordWrap))
         {
             await UpdateIsWordWrapToggleSwitch();
         }
@@ -74,42 +62,7 @@ public sealed partial class SettingsView : UserControl
         {
             shellViewModel.IsSettingsViewVisible = false;
         }
-    }
-
-    private async void OnFontStyleComboBoxSelectionChanged(
-        object sender,
-        SelectionChangedEventArgs e
-    )
-    {
-        if (FontStyleComboBox.SelectedItem is AppFontStyle appFontStyle)
-        {
-            _appSettings.FontStyle = appFontStyle;
-            await _appSettings.SaveAsync();
-        }
-    }
-
-    private Task UpdateFontFamilyComboBox()
-    {
-        return Dispatcher.SafeRunAsync(() => {
-            // TODO
-        });
-    }
-
-    private Task UpdateFontSizeComboBox()
-    {
-        return Dispatcher.SafeRunAsync(() =>
-        {
-            FontSizeComboBox.Text = _appSettings.FontSize.ToString();
-        });
-    }
-
-    private Task UpdateFontStyleComboBox()
-    {
-        return Dispatcher.SafeRunAsync(() =>
-        {
-            FontStyleComboBox.SelectedItem = _appSettings.FontStyle;
-        });
-    }
+    } 
 
     private Task UpdateIsSpellCheckEnabledToggleSwitch()
     {

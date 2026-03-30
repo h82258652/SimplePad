@@ -1,4 +1,5 @@
 ﻿using SimplePad.Core.Modularity;
+using SimplePad.Fonts.UWP;
 using SimplePad.Settings;
 using SimplePad.Themes.UWP;
 
@@ -6,5 +7,5 @@ namespace SimplePad.UWP.UI;
 
 public sealed class SimplePadUWPUIModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<SimplePadSettingsModule, SimplePadThemesUWPModule>();
+    public override DependsOn DependModules => DependsOn.Create<SimplePadSettingsModule, SimplePadThemesUWPModule, SimplePadFontsUWPModule>();
 }

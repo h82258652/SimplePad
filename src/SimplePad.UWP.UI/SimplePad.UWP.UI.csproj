@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
+    <ProjectReference Include="..\SimplePad.Fonts.UWP\SimplePad.Fonts.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Services.UWP\SimplePad.Services.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.UWP\SimplePad.Themes.UWP.csproj" />

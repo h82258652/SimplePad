@@ -3,8 +3,11 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Fonts;
+using SimplePad.Fonts.Settings;
 using SimplePad.Settings;
 using SimplePad.UWP.UI.Controls;
+using SimplePad.UWP.UI.Extensions;
 using SimplePad.ViewModels;
 using Windows.UI.Core;
 using Windows.UI.Text;
@@ -23,12 +26,14 @@ public sealed partial class EditorView : UserControl
     );
 
     private readonly IAppSettings _appSettings;
+    private readonly IFontSettings _fontSettings;
     private readonly AppState _appState;
 
     public EditorView()
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
         _appState = ServiceLocator.Current.GetRequiredService<AppState>();
+        _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
 
         InitializeComponent();
 
@@ -44,10 +49,38 @@ public sealed partial class EditorView : UserControl
 
         _ = UpdateStatusBar();
 
+        _ = UpdateTextBoxFontFamily();
         _ = UpdateTextBoxFontStyle();
         _ = UpdateTextBoxFontSize();
         _ = UpdateTextBoxTextWrapping();
         _ = UpdateTextBoxIsSpellCheck();
+
+        _fontSettings.FontStyleChanged += OnFontSettingsFontStyleChanged;
+        _fontSettings.FontSizeChanged += OnFontSettingsFontSizeChanged;
+        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
+    }
+
+    private async Task UpdateTextBoxFontFamily()
+    {
+      await  Dispatcher.SafeRunAsync(() =>
+        {
+            TextBox.FontFamily = new Windows.UI.Xaml.Media.FontFamily(_fontSettings.FontFamily);
+        });
+    }
+
+    private async void OnFontSettingsFontFamilyChanged(object? sender, string e)
+    {
+        await UpdateTextBoxFontFamily();
+    }
+
+    private async void OnFontSettingsFontSizeChanged(object? sender, int e)
+    {
+        await UpdateTextBoxFontSize();
+    }
+
+    private async void OnFontSettingsFontStyleChanged(object? sender, AppFontStyle e)
+    {
+        await UpdateTextBoxFontStyle();
     }
 
     private async void OnAppStateZoomFactorChanged(object? sender, double e)
@@ -88,15 +121,7 @@ public sealed partial class EditorView : UserControl
 
     private async void OnAppSettingsPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(_appSettings.FontSize))
-        {
-            await UpdateTextBoxFontSize();
-        }
-        else if (e.PropertyName == nameof(_appSettings.FontStyle))
-        {
-            await UpdateTextBoxFontStyle();
-        }
-        else if (e.PropertyName == nameof(_appSettings.IsWordWrap))
+        if (e.PropertyName == nameof(_appSettings.IsWordWrap))
         {
             await UpdateTextBoxTextWrapping();
         }
@@ -148,7 +173,7 @@ public sealed partial class EditorView : UserControl
     {
         if (Dispatcher.HasThreadAccess)
         {
-            TextBox.FontSize = _appSettings.FontSize;
+            TextBox.FontSize = _fontSettings.FontSize;
         }
         else
         {
@@ -156,7 +181,7 @@ public sealed partial class EditorView : UserControl
                 CoreDispatcherPriority.Normal,
                 () =>
                 {
-                    TextBox.FontSize = _appSettings.FontSize;
+                    TextBox.FontSize = _fontSettings.FontSize;
                 }
             );
         }
@@ -166,8 +191,8 @@ public sealed partial class EditorView : UserControl
     {
         if (Dispatcher.HasThreadAccess)
         {
-            TextBox.FontStyle = GetFontStyle(_appSettings.FontStyle);
-            TextBox.FontWeight = GetFontWeight(_appSettings.FontStyle);
+            TextBox.FontStyle = GetFontStyle(_fontSettings.FontStyle);
+            TextBox.FontWeight = GetFontWeight(_fontSettings.FontStyle);
         }
         else
         {
@@ -175,8 +200,8 @@ public sealed partial class EditorView : UserControl
                 CoreDispatcherPriority.Normal,
                 () =>
                 {
-                    TextBox.FontStyle = GetFontStyle(_appSettings.FontStyle);
-                    TextBox.FontWeight = GetFontWeight(_appSettings.FontStyle);
+                    TextBox.FontStyle = GetFontStyle(_fontSettings.FontStyle);
+                    TextBox.FontWeight = GetFontWeight(_fontSettings.FontStyle);
                 }
             );
         }

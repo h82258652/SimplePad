@@ -6,12 +6,6 @@ public interface IAppSettings
 {
     event PropertyChangedEventHandler? PropertyChanged;
 
-    string FontFamily { get; set; }
-
-    double FontSize { get; set; }
-
-    AppFontStyle FontStyle { get; set; }
-
     bool IsSpellCheckEnabled { get; set; }
 
     bool IsStatusBarVisible { get; set; }

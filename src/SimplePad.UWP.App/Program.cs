@@ -4,7 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimplePad.Core;
 using SimplePad.Core.Modularity;
+using SimplePad.Fonts.Settings;
 using SimplePad.Settings;
+using SimplePad.Themes.Settings;
 using Windows.System;
 using Windows.UI.Xaml;
 
@@ -21,6 +23,8 @@ public static class Program
         ServiceLocator.SetLocatorProvider(host.Services);
 
         await host.Services.GetRequiredService<IAppSettings>().LoadAsync();
+        await host.Services.GetRequiredService<IThemeSettings>().LoadAsync();
+        await host.Services.GetRequiredService<IFontSettings>().LoadAsync();
 
         Application.Start(
             (p) =>

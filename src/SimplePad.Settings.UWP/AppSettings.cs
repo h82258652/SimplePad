@@ -7,54 +7,12 @@ namespace SimplePad.Settings.UWP;
 
 public sealed partial class AppSettings : IAppSettings
 {
-    private string _fontFamily = "Consolas";
-    private double _fontSize = 11;
-    private AppFontStyle _fontStyle = AppFontStyle.Regular;
     private bool _isSpellCheckEnabled = true;
     private bool _isStatusBarVisible = true;
     private bool _isWordWrap = true;
     private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
 
     public event PropertyChangedEventHandler? PropertyChanged;
-
-    public string FontFamily
-    {
-        get => _fontFamily;
-        set
-        {
-            if (_fontFamily != value)
-            {
-                _fontFamily = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontFamily)));
-            }
-        }
-    }
-
-    public double FontSize
-    {
-        get => _fontSize;
-        set
-        {
-            if (_fontSize != value)
-            {
-                _fontSize = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontSize)));
-            }
-        }
-    }
-
-    public AppFontStyle FontStyle
-    {
-        get => _fontStyle;
-        set
-        {
-            if (_fontStyle != value)
-            {
-                _fontStyle = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontStyle)));
-            }
-        }
-    }
 
     public bool IsSpellCheckEnabled
     {
@@ -121,21 +79,6 @@ public sealed partial class AppSettings : IAppSettings
     {
         IPropertySet settingValues = ApplicationData.Current.LocalSettings.Values;
 
-        if (settingValues.TryGetValue(nameof(FontFamily), out object? fontFamily))
-        {
-            FontFamily = (string)fontFamily;
-        }
-
-        if (settingValues.TryGetValue(nameof(FontSize), out object? fontSize))
-        {
-            FontSize = (double)fontSize;
-        }
-
-        if (settingValues.TryGetValue(nameof(FontStyle), out object? fontStyle))
-        {
-            FontStyle = (AppFontStyle)fontStyle;
-        }
-
         if (settingValues.TryGetValue(nameof(IsSpellCheckEnabled), out object? isSpellCheckEnabled))
         {
             IsSpellCheckEnabled = (bool)isSpellCheckEnabled;
@@ -163,9 +106,6 @@ public sealed partial class AppSettings : IAppSettings
     {
         IPropertySet settingValues = ApplicationData.Current.LocalSettings.Values;
 
-        settingValues[nameof(FontFamily)] = FontFamily;
-        settingValues[nameof(FontSize)] = FontSize;
-        settingValues[nameof(FontStyle)] = (int)FontStyle;
         settingValues[nameof(IsSpellCheckEnabled)] = IsSpellCheckEnabled;
         settingValues[nameof(IsStatusBarVisible)] = IsStatusBarVisible;
         settingValues[nameof(IsWordWrap)] = IsWordWrap;
