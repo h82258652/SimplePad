@@ -7,13 +7,13 @@ public interface IFontSettings
 {
     event EventHandler<string>? FontFamilyChanged;
 
-    event EventHandler<double>? FontSizeChanged;
+    event EventHandler<int>? FontSizeChanged;
 
     event EventHandler<AppFontStyle>? FontStyleChanged;
 
     string FontFamily { get; set; }
 
-    double FontSize { get; set; }
+    int FontSize { get; set; }
 
     AppFontStyle FontStyle { get; set; }
 

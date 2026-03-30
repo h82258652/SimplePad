@@ -10,13 +10,13 @@ public sealed class UWPFontSettings : IFontSettings
 {
     private string _fontFamily = "Consolas";
 
-    private double _fontSize = 14;
+    private int _fontSize = 14;
 
     private AppFontStyle _fontStyle = AppFontStyle.Regular;
 
     public event EventHandler<string>? FontFamilyChanged;
 
-    public event EventHandler<double>? FontSizeChanged;
+    public event EventHandler<int>? FontSizeChanged;
 
     public event EventHandler<AppFontStyle>? FontStyleChanged;
 
@@ -33,7 +33,7 @@ public sealed class UWPFontSettings : IFontSettings
         }
     }
 
-    public double FontSize
+    public int FontSize
     {
         get => _fontSize;
         set
@@ -69,7 +69,7 @@ public sealed class UWPFontSettings : IFontSettings
 
         if (settingsValue.TryGetValue(nameof(FontSize), out object? fontSize))
         {
-            FontSize = (double)fontSize;
+            FontSize = (int)fontSize;
         }
 
         if (settingsValue.TryGetValue(nameof(FontStyle), out object? fontStyle))

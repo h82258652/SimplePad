@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SimplePad.Fonts.UWP.Controls">
+    <Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="controls:FontSizeComboBox">
+        <Setter Property="TextBoxStyle">
+            <Setter.Value>
+                <Style BasedOn="{StaticResource ComboBoxTextBoxStyle}" TargetType="TextBox">
+                    <Setter Property="InputScope" Value="Digits" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

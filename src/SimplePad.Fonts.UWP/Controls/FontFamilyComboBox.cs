@@ -17,15 +17,18 @@ public sealed partial class FontFamilyComboBox : ComboBox
     {
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _systemFontFamilies = CanvasTextFormat.GetSystemFontFamilies();
+        Array.Sort(_systemFontFamilies);
+
+        DefaultStyleKey = typeof(FontFamilyComboBox);
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Fonts.UWP/Controls/FontFamilyComboBox.xaml");
 
         ItemsSource = _systemFontFamilies;
         SelectedItem = _fontSettings.FontFamily;
 
-        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
-
-        SelectionChanged += OnSelectionChanged;
-
         IsEditable = true;
+
+        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
+        SelectionChanged += OnSelectionChanged;
     }
 
     private async void OnFontSettingsFontFamilyChanged(object? sender, string e)

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
@@ -10,7 +11,6 @@ namespace SimplePad.Fonts.UWP.Controls;
 public sealed partial class FontStyleComboBox : ComboBox
 {
     private readonly IFontSettings _fontSettings;
-
     private readonly FontStyleComboBoxItem[] _items;
 
     public FontStyleComboBox()
@@ -23,6 +23,9 @@ public sealed partial class FontStyleComboBox : ComboBox
             new(AppFontStyle.Bold, "Bold"),
             new(AppFontStyle.BoldItalic, "Bold Italic")
         ];
+
+        DefaultStyleKey = typeof(FontStyleComboBox);
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Fonts.UWP/Controls/FontStyleComboBox.xaml");
 
         ItemsSource = _items;
         SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle);
