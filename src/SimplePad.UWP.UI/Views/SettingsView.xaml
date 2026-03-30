@@ -7,6 +7,7 @@
     xmlns:local="using:SimplePad.UWP.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:settings="using:SimplePad.Settings"
+    xmlns:themes="using:SimplePad.Themes.UWP.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -115,23 +116,7 @@
                             </controls:SettingsExpander.HeaderIcon>
                             <controls:SettingsExpander.Items>
                                 <controls:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" ContentAlignment="Left">
-                                    <StackPanel Spacing="8">
-                                        <RadioButton
-                                            x:Name="LightThemeRadioButton"
-                                            Checked="OnLightThemeRadioButtonChecked"
-                                            Content="Light"
-                                            GroupName="AppTheme" />
-                                        <RadioButton
-                                            x:Name="DarkThemeRadioButton"
-                                            Checked="OnDarkThemeRadioButtonChecked"
-                                            Content="Dark"
-                                            GroupName="AppTheme" />
-                                        <RadioButton
-                                            x:Name="UseSystemSettingsThemeRadioButton"
-                                            Checked="OnUseSystemSettingsThemeRadioButtonChecked"
-                                            Content="Use system setting"
-                                            GroupName="AppTheme" />
-                                    </StackPanel>
+                                    <themes:ThemeSettingsControl />
                                 </controls:SettingsCard>
                             </controls:SettingsExpander.Items>
                         </controls:SettingsExpander>

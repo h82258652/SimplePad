@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Themes.UWP.Controls;
 
-public sealed partial class ThemeContainer : UserControl
+public partial class ThemeContainer : UserControl
 {
     private readonly IThemeSettings _themeSettings;
 

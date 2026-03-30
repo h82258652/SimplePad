@@ -7,7 +7,6 @@ namespace SimplePad.Settings.UWP;
 
 public sealed partial class AppSettings : IAppSettings
 {
-    private AppTheme _appTheme = AppTheme.UseSystemSettings;
     private string _fontFamily = "Consolas";
     private double _fontSize = 11;
     private AppFontStyle _fontStyle = AppFontStyle.Regular;
@@ -17,19 +16,6 @@ public sealed partial class AppSettings : IAppSettings
     private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
 
     public event PropertyChangedEventHandler? PropertyChanged;
-
-    public AppTheme AppTheme
-    {
-        get => _appTheme;
-        set
-        {
-            if (_appTheme != value)
-            {
-                _appTheme = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AppTheme)));
-            }
-        }
-    }
 
     public string FontFamily
     {
@@ -135,11 +121,6 @@ public sealed partial class AppSettings : IAppSettings
     {
         IPropertySet settingValues = ApplicationData.Current.LocalSettings.Values;
 
-        if (settingValues.TryGetValue(nameof(AppTheme), out object? appTheme))
-        {
-            AppTheme = (AppTheme)appTheme;
-        }
-
         if (settingValues.TryGetValue(nameof(FontFamily), out object? fontFamily))
         {
             FontFamily = (string)fontFamily;
@@ -182,7 +163,6 @@ public sealed partial class AppSettings : IAppSettings
     {
         IPropertySet settingValues = ApplicationData.Current.LocalSettings.Values;
 
-        settingValues[nameof(AppTheme)] = (int)AppTheme;
         settingValues[nameof(FontFamily)] = FontFamily;
         settingValues[nameof(FontSize)] = FontSize;
         settingValues[nameof(FontStyle)] = (int)FontStyle;

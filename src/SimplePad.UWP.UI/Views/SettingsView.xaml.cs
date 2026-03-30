@@ -31,7 +31,6 @@ public sealed partial class SettingsView : UserControl
 
         _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
 
-        _ = UpdateThemeRadioButtons();
         _ = UpdateFontFamilyComboBox();
         _ = UpdateFontStyleComboBox();
         _ = UpdateFontSizeComboBox();
@@ -51,11 +50,7 @@ public sealed partial class SettingsView : UserControl
         System.ComponentModel.PropertyChangedEventArgs e
     )
     {
-        if (e.PropertyName == nameof(_appSettings.AppTheme))
-        {
-            await UpdateThemeRadioButtons();
-        }
-        else if (e.PropertyName == nameof(_appSettings.FontFamily))
+        if (e.PropertyName == nameof(_appSettings.FontFamily))
         {
             // TODO
         }
@@ -81,12 +76,6 @@ public sealed partial class SettingsView : UserControl
         }
     }
 
-    private async void OnDarkThemeRadioButtonChecked(object sender, RoutedEventArgs e)
-    {
-        _appSettings.AppTheme = AppTheme.Dark;
-        await _appSettings.SaveAsync();
-    }
-
     private async void OnFontStyleComboBoxSelectionChanged(
         object sender,
         SelectionChangedEventArgs e
@@ -97,18 +86,6 @@ public sealed partial class SettingsView : UserControl
             _appSettings.FontStyle = appFontStyle;
             await _appSettings.SaveAsync();
         }
-    }
-
-    private async void OnLightThemeRadioButtonChecked(object sender, RoutedEventArgs e)
-    {
-        _appSettings.AppTheme = AppTheme.Light;
-        await _appSettings.SaveAsync();
-    }
-
-    private async void OnUseSystemSettingsThemeRadioButtonChecked(object sender, RoutedEventArgs e)
-    {
-        _appSettings.AppTheme = AppTheme.UseSystemSettings;
-        await _appSettings.SaveAsync();
     }
 
     private Task UpdateFontFamilyComboBox()
@@ -154,27 +131,6 @@ public sealed partial class SettingsView : UserControl
     {
         return Dispatcher.SafeRunAsync(() => {
             // TODO
-        });
-    }
-
-    private Task UpdateThemeRadioButtons()
-    {
-        return Dispatcher.SafeRunAsync(() =>
-        {
-            switch (_appSettings.AppTheme)
-            {
-                case AppTheme.UseSystemSettings:
-                    UseSystemSettingsThemeRadioButton.IsChecked = true;
-                    break;
-
-                case AppTheme.Light:
-                    LightThemeRadioButton.IsChecked = true;
-                    break;
-
-                case AppTheme.Dark:
-                    DarkThemeRadioButton.IsChecked = true;
-                    break;
-            }
         });
     }
 }

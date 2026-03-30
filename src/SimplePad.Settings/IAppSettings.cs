@@ -6,8 +6,6 @@ public interface IAppSettings
 {
     event PropertyChangedEventHandler? PropertyChanged;
 
-    AppTheme AppTheme { get; set; }
-
     string FontFamily { get; set; }
 
     double FontSize { get; set; }
