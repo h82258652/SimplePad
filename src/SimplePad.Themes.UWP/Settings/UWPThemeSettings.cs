@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using SimplePad.Core.UWP.Settings;
 using SimplePad.Themes.Settings;
+using Windows.Foundation.Collections;
+using Windows.Storage;
 
 namespace SimplePad.Themes.UWP.Settings;
 
@@ -13,17 +15,33 @@ public sealed class UWPThemeSettings : AppSettingsBase, IThemeSettings
 
     public AppTheme AppTheme
     {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
+        get => _appTheme;
+        set
+        {
+            if (_appTheme != value)
+            {
+                _appTheme = value;
+                AppThemeChanged?.Invoke(this, value);
+            }
+        }
     }
 
     public override Task LoadAsync()
     {
-        throw new NotImplementedException();
+        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        if (settingsValue.TryGetValue(nameof(AppTheme), out object? appTheme))
+        {
+            AppTheme = (AppTheme)appTheme;
+        }
+
+        return Task.CompletedTask;
     }
 
     public override Task SaveAsync()
     {
-        throw new NotImplementedException();
+        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        settingsValue[nameof(AppTheme)] = (int)AppTheme;
+
+        return Task.CompletedTask;
     }
 }
