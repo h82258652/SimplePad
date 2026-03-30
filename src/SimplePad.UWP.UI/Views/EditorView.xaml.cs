@@ -135,13 +135,6 @@ public sealed partial class EditorView : UserControl
         }
     }
 
-    private async void OnAppStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName == nameof(_appState.ZoomFactor))
-        {
-        }
-    }
-
     private void OnTextBoxZoomFactorChanged(DependencyObject sender, DependencyProperty dp)
     {
         _appState.ZoomFactor = TextBox.ZoomFactor;
