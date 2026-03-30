@@ -15,5 +15,6 @@
         <controls:FontFamilyComboBox Width="220" />
         <controls:FontStyleComboBox Width="220" />
         <controls:FontSizeComboBox Width="220" />
+        <controls:PreviewFontTextControl />
     </StackPanel>
 </Page>
