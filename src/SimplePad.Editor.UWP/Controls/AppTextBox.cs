@@ -1,4 +1,8 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Core.UWP.Extensions;
+using SimplePad.Editor.Settings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -14,16 +18,26 @@ public sealed partial class AppTextBox : TextBox
         PropertyMetadata.Create(() => new CursorPosition(1, 1))
     );
 
+    private readonly IEditorSettings _editorSettings;
+
+    public AppTextBox()
+    {
+        _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
+
+        DefaultStyleKey = typeof(AppTextBox);
+        DefaultStyleResourceUri = new Uri("ms-appx///SimplePad.Editor.UWP/Controls/AppTextBox.xaml");
+
+        UpdateTextWrapping();
+        UpdateIsSpellCheckEnabled();
+
+        _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
+        _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
+    }
+
     public CursorPosition CursorPosition
     {
         get => (CursorPosition)GetValue(CursorPositionProperty);
         private set => SetValue(CursorPositionProperty, value);
-    }
-
-    public AppTextBox()
-    {
-        DefaultStyleKey = typeof(AppTextBox);
-        DefaultStyleResourceUri = new Uri("ms-appx///SimplePad.Editor.UWP/Controls/AppTextBox.xaml");
     }
 
     protected override void OnApplyTemplate()
@@ -38,5 +52,25 @@ public sealed partial class AppTextBox : TextBox
     private void OnContentElementPointerWheelChanged(object sender, PointerRoutedEventArgs e)
     {
         throw new NotImplementedException();
+    }
+
+    private async void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
+    {
+        await Dispatcher.SafeRunAsync(UpdateIsSpellCheckEnabled);
+    }
+
+    private async void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
+    {
+        await Dispatcher.SafeRunAsync(UpdateTextWrapping);
+    }
+
+    private void UpdateIsSpellCheckEnabled()
+    {
+        IsSpellCheckEnabled = _editorSettings.IsSpellCheckEnabled;
+    }
+
+    private void UpdateTextWrapping()
+    {
+        TextWrapping = _editorSettings.IsWordWrap ? TextWrapping.Wrap : TextWrapping.NoWrap;
     }
 }
