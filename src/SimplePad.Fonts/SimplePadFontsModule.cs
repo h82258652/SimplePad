@@ -2,6 +2,4 @@
 
 namespace SimplePad.Fonts;
 
-public sealed class SimplePadFontsModule : AppModuleBase
-{
-}
+public sealed class SimplePadFontsModule : AppModuleBase { }

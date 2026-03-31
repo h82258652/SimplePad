@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using SimplePad.Core;
-using System;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu.UWP.Controls;
@@ -16,7 +16,8 @@ public sealed partial class AppMenuBar : UserControl
     {
         _serviceProvider = ServiceLocator.Current;
 
-        IOptionsSnapshot<MenuBarOptions> menuBarOptionsAccessor = _serviceProvider.GetRequiredService<IOptionsSnapshot<MenuBarOptions>>();
+        IOptionsSnapshot<MenuBarOptions> menuBarOptionsAccessor =
+            _serviceProvider.GetRequiredService<IOptionsSnapshot<MenuBarOptions>>();
         var menuBarOptions = menuBarOptionsAccessor.Value;
 
         InitializeComponent();
@@ -40,10 +41,7 @@ public sealed partial class AppMenuBar : UserControl
 
         if (item is MenuItem mi)
         {
-            MenuFlyoutItem menuFlyoutItem = new()
-            {
-                Text = mi.Text
-            };
+            MenuFlyoutItem menuFlyoutItem = new() { Text = mi.Text };
             menuFlyoutItem.Click += (sender, e) =>
             {
                 mi.Action(_serviceProvider);
@@ -55,7 +53,6 @@ public sealed partial class AppMenuBar : UserControl
         else if (item is MenuItemSeparator)
         {
             menuItem = new MenuFlyoutSeparator();
-
         }
         else if (item is MenuItemGroup itemGroup)
         {
@@ -72,7 +69,7 @@ public sealed partial class AppMenuBar : UserControl
             ToggleMenuFlyoutItem toggle = new()
             {
                 Text = toggleItem.Text,
-                IsEnabled = toggleItem.IsChecked(_serviceProvider)
+                IsEnabled = toggleItem.IsChecked(_serviceProvider),
             };
             // TODO register _appsettings.ischecked changed
 

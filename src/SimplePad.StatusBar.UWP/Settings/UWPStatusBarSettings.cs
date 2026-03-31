@@ -1,7 +1,7 @@
-﻿using SimplePad.Core.UWP.Settings;
-using SimplePad.StatusBar.Settings;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using SimplePad.Core.UWP.Settings;
+using SimplePad.StatusBar.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 

@@ -20,7 +20,9 @@ public sealed partial class FontFamilyComboBox : ComboBox
         Array.Sort(_systemFontFamilies);
 
         DefaultStyleKey = typeof(FontFamilyComboBox);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Fonts.UWP/Controls/FontFamilyComboBox.xaml");
+        DefaultStyleResourceUri = new Uri(
+            "ms-appx:///SimplePad.Fonts.UWP/Controls/FontFamilyComboBox.xaml"
+        );
 
         ItemsSource = _systemFontFamilies;
         SelectedItem = _fontSettings.FontFamily;
@@ -41,7 +43,10 @@ public sealed partial class FontFamilyComboBox : ComboBox
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (SelectedItem is string selectedFontFamily && _systemFontFamilies.Contains(selectedFontFamily))
+        if (
+            SelectedItem is string selectedFontFamily
+            && _systemFontFamilies.Contains(selectedFontFamily)
+        )
         {
             _fontSettings.FontFamily = selectedFontFamily;
         }

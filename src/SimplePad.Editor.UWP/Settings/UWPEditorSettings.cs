@@ -41,6 +41,7 @@ public sealed class UWPEditorSettings : AppSettingsBase, IEditorSettings
             }
         }
     }
+
     public override Task LoadAsync()
     {
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;

@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.MultiTab.Settings;
-using System;
-using System.Linq;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.MultiTab.UWP.Controls;
@@ -18,13 +18,15 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
     {
         _multiTabSettings = ServiceLocator.Current.GetRequiredService<IMultiTabSettings>();
         _items =
-            [
-            new( OpenFileBehavior.NewTab, "Open in a new tab"),
-            new (OpenFileBehavior.NewWindow , "Open in a new window"),
-            ];
+        [
+            new(OpenFileBehavior.NewTab, "Open in a new tab"),
+            new(OpenFileBehavior.NewWindow, "Open in a new window"),
+        ];
 
         DefaultStyleKey = typeof(OpenFileBehaviorComboBox);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.MultiTab.UWP/Controls/OpenFileBehaviorComboBox.xaml");
+        DefaultStyleResourceUri = new Uri(
+            "ms-appx:///SimplePad.MultiTab.UWP/Controls/OpenFileBehaviorComboBox.xaml"
+        );
 
         ItemsSource = _items;
         UpdateSelectedItem();
@@ -35,13 +37,14 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 
     private void UpdateSelectedItem()
     {
-        SelectedItem = _items.FirstOrDefault(item => item.Value == _multiTabSettings.OpenFileBehavior);
-
+        SelectedItem = _items.FirstOrDefault(item =>
+            item.Value == _multiTabSettings.OpenFileBehavior
+        );
     }
 
     private async void OnMultiTabSettingsOpenFileBehaviorChanged(object? sender, OpenFileBehavior e)
     {
-await        Dispatcher.SafeRunAsync(UpdateSelectedItem);
+        await Dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -12,7 +12,7 @@ public sealed class SimplePadMultiTabModule : AppModuleBase
     {
         base.ConfigureServices(context);
 
-        context.Services.Configure<MenuBarOptions>(options => 
+        context.Services.Configure<MenuBarOptions>(options =>
         {
             // TODO insert New tab and Clsoe tab
         });

@@ -31,7 +31,7 @@ public partial class ThemeContainer : UserControl
         {
             AppTheme.Light => ElementTheme.Light,
             AppTheme.Dark => ElementTheme.Dark,
-            _ => ElementTheme.Default
+            _ => ElementTheme.Default,
         };
     }
 }

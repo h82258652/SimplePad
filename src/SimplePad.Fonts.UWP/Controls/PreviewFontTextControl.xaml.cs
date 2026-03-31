@@ -57,6 +57,6 @@ public sealed partial class PreviewFontTextControl : UserControl
     private void UpdateFontStyle()
     {
         PreviewText.FontStyle = _fontSettings.FontStyle.GetUWPFontStyle();
-        PreviewText.FontWeight = _fontSettings.FontStyle.GetUWPFontWeight();        
+        PreviewText.FontWeight = _fontSettings.FontStyle.GetUWPFontWeight();
     }
 }

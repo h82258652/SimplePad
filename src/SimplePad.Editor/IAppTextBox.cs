@@ -9,17 +9,17 @@ public interface IAppTextBox
     event EventHandler? SelectionChanged;
 
     event EventHandler<string>? TextChanged;
-    
+
     bool CanUndo { get; }
-    
+
     CursorPosition CursorPosition { get; }
-    
+
     string SelectedText { get; set; }
-    
+
     int SelectionLength { get; set; }
-    
+
     int SelectionStart { get; set; }
-    
+
     string Text { get; }
 
     void CopySelectionToClipboard();

@@ -10,7 +10,7 @@ internal sealed class OpenFileBehaviorComboBoxItem
 
     internal OpenFileBehavior Value { get; }
 
-    internal OpenFileBehaviorComboBoxItem(OpenFileBehavior value,  string displayName)
+    internal OpenFileBehaviorComboBoxItem(OpenFileBehavior value, string displayName)
     {
         Value = value;
         DisplayName = displayName;

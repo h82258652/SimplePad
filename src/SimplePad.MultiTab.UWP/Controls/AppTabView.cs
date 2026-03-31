@@ -8,6 +8,8 @@ public sealed partial class AppTabView : TabView
     public AppTabView()
     {
         DefaultStyleKey = typeof(AppTabView);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.MultiTab.UWP/Controls/AppTabView.xaml");
+        DefaultStyleResourceUri = new Uri(
+            "ms-appx:///SimplePad.MultiTab.UWP/Controls/AppTabView.xaml"
+        );
     }
 }

@@ -21,11 +21,13 @@ public sealed partial class FontStyleComboBox : ComboBox
             new(AppFontStyle.Regular, "Regular"),
             new(AppFontStyle.Italic, "Italic"),
             new(AppFontStyle.Bold, "Bold"),
-            new(AppFontStyle.BoldItalic, "Bold Italic")
+            new(AppFontStyle.BoldItalic, "Bold Italic"),
         ];
 
         DefaultStyleKey = typeof(FontStyleComboBox);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Fonts.UWP/Controls/FontStyleComboBox.xaml");
+        DefaultStyleResourceUri = new Uri(
+            "ms-appx:///SimplePad.Fonts.UWP/Controls/FontStyleComboBox.xaml"
+        );
 
         ItemsSource = _items;
         UpdateSelectedItem();

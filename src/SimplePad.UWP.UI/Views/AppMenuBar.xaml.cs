@@ -58,7 +58,8 @@ public sealed partial class AppMenuBar : UserControl
             : Visibility.Collapsed;
 
         _editorSettings.IsWordWrapChanged += _editorSettings_IsWordWrapChanged;
-        _statusBarSettings.IsStatusBarVisibleChanged += _statusBarSettings_IsStatusBarVisibleChanged;
+        _statusBarSettings.IsStatusBarVisibleChanged +=
+            _statusBarSettings_IsStatusBarVisibleChanged;
         _appState.CanZoomInChanged += OnAppStateCanZoomInChanged;
         _appState.CanZoomOutChanged += OnAppStateCanZoomOutChanged;
 
@@ -122,7 +123,6 @@ public sealed partial class AppMenuBar : UserControl
         self.UpdateCopyMenuFlyoutItem();
         self.UpdateDeleteMenuFlyoutItem();
     }
-
 
     private async void OnCloseTabClick(object sender, RoutedEventArgs e)
     {
@@ -190,7 +190,10 @@ public sealed partial class AppMenuBar : UserControl
         string text = TextBox.Text;
         int totalLines = text.Split('\r').Length;
 
-        SimplePad.Editor.UWP.Dialogs.GoToLineDialog goToLineDialog = new(textBox.CursorPosition.Row, totalLines);
+        SimplePad.Editor.UWP.Dialogs.GoToLineDialog goToLineDialog = new(
+            textBox.CursorPosition.Row,
+            totalLines
+        );
         ContentDialogResult dialogResult = await goToLineDialog.ShowAsync();
         if (dialogResult == ContentDialogResult.Primary)
         {
@@ -212,10 +215,7 @@ public sealed partial class AppMenuBar : UserControl
         }
     }
 
-    private void OnIsStatusBarVisibleToggleMenuFlyoutItemClick(
-        object sender,
-        RoutedEventArgs e
-    )
+    private void OnIsStatusBarVisibleToggleMenuFlyoutItemClick(object sender, RoutedEventArgs e)
     {
         _statusBarSettings.IsStatusBarVisible = IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked;
     }
@@ -456,7 +456,8 @@ public sealed partial class AppMenuBar : UserControl
     {
         return Dispatcher.SafeRunAsync(() =>
         {
-            IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked = _statusBarSettings.IsStatusBarVisible;
+            IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked =
+                _statusBarSettings.IsStatusBarVisible;
         });
     }
 

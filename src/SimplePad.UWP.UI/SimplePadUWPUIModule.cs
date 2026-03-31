@@ -9,10 +9,12 @@ namespace SimplePad.UWP.UI;
 
 public sealed class SimplePadUWPUIModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<
-        SimplePadSettingsModule, 
-        SimplePadThemesUWPModule, 
-        SimplePadFontsUWPModule,
-        SimplePadStatusBarUWPModule,
-        SimplePadEditorUWPModule>();
+    public override DependsOn DependModules =>
+        DependsOn.Create<
+            SimplePadSettingsModule,
+            SimplePadThemesUWPModule,
+            SimplePadFontsUWPModule,
+            SimplePadStatusBarUWPModule,
+            SimplePadEditorUWPModule
+        >();
 }

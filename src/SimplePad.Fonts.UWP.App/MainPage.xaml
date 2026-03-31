@@ -1,20 +1,18 @@
 ﻿<Page
-    x:Class="SimplePad.Fonts.UWP.App.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:SimplePad.Fonts.UWP.Controls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:SimplePad.Fonts.UWP.App"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    mc:Ignorable="d">
-    <StackPanel
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Spacing="20">
-        <controls:FontFamilyComboBox Width="220" />
-        <controls:FontStyleComboBox Width="220" />
-        <controls:FontSizeComboBox Width="220" />
-        <controls:PreviewFontTextControl />
-    </StackPanel>
+  x:Class="SimplePad.Fonts.UWP.App.MainPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="using:SimplePad.Fonts.UWP.Controls"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="using:SimplePad.Fonts.UWP.App"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+  mc:Ignorable="d"
+>
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+    <controls:FontFamilyComboBox Width="220" />
+    <controls:FontStyleComboBox Width="220" />
+    <controls:FontSizeComboBox Width="220" />
+    <controls:PreviewFontTextControl />
+  </StackPanel>
 </Page>

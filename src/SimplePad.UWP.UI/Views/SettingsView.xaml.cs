@@ -43,7 +43,6 @@ public sealed partial class SettingsView : UserControl
         await UpdateIsSpellCheckEnabledToggleSwitch();
     }
 
-
     private async void _editorSettings_IsWordWrapChanged(object? sender, bool e)
     {
         await UpdateIsWordWrapToggleSwitch();
@@ -61,7 +60,7 @@ public sealed partial class SettingsView : UserControl
         {
             shellViewModel.IsSettingsViewVisible = false;
         }
-    } 
+    }
 
     private Task UpdateIsSpellCheckEnabledToggleSwitch()
     {

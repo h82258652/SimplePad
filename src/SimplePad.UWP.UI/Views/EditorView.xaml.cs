@@ -23,5 +23,4 @@ public sealed partial class EditorView : UserControl
         get => (EditorViewModel?)GetValue(ViewModelProperty);
         set => SetValue(ViewModelProperty, value);
     }
-
 }

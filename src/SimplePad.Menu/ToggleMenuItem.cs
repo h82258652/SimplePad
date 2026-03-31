@@ -7,7 +7,8 @@ public sealed class ToggleMenuItem : MenuItemBase
     public ToggleMenuItem(
         string text,
         Func<IServiceProvider, bool> isChecked,
-        Action<IServiceProvider, bool> action)
+        Action<IServiceProvider, bool> action
+    )
     {
         Text = text;
         IsChecked = isChecked;

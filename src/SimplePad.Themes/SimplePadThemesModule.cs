@@ -2,6 +2,4 @@
 
 namespace SimplePad.Themes;
 
-public sealed class SimplePadThemesModule : AppModuleBase
-{
-}
+public sealed class SimplePadThemesModule : AppModuleBase { }

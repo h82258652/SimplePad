@@ -1,5 +1,3 @@
 ﻿namespace SimplePad.Menu;
 
-public sealed class MenuItemSeparator : MenuItemBase
-{
-}
+public sealed class MenuItemSeparator : MenuItemBase { }

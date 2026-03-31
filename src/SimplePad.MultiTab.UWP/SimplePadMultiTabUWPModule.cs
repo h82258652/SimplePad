@@ -2,6 +2,4 @@
 
 namespace SimplePad.MultiTab.UWP;
 
-public sealed class SimplePadMultiTabUWPModule : AppModuleBase
-{
-}
+public sealed class SimplePadMultiTabUWPModule : AppModuleBase { }

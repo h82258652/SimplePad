@@ -20,13 +20,15 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         nameof(CursorPosition),
         typeof(CursorPosition),
         typeof(AppTextBox),
-        PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged));
+        PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged)
+    );
 
     private static readonly DependencyProperty ZoomedFontSizeProperty = DependencyProperty.Register(
         nameof(ZoomedFontSize),
         typeof(double),
         typeof(AppTextBox),
-        new PropertyMetadata(14d));
+        new PropertyMetadata(14d)
+    );
 
     private readonly IEditorSettings _editorSettings;
     private readonly EditorZoomState _editorZoomState;
@@ -41,7 +43,9 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         DefaultStyleKey = typeof(AppTextBox);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.UWP/Controls/AppTextBox.xaml");
+        DefaultStyleResourceUri = new Uri(
+            "ms-appx:///SimplePad.Editor.UWP/Controls/AppTextBox.xaml"
+        );
 
         UpdateFontFamily();
         UpdateFontStyle();
@@ -65,26 +69,14 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     event EventHandler? IAppTextBox.SelectionChanged
     {
-        add
-        {
-            _selectionChagnedHandler.Add(value);
-        }
-        remove
-        {
-            _selectionChagnedHandler.Remove(value);
-        }
+        add { _selectionChagnedHandler.Add(value); }
+        remove { _selectionChagnedHandler.Remove(value); }
     }
 
     event EventHandler<string>? IAppTextBox.TextChanged
     {
-        add
-        {
-            _textChangedHandler.Add(value);
-        }
-        remove
-        {
-            _textChangedHandler.Remove(value);
-        }
+        add { _textChangedHandler.Add(value); }
+        remove { _textChangedHandler.Remove(value); }
     }
 
     public CursorPosition CursorPosition
@@ -108,7 +100,10 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         contentElement.PointerWheelChanged += OnContentElementPointerWheelChanged;
     }
 
-    private static void OnCursorPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnCursorPositionChanged(
+        DependencyObject d,
+        DependencyPropertyChangedEventArgs e
+    )
     {
         AppTextBox self = (AppTextBox)d;
         var cursorPosition = (CursorPosition)e.NewValue;

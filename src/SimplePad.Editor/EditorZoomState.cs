@@ -48,10 +48,7 @@ public sealed class EditorZoomState
 
     public double ZoomFactor
     {
-        get
-        {
-            return _zoomFactor;
-        }
+        get { return _zoomFactor; }
         set
         {
             double clampedValue = Math.Clamp(value, MinZoomFactor, MaxZoomFactor);
