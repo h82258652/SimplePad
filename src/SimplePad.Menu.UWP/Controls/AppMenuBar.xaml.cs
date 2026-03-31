@@ -38,10 +38,19 @@ public sealed partial class AppMenuBar : UserControl
     {
         MenuFlyoutItemBase menuItem;
 
-        if (item is MenuItem)
+        if (item is MenuItem mi)
         {
-            throw new NotImplementedException();
+            MenuFlyoutItem menuFlyoutItem = new()
+            {
+                Text = mi.Text
+            };
+            menuFlyoutItem.Click += (sender, e) =>
+            {
+                mi.Action(_serviceProvider);
+            };
+            // todo register enabled changed
 
+            menuItem = menuFlyoutItem;
         }
         else if (item is MenuItemSeparator)
         {
