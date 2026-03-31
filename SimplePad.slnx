@@ -45,6 +45,7 @@
     <Project Path="src/SimplePad.MultiTab/SimplePad.MultiTab.csproj" Id="ec185396-cd63-4328-8574-272f6902edbb" />
   </Folder>
   <Folder Name="/src/Search/">
+    <Project Path="src/SimplePad.Search.UWP/SimplePad.Search.UWP.csproj" Id="fd4b2fcb-c5fb-4d68-890d-06f751716e4c" />
     <Project Path="src/SimplePad.Search/SimplePad.Search.csproj" Id="d19a19b2-8532-4b94-b2de-4eeea027af3e" />
   </Folder>
   <Folder Name="/src/Settings/">
