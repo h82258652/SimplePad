@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
     <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
+    <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
+using SimplePad.Editor;
 using SimplePad.Editor.Settings;
+using SimplePad.StatusBar.Settings;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SimplePad.Menu
 {
@@ -35,9 +36,17 @@ namespace SimplePad.Menu
                     new MenuItemGroup("Zoom")
                     {
                         Children = [
-                        new MenuItem("Zoom in", serviceProvider =>{}),
-                        new MenuItem("Zoom out", serviceProvider =>{}),
-                        new MenuItem("Restore default zoom", serviceProvider =>{})
+                        new MenuItem("Zoom in", serviceProvider =>
+                        {
+                            serviceProvider.GetRequiredService<EditorZoomState>().ZoomIn();
+                        }),
+                        new MenuItem("Zoom out", serviceProvider =>
+                        {
+                            serviceProvider.GetRequiredService<EditorZoomState>().ZoomOut();
+                        }),
+                        new MenuItem("Restore default zoom", serviceProvider =>{
+                            serviceProvider.GetRequiredService<EditorZoomState>().ResetZoomFactor();
+                        })
                         ]
                     },
                     new ToggleMenuItem("Status bar", (serviceProvider) =>
@@ -45,7 +54,7 @@ namespace SimplePad.Menu
                         throw new NotImplementedException();
                     }, (serviceProvider, isChecked) =>
                     {
-                        // TODO
+                        serviceProvider.GetRequiredService<IStatusBarSettings>().IsStatusBarVisible = isChecked;
                     })
                     { },
                     new ToggleMenuItem("Word wrap", (serviceProvider) =>
