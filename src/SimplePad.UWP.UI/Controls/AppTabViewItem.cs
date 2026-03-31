@@ -48,12 +48,11 @@ public sealed partial class AppTabViewItem : TabViewItem
 
         _layoutRoot = (FrameworkElement)GetTemplateChild("LayoutRoot");
 
-        UpdateModifiedIndicatorVisibility();
-
         var groups = VisualStateManager.GetVisualStateGroups(_layoutRoot);
         var g = groups.FirstOrDefault(temp => temp.Name == "CommonStates");
         if (g != null)
         {
+            UpdateModifiedIndicatorVisibility();
             g.CurrentStateChanged += G_CurrentStateChanged;
         }
     }
