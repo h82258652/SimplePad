@@ -34,7 +34,7 @@ public sealed partial class AppMenuBar : UserControl
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
-        typeof(SimplePad.Editor.UWP.Controls.AppTextBox),
+        typeof(IAppTextBox),
         typeof(AppMenuBar),
         new PropertyMetadata(null, OnTextBoxChanged)
     );
@@ -81,23 +81,23 @@ public sealed partial class AppMenuBar : UserControl
         set => SetValue(EditorViewModelProperty, value);
     }
 
-    public SimplePad.Editor.UWP.Controls.AppTextBox? TextBox
+    public IAppTextBox? TextBox
     {
-        get => (SimplePad.Editor.UWP.Controls.AppTextBox?)GetValue(TextBoxProperty);
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
     }
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppMenuBar self = (AppMenuBar)d;
-        SimplePad.Editor.UWP.Controls.AppTextBox? oldTextBox = (SimplePad.Editor.UWP.Controls.AppTextBox?)e.OldValue;
+        IAppTextBox? oldTextBox = (IAppTextBox?)e.OldValue;
         if (oldTextBox is not null)
         {
             oldTextBox.TextChanged -= self.OnTextBoxTextChanged;
             oldTextBox.SelectionChanged -= self.OnTextBoxSelectionChanged;
         }
 
-        SimplePad.Editor.UWP.Controls.AppTextBox? newTextBox = (SimplePad.Editor.UWP.Controls.AppTextBox?)e.NewValue;
+        IAppTextBox? newTextBox = (IAppTextBox?)e.NewValue;
         if (newTextBox is not null)
         {
             newTextBox.TextChanged += self.OnTextBoxTextChanged;
@@ -308,13 +308,13 @@ public sealed partial class AppMenuBar : UserControl
 
     private void OnPrintDocumentAddPages(object sender, AddPagesEventArgs e)
     {
-        _printDocument.AddPage(TextBox);
+        _printDocument.AddPage(TextBox as UIElement);
         _printDocument.AddPagesComplete();
     }
 
     private void OnPrintDocumentGetPreviewPage(object sender, GetPreviewPageEventArgs e)
     {
-        _printDocument.SetPreviewPage(e.PageNumber, TextBox);
+        _printDocument.SetPreviewPage(e.PageNumber, TextBox as UIElement);
     }
 
     private void OnPrintDocumentPaginate(object sender, PaginateEventArgs e) { }
@@ -386,14 +386,14 @@ public sealed partial class AppMenuBar : UserControl
         }
     }
 
-    private void OnTextBoxSelectionChanged(object sender, RoutedEventArgs e)
+    private void OnTextBoxSelectionChanged(object? sender, object e)
     {
         UpdateCutMenuFlyoutItem();
         UpdateCopyMenuFlyoutItem();
         UpdateDeleteMenuFlyoutItem();
     }
 
-    private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    private void OnTextBoxTextChanged(object? sender, string e)
     {
         UpdateUndoMenuFlyoutItem();
     }

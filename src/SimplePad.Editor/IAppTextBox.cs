@@ -6,13 +6,29 @@ public interface IAppTextBox
 {
     event EventHandler<CursorPosition>? CursorPositionChanged;
 
-    event EventHandler<string>? TextChanged;
-
     event EventHandler? SelectionChanged;
 
-    int SelectionLength { get; }
-
+    event EventHandler<string>? TextChanged;
+    
+    bool CanUndo { get; }
+    
     CursorPosition CursorPosition { get; }
-
+    
+    string SelectedText { get; set; }
+    
+    int SelectionLength { get; set; }
+    
+    int SelectionStart { get; set; }
+    
     string Text { get; }
+
+    void CopySelectionToClipboard();
+
+    void CutSelectionToClipboard();
+
+    void PasteFromClipboard();
+
+    void SelectAll();
+
+    void Undo();
 }

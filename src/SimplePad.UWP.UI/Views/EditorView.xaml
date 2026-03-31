@@ -18,27 +18,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <local:AppMenuBar EditorViewModel="{x:Bind ViewModel, Mode=OneWay}" TextBox="{x:Bind TextBox}" />
-        <!--<controls:AppTextBox
-            x:Name="TextBox"
-            Grid.Row="1"
-            AcceptsReturn="True"
-            BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
-            CornerRadius="0"
-            FontFamily="Consolas"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            ScrollViewer.VerticalScrollBarVisibility="Auto"
-            SelectionHighlightColorWhenNotFocused="{x:Bind TextBox.SelectionHighlightColor, Mode=OneWay}"
-            Text="{x:Bind ViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
-
         <editor:AppTextBox
             x:Name="TextBox"
             Grid.Row="1"
             Text="{x:Bind ViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <local1:AppStatusBar Grid.Row="2" TextBox="{x:Bind TextBox}">
-            <!--<local1:AppStatusBar.TextBox>
-                <local:TextBoxAdapter TextBox="{x:Bind TextBox}" />
-            </local1:AppStatusBar.TextBox>-->
-        </local1:AppStatusBar>
+        <local1:AppStatusBar Grid.Row="2" TextBox="{x:Bind TextBox}" />
     </Grid>
 </UserControl>
