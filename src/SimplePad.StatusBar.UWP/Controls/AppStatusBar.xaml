@@ -32,10 +32,16 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <TextBlock Style="{StaticResource IndicatorStyle}" />
+        <TextBlock x:Name="CursorPositionText" Style="{StaticResource IndicatorStyle}" />
         <Rectangle Grid.Column="1" Style="{StaticResource DividerStyle}" />
-        <TextBlock Grid.Column="2" Style="{StaticResource IndicatorStyle}" />
+        <TextBlock
+            x:Name="CharacterIndicator"
+            Grid.Column="2"
+            Style="{StaticResource IndicatorStyle}" />
         <Rectangle Grid.Column="4" Style="{StaticResource DividerStyle}" />
-        <TextBlock Grid.Column="5" Style="{StaticResource IndicatorStyle}" />
+        <TextBlock
+            x:Name="ZoomFactorIndicator"
+            Grid.Column="5"
+            Style="{StaticResource IndicatorStyle}" />
     </Grid>
 </UserControl>

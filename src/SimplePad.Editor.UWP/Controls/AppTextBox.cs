@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
@@ -18,6 +19,8 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged));
 
     private readonly IEditorSettings _editorSettings;
+    private readonly List<EventHandler?> _selectionChagnedHandler = [];
+    private readonly List<EventHandler<string>?> _textChangedHandler = [];
 
     public AppTextBox()
     {
@@ -31,9 +34,35 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
         _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
         _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
+        TextChanged += OnTextChanged;
+        SelectionChanged += OnSelectionChanged;
     }
 
     public event EventHandler<CursorPosition>? CursorPositionChanged;
+
+    event EventHandler? IAppTextBox.SelectionChanged
+    {
+        add
+        {
+            _selectionChagnedHandler.Add(value);
+        }
+        remove
+        {
+            _selectionChagnedHandler.Remove(value);
+        }
+    }
+
+    event EventHandler<string>? IAppTextBox.TextChanged
+    {
+        add
+        {
+            _textChangedHandler.Add(value);
+        }
+        remove
+        {
+            _textChangedHandler.Remove(value);
+        }
+    }
 
     public CursorPosition CursorPosition
     {
@@ -70,6 +99,22 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     private async void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
     {
         await Dispatcher.SafeRunAsync(UpdateTextWrapping);
+    }
+
+    private void OnSelectionChanged(object sender, RoutedEventArgs e)
+    {
+        foreach (EventHandler? handler in _selectionChagnedHandler)
+        {
+            handler?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private void OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        foreach (EventHandler<string>? handler in _textChangedHandler)
+        {
+            handler?.Invoke(this, Text);
+        }
     }
 
     private void UpdateIsSpellCheckEnabled()
