@@ -31,7 +31,6 @@ public sealed partial class SettingsView : UserControl
         _editorSettings.IsSpellCheckEnabledChanged += _editorSettings_IsSpellCheckEnabledChanged;
 
         _ = UpdateIsWordWrapToggleSwitch();
-        _ = UpdateOpenFileBehaviorComboBox();
         _ = UpdateIsSpellCheckEnabledToggleSwitch();
     }
 
@@ -72,13 +71,6 @@ public sealed partial class SettingsView : UserControl
         return Dispatcher.SafeRunAsync(() =>
         {
             IsWordWrapToggleSwitch.IsOn = _editorSettings.IsWordWrap;
-        });
-    }
-
-    private Task UpdateOpenFileBehaviorComboBox()
-    {
-        return Dispatcher.SafeRunAsync(() => {
-            // TODO
         });
     }
 }
