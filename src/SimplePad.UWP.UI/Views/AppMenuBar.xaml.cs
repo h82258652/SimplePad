@@ -6,8 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor;
+using SimplePad.Editor.Settings;
 using SimplePad.Services.UWP;
 using SimplePad.Settings;
+using SimplePad.StatusBar.Settings;
 using SimplePad.UWP.UI.Controls;
 using SimplePad.ViewModels;
 using Windows.ApplicationModel.Core;
@@ -39,15 +41,18 @@ public sealed partial class AppMenuBar : UserControl
         new PropertyMetadata(null, OnTextBoxChanged)
     );
 
-    private readonly IAppSettings _appSettings;
     private readonly EditorZoomState _appState;
 
     private PrintDocument? _printDocument;
     private IPrintDocumentSource? _printDocumentSource;
 
+    private readonly IEditorSettings _editorSettings;
+    private readonly IStatusBarSettings _statusBarSettings;
+
     public AppMenuBar()
     {
-        _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
+        _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
+        _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
         _appState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         InitializeComponent();
@@ -55,7 +60,8 @@ public sealed partial class AppMenuBar : UserControl
             ? Visibility.Visible
             : Visibility.Collapsed;
 
-        _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
+        _editorSettings.IsWordWrapChanged += _editorSettings_IsWordWrapChanged;
+        _statusBarSettings.IsStatusBarVisibleChanged += _statusBarSettings_IsStatusBarVisibleChanged;
         _appState.CanZoomInChanged += OnAppStateCanZoomInChanged;
         _appState.CanZoomOutChanged += OnAppStateCanZoomOutChanged;
 
@@ -63,6 +69,16 @@ public sealed partial class AppMenuBar : UserControl
         _ = UpdateZoomOutMenuFlyoutItem();
         _ = UpdateIsStatusBarVisibleToggleMenuFlyoutItem();
         _ = UpdateIsWordWrapToggleMenuFlyoutItem();
+    }
+
+    private async void _statusBarSettings_IsStatusBarVisibleChanged(object? sender, bool e)
+    {
+        await UpdateIsStatusBarVisibleToggleMenuFlyoutItem();
+    }
+
+    private async void _editorSettings_IsWordWrapChanged(object? sender, bool e)
+    {
+        await UpdateIsWordWrapToggleMenuFlyoutItem();
     }
 
     private async void OnAppStateCanZoomOutChanged(object? sender, bool e)
@@ -110,17 +126,6 @@ public sealed partial class AppMenuBar : UserControl
         self.UpdateDeleteMenuFlyoutItem();
     }
 
-    private async void OnAppSettingsPropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName == nameof(_appSettings.IsStatusBarVisible))
-        {
-            await UpdateIsStatusBarVisibleToggleMenuFlyoutItem();
-        }
-        else if (e.PropertyName == nameof(_appSettings.IsWordWrap))
-        {
-            await UpdateIsWordWrapToggleMenuFlyoutItem();
-        }
-    }
 
     private async void OnCloseTabClick(object sender, RoutedEventArgs e)
     {
@@ -210,19 +215,17 @@ public sealed partial class AppMenuBar : UserControl
         }
     }
 
-    private async void OnIsStatusBarVisibleToggleMenuFlyoutItemClick(
+    private void OnIsStatusBarVisibleToggleMenuFlyoutItemClick(
         object sender,
         RoutedEventArgs e
     )
     {
-        _appSettings.IsStatusBarVisible = IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked;
-        await _appSettings.SaveAsync();
+        _statusBarSettings.IsStatusBarVisible = IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked;
     }
 
-    private async void OnIsWordWrapToggleMenuFlyoutItemClick(object sender, RoutedEventArgs e)
+    private void OnIsWordWrapToggleMenuFlyoutItemClick(object sender, RoutedEventArgs e)
     {
-        _appSettings.IsWordWrap = IsWordWrapToggleMenuFlyoutItem.IsChecked;
-        await _appSettings.SaveAsync();
+        _editorSettings.IsWordWrap = IsWordWrapToggleMenuFlyoutItem.IsChecked;
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -456,7 +459,7 @@ public sealed partial class AppMenuBar : UserControl
     {
         return Dispatcher.SafeRunAsync(() =>
         {
-            IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked = _appSettings.IsStatusBarVisible;
+            IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked = _statusBarSettings.IsStatusBarVisible;
         });
     }
 
@@ -464,7 +467,7 @@ public sealed partial class AppMenuBar : UserControl
     {
         return Dispatcher.SafeRunAsync(() =>
         {
-            IsWordWrapToggleMenuFlyoutItem.IsChecked = _appSettings.IsWordWrap;
+            IsWordWrapToggleMenuFlyoutItem.IsChecked = _editorSettings.IsWordWrap;
         });
     }
 

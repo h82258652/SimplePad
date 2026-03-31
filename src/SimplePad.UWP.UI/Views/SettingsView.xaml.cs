@@ -3,7 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graphics.Canvas.Text;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
+using SimplePad.Editor.Settings;
 using SimplePad.Settings;
+using SimplePad.StatusBar.Settings;
 using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,40 +22,37 @@ public sealed partial class SettingsView : UserControl
             null
         );
 
-    private readonly IAppSettings _appSettings;
+    private readonly IEditorSettings _editorSettings;
 
     public SettingsView()
     {
-        _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
+        _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
 
-        InitializeComponent(); 
+        InitializeComponent();
 
-        _appSettings.PropertyChanged += OnAppSettingsPropertyChanged;
-         
+        _editorSettings.IsWordWrapChanged += _editorSettings_IsWordWrapChanged;
+        _editorSettings.IsSpellCheckEnabledChanged += _editorSettings_IsSpellCheckEnabledChanged;
+
         _ = UpdateIsWordWrapToggleSwitch();
         _ = UpdateOpenFileBehaviorComboBox();
         _ = UpdateIsSpellCheckEnabledToggleSwitch();
+    }
+
+    private async void _editorSettings_IsSpellCheckEnabledChanged(object? sender, bool e)
+    {
+        await UpdateIsSpellCheckEnabledToggleSwitch();
+    }
+
+
+    private async void _editorSettings_IsWordWrapChanged(object? sender, bool e)
+    {
+        await UpdateIsWordWrapToggleSwitch();
     }
 
     public SettingsViewModel? ViewModel
     {
         get => (SettingsViewModel?)GetValue(SettingsViewModelProperty);
         set => SetValue(SettingsViewModelProperty, value);
-    }
-
-    private async void OnAppSettingsPropertyChanged(
-        object? sender,
-        System.ComponentModel.PropertyChangedEventArgs e
-    )
-    { 
-        if (e.PropertyName == nameof(_appSettings.IsWordWrap))
-        {
-            await UpdateIsWordWrapToggleSwitch();
-        }
-        else if (e.PropertyName == nameof(_appSettings.IsSpellCheckEnabled))
-        {
-            await UpdateIsSpellCheckEnabledToggleSwitch();
-        }
     }
 
     private void OnBackButtonClick(object sender, RoutedEventArgs e)
@@ -68,7 +67,7 @@ public sealed partial class SettingsView : UserControl
     {
         return Dispatcher.SafeRunAsync(() =>
         {
-            IsSpellCheckEnabledToggleSwitch.IsOn = _appSettings.IsSpellCheckEnabled;
+            IsSpellCheckEnabledToggleSwitch.IsOn = _editorSettings.IsSpellCheckEnabled;
         });
     }
 
@@ -76,7 +75,7 @@ public sealed partial class SettingsView : UserControl
     {
         return Dispatcher.SafeRunAsync(() =>
         {
-            IsWordWrapToggleSwitch.IsOn = _appSettings.IsWordWrap;
+            IsWordWrapToggleSwitch.IsOn = _editorSettings.IsWordWrap;
         });
     }
 

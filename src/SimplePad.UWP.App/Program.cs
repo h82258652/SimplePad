@@ -22,7 +22,6 @@ public static class Program
         host.Start();
         ServiceLocator.SetLocatorProvider(host.Services);
 
-        await host.Services.GetRequiredService<IAppSettings>().LoadAsync();
         await host.Services.GetRequiredService<IThemeSettings>().LoadAsync();
         await host.Services.GetRequiredService<IFontSettings>().LoadAsync();
 

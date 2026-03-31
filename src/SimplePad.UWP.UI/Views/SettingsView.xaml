@@ -140,6 +140,7 @@
                                     <fonts:FontSizeComboBox MinWidth="198" />
                                 </controls:SettingsCard>
                                 <controls:SettingsCard
+                                    Padding="0,32,0,32"
                                     HorizontalContentAlignment="Center"
                                     Background="{ThemeResource ControlFillColorSecondaryBrush}"
                                     ContentAlignment="Vertical">

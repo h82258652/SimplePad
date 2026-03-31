@@ -10,7 +10,5 @@ public sealed class SimplePadSettingsUWPModule : AppModuleBase
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         base.ConfigureServices(context);
-
-        context.Services.AddSingleton<IAppSettings, AppSettings>();
     }
 }
