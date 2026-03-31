@@ -15,11 +15,4 @@ public sealed class SimplePadUWPAppModule : AppModuleBase
             SimplePadServiceUWPModule,
             SimplePadUWPUIModule
         >();
-
-    public override void ConfigureServices(ServiceConfigurationContext context)
-    {
-        base.ConfigureServices(context);
-
-        context.Services.AddSingleton<AppState>();
-    }
 }

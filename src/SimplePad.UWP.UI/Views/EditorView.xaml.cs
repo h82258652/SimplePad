@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Editor;
 using SimplePad.Fonts;
 using SimplePad.Fonts.Settings;
 using SimplePad.Settings;
@@ -27,12 +28,12 @@ public sealed partial class EditorView : UserControl
 
     private readonly IAppSettings _appSettings;
     private readonly IFontSettings _fontSettings;
-    private readonly AppState _appState;
+    private readonly EditorZoomState _appState;
 
     public EditorView()
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
-        _appState = ServiceLocator.Current.GetRequiredService<AppState>();
+        _appState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
 
         InitializeComponent();
@@ -47,8 +48,6 @@ public sealed partial class EditorView : UserControl
             OnTextBoxZoomFactorChanged
         );
 
-        _ = UpdateStatusBar();
-
         _ = UpdateTextBoxFontFamily();
         _ = UpdateTextBoxFontStyle();
         _ = UpdateTextBoxFontSize();
@@ -62,10 +61,10 @@ public sealed partial class EditorView : UserControl
 
     private async Task UpdateTextBoxFontFamily()
     {
-      await  Dispatcher.SafeRunAsync(() =>
-        {
-            TextBox.FontFamily = new Windows.UI.Xaml.Media.FontFamily(_fontSettings.FontFamily);
-        });
+        await Dispatcher.SafeRunAsync(() =>
+          {
+              TextBox.FontFamily = new Windows.UI.Xaml.Media.FontFamily(_fontSettings.FontFamily);
+          });
     }
 
     private async void OnFontSettingsFontFamilyChanged(object? sender, string e)
@@ -125,10 +124,6 @@ public sealed partial class EditorView : UserControl
         {
             await UpdateTextBoxTextWrapping();
         }
-        else if (e.PropertyName == nameof(_appSettings.IsStatusBarVisible))
-        {
-            await UpdateStatusBar();
-        }
         else if (e.PropertyName == nameof(_appSettings.IsSpellCheckEnabled))
         {
             await UpdateTextBoxIsSpellCheck();
@@ -138,28 +133,6 @@ public sealed partial class EditorView : UserControl
     private void OnTextBoxZoomFactorChanged(DependencyObject sender, DependencyProperty dp)
     {
         _appState.ZoomFactor = TextBox.ZoomFactor;
-    }
-
-    private async Task UpdateStatusBar()
-    {
-        if (Dispatcher.HasThreadAccess)
-        {
-            StatusBar.Visibility = _appSettings.IsStatusBarVisible
-                ? Visibility.Visible
-                : Visibility.Collapsed;
-        }
-        else
-        {
-            await Dispatcher.RunAsync(
-                CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    StatusBar.Visibility = _appSettings.IsStatusBarVisible
-                        ? Visibility.Visible
-                        : Visibility.Collapsed;
-                }
-            );
-        }
     }
 
     private async Task UpdateTextBoxFontSize()

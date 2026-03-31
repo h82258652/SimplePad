@@ -5,6 +5,7 @@
     xmlns:controls="using:SimplePad.UWP.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SimplePad.UWP.UI.Views"
+    xmlns:local1="using:SimplePad.StatusBar.UWP.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -27,10 +28,6 @@
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             SelectionHighlightColorWhenNotFocused="{x:Bind TextBox.SelectionHighlightColor, Mode=OneWay}"
             Text="{x:Bind ViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <local:StatusBar
-            x:Name="StatusBar"
-            Grid.Row="2"
-            EditorViewModel="{x:Bind ViewModel, Mode=OneWay}"
-            TextBox="{x:Bind TextBox}" />
+        <local1:AppStatusBar Grid.Row="2" />
     </Grid>
 </UserControl>

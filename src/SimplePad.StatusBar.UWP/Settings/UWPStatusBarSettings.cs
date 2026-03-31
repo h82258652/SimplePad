@@ -9,7 +9,7 @@ namespace SimplePad.StatusBar.UWP.Settings;
 
 public sealed class UWPStatusBarSettings : AppSettingsBase, IStatusBarSettings
 {
-    private bool _isStatusBarVisible = false;
+    private bool _isStatusBarVisible = true;
 
     public event EventHandler<bool>? IsStatusBarVisibleChanged;
 

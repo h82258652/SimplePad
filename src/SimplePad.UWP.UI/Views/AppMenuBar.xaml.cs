@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Editor;
 using SimplePad.Services.UWP;
 using SimplePad.Settings;
 using SimplePad.UWP.UI.Controls;
@@ -40,7 +41,7 @@ public sealed partial class AppMenuBar : UserControl
     );
 
     private readonly IAppSettings _appSettings;
-    private readonly AppState _appState;
+    private readonly EditorZoomState _appState;
 
     private PrintDocument? _printDocument;
     private IPrintDocumentSource? _printDocumentSource;
@@ -48,7 +49,7 @@ public sealed partial class AppMenuBar : UserControl
     public AppMenuBar()
     {
         _appSettings = ServiceLocator.Current.GetRequiredService<IAppSettings>();
-        _appState = ServiceLocator.Current.GetRequiredService<AppState>();
+        _appState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         InitializeComponent();
         PrintMenuItem.Visibility = PrintManager.IsSupported()
