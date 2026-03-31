@@ -9,14 +9,13 @@ using Windows.UI.Xaml.Input;
 
 namespace SimplePad.Editor.UWP.Controls;
 
-public sealed partial class AppTextBox : TextBox
+public sealed partial class AppTextBox : TextBox, IAppTextBox
 {
     public static readonly DependencyProperty CursorPositionProperty = DependencyProperty.Register(
         nameof(CursorPosition),
         typeof(CursorPosition),
         typeof(AppTextBox),
-        PropertyMetadata.Create(() => new CursorPosition(1, 1))
-    );
+        PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged));
 
     private readonly IEditorSettings _editorSettings;
 
@@ -34,6 +33,8 @@ public sealed partial class AppTextBox : TextBox
         _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
     }
 
+    public event EventHandler<CursorPosition>? CursorPositionChanged;
+
     public CursorPosition CursorPosition
     {
         get => (CursorPosition)GetValue(CursorPositionProperty);
@@ -47,6 +48,13 @@ public sealed partial class AppTextBox : TextBox
         ScrollViewer contentElement = (ScrollViewer)GetTemplateChild("ContentElement");
         contentElement.PointerWheelChanged -= OnContentElementPointerWheelChanged;
         contentElement.PointerWheelChanged += OnContentElementPointerWheelChanged;
+    }
+
+    private static void OnCursorPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppTextBox self = (AppTextBox)d;
+        var cursorPosition = (CursorPosition)e.NewValue;
+        self.CursorPositionChanged?.Invoke(self, cursorPosition);
     }
 
     private void OnContentElementPointerWheelChanged(object sender, PointerRoutedEventArgs e)
