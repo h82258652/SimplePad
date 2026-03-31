@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor.Settings;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -18,24 +19,35 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         typeof(AppTextBox),
         PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged));
 
+    private static readonly DependencyProperty ZoomedFontSizeProperty = DependencyProperty.Register(
+        nameof(ZoomedFontSize),
+        typeof(double),
+        typeof(AppTextBox),
+        new PropertyMetadata(14d));
+
     private readonly IEditorSettings _editorSettings;
+    private readonly EditorZoomState _editorZoomState;
     private readonly List<EventHandler?> _selectionChagnedHandler = [];
     private readonly List<EventHandler<string>?> _textChangedHandler = [];
 
     public AppTextBox()
     {
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
+        _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         DefaultStyleKey = typeof(AppTextBox);
         DefaultStyleResourceUri = new Uri("ms-appx///SimplePad.Editor.UWP/Controls/AppTextBox.xaml");
 
         UpdateTextWrapping();
         UpdateIsSpellCheckEnabled();
+        UpdateZoomedFontSize();
 
         _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
         _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
+        _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
         TextChanged += OnTextChanged;
         SelectionChanged += OnSelectionChanged;
+        RegisterPropertyChangedCallback(FontSizeProperty, OnFontSizeChanged);
     }
 
     public event EventHandler<CursorPosition>? CursorPositionChanged;
@@ -70,6 +82,12 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         private set => SetValue(CursorPositionProperty, value);
     }
 
+    private double ZoomedFontSize
+    {
+        get => (double)GetValue(ZoomedFontSizeProperty);
+        set => SetValue(ZoomedFontSizeProperty, value);
+    }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -88,7 +106,20 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private void OnContentElementPointerWheelChanged(object sender, PointerRoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (e.KeyModifiers.HasFlag(VirtualKeyModifiers.Control))
+        {
+            e.Handled = true;
+
+            int mouseWheelDelta = e.GetCurrentPoint(this).Properties.MouseWheelDelta;
+            if (mouseWheelDelta > 0)
+            {
+                _editorZoomState.ZoomIn();
+            }
+            else
+            {
+                _editorZoomState.ZoomOut();
+            }
+        }
     }
 
     private async void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
@@ -99,6 +130,16 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     private async void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
     {
         await Dispatcher.SafeRunAsync(UpdateTextWrapping);
+    }
+
+    private async void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
+    {
+        await Dispatcher.SafeRunAsync(UpdateZoomedFontSize);
+    }
+
+    private void OnFontSizeChanged(DependencyObject sender, DependencyProperty dp)
+    {
+        UpdateZoomedFontSize();
     }
 
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
@@ -125,5 +166,10 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     private void UpdateTextWrapping()
     {
         TextWrapping = _editorSettings.IsWordWrap ? TextWrapping.Wrap : TextWrapping.NoWrap;
+    }
+
+    private void UpdateZoomedFontSize()
+    {
+        ZoomedFontSize = FontSize * _editorZoomState.ZoomFactor;
     }
 }

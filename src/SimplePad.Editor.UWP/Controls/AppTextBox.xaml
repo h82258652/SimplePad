@@ -72,7 +72,7 @@
                             Margin="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}"
                             AutomationProperties.AccessibilityView="Raw"
-                            FontSize="{TemplateBinding ComputedFontSize}"
+                            FontSize="{TemplateBinding ZoomedFontSize}"
                             Foreground="{TemplateBinding Foreground}"
                             HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                             HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"

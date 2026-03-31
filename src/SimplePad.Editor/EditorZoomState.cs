@@ -75,7 +75,7 @@ public sealed class EditorZoomState
     {
         if (CanZoomIn)
         {
-            ZoomFactor += Math.Min(MaxZoomFactor, ZoomFactor + ZoomChangeDelta);
+            ZoomFactor = Math.Min(MaxZoomFactor, ZoomFactor + ZoomChangeDelta);
         }
     }
 
@@ -83,7 +83,7 @@ public sealed class EditorZoomState
     {
         if (CanZoomOut)
         {
-            ZoomFactor -= Math.Max(MinZoomFactor, ZoomFactor - ZoomChangeDelta);
+            ZoomFactor = Math.Max(MinZoomFactor, ZoomFactor - ZoomChangeDelta);
         }
     }
 }
