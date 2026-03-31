@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SimplePad.Core.Modularity;
 
 namespace SimplePad.MultiTab.UWP;
 
-public sealed class SimplePadMultiTabUWPModule
+public sealed class SimplePadMultiTabUWPModule : AppModuleBase
 {
 }

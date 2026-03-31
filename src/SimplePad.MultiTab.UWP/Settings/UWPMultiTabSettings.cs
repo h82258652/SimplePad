@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SimplePad.Core.UWP.Settings;
 using SimplePad.MultiTab.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
 namespace SimplePad.MultiTab.UWP.Settings;
 
-public sealed class UWPMultiTabSettings : IMultiTabSettings
+public sealed class UWPMultiTabSettings : AppSettingsBase, IMultiTabSettings
 {
     private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
 
@@ -25,7 +26,7 @@ public sealed class UWPMultiTabSettings : IMultiTabSettings
         }
     }
 
-    public Task LoadAsync()
+    public override Task LoadAsync()
     {
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
         if (settingsValue.TryGetValue(nameof(OpenFileBehavior), out object? openFileBehavior))
@@ -36,7 +37,7 @@ public sealed class UWPMultiTabSettings : IMultiTabSettings
         return Task.CompletedTask;
     }
 
-    public Task SaveAsync()
+    public override Task SaveAsync()
     {
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
         settingsValue[nameof(OpenFileBehavior)] = (int)OpenFileBehavior;
