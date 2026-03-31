@@ -2,8 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graphics.Canvas.Text;
 using SimplePad.Core;
+using SimplePad.Core.UWP.Extensions;
 using SimplePad.Settings;
-using SimplePad.UWP.UI.Extensions;
 using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
