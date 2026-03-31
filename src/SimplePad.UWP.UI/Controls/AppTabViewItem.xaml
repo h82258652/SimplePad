@@ -378,7 +378,6 @@
                                     IsTextScaleFactorEnabled="False"
                                     Style="{ThemeResource TabViewCloseButtonStyle}" />
                             </Border>
-                            <!--  TODO color  -->
                             <Border
                                 x:Name="ModifiedIndicator"
                                 Grid.Column="2"
@@ -388,7 +387,7 @@
                                 <Ellipse
                                     Width="6"
                                     Height="6"
-                                    Fill="Red" />
+                                    Fill="{ThemeResource TextFillColorTertiaryBrush}" />
                             </Border>
                         </Grid>
                     </Grid>
