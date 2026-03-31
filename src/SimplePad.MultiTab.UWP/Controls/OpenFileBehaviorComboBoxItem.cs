@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SimplePad.MultiTab.UWP.Controls;
+﻿namespace SimplePad.MultiTab.UWP.Controls;
 
 internal sealed class OpenFileBehaviorComboBoxItem
 {

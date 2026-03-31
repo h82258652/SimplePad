@@ -1,11 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Graphics.Canvas.Text;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor.Settings;
-using SimplePad.Settings;
-using SimplePad.StatusBar.Settings;
 using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

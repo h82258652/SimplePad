@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SimplePad.Core;
-using SimplePad.Core.Modularity;
+﻿using SimplePad.Core.Modularity;
 using SimplePad.Services.UWP;
 using SimplePad.Settings.UWP;
 using SimplePad.UWP.UI;

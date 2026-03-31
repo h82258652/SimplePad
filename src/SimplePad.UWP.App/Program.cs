@@ -5,7 +5,6 @@ using Microsoft.Extensions.Hosting;
 using SimplePad.Core;
 using SimplePad.Core.Modularity;
 using SimplePad.Fonts.Settings;
-using SimplePad.Settings;
 using SimplePad.Themes.Settings;
 using Windows.System;
 using Windows.UI.Xaml;
