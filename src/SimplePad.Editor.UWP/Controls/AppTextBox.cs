@@ -4,10 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor.Settings;
+using SimplePad.Fonts.Settings;
+using SimplePad.Fonts.UWP.Extensions;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 
 namespace SimplePad.Editor.UWP.Controls;
 
@@ -27,21 +30,29 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private readonly IEditorSettings _editorSettings;
     private readonly EditorZoomState _editorZoomState;
+    private readonly IFontSettings _fontSettings;
     private readonly List<EventHandler?> _selectionChagnedHandler = [];
     private readonly List<EventHandler<string>?> _textChangedHandler = [];
 
     public AppTextBox()
     {
+        _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         DefaultStyleKey = typeof(AppTextBox);
         DefaultStyleResourceUri = new Uri("ms-appx///SimplePad.Editor.UWP/Controls/AppTextBox.xaml");
 
+        UpdateFontFamily();
+        UpdateFontStyle();
+        UpdateFontSize();
         UpdateTextWrapping();
         UpdateIsSpellCheckEnabled();
         UpdateZoomedFontSize();
 
+        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
+        _fontSettings.FontStyleChanged += OnFontSettingsFontStyleChanged;
+        _fontSettings.FontSizeChanged += OnFontSettingsFontSizeChanged;
         _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
         _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
         _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
@@ -137,6 +148,21 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         await Dispatcher.SafeRunAsync(UpdateZoomedFontSize);
     }
 
+    private async void OnFontSettingsFontFamilyChanged(object? sender, string e)
+    {
+        await Dispatcher.SafeRunAsync(UpdateFontFamily);
+    }
+
+    private async void OnFontSettingsFontSizeChanged(object? sender, int e)
+    {
+        await Dispatcher.SafeRunAsync(UpdateFontSize);
+    }
+
+    private async void OnFontSettingsFontStyleChanged(object? sender, Fonts.AppFontStyle e)
+    {
+        await Dispatcher.SafeRunAsync(UpdateFontStyle);
+    }
+
     private void OnFontSizeChanged(DependencyObject sender, DependencyProperty dp)
     {
         UpdateZoomedFontSize();
@@ -156,6 +182,22 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         {
             handler?.Invoke(this, Text);
         }
+    }
+
+    private void UpdateFontFamily()
+    {
+        FontFamily = new FontFamily(_fontSettings.FontFamily);
+    }
+
+    private void UpdateFontSize()
+    {
+        FontSize = _fontSettings.FontSize;
+    }
+
+    private void UpdateFontStyle()
+    {
+        FontStyle = _fontSettings.FontStyle.GetUWPFontStyle();
+        FontWeight = _fontSettings.FontStyle.GetUWPFontWeight();
     }
 
     private void UpdateIsSpellCheckEnabled()

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Fonts.Settings;
+using SimplePad.Fonts.UWP.Extensions;
 using Windows.UI.Text;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -55,18 +56,7 @@ public sealed partial class PreviewFontTextControl : UserControl
 
     private void UpdateFontStyle()
     {
-        PreviewText.FontStyle = _fontSettings.FontStyle switch
-        {
-            AppFontStyle.Regular or AppFontStyle.Bold => FontStyle.Normal,
-            AppFontStyle.Italic or AppFontStyle.BoldItalic => FontStyle.Italic,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-
-        PreviewText.FontWeight = _fontSettings.FontStyle switch
-        {
-            AppFontStyle.Regular or AppFontStyle.Italic => FontWeights.Normal,
-            AppFontStyle.Bold or AppFontStyle.BoldItalic => FontWeights.Bold,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        PreviewText.FontStyle = _fontSettings.FontStyle.GetUWPFontStyle();
+        PreviewText.FontWeight = _fontSettings.FontStyle.GetUWPFontWeight();        
     }
 }
