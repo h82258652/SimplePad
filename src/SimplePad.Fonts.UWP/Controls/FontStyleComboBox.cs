@@ -28,7 +28,7 @@ public sealed partial class FontStyleComboBox : ComboBox
         DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Fonts.UWP/Controls/FontStyleComboBox.xaml");
 
         ItemsSource = _items;
-        SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle);
+        UpdateSelectedItem();
 
         _fontSettings.FontStyleChanged += OnFontSettingsFontStyleChanged;
 
@@ -37,10 +37,12 @@ public sealed partial class FontStyleComboBox : ComboBox
 
     private async void OnFontSettingsFontStyleChanged(object? sender, AppFontStyle e)
     {
-        await Dispatcher.SafeRunAsync(() =>
-        {
-            SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle);
-        });
+        await Dispatcher.SafeRunAsync(UpdateSelectedItem);
+    }
+
+    private void UpdateSelectedItem()
+    {
+        SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle);
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

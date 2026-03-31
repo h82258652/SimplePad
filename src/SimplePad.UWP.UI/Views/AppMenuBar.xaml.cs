@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
@@ -8,9 +7,7 @@ using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor;
 using SimplePad.Editor.Settings;
 using SimplePad.Services.UWP;
-using SimplePad.Settings;
 using SimplePad.StatusBar.Settings;
-using SimplePad.UWP.UI.Controls;
 using SimplePad.ViewModels;
 using Windows.ApplicationModel.Core;
 using Windows.Graphics.Printing;
