@@ -8,7 +8,6 @@ using SimplePad.Editor;
 using SimplePad.Services.UWP;
 using SimplePad.Settings;
 using SimplePad.UWP.UI.Controls;
-using SimplePad.UWP.UI.Dialogs;
 using SimplePad.UWP.UI.Extensions;
 using SimplePad.ViewModels;
 using Windows.ApplicationModel.Core;
@@ -189,7 +188,7 @@ public sealed partial class AppMenuBar : UserControl
         string text = TextBox.Text;
         int totalLines = text.Split('\r').Length;
 
-        GoToLineDialog goToLineDialog = new(textBox.CursorPosition.Row, totalLines);
+        SimplePad.Editor.UWP.Dialogs.GoToLineDialog goToLineDialog = new(textBox.CursorPosition.Row, totalLines);
         ContentDialogResult dialogResult = await goToLineDialog.ShowAsync();
         if (dialogResult == ContentDialogResult.Primary)
         {

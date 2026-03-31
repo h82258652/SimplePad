@@ -1,4 +1,5 @@
 ﻿using SimplePad.Core.Modularity;
+using SimplePad.Editor.UWP;
 using SimplePad.Fonts.UWP;
 using SimplePad.Settings;
 using SimplePad.StatusBar.UWP;
@@ -12,5 +13,6 @@ public sealed class SimplePadUWPUIModule : AppModuleBase
         SimplePadSettingsModule, 
         SimplePadThemesUWPModule, 
         SimplePadFontsUWPModule,
-        SimplePadStatusBarUWPModule>();
+        SimplePadStatusBarUWPModule,
+        SimplePadEditorUWPModule>();
 }

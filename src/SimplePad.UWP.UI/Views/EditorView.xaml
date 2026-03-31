@@ -28,6 +28,10 @@
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             SelectionHighlightColorWhenNotFocused="{x:Bind TextBox.SelectionHighlightColor, Mode=OneWay}"
             Text="{x:Bind ViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <local1:AppStatusBar Grid.Row="2" />
+        <local1:AppStatusBar Grid.Row="2">
+            <local1:AppStatusBar.TextBox>
+                <local:TextBoxAdapter TextBox="{x:Bind TextBox}" />
+            </local1:AppStatusBar.TextBox>
+        </local1:AppStatusBar>
     </Grid>
 </UserControl>
