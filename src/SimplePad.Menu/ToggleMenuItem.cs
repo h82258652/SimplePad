@@ -14,9 +14,9 @@ public sealed class ToggleMenuItem : MenuItemBase
         Action = action;
     }
 
-    public Func<IServiceProvider, bool> IsChecked { get; set; }
-
     public Action<IServiceProvider, bool> Action { get; }
+
+    public Func<IServiceProvider, bool> IsChecked { get; set; }
 
     public string Text { get; }
 }

@@ -16,11 +16,20 @@ namespace SimplePad.Menu
             context.Services.Configure<MenuBarOptions>(options =>
             {
                 options.FileItems.AddRange(
-                    new MenuItem("New window", serviceProvider => { }) { }
+                    new MenuItem("New window", serviceProvider => { }) { },
+                    new MenuItem("Open", serviceProvider => { }),
+                    new MenuItem("Save", serviceProvider => { }),
+                    new MenuItem("Save as", serviceProvider => { }),
+                    new MenuItem("Close window", serviceProvider => { }),
+                    new MenuItem("Exit", serviceProvider => { })
                     );
 
                 options.EditItems.AddRange(
-                    new MenuItem("Undo", serviceProvider => { }));
+                    new MenuItem("Undo", serviceProvider => { }),
+                    new MenuItemSeparator(),
+                    new MenuItem("Cut", serviceProvider => { }),
+                    new MenuItem("Copy", serviceProvider => { }),
+                    new MenuItem("Paste", serviceProvider => { }));
 
                 options.ViewItems.AddRange(
                     new MenuItemGroup("Zoom")

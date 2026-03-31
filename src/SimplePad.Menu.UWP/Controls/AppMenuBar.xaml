@@ -9,8 +9,8 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
     <MenuBar Height="30">
-        <MenuBarItem Title="File" />
-        <MenuBarItem Title="Edit" />
+        <MenuBarItem x:Name="FileMenuBarItem" Title="File" />
+        <MenuBarItem x:Name="EditMenuBarItem" Title="Edit" />
         <MenuBarItem x:Name="ViewMenuBarItem" Title="View" />
     </MenuBar>
 </UserControl>
