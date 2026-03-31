@@ -17,19 +17,24 @@ public sealed partial class AppStatusBar : UserControl
         typeof(AppStatusBar),
         new PropertyMetadata(null, OnTextBoxChanged));
 
+    private readonly EditorZoomState _editorZoomState;
+
     private readonly IStatusBarSettings _statusBarSettings;
 
     public AppStatusBar()
     {
         _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
+        _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         InitializeComponent();
 
         UpdateVisibility();
         UpdateCursorPositionIndicator();
         UpdateCharacterIndicator();
+        UpdateZoomFactorIndicator();
 
         _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
+        _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
     }
 
     public IAppTextBox? TextBox
@@ -59,6 +64,11 @@ public sealed partial class AppStatusBar : UserControl
 
         self.UpdateCursorPositionIndicator();
         self.UpdateCharacterIndicator();
+    }
+
+    private async void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
+    {
+        await Dispatcher.SafeRunAsync(UpdateZoomFactorIndicator);
     }
 
     private async void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
@@ -125,5 +135,10 @@ public sealed partial class AppStatusBar : UserControl
     private void UpdateVisibility()
     {
         Visibility = _statusBarSettings.IsStatusBarVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void UpdateZoomFactorIndicator()
+    {
+        ZoomFactorIndicator.Text = $"{_editorZoomState.ZoomFactor:P0}";
     }
 }
