@@ -1,11 +1,17 @@
-﻿using SimplePad.StatusBar.Settings;
+﻿using SimplePad.Core.UWP.Settings;
+using SimplePad.StatusBar.Settings;
 using System;
+using System.Threading.Tasks;
+using Windows.Foundation.Collections;
+using Windows.Storage;
 
 namespace SimplePad.StatusBar.UWP.Settings;
 
-public sealed class UWPStatusBarSettings : IStatusBarSettings
+public sealed class UWPStatusBarSettings : AppSettingsBase, IStatusBarSettings
 {
     private bool _isStatusBarVisible = false;
+
+    public event EventHandler<bool>? IsStatusBarVisibleChanged;
 
     public bool IsStatusBarVisible
     {
@@ -20,5 +26,22 @@ public sealed class UWPStatusBarSettings : IStatusBarSettings
         }
     }
 
-    public event EventHandler<bool>? IsStatusBarVisibleChanged;
+    public override Task LoadAsync()
+    {
+        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        if (settingsValue.TryGetValue(nameof(IsStatusBarVisible), out object? isStatusBarVisible))
+        {
+            IsStatusBarVisible = (bool)isStatusBarVisible;
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public override Task SaveAsync()
+    {
+        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        settingsValue[nameof(IsStatusBarVisible)] = IsStatusBarVisible;
+
+        return Task.CompletedTask;
+    }
 }
