@@ -41,7 +41,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         DefaultStyleKey = typeof(AppTextBox);
-        DefaultStyleResourceUri = new Uri("ms-appx///SimplePad.Editor.UWP/Controls/AppTextBox.xaml");
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.UWP/Controls/AppTextBox.xaml");
 
         UpdateFontFamily();
         UpdateFontStyle();
@@ -170,6 +170,8 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
     {
+        UpdateCursorPosition();
+
         foreach (EventHandler? handler in _selectionChagnedHandler)
         {
             handler?.Invoke(this, EventArgs.Empty);
@@ -182,6 +184,41 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         {
             handler?.Invoke(this, Text);
         }
+    }
+
+    private void UpdateCursorPosition()
+    {
+        int endMarker = SelectionStart + SelectionLength;
+
+        if (endMarker == 0)
+        {
+            CursorPosition = new CursorPosition(1, 1);
+            return;
+        }
+
+        int i = 0;
+        int col = 1;
+        int row = 1;
+
+        foreach (char c in Text)
+        {
+            i++;
+            col++;
+
+            if (c == '\r')
+            {
+                row++;
+                col = 1;
+            }
+
+            if (i == endMarker)
+            {
+                CursorPosition = new CursorPosition(row, col);
+                return;
+            }
+        }
+
+        CursorPosition = new CursorPosition(row, col);
     }
 
     private void UpdateFontFamily()

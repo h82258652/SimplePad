@@ -131,8 +131,7 @@ public sealed partial class EditorView : UserControl
     }
 
     private void OnTextBoxZoomFactorChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        _appState.ZoomFactor = TextBox.ZoomFactor;
+    { 
     }
 
     private async Task UpdateTextBoxFontSize()
@@ -212,16 +211,14 @@ public sealed partial class EditorView : UserControl
     private async Task UpdateTextBoxZoomFactor()
     {
         if (Dispatcher.HasThreadAccess)
-        {
-            TextBox.ZoomFactor = _appState.ZoomFactor;
+        { 
         }
         else
         {
             await Dispatcher.RunAsync(
                 CoreDispatcherPriority.Normal,
                 () =>
-                {
-                    TextBox.ZoomFactor = _appState.ZoomFactor;
+                { 
                 }
             );
         }

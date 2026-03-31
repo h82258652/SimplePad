@@ -34,7 +34,7 @@ public sealed partial class AppMenuBar : UserControl
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
-        typeof(AppTextBox),
+        typeof(SimplePad.Editor.UWP.Controls.AppTextBox),
         typeof(AppMenuBar),
         new PropertyMetadata(null, OnTextBoxChanged)
     );
@@ -81,23 +81,23 @@ public sealed partial class AppMenuBar : UserControl
         set => SetValue(EditorViewModelProperty, value);
     }
 
-    public AppTextBox? TextBox
+    public SimplePad.Editor.UWP.Controls.AppTextBox? TextBox
     {
-        get => (AppTextBox?)GetValue(TextBoxProperty);
+        get => (SimplePad.Editor.UWP.Controls.AppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
     }
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppMenuBar self = (AppMenuBar)d;
-        TextBox? oldTextBox = (TextBox?)e.OldValue;
+        SimplePad.Editor.UWP.Controls.AppTextBox? oldTextBox = (SimplePad.Editor.UWP.Controls.AppTextBox?)e.OldValue;
         if (oldTextBox is not null)
         {
             oldTextBox.TextChanged -= self.OnTextBoxTextChanged;
             oldTextBox.SelectionChanged -= self.OnTextBoxSelectionChanged;
         }
 
-        TextBox? newTextBox = (TextBox?)e.NewValue;
+        SimplePad.Editor.UWP.Controls.AppTextBox? newTextBox = (SimplePad.Editor.UWP.Controls.AppTextBox?)e.NewValue;
         if (newTextBox is not null)
         {
             newTextBox.TextChanged += self.OnTextBoxTextChanged;
