@@ -1,17 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using SimplePad.Core;
-using SimplePad.Editor;
-using SimplePad.Fonts;
-using SimplePad.Fonts.Settings;
-using SimplePad.Settings;
-using SimplePad.UWP.UI.Controls;
-using SimplePad.UWP.UI.Extensions;
-using SimplePad.ViewModels;
-using Windows.UI.Core;
-using Windows.UI.Text;
+﻿using SimplePad.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
