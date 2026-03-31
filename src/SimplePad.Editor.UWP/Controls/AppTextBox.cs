@@ -36,6 +36,8 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     private readonly List<EventHandler?> _selectionChagnedHandler = [];
     private readonly List<EventHandler<string>?> _textChangedHandler = [];
 
+    private bool _internalCanUndo;
+
     public AppTextBox()
     {
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
@@ -47,6 +49,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
             "ms-appx:///SimplePad.Editor.UWP/Controls/AppTextBox.xaml"
         );
 
+        _internalCanUndo = CanUndo;
         UpdateFontFamily();
         UpdateFontStyle();
         UpdateFontSize();
@@ -65,18 +68,20 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         RegisterPropertyChangedCallback(FontSizeProperty, OnFontSizeChanged);
     }
 
+    public event EventHandler<bool>? CanUndoChanged;
+
     public event EventHandler<CursorPosition>? CursorPositionChanged;
 
     event EventHandler? IAppTextBox.SelectionChanged
     {
-        add { _selectionChagnedHandler.Add(value); }
-        remove { _selectionChagnedHandler.Remove(value); }
+        add => _selectionChagnedHandler.Add(value);
+        remove => _selectionChagnedHandler.Remove(value);
     }
 
     event EventHandler<string>? IAppTextBox.TextChanged
     {
-        add { _textChangedHandler.Add(value); }
-        remove { _textChangedHandler.Remove(value); }
+        add => _textChangedHandler.Add(value);
+        remove => _textChangedHandler.Remove(value);
     }
 
     public CursorPosition CursorPosition
@@ -175,6 +180,8 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private void OnTextChanged(object sender, TextChangedEventArgs e)
     {
+        UpdateInternalCanUndo();
+
         foreach (EventHandler<string>? handler in _textChangedHandler)
         {
             handler?.Invoke(this, Text);
@@ -230,6 +237,16 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     {
         FontStyle = _fontSettings.FontStyle.GetUWPFontStyle();
         FontWeight = _fontSettings.FontStyle.GetUWPFontWeight();
+    }
+
+    private void UpdateInternalCanUndo()
+    {
+        bool canUndo = CanUndo;
+        if (_internalCanUndo != canUndo)
+        {
+            _internalCanUndo = canUndo;
+            CanUndoChanged?.Invoke(this, canUndo);
+        }
     }
 
     private void UpdateIsSpellCheckEnabled()

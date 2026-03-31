@@ -4,6 +4,8 @@ namespace SimplePad.Editor;
 
 public interface IAppTextBox
 {
+    event EventHandler<bool>? CanUndoChanged;
+
     event EventHandler<CursorPosition>? CursorPositionChanged;
 
     event EventHandler? SelectionChanged;
