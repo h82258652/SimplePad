@@ -51,7 +51,7 @@ namespace SimplePad.Menu
                     },
                     new ToggleMenuItem("Status bar", (serviceProvider) =>
                     {
-                        throw new NotImplementedException();
+                        return serviceProvider.GetRequiredService<IStatusBarSettings>().IsStatusBarVisible;
                     }, (serviceProvider, isChecked) =>
                     {
                         serviceProvider.GetRequiredService<IStatusBarSettings>().IsStatusBarVisible = isChecked;
