@@ -18,10 +18,10 @@ public sealed partial class FontStyleComboBox : ComboBox
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _items =
         [
-            new(AppFontStyle.Regular, "Regular"),
-            new(AppFontStyle.Italic, "Italic"),
-            new(AppFontStyle.Bold, "Bold"),
-            new(AppFontStyle.BoldItalic, "Bold Italic"),
+            new FontStyleComboBoxItem(AppFontStyle.Regular, "Regular"),
+            new FontStyleComboBoxItem(AppFontStyle.Italic, "Italic"),
+            new FontStyleComboBoxItem(AppFontStyle.Bold, "Bold"),
+            new FontStyleComboBoxItem(AppFontStyle.BoldItalic, "Bold Italic"),
         ];
 
         DefaultStyleKey = typeof(FontStyleComboBox);
@@ -33,7 +33,6 @@ public sealed partial class FontStyleComboBox : ComboBox
         UpdateSelectedItem();
 
         _fontSettings.FontStyleChanged += OnFontSettingsFontStyleChanged;
-
         SelectionChanged += OnSelectionChanged;
     }
 
@@ -42,16 +41,16 @@ public sealed partial class FontStyleComboBox : ComboBox
         await Dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
 
-    private void UpdateSelectedItem()
-    {
-        SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle);
-    }
-
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (SelectedItem is FontStyleComboBoxItem selectedItem)
         {
             _fontSettings.FontStyle = selectedItem.Value;
         }
+    }
+
+    private void UpdateSelectedItem()
+    {
+        SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle);
     }
 }

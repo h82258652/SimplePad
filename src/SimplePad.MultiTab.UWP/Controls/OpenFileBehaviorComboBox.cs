@@ -11,7 +11,6 @@ namespace SimplePad.MultiTab.UWP.Controls;
 public sealed partial class OpenFileBehaviorComboBox : ComboBox
 {
     private readonly OpenFileBehaviorComboBoxItem[] _items;
-
     private readonly IMultiTabSettings _multiTabSettings;
 
     public OpenFileBehaviorComboBox()
@@ -19,8 +18,8 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
         _multiTabSettings = ServiceLocator.Current.GetRequiredService<IMultiTabSettings>();
         _items =
         [
-            new(OpenFileBehavior.NewTab, "Open in a new tab"),
-            new(OpenFileBehavior.NewWindow, "Open in a new window"),
+            new OpenFileBehaviorComboBoxItem(OpenFileBehavior.NewTab, "Open in a new tab"),
+            new OpenFileBehaviorComboBoxItem(OpenFileBehavior.NewWindow, "Open in a new window"),
         ];
 
         DefaultStyleKey = typeof(OpenFileBehaviorComboBox);
@@ -35,13 +34,6 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
         SelectionChanged += OnSelectionChanged;
     }
 
-    private void UpdateSelectedItem()
-    {
-        SelectedItem = _items.FirstOrDefault(item =>
-            item.Value == _multiTabSettings.OpenFileBehavior
-        );
-    }
-
     private async void OnMultiTabSettingsOpenFileBehaviorChanged(object? sender, OpenFileBehavior e)
     {
         await Dispatcher.SafeRunAsync(UpdateSelectedItem);
@@ -53,5 +45,12 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
         {
             _multiTabSettings.OpenFileBehavior = selectedItem.Value;
         }
+    }
+
+    private void UpdateSelectedItem()
+    {
+        SelectedItem = _items.FirstOrDefault(item =>
+            item.Value == _multiTabSettings.OpenFileBehavior
+        );
     }
 }

@@ -2,15 +2,15 @@
 
 internal sealed class OpenFileBehaviorComboBoxItem
 {
-    internal string DisplayName { get; }
-
-    internal OpenFileBehavior Value { get; }
-
     internal OpenFileBehaviorComboBoxItem(OpenFileBehavior value, string displayName)
     {
         Value = value;
         DisplayName = displayName;
     }
+
+    internal string DisplayName { get; }
+
+    internal OpenFileBehavior Value { get; }
 
     public override string ToString()
     {
