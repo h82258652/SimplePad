@@ -8,4 +8,7 @@
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
+  </ItemGroup>
 </Project>
