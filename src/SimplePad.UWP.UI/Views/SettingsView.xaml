@@ -181,7 +181,7 @@
                             <controls:SettingsCard.HeaderIcon>
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF87B;" />
                             </controls:SettingsCard.HeaderIcon>
-                            <ToggleSwitch x:Name="IsSpellCheckEnabledToggleSwitch" />
+                            <editor:IsSpellCheckEnabledSettingsControl />
                         </controls:SettingsCard>
                     </StackPanel>
                     <StackPanel

@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="SimplePad.Editor.UWP.Settings.IsWordWrapSettingsControl"
+    x:Class="SimplePad.Editor.UWP.Settings.IsSpellCheckEnabledSettingsControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,5 +8,5 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-    <ToggleSwitch x:Name="IsWordWrapToggleSwitch" Toggled="OnIsWordWrapToggleSwitchToggled" />
+    <ToggleSwitch x:Name="IsSpellCheckEnabledToggleSwitch" Toggled="OnIsSpellCheckEnabledToggleSwitchToggled" />
 </UserControl>
