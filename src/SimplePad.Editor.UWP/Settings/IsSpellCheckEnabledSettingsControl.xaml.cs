@@ -10,8 +10,8 @@ namespace SimplePad.Editor.UWP.Settings;
 
 public sealed partial class IsSpellCheckEnabledSettingsControl : UserControl
 {
-    private readonly IEditorSettings _editorSettings;
     private readonly CoreDispatcher _dispatcher;
+    private readonly IEditorSettings _editorSettings;
 
     public IsSpellCheckEnabledSettingsControl()
     {

@@ -31,13 +31,12 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         new PropertyMetadata(14d)
     );
 
+    private readonly CoreDispatcher _dispatcher;
     private readonly IEditorSettings _editorSettings;
     private readonly EditorZoomState _editorZoomState;
     private readonly IFontSettings _fontSettings;
     private readonly List<EventHandler?> _selectionChagnedHandler = [];
     private readonly List<EventHandler<string>?> _textChangedHandler = [];
-    private readonly CoreDispatcher _dispatcher;
-
     private bool _internalCanUndo;
 
     public AppTextBox()

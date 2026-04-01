@@ -11,9 +11,9 @@ namespace SimplePad.Fonts.UWP.Controls;
 
 public sealed partial class FontStyleComboBox : ComboBox
 {
+    private readonly CoreDispatcher _dispatcher;
     private readonly IFontSettings _fontSettings;
     private readonly FontStyleComboBoxItem[] _items;
-    private readonly CoreDispatcher _dispatcher;
 
     public FontStyleComboBox()
     {
