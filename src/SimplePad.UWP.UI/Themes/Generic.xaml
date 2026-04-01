@@ -4,6 +4,5 @@
     xmlns:local="using:SimplePad.UWP.UI">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///SimplePad.UWP.UI/Controls/AppTabView.xaml" />
-        <ResourceDictionary Source="ms-appx:///SimplePad.UWP.UI/Controls/AppTabViewItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
