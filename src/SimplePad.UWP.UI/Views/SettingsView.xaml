@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:editor="using:SimplePad.Editor.UWP.Settings"
     xmlns:fonts="using:SimplePad.Fonts.UWP.Controls"
     xmlns:local="using:SimplePad.UWP.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -163,7 +164,7 @@
                             <controls:SettingsCard.HeaderIcon>
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE751;" />
                             </controls:SettingsCard.HeaderIcon>
-                            <ToggleSwitch x:Name="IsWordWrapToggleSwitch" />
+                            <editor:IsWordWrapSettingsControl />
                         </controls:SettingsCard>
                         <TextBlock Margin="0,12,0,0" Text="Opening Simple Pad" />
                         <controls:SettingsCard

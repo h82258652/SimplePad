@@ -27,21 +27,14 @@ public sealed partial class SettingsView : UserControl
 
         InitializeComponent();
 
-        _editorSettings.IsWordWrapChanged += _editorSettings_IsWordWrapChanged;
         _editorSettings.IsSpellCheckEnabledChanged += _editorSettings_IsSpellCheckEnabledChanged;
 
-        _ = UpdateIsWordWrapToggleSwitch();
         _ = UpdateIsSpellCheckEnabledToggleSwitch();
     }
 
     private async void _editorSettings_IsSpellCheckEnabledChanged(object? sender, bool e)
     {
         await UpdateIsSpellCheckEnabledToggleSwitch();
-    }
-
-    private async void _editorSettings_IsWordWrapChanged(object? sender, bool e)
-    {
-        await UpdateIsWordWrapToggleSwitch();
     }
 
     public SettingsViewModel? ViewModel
@@ -63,14 +56,6 @@ public sealed partial class SettingsView : UserControl
         return Dispatcher.SafeRunAsync(() =>
         {
             IsSpellCheckEnabledToggleSwitch.IsOn = _editorSettings.IsSpellCheckEnabled;
-        });
-    }
-
-    private Task UpdateIsWordWrapToggleSwitch()
-    {
-        return Dispatcher.SafeRunAsync(() =>
-        {
-            IsWordWrapToggleSwitch.IsOn = _editorSettings.IsWordWrap;
         });
     }
 }
