@@ -2,6 +2,7 @@
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Themes.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -13,6 +14,7 @@ public partial class ThemeContainer : UserControl
 
     public ThemeContainer()
     {
+        _dispatcher = Dispatcher;
         _themeSettings = ServiceLocator.Current.GetRequiredService<IThemeSettings>();
 
         UpdateTheme();
@@ -20,9 +22,11 @@ public partial class ThemeContainer : UserControl
         _themeSettings.AppThemeChanged += OnThemeSettingsAppThemeChanged;
     }
 
+    private readonly CoreDispatcher _dispatcher;
+
     private async void OnThemeSettingsAppThemeChanged(object? sender, AppTheme e)
     {
-        await Dispatcher.SafeRunAsync(UpdateTheme);
+        await _dispatcher.SafeRunAsync(UpdateTheme);
     }
 
     private void UpdateTheme()

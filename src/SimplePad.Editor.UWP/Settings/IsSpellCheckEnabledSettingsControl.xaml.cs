@@ -2,6 +2,7 @@
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -10,9 +11,11 @@ namespace SimplePad.Editor.UWP.Settings;
 public sealed partial class IsSpellCheckEnabledSettingsControl : UserControl
 {
     private readonly IEditorSettings _editorSettings;
+    private readonly CoreDispatcher _dispatcher;
 
     public IsSpellCheckEnabledSettingsControl()
     {
+        _dispatcher = Dispatcher;
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
 
         InitializeComponent();
@@ -24,7 +27,7 @@ public sealed partial class IsSpellCheckEnabledSettingsControl : UserControl
 
     private async void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
     {
-        await Dispatcher.SafeRunAsync(UpdateIsSpellCheckEnabledToggleSwitch);
+        await _dispatcher.SafeRunAsync(UpdateIsSpellCheckEnabledToggleSwitch);
     }
 
     private void OnIsSpellCheckEnabledToggleSwitchToggled(object sender, RoutedEventArgs e)

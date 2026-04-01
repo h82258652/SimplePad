@@ -7,6 +7,7 @@ using SimplePad.Editor.Settings;
 using SimplePad.Fonts.Settings;
 using SimplePad.Fonts.UWP.Extensions;
 using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -35,11 +36,13 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     private readonly IFontSettings _fontSettings;
     private readonly List<EventHandler?> _selectionChagnedHandler = [];
     private readonly List<EventHandler<string>?> _textChangedHandler = [];
+    private readonly CoreDispatcher _dispatcher;
 
     private bool _internalCanUndo;
 
     public AppTextBox()
     {
+        _dispatcher = Dispatcher;
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
@@ -135,32 +138,32 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private async void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
     {
-        await Dispatcher.SafeRunAsync(UpdateIsSpellCheckEnabled);
+        await _dispatcher.SafeRunAsync(UpdateIsSpellCheckEnabled);
     }
 
     private async void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
     {
-        await Dispatcher.SafeRunAsync(UpdateTextWrapping);
+        await _dispatcher.SafeRunAsync(UpdateTextWrapping);
     }
 
     private async void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
     {
-        await Dispatcher.SafeRunAsync(UpdateZoomedFontSize);
+        await _dispatcher.SafeRunAsync(UpdateZoomedFontSize);
     }
 
     private async void OnFontSettingsFontFamilyChanged(object? sender, string e)
     {
-        await Dispatcher.SafeRunAsync(UpdateFontFamily);
+        await _dispatcher.SafeRunAsync(UpdateFontFamily);
     }
 
     private async void OnFontSettingsFontSizeChanged(object? sender, int e)
     {
-        await Dispatcher.SafeRunAsync(UpdateFontSize);
+        await _dispatcher.SafeRunAsync(UpdateFontSize);
     }
 
     private async void OnFontSettingsFontStyleChanged(object? sender, Fonts.AppFontStyle e)
     {
-        await Dispatcher.SafeRunAsync(UpdateFontStyle);
+        await _dispatcher.SafeRunAsync(UpdateFontStyle);
     }
 
     private void OnFontSizeChanged(DependencyObject sender, DependencyProperty dp)

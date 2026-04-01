@@ -48,6 +48,7 @@ public sealed partial class AppMenuBar : UserControl
 
     public AppMenuBar()
     {
+        _dispatcher = Dispatcher;
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
         _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
         _appState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
@@ -452,9 +453,11 @@ public sealed partial class AppMenuBar : UserControl
         DeleteMenuFlyoutItem.IsEnabled = TextBox is { SelectedText.Length: > 0 };
     }
 
+    private readonly CoreDispatcher _dispatcher;
+
     private Task UpdateIsStatusBarVisibleToggleMenuFlyoutItem()
     {
-        return Dispatcher.SafeRunAsync(() =>
+        return _dispatcher.SafeRunAsync(() =>
         {
             IsStatusBarVisibleToggleMenuFlyoutItem.IsChecked =
                 _statusBarSettings.IsStatusBarVisible;
@@ -463,7 +466,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private Task UpdateIsWordWrapToggleMenuFlyoutItem()
     {
-        return Dispatcher.SafeRunAsync(() =>
+        return _dispatcher.SafeRunAsync(() =>
         {
             IsWordWrapToggleMenuFlyoutItem.IsChecked = _editorSettings.IsWordWrap;
         });
@@ -476,7 +479,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private Task UpdateZoomInMenuFlyoutItem()
     {
-        return Dispatcher.SafeRunAsync(() =>
+        return _dispatcher.SafeRunAsync(() =>
         {
             ZoomInMenuFlyoutItem.IsEnabled = _appState.CanZoomIn;
         });
@@ -484,7 +487,7 @@ public sealed partial class AppMenuBar : UserControl
 
     private Task UpdateZoomOutMenuFlyoutItem()
     {
-        return Dispatcher.SafeRunAsync(() =>
+        return _dispatcher.SafeRunAsync(() =>
         {
             ZoomOutMenuFlyoutItem.IsEnabled = _appState.CanZoomOut;
         });

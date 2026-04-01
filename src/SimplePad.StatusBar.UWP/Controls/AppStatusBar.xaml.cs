@@ -4,6 +4,7 @@ using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor;
 using SimplePad.StatusBar.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -24,6 +25,7 @@ public sealed partial class AppStatusBar : UserControl
 
     public AppStatusBar()
     {
+        _dispatcher = Dispatcher;
         _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
@@ -68,14 +70,16 @@ public sealed partial class AppStatusBar : UserControl
         self.UpdateCharacterIndicator();
     }
 
+    private readonly CoreDispatcher _dispatcher;
+
     private async void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
     {
-        await Dispatcher.SafeRunAsync(UpdateZoomFactorIndicator);
+        await _dispatcher.SafeRunAsync(UpdateZoomFactorIndicator);
     }
 
     private async void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
     {
-        await Dispatcher.SafeRunAsync(UpdateVisibility);
+        await _dispatcher.SafeRunAsync(UpdateVisibility);
     }
 
     private void OnTextBoxCursorPositionChanged(object? sender, CursorPosition e)

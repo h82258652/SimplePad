@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.MultiTab.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.MultiTab.UWP.Controls;
@@ -15,6 +16,7 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 
     public OpenFileBehaviorComboBox()
     {
+        _dispatcher = Dispatcher;
         _multiTabSettings = ServiceLocator.Current.GetRequiredService<IMultiTabSettings>();
         _items =
         [
@@ -36,8 +38,10 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 
     private async void OnMultiTabSettingsOpenFileBehaviorChanged(object? sender, OpenFileBehavior e)
     {
-        await Dispatcher.SafeRunAsync(UpdateSelectedItem);
+        await _dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
+
+    private readonly CoreDispatcher _dispatcher;
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {

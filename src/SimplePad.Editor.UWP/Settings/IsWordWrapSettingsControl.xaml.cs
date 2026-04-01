@@ -2,6 +2,7 @@
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Editor.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -9,10 +10,12 @@ namespace SimplePad.Editor.UWP.Settings;
 
 public sealed partial class IsWordWrapSettingsControl : UserControl
 {
+    private readonly CoreDispatcher _dispatcher;
     private readonly IEditorSettings _editorSettings;
 
     public IsWordWrapSettingsControl()
     {
+        _dispatcher = Dispatcher;
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
 
         InitializeComponent();
@@ -24,7 +27,7 @@ public sealed partial class IsWordWrapSettingsControl : UserControl
 
     private async void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
     {
-        await Dispatcher.SafeRunAsync(UpdateIsWordWrapToggleSwitch);
+        await _dispatcher.SafeRunAsync(UpdateIsWordWrapToggleSwitch);
     }
 
     private void OnIsWordWrapToggleSwitchToggled(object sender, RoutedEventArgs e)

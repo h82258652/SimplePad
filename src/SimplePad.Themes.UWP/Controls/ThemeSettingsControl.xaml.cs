@@ -2,6 +2,7 @@
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Themes.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -13,6 +14,7 @@ public sealed partial class ThemeSettingsControl : UserControl
 
     public ThemeSettingsControl()
     {
+        _dispatcher = Dispatcher;
         _themeSettings = ServiceLocator.Current.GetRequiredService<IThemeSettings>();
 
         InitializeComponent();
@@ -32,9 +34,11 @@ public sealed partial class ThemeSettingsControl : UserControl
         _themeSettings.AppTheme = AppTheme.Light;
     }
 
+
+    private readonly CoreDispatcher _dispatcher;
     private async void OnThemeSettingsAppThemeChanged(object? sender, AppTheme e)
     {
-        await Dispatcher.SafeRunAsync(UpdateRadioButtons);
+        await _dispatcher.SafeRunAsync(UpdateRadioButtons);
     }
 
     private void OnUseSystemSettingsThemeRadioButtonChecked(object sender, RoutedEventArgs e)

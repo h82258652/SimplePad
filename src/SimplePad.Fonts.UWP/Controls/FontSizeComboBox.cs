@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Fonts.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -31,12 +32,14 @@ public sealed partial class FontSizeComboBox : ComboBox
         72,
     ];
 
+    private readonly CoreDispatcher _dispatcher;
     private readonly IFontSettings _fontSettings;
 
     public FontSizeComboBox()
     {
+        _dispatcher = Dispatcher;
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
-
+        
         DefaultStyleKey = typeof(FontSizeComboBox);
         DefaultStyleResourceUri = new Uri(
             "ms-appx:///SimplePad.Fonts.UWP/Controls/FontSizeComboBox.xaml"
@@ -64,7 +67,7 @@ public sealed partial class FontSizeComboBox : ComboBox
 
     private async void OnFontSettingsFontSizeChanged(object? sender, int e)
     {
-        await Dispatcher.SafeRunAsync(() =>
+        await _dispatcher.SafeRunAsync(() =>
         {
             SelectedItem = Items
                 .OfType<ComboBoxItem>()

@@ -3,6 +3,7 @@ using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Fonts.Settings;
 using SimplePad.Fonts.UWP.Extensions;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
@@ -11,11 +12,13 @@ namespace SimplePad.Fonts.UWP.Controls;
 public sealed partial class PreviewFontTextControl : UserControl
 {
     private readonly IFontSettings _fontSettings;
+    private readonly CoreDispatcher _dispatcher;
 
     public PreviewFontTextControl()
     {
+        _dispatcher = Dispatcher;
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
-
+        
         InitializeComponent();
 
         UpdateFontFamily();
@@ -29,17 +32,17 @@ public sealed partial class PreviewFontTextControl : UserControl
 
     private async void OnFontSettingsFontFamilyChanged(object? sender, string e)
     {
-        await Dispatcher.SafeRunAsync(UpdateFontFamily);
+        await _dispatcher.SafeRunAsync(UpdateFontFamily);
     }
 
     private async void OnFontSettingsFontSizeChanged(object? sender, int e)
     {
-        await Dispatcher.SafeRunAsync(UpdateFontSize);
+        await _dispatcher.SafeRunAsync(UpdateFontSize);
     }
 
     private async void OnFontSettingsFontStyleChanged(object? sender, AppFontStyle e)
     {
-        await Dispatcher.SafeRunAsync(UpdateFontStyle);
+        await _dispatcher.SafeRunAsync(UpdateFontStyle);
     }
 
     private void UpdateFontFamily()

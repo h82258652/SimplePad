@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.UWP.Extensions;
 using SimplePad.Fonts.Settings;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Fonts.UWP.Controls;
@@ -12,9 +13,11 @@ public sealed partial class FontStyleComboBox : ComboBox
 {
     private readonly IFontSettings _fontSettings;
     private readonly FontStyleComboBoxItem[] _items;
+    private readonly CoreDispatcher _dispatcher;
 
     public FontStyleComboBox()
     {
+        _dispatcher = Dispatcher;
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _items =
         [
@@ -38,7 +41,7 @@ public sealed partial class FontStyleComboBox : ComboBox
 
     private async void OnFontSettingsFontStyleChanged(object? sender, AppFontStyle e)
     {
-        await Dispatcher.SafeRunAsync(UpdateSelectedItem);
+        await _dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
