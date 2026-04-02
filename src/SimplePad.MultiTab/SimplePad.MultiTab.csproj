@@ -9,4 +9,8 @@
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Settings\" />
+  </ItemGroup>
 </Project>

@@ -41,6 +41,7 @@
     <Project Path="src/SimplePad.Menu/SimplePad.Menu.csproj" Id="77ef9037-73f6-48ae-b0ed-5f469feed9f7" />
   </Folder>
   <Folder Name="/src/MultiTab/">
+    <Project Path="src/SimplePad.MultiTab.Settings.UWP/SimplePad.MultiTab.Settings.UWP.csproj" Id="923b0533-88e6-475b-88a6-33390ef52567" />
     <Project Path="src/SimplePad.MultiTab.UWP/SimplePad.MultiTab.UWP.csproj" Id="59b83d37-34e2-4c74-9a78-ba5753949c02" />
     <Project Path="src/SimplePad.MultiTab/SimplePad.MultiTab.csproj" Id="ec185396-cd63-4328-8574-272f6902edbb" />
   </Folder>

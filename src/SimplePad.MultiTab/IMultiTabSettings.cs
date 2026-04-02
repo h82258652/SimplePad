@@ -1,6 +1,6 @@
 ﻿using SimplePad.Core.Settings;
 
-namespace SimplePad.MultiTab.Settings;
+namespace SimplePad.MultiTab;
 
 public interface IMultiTabSettings : IAppSettings
 {
