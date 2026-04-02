@@ -1,8 +1,8 @@
 ﻿using SimplePad.Core.Modularity;
 
-namespace SimplePad.Fonts.UWP.App;
+namespace SimplePad.Fonts;
 
-public sealed class SimplePadFontsUWPAppModule : AppModuleBase
+public sealed class SimplePadFontsSettingsUWPModule : AppModuleBase
 {
     public override DependsOn DependModules => DependsOn.Create<SimplePadFontsUWPModule>();
 }

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SimplePad.Core.UWP.Settings;
-using SimplePad.Fonts.Settings;
+using SimplePad.Core.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
-namespace SimplePad.Fonts.UWP.Settings;
+namespace SimplePad.Fonts;
 
 public sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 {

@@ -13,11 +13,9 @@
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
     <EnableMsixTooling>true</EnableMsixTooling>
     <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    <RootNamespace>SimplePad.Fonts.TestApp</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Fonts.UWP\SimplePad.Fonts.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Fonts.Settings.UWP\SimplePad.Fonts.Settings.UWP.csproj" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using SimplePad.Core.Settings;
 
-namespace SimplePad.Fonts.Settings;
+namespace SimplePad.Fonts;
 
 public interface IFontSettings : IAppSettings
 {

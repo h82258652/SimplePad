@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace SimplePad.Core.UWP.Converters;
+namespace SimplePad.Core.Converters;
 
 public sealed partial class InversedVisibilityConverter : IValueConverter
 {

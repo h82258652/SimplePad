@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Core;
 
-namespace SimplePad.Core.UWP.Extensions;
+namespace SimplePad.Core.Extensions;
 
 public static class CoreDispatcherExtensions
 {

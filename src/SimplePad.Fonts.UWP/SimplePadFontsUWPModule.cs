@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
-using SimplePad.Fonts.Settings;
-using SimplePad.Fonts.UWP.Settings;
 
-namespace SimplePad.Fonts.UWP;
+namespace SimplePad.Fonts;
 
 public sealed class SimplePadFontsUWPModule : AppModuleBase
 {

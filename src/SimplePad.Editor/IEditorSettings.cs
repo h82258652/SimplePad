@@ -1,7 +1,7 @@
 ﻿using System;
 using SimplePad.Core.Settings;
 
-namespace SimplePad.Editor.Settings;
+namespace SimplePad.Editor;
 
 public interface IEditorSettings : IAppSettings
 {

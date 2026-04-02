@@ -2,13 +2,12 @@
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.Core.UWP.Extensions;
-using SimplePad.Fonts.Settings;
+using SimplePad.Core.Extensions;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.Fonts.UWP.Controls;
+namespace SimplePad.Fonts;
 
 public sealed partial class FontSizeComboBox : ComboBox
 {
@@ -39,10 +38,10 @@ public sealed partial class FontSizeComboBox : ComboBox
     {
         _dispatcher = Dispatcher;
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
-        
+
         DefaultStyleKey = typeof(FontSizeComboBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Fonts.UWP/Controls/FontSizeComboBox.xaml"
+            "ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontSizeComboBox.xaml"
         );
 
         for (int i = AppFontSizeConstants.Minimum; i <= AppFontSizeConstants.Maximum; i++)
@@ -67,12 +66,14 @@ public sealed partial class FontSizeComboBox : ComboBox
 
     private async void OnFontSettingsFontSizeChanged(object? sender, int e)
     {
-        await _dispatcher.SafeRunAsync(() =>
-        {
-            SelectedItem = Items
-                .OfType<ComboBoxItem>()
-                .FirstOrDefault(comboBoxItem => Equals(comboBoxItem.Content, e));
-        });
+        await _dispatcher.SafeRunAsync(UpdateSelectedItem);
+    }
+
+    private void UpdateSelectedItem()
+    {
+        SelectedItem = Items
+            .OfType<ComboBoxItem>()
+            .FirstOrDefault(comboBoxItem => Equals(comboBoxItem.Content, _fontSettings.FontSize));
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -100,8 +101,6 @@ public sealed partial class FontSizeComboBox : ComboBox
             _fontSettings.FontSize = fontSize;
         }
 
-        SelectedItem = Items
-            .OfType<ComboBoxItem>()
-            .FirstOrDefault(comboBoxItem => Equals(comboBoxItem.Content, _fontSettings.FontSize));
+        UpdateSelectedItem();
     }
 }

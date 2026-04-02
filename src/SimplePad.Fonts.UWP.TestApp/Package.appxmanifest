@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="56fcce15-7e35-4b15-be47-8cc5a8a418a5"
+    Name="5e38fb62-9417-4bbd-9cac-71b7d3494ed3"
     Publisher="CN=zhifenghe"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="56fcce15-7e35-4b15-be47-8cc5a8a418a5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="5e38fb62-9417-4bbd-9cac-71b7d3494ed3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>SimplePad.Fonts.UWP.App</DisplayName>
+    <DisplayName>SimplePad.Fonts.UWP.TestApp</DisplayName>
     <PublisherDisplayName>zhifenghe</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -30,12 +30,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="SimplePad.Fonts.UWP.App.App">
+      EntryPoint="SimplePad.Fonts.UWP.TestApp.App">
       <uap:VisualElements
-        DisplayName="SimplePad.Fonts.UWP.App"
+        DisplayName="SimplePad.Fonts.UWP.TestApp"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="SimplePad.Fonts.UWP.App"
+        Description="SimplePad.Fonts.UWP.TestApp"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

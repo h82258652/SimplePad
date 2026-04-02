@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using SimplePad.Core.Settings;
 
-namespace SimplePad.Core.UWP.Settings;
+namespace SimplePad.Core.Settings;
 
 public abstract class AppSettingsBase : IAppSettings
 {

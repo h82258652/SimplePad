@@ -1,14 +1,11 @@
 ﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using SimplePad.Core;
-using SimplePad.Fonts.Settings;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace SimplePad.Fonts.UWP.App
+namespace SimplePad.Fonts.TestApp
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default <see cref="Application"/> class.
@@ -77,11 +74,9 @@ namespace SimplePad.Fonts.UWP.App
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private async void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-
-            await ServiceLocator.Current.GetRequiredService<IFontSettings>().SaveAsync();
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();

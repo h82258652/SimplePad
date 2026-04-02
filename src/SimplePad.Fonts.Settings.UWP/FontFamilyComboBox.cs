@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Graphics.Canvas.Text;
 using SimplePad.Core;
-using SimplePad.Core.UWP.Extensions;
-using SimplePad.Fonts.Settings;
+using SimplePad.Core.Extensions;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.Fonts.UWP.Controls;
+namespace SimplePad.Fonts;
 
 public sealed partial class FontFamilyComboBox : ComboBox
 {
@@ -24,7 +24,7 @@ public sealed partial class FontFamilyComboBox : ComboBox
 
         DefaultStyleKey = typeof(FontFamilyComboBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Fonts.UWP/Controls/FontFamilyComboBox.xaml"
+            "ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontFamilyComboBox.xaml"
         );
 
         ItemsSource = _systemFontFamilies;

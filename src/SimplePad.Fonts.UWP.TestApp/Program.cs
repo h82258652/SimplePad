@@ -4,18 +4,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimplePad.Core;
 using SimplePad.Core.Modularity;
-using SimplePad.Fonts.Settings;
 using Windows.System;
 using Windows.UI.Xaml;
 
-namespace SimplePad.Fonts.UWP.App;
+namespace SimplePad.Fonts.TestApp;
 
 public static class Program
 {
     public static async Task Main(string[] args)
     {
         var host = ApplicationFactory
-            .Create<SimplePadFontsUWPAppModule>(() => Host.CreateDefaultBuilder(args))
+            .Create<SimplePadFontsUWPTestAppModule>(() => Host.CreateDefaultBuilder(args))
             .Build();
         host.Start();
         ServiceLocator.SetLocatorProvider(host.Services);

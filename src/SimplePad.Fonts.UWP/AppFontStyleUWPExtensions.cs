@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Text;
 
-namespace SimplePad.Fonts.UWP.Extensions;
+namespace SimplePad.Fonts;
 
-public static class AppFontStyleExtensions
+public static class AppFontStyleUWPExtensions
 {
     public static FontStyle GetUWPFontStyle(this AppFontStyle fontStyle)
     {

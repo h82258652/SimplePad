@@ -2,12 +2,11 @@
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.Core.UWP.Extensions;
-using SimplePad.Fonts.Settings;
+using SimplePad.Core.Extensions;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.Fonts.UWP.Controls;
+namespace SimplePad.Fonts;
 
 public sealed partial class FontStyleComboBox : ComboBox
 {
@@ -29,7 +28,7 @@ public sealed partial class FontStyleComboBox : ComboBox
 
         DefaultStyleKey = typeof(FontStyleComboBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Fonts.UWP/Controls/FontStyleComboBox.xaml"
+            "ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontStyleComboBox.xaml"
         );
 
         ItemsSource = _items;

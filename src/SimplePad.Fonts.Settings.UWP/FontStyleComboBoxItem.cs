@@ -1,4 +1,4 @@
-﻿namespace SimplePad.Fonts.UWP.Controls;
+﻿namespace SimplePad.Fonts;
 
 internal sealed class FontStyleComboBoxItem
 {
