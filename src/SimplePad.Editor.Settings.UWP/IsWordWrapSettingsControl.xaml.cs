@@ -1,12 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.Core.UWP.Extensions;
-using SimplePad.Editor.Settings;
+using SimplePad.Core.Extensions;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.Editor.UWP.Settings;
+namespace SimplePad.Editor;
 
 public sealed partial class IsWordWrapSettingsControl : UserControl
 {

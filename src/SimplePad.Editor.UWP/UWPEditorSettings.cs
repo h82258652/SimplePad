@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SimplePad.Core.UWP.Settings;
-using SimplePad.Editor.Settings;
+using SimplePad.Core.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
-namespace SimplePad.Editor.UWP.Settings;
+namespace SimplePad.Editor;
 
 public sealed class UWPEditorSettings : AppSettingsBase, IEditorSettings
 {

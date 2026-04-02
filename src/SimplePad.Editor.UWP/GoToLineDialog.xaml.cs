@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.Editor.UWP.Dialogs;
+namespace SimplePad.Editor;
 
 public sealed partial class GoToLineDialog : ContentDialog
 {

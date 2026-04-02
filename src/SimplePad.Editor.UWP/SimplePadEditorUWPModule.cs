@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
-using SimplePad.Editor.Settings;
-using SimplePad.Editor.UWP.Settings;
 
-namespace SimplePad.Editor.UWP;
+namespace SimplePad.Editor;
 
 public sealed class SimplePadEditorUWPModule : AppModuleBase
 {

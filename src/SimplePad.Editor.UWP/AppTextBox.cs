@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.Core.UWP.Extensions;
-using SimplePad.Editor.Settings;
-using SimplePad.Fonts.Settings;
-using SimplePad.Fonts.UWP.Extensions;
+using SimplePad.Core.Extensions;
+using SimplePad.Fonts;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -13,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
-namespace SimplePad.Editor.UWP.Controls;
+namespace SimplePad.Editor;
 
 public sealed partial class AppTextBox : TextBox, IAppTextBox
 {
@@ -48,7 +46,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
         DefaultStyleKey = typeof(AppTextBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Editor.UWP/Controls/AppTextBox.xaml"
+            "ms-appx:///SimplePad.Editor.UWP/AppTextBox.xaml"
         );
 
         _internalCanUndo = CanUndo;
