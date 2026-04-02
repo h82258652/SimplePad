@@ -4,7 +4,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
   </ItemGroup>
 </Project>

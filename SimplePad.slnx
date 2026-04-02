@@ -17,7 +17,6 @@
     <Project Path="src/SimplePad.ViewModels/SimplePad.ViewModels.csproj" Id="5371cde9-e832-408b-a0ba-51e2f03221ae" />
   </Folder>
   <Folder Name="/src/Core/">
-    <Project Path="src/SimplePad.Core.Modularity/SimplePad.Core.Modularity.csproj" Id="615ad3b0-d35d-409d-b060-82cd80f0542c" />
     <Project Path="src/SimplePad.Core.UWP/SimplePad.Core.UWP.csproj" Id="752857f5-0db1-41a1-89fa-90ee4ce3fbd6" />
     <Project Path="src/SimplePad.Core/SimplePad.Core.csproj" Id="7bd6b997-f727-44f4-8983-855db6c3d6dc" />
   </Folder>

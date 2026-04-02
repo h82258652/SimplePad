@@ -15,7 +15,6 @@
     <PackageReference Include="Win2D.uwp" Version="1.28.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
     <ProjectReference Include="..\SimplePad.Editor.UWP\SimplePad.Editor.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Fonts.UWP\SimplePad.Fonts.UWP.csproj" />
