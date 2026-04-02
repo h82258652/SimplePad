@@ -7,10 +7,10 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
+    <RootNamespace>SimplePad.Menu</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
-    <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
   </ItemGroup>
 </Project>

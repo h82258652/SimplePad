@@ -1,6 +1,6 @@
 ﻿using SimplePad.Core.Modularity;
 
-namespace SimplePad.Menu.UWP;
+namespace SimplePad.Menu;
 
 public sealed class SimplePadMenuUWPModule : AppModuleBase
 {
