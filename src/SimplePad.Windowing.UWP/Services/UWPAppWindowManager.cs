@@ -8,7 +8,7 @@ using Windows.UI.Xaml;
 
 namespace SimplePad.Windowing.UWP.Services;
 
-public sealed class UWPAppWindowService : IAppWindowService
+public sealed class UWPAppWindowManager : IAppWindowManager
 {
     public async Task ShowNewWindowAsync()
     {

@@ -1,6 +1,6 @@
 ﻿namespace SimplePad.Windowing.Services;
 
-public interface IAppWindowService
+public interface IAppWindowManager
 {
     Task ShowNewWindowAsync();
 }

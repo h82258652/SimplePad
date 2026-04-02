@@ -7,7 +7,6 @@
   <Folder Name="/src/">
     <Project Path="src/SimplePad.Services.UWP/SimplePad.Services.UWP.csproj" Id="21c159fc-b40d-4888-9e0b-06aca7a8b319" />
     <Project Path="src/SimplePad.Services/SimplePad.Services.csproj" Id="7c36a7df-6863-4be9-b670-e709ebfd1ffd" />
-    <Project Path="src/SimplePad.Settings.UWP/SimplePad.Settings.UWP.csproj" Id="727ab450-311c-4550-86e5-b709c999025e" />
     <Project Path="src/SimplePad.UWP.App/SimplePad.UWP.App.csproj" Id="92198b67-4390-4eba-b8ab-e10b51409a38">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
@@ -49,6 +48,7 @@
     <Project Path="src/SimplePad.Search/SimplePad.Search.csproj" Id="d19a19b2-8532-4b94-b2de-4eeea027af3e" />
   </Folder>
   <Folder Name="/src/Settings/">
+    <Project Path="src/SimplePad.Settings.UWP/SimplePad.Settings.UWP.csproj" Id="727ab450-311c-4550-86e5-b709c999025e" />
     <Project Path="src/SimplePad.Settings/SimplePad.Settings.csproj" Id="8c2a786b-e304-4f8c-954f-d8d2c49320c4" />
   </Folder>
   <Folder Name="/src/StatusBar/">

@@ -9,6 +9,9 @@
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
+    <ProjectReference Include="..\SimplePad.MultiTab.UWP\SimplePad.MultiTab.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.UWP\SimplePad.Themes.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
   </ItemGroup>
 </Project>

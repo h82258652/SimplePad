@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="SimplePad.Windowing.UWP.Views.ShellView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SimplePad.Windowing.UWP.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:using="using:SimplePad.Themes.UWP.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
+    mc:Ignorable="d">
+    <using:ThemeContainer>
+        <Grid >
+            
+        </Grid>
+    </using:ThemeContainer>
+</UserControl>
