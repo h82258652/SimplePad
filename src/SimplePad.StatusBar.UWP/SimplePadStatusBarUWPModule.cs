@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
-using SimplePad.StatusBar.Settings;
-using SimplePad.StatusBar.UWP.Settings;
 
-namespace SimplePad.StatusBar.UWP;
+namespace SimplePad.StatusBar;
 
 public sealed class SimplePadStatusBarUWPModule : AppModuleBase
 {

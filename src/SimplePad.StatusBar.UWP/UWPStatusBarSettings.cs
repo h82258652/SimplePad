@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SimplePad.Core.UWP.Settings;
-using SimplePad.StatusBar.Settings;
+using SimplePad.Core.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
-namespace SimplePad.StatusBar.UWP.Settings;
+namespace SimplePad.StatusBar;
 
 public sealed class UWPStatusBarSettings : AppSettingsBase, IStatusBarSettings
 {

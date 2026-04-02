@@ -1,14 +1,13 @@
 ﻿using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.Core.UWP.Extensions;
+using SimplePad.Core.Extensions;
 using SimplePad.Editor;
-using SimplePad.StatusBar.Settings;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.StatusBar.UWP.Controls;
+namespace SimplePad.StatusBar;
 
 public sealed partial class AppStatusBar : UserControl
 {

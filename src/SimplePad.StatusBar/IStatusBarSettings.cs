@@ -1,7 +1,7 @@
 ﻿using System;
 using SimplePad.Core.Settings;
 
-namespace SimplePad.StatusBar.Settings;
+namespace SimplePad.StatusBar;
 
 public interface IStatusBarSettings : IAppSettings
 {
