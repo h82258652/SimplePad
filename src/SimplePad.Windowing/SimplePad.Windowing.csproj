@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.MultiTab\SimplePad.MultiTab.csproj" />
+    <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
+  </ItemGroup>
+
 </Project>

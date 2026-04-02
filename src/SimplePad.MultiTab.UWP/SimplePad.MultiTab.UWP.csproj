@@ -14,6 +14,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Editor.UWP\SimplePad.Editor.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Menu.UWP\SimplePad.Menu.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.MultiTab\SimplePad.MultiTab.csproj" />
+    <ProjectReference Include="..\SimplePad.Settings.UWP\SimplePad.Settings.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.StatusBar.UWP\SimplePad.StatusBar.UWP.csproj" />
   </ItemGroup>
 </Project>

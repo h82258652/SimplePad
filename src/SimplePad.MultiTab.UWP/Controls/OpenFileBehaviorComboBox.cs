@@ -11,6 +11,7 @@ namespace SimplePad.MultiTab.UWP.Controls;
 
 public sealed partial class OpenFileBehaviorComboBox : ComboBox
 {
+    private readonly CoreDispatcher _dispatcher;
     private readonly OpenFileBehaviorComboBoxItem[] _items;
     private readonly IMultiTabSettings _multiTabSettings;
 
@@ -40,8 +41,6 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
     {
         await _dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
-
-    private readonly CoreDispatcher _dispatcher;
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {

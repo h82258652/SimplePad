@@ -42,9 +42,11 @@
             </controls:AppTabView.TabStripFooter>
             <controls:AppTabView.TabItemTemplate>
                 <DataTemplate x:DataType="viewmodels:EditorViewModel">
-                    <multiTab:AppTabViewItem Header="{x:Bind Title, Mode=OneWay}" IsModified="{x:Bind IsModified, Mode=OneWay}">
+                    <!--<multiTab:OldAppTabViewItem Header="{x:Bind Title, Mode=OneWay}" IsModified="{x:Bind IsModified, Mode=OneWay}">
                         <local:EditorView ViewModel="{x:Bind}" />
-                    </multiTab:AppTabViewItem>
+                    </multiTab:OldAppTabViewItem>-->
+
+                    <multiTab:AppTabViewItem />
                 </DataTemplate>
             </controls:AppTabView.TabItemTemplate>
         </controls:AppTabView>

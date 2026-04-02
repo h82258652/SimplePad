@@ -6,12 +6,12 @@ using Windows.UI.Xaml;
 
 namespace SimplePad.MultiTab.UWP.Controls;
 
-public sealed partial class AppTabViewItem : TabViewItem
+public sealed partial class OldAppTabViewItem : TabViewItem
 {
     public static readonly DependencyProperty IsModifiedProperty = DependencyProperty.Register(
         nameof(IsModified),
         typeof(bool),
-        typeof(AppTabViewItem),
+        typeof(OldAppTabViewItem),
         new PropertyMetadata(false, OnIsModifiedChanged));
 
     private const string CommonStatesGroupName = "CommonStates";
@@ -29,15 +29,15 @@ public sealed partial class AppTabViewItem : TabViewItem
     private static readonly DependencyProperty ModifiedIndicatorVisibilityProperty = DependencyProperty.Register(
         nameof(ModifiedIndicatorVisibility),
         typeof(Visibility),
-        typeof(AppTabViewItem),
+        typeof(OldAppTabViewItem),
         new PropertyMetadata(Visibility.Collapsed));
 
     private VisualStateGroup? _commonStates;
 
-    public AppTabViewItem()
+    public OldAppTabViewItem()
     {
-        DefaultStyleKey = typeof(AppTabViewItem);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.MultiTab.UWP/Controls/AppTabViewItem.xaml");
+        DefaultStyleKey = typeof(OldAppTabViewItem);
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.MultiTab.UWP/Controls/OldAppTabViewItem.xaml");
     }
 
     public bool IsModified
@@ -70,7 +70,7 @@ public sealed partial class AppTabViewItem : TabViewItem
 
     private static void OnIsModifiedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        AppTabViewItem self = (AppTabViewItem)d;
+        OldAppTabViewItem self = (OldAppTabViewItem)d;
         self.UpdateModifiedIndicatorVisibility();
     }
 
