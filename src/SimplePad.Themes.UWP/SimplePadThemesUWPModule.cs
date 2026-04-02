@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
-using SimplePad.Themes.Settings;
-using SimplePad.Themes.UWP.Settings;
 
-namespace SimplePad.Themes.UWP;
+namespace SimplePad.Themes;
 
 public sealed class SimplePadThemesUWPModule : AppModuleBase
 {

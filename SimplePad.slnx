@@ -57,6 +57,7 @@
     <Project Path="src/SimplePad.StatusBar/SimplePad.StatusBar.csproj" Id="95a45aed-93fc-4727-bfce-3e97e3afcf82" />
   </Folder>
   <Folder Name="/src/Themes/">
+    <Project Path="src/SimplePad.Themes.Settings.UWP/SimplePad.Themes.Settings.UWP.csproj" Id="6a0eb3e2-084b-43f4-9a29-ece3e377019c" />
     <Project Path="src/SimplePad.Themes.UWP/SimplePad.Themes.UWP.csproj" Id="ed7a6847-27f2-4107-8778-15cc3c560a42" />
     <Project Path="src/SimplePad.Themes/SimplePad.Themes.csproj" Id="3be60e45-351f-429a-8d79-d6579abbafb1" />
   </Folder>

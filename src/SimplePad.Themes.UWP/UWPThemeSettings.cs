@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SimplePad.Core.UWP.Settings;
-using SimplePad.Themes.Settings;
+using SimplePad.Core.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
-namespace SimplePad.Themes.UWP.Settings;
+namespace SimplePad.Themes;
 
 public sealed class UWPThemeSettings : AppSettingsBase, IThemeSettings
 {
