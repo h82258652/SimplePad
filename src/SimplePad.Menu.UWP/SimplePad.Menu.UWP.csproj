@@ -12,5 +12,6 @@
     <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
+    <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
   </ItemGroup>
 </Project>

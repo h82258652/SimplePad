@@ -7,9 +7,17 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Uwp.Controls.SettingsControls" Version="8.2.251219" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.Modularity\SimplePad.Core.Modularity.csproj" />
+    <ProjectReference Include="..\SimplePad.Editor.UWP\SimplePad.Editor.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Fonts.UWP\SimplePad.Fonts.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.UWP\SimplePad.Themes.UWP.csproj" />
   </ItemGroup>
 </Project>

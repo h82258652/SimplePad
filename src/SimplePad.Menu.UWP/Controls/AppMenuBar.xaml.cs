@@ -1,101 +1,29 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Windowing.Services;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu.UWP.Controls;
 
-public sealed partial class AppMenuBar : UserControl
+public sealed partial class AppMenuBar : MenuBar
 {
-    private const double MenuItemMinWidth = 230;
-
-    private readonly IServiceProvider _serviceProvider;
+    private readonly IAppWindowManager _appWindowManager;
 
     public AppMenuBar()
     {
-        _serviceProvider = ServiceLocator.Current;
-
-        IOptionsSnapshot<MenuBarOptions> menuBarOptionsAccessor =
-            _serviceProvider.GetRequiredService<IOptionsSnapshot<MenuBarOptions>>();
-        var menuBarOptions = menuBarOptionsAccessor.Value;
+        _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
 
         InitializeComponent();
-
-        BuildFileMenu(menuBarOptions);
-        BuildEditMenu(menuBarOptions);
-        BuildViewMenu(menuBarOptions);
     }
 
-    private void BuildViewMenu(MenuBarOptions menuBarOptions)
+    private async void OnNewWindowClick(object sender, RoutedEventArgs e)
     {
-        foreach (var item in menuBarOptions.ViewItems)
-        {
-            ViewMenuBarItem.Items.Add(BuildMenuItem(item));
-        }
+        await _appWindowManager.ShowNewWindowAsync();
     }
 
-    private MenuFlyoutItemBase BuildMenuItem(MenuItemBase item)
+    private void OnFontClick(object sender, RoutedEventArgs e)
     {
-        MenuFlyoutItemBase menuItem;
 
-        if (item is MenuItem mi)
-        {
-            MenuFlyoutItem menuFlyoutItem = new() { Text = mi.Text };
-            menuFlyoutItem.Click += (sender, e) =>
-            {
-                mi.Action(_serviceProvider);
-            };
-            // todo register enabled changed
-
-            menuItem = menuFlyoutItem;
-        }
-        else if (item is MenuItemSeparator)
-        {
-            menuItem = new MenuFlyoutSeparator();
-        }
-        else if (item is MenuItemGroup itemGroup)
-        {
-            MenuFlyoutSubItem menuItemGroup = new() { Text = itemGroup.Text };
-            foreach (var child in itemGroup.Children)
-            {
-                menuItemGroup.Items.Add(BuildMenuItem(child));
-            }
-
-            menuItem = menuItemGroup;
-        }
-        else if (item is ToggleMenuItem toggleItem)
-        {
-            ToggleMenuFlyoutItem toggle = new()
-            {
-                Text = toggleItem.Text,
-                IsEnabled = toggleItem.IsChecked(_serviceProvider),
-            };
-            // TODO register _appsettings.ischecked changed
-
-            toggle.Click += (sender, e) =>
-            {
-                toggleItem.Action(_serviceProvider, toggle.IsChecked);
-            };
-
-            menuItem = toggle;
-        }
-        else
-        {
-            throw new NotSupportedException();
-        }
-
-        menuItem.MinWidth = MenuItemMinWidth;
-        return menuItem;
-    }
-
-    private void BuildEditMenu(MenuBarOptions menuBarOptions)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void BuildFileMenu(MenuBarOptions menuBarOptions)
-    {
-        throw new NotImplementedException();
     }
 }

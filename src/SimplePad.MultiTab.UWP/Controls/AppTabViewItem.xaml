@@ -7,7 +7,6 @@
     xmlns:editor="using:SimplePad.Editor.UWP.Controls"
     xmlns:local="using:SimplePad.MultiTab.UWP.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:settings="using:SimplePad.Settings.UWP.Controls"
     xmlns:statusBar="using:SimplePad.StatusBar.UWP.Controls"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
@@ -465,13 +464,13 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <!--  TODO menubar  -->
-            <settings:SettingsButton Grid.Column="1" />
+            <!--  TODO content control for settings button  -->
         </Grid>
         <editor:AppTextBox x:Name="TextBox" Grid.Row="1" />
         <statusBar:AppStatusBar Grid.Row="2" TextBox="{x:Bind TextBox}" />

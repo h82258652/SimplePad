@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SimplePad.Windowing.Services;
+using SimplePad.Windowing.UWP.Views;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -18,7 +19,7 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         {
             // TODO title bar
 
-            Window.Current.Content = null;// TODO
+            Window.Current.Content = new ShellView(new AppWindowViewModel());
             Window.Current.Activate();
 
             newViewId = ApplicationView.GetForCurrentView().Id;
