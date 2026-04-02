@@ -3,9 +3,4 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
-    <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
-  </ItemGroup>
 </Project>
