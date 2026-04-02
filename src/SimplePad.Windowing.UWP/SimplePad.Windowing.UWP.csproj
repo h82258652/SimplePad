@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
@@ -7,10 +7,13 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
+    <RootNamespace>SimplePad.Windowing</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimplePad.MultiTab.UWP\SimplePad.MultiTab.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Settings.UWP\SimplePad.Settings.UWP.csproj" />
+    <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Themes.UWP\SimplePad.Themes.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
   </ItemGroup>

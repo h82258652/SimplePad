@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.Windowing.UWP.Views;
+namespace SimplePad.Windowing;
 
 public sealed partial class ShellView : UserControl
 {

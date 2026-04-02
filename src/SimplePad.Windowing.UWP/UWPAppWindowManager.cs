@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SimplePad.Windowing.Services;
-using SimplePad.Windowing.UWP.Views;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
-namespace SimplePad.Windowing.UWP.Services;
+namespace SimplePad.Windowing;
 
 public sealed class UWPAppWindowManager : IAppWindowManager
 {

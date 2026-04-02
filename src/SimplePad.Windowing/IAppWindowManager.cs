@@ -1,4 +1,4 @@
-﻿namespace SimplePad.Windowing.Services;
+﻿namespace SimplePad.Windowing;
 
 public interface IAppWindowManager
 {
