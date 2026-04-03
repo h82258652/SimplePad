@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SimplePad.Core; 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
