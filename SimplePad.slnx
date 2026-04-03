@@ -40,11 +40,6 @@
     <Project Path="src/SimplePad.Menu.UWP/SimplePad.Menu.UWP.csproj" Id="f027335a-18c4-49a1-af28-8a3dd6723ac1" />
     <Project Path="src/SimplePad.Menu/SimplePad.Menu.csproj" Id="77ef9037-73f6-48ae-b0ed-5f469feed9f7" />
   </Folder>
-  <Folder Name="/src/MultiTab/">
-    <Project Path="src/SimplePad.MultiTab.Settings.UWP/SimplePad.MultiTab.Settings.UWP.csproj" Id="923b0533-88e6-475b-88a6-33390ef52567" />
-    <Project Path="src/SimplePad.MultiTab.UWP/SimplePad.MultiTab.UWP.csproj" Id="59b83d37-34e2-4c74-9a78-ba5753949c02" />
-    <Project Path="src/SimplePad.MultiTab/SimplePad.MultiTab.csproj" Id="ec185396-cd63-4328-8574-272f6902edbb" />
-  </Folder>
   <Folder Name="/src/Search/">
     <Project Path="src/SimplePad.Search.UWP/SimplePad.Search.UWP.csproj" Id="fd4b2fcb-c5fb-4d68-890d-06f751716e4c" />
     <Project Path="src/SimplePad.Search/SimplePad.Search.csproj" Id="d19a19b2-8532-4b94-b2de-4eeea027af3e" />
@@ -56,6 +51,11 @@
   <Folder Name="/src/StatusBar/">
     <Project Path="src/SimplePad.StatusBar.UWP/SimplePad.StatusBar.UWP.csproj" Id="b9b42731-998c-4449-9d10-95a828816454" />
     <Project Path="src/SimplePad.StatusBar/SimplePad.StatusBar.csproj" Id="95a45aed-93fc-4727-bfce-3e97e3afcf82" />
+  </Folder>
+  <Folder Name="/src/Tabs/">
+    <Project Path="src/SimplePad.Tabs.Settings.UWP/SimplePad.Tabs.Settings.UWP.csproj" Id="8f18325c-3a40-4d3f-aa4b-af18f5bbbdcf" />
+    <Project Path="SRC/SimplePad.Tabs.UWP/SimplePad.Tabs.UWP.csproj" Id="1d445707-c47e-4468-8076-34fee5e0a8a3" />
+    <Project Path="src/SimplePad.Tabs/SimplePad.Tabs.csproj" Id="3f59faac-cb0c-4a91-a342-64ff8ecb02fd" />
   </Folder>
   <Folder Name="/src/Themes/">
     <Project Path="src/SimplePad.Themes.Settings.UWP/SimplePad.Themes.Settings.UWP.csproj" Id="6a0eb3e2-084b-43f4-9a29-ece3e377019c" />

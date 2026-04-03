@@ -2,15 +2,21 @@
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 
-namespace SimplePad.MultiTab.UWP.Controls;
+namespace SimplePad.Tabs;
 
 public sealed partial class AppTabView : TabView
 {
+    public static readonly DependencyProperty TitleBarProperty = DependencyProperty.Register(
+        nameof(TitleBar),
+        typeof(UIElement),
+        typeof(AppTabView),
+        null);
+
     public AppTabView()
     {
         DefaultStyleKey = typeof(AppTabView);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.MultiTab.UWP/Controls/AppTabView.xaml"
+            "ms-appx:///SimplePad.Tabs.UWP/Controls/AppTabView.xaml"
         );
     }
 
@@ -19,10 +25,4 @@ public sealed partial class AppTabView : TabView
         get => (UIElement?)GetValue(TitleBarProperty);
         set => SetValue(TitleBarProperty, value);
     }
-
-    public static readonly DependencyProperty TitleBarProperty = DependencyProperty.Register(
-        nameof(TitleBar),
-        typeof(UIElement),
-        typeof(AppTabView),
-        null);
 }

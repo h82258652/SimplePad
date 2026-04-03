@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 
-namespace SimplePad.MultiTab.UWP.Controls;
+namespace SimplePad.Tabs;
 
 public sealed partial class AppTabViewItem : TabViewItem
 {

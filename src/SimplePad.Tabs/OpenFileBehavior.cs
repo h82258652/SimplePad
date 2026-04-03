@@ -1,4 +1,4 @@
-﻿namespace SimplePad.MultiTab;
+﻿namespace SimplePad.Tabs;
 
 public enum OpenFileBehavior
 {

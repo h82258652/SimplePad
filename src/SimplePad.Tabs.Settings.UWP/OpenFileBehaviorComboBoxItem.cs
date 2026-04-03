@@ -1,4 +1,4 @@
-﻿namespace SimplePad.MultiTab.UWP.Controls;
+﻿namespace SimplePad.Tabs;
 
 internal sealed class OpenFileBehaviorComboBoxItem
 {

@@ -2,23 +2,22 @@
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.Core.UWP.Extensions;
-using SimplePad.MultiTab.Settings;
+using SimplePad.Core.Extensions;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.MultiTab.UWP.Controls;
+namespace SimplePad.Tabs;
 
 public sealed partial class OpenFileBehaviorComboBox : ComboBox
 {
     private readonly CoreDispatcher _dispatcher;
     private readonly OpenFileBehaviorComboBoxItem[] _items;
-    private readonly IMultiTabSettings _multiTabSettings;
+    private readonly ITabsSettings _multiTabSettings;
 
     public OpenFileBehaviorComboBox()
     {
         _dispatcher = Dispatcher;
-        _multiTabSettings = ServiceLocator.Current.GetRequiredService<IMultiTabSettings>();
+        _multiTabSettings = ServiceLocator.Current.GetRequiredService<ITabsSettings>();
         _items =
         [
             new OpenFileBehaviorComboBoxItem(OpenFileBehavior.NewTab, "Open in a new tab"),
@@ -27,7 +26,7 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 
         DefaultStyleKey = typeof(OpenFileBehaviorComboBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.MultiTab.UWP/Controls/OpenFileBehaviorComboBox.xaml"
+            "ms-appx:///SimplePad.Tabs.Settings.UWP/Controls/OpenFileBehaviorComboBox.xaml"
         );
 
         ItemsSource = _items;

@@ -7,21 +7,16 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
+    <RootNamespace>SimplePad.Tabs</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Uwp.Controls.SettingsControls" Version="8.2.251219" />
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
-    <PackageReference Include="Win2D.uwp" Version="1.28.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
+    <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Editor.UWP\SimplePad.Editor.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Fonts.UWP\SimplePad.Fonts.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Services.UWP\SimplePad.Services.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.StatusBar.UWP\SimplePad.StatusBar.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Themes.UWP\SimplePad.Themes.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.ViewModels\SimplePad.ViewModels.csproj" />
+    <ProjectReference Include="..\SimplePad.Tabs\SimplePad.Tabs.csproj" />
   </ItemGroup>
 </Project>

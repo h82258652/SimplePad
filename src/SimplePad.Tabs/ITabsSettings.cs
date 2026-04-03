@@ -1,8 +1,9 @@
-﻿using SimplePad.Core.Settings;
+﻿using System;
+using SimplePad.Core.Settings;
 
-namespace SimplePad.MultiTab;
+namespace SimplePad.Tabs;
 
-public interface IMultiTabSettings : IAppSettings
+public interface ITabsSettings : IAppSettings
 {
     OpenFileBehavior OpenFileBehavior { get; set; }
 

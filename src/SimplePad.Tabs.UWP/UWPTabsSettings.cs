@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SimplePad.Core.UWP.Settings;
-using SimplePad.MultiTab.Settings;
+using SimplePad.Core.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
-namespace SimplePad.MultiTab.UWP.Settings;
+namespace SimplePad.Tabs;
 
-public sealed class UWPMultiTabSettings : AppSettingsBase, IMultiTabSettings
+public sealed class UWPTabsSettings : AppSettingsBase, ITabsSettings
 {
     private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
 
