@@ -17,9 +17,7 @@ public sealed class UWPAppWindow : IAppWindow
 
     public SettingsState SettingsState { get; } = new SettingsState();
 
-    private readonly ObservableCollection<AppTabViewModel> _tabs = [];
-
-    public IReadOnlyList<AppTabViewModel> Tabs => _tabs;
+    public TabManager TabManager { get; } = new TabManager();
 
     public void Close()
     {

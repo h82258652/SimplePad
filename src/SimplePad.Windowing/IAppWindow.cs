@@ -7,7 +7,7 @@ public interface IAppWindow
 {
     SettingsState SettingsState { get; }
 
-    IReadOnlyList<AppTabViewModel> Tabs { get; }
+    TabManager TabManager { get; }
 
     void Close();
 }

@@ -18,6 +18,18 @@ public sealed partial class AppTabView : TabView
         DefaultStyleResourceUri = new Uri(
             "ms-appx:///SimplePad.Tabs.UWP/AppTabView.xaml"
         );
+
+        AddTabButtonClick += OnAddTabButtonClick;
+        TabCloseRequested += OnTabCloseRequested;
+    }
+
+    private void OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+    {
+    }
+
+    private void OnAddTabButtonClick(TabView sender, object args)
+    {
+
     }
 
     public UIElement? TitleBar
