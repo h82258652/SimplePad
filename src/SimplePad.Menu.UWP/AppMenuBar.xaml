@@ -4,19 +4,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:menu="using:SimplePad.Menu"
     Height="30"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-    <MenuBarItem Title="File">
-        <MenuFlyoutItem Click="OnNewWindowClick" Text="New window" />
+    <MenuBarItem Title="File" Margin="4,0,0,0">
+        <menu:NewTabMenuFlyoutItem MinWidth="230" />
+        <menu:NewWindowMenuFlyoutItem MinWidth="230" />
+        <menu:OpenMenuFlyoutItem MinWidth="230" />
+        <menu:SaveMenuFlyoutItem MinWidth="230" />
+        <menu:SaveAsMenuFlyoutItem MinWidth="230" />
+        <menu:SaveAllMenuFlyoutItem MinWidth="230" />
+        <MenuFlyoutSeparator MinWidth="230" />
+        <menu:PrintMenuFlyoutItem MinWidth="230" />
+        <MenuFlyoutSeparator MinWidth="230" />
+        <menu:CloseTabMenuFlyoutItem MinWidth="230" />
+        <menu:CloseWindowMenuFlyoutItem MinWidth="230" />
+        <menu:ExitMenuFlyoutItem MinWidth="230" />
     </MenuBarItem>
-    <MenuBarItem Title="Edit">
-        <MenuFlyoutItem Click="OnFontClick" Text="Font" />
+    <MenuBarItem Title="Edit" Margin="4,0,0,0">
+        <menu:UndoMenuFlyoutItem MinWidth="230" />
+        <MenuFlyoutSeparator MinWidth="230" />
+        <menu:CutMenuFlyoutItem MinWidth="230" />
+        <menu:CopyMenuFlyoutItem MinWidth="230" />
+        <menu:SelectAllMenuFlyoutItem MinWidth="230" />
+        <menu:TimeDateMenuFlyoutItem MinWidth="230" />
+        <MenuFlyoutSeparator MinWidth="230" />
+        <menu:FontMenuFlyoutItem MinWidth="230" />
     </MenuBarItem>
-    <MenuBarItem Title="View">
-        <MenuFlyoutSubItem Text="Zoom">
-            <MenuFlyoutItem Text="Zoom in" />
+    <MenuBarItem Title="View" Margin="4,0,0,0">
+        <MenuFlyoutSubItem MinWidth="230" Text="Zoom">
+            <menu:ZoomInMenuFlyoutItem MinWidth="230" />
+            <menu:ZoomOutMenuFlyoutItem MinWidth="230" />
+            <menu:RestoreDefaultZoomMenuFlyoutItem MinWidth="230" />
         </MenuFlyoutSubItem>
+        <menu:IsStatusBarVisibleToggleMenuFlyoutItem MinWidth="230" />
+        <menu:IsWordWrapToggleMenuFlyoutItem MinWidth="230" />
     </MenuBarItem>
 </MenuBar>

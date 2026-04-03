@@ -7,22 +7,8 @@ namespace SimplePad.Menu;
 
 public sealed partial class AppMenuBar : MenuBar
 {
-    //private readonly IAppWindowManager _appWindowManager;
-
     public AppMenuBar()
     {
-        //_appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
-
         InitializeComponent();
-    }
-
-    private async void OnNewWindowClick(object sender, RoutedEventArgs e)
-    {
-        //await _appWindowManager.ShowNewWindowAsync();
-    }
-
-    private void OnFontClick(object sender, RoutedEventArgs e)
-    {
-
     }
 }
