@@ -2,5 +2,9 @@
 
 public interface IAppWindowManager
 {
+    IReadOnlyList<IAppWindow> Instances { get; }
+
+    IAppWindow CreateAppWindow();
+
     Task ShowNewWindowAsync();
 }

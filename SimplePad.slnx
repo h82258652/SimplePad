@@ -5,16 +5,12 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/src/">
-    <Project Path="src/SimplePad.Services.UWP/SimplePad.Services.UWP.csproj" Id="21c159fc-b40d-4888-9e0b-06aca7a8b319" />
-    <Project Path="src/SimplePad.Services/SimplePad.Services.csproj" Id="7c36a7df-6863-4be9-b670-e709ebfd1ffd" />
     <Project Path="src/SimplePad.UWP.App/SimplePad.UWP.App.csproj" Id="92198b67-4390-4eba-b8ab-e10b51409a38">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
       <Deploy />
     </Project>
-    <Project Path="src/SimplePad.UWP.UI/SimplePad.UWP.UI.csproj" Id="412a0a39-7710-453d-a7e7-aa394412b863" />
-    <Project Path="src/SimplePad.ViewModels/SimplePad.ViewModels.csproj" Id="5371cde9-e832-408b-a0ba-51e2f03221ae" />
   </Folder>
   <Folder Name="/src/Core/">
     <Project Path="src/SimplePad.Core.UWP/SimplePad.Core.UWP.csproj" Id="752857f5-0db1-41a1-89fa-90ee4ce3fbd6" />
@@ -35,6 +31,12 @@
     </Project>
     <Project Path="src/SimplePad.Fonts.UWP/SimplePad.Fonts.UWP.csproj" Id="fd561f56-062b-4198-b4ae-e504582ba883" />
     <Project Path="src/SimplePad.Fonts/SimplePad.Fonts.csproj" Id="ae213d3d-1755-4b75-9f8e-60282907e9e0" />
+  </Folder>
+  <Folder Name="/src/Legacy/">
+    <Project Path="src/SimplePad.Services.UWP/SimplePad.Services.UWP.csproj" Id="21c159fc-b40d-4888-9e0b-06aca7a8b319" />
+    <Project Path="src/SimplePad.Services/SimplePad.Services.csproj" Id="7c36a7df-6863-4be9-b670-e709ebfd1ffd" />
+    <Project Path="src/SimplePad.UWP.UI/SimplePad.UWP.UI.csproj" Id="412a0a39-7710-453d-a7e7-aa394412b863" />
+    <Project Path="src/SimplePad.ViewModels/SimplePad.ViewModels.csproj" Id="5371cde9-e832-408b-a0ba-51e2f03221ae" />
   </Folder>
   <Folder Name="/src/Menu/">
     <Project Path="src/SimplePad.Menu.UWP/SimplePad.Menu.UWP.csproj" Id="f027335a-18c4-49a1-af28-8a3dd6723ac1" />

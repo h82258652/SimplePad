@@ -1,9 +1,9 @@
 ﻿using SimplePad.Core.Modularity;
-using SimplePad.MultiTab;
+using SimplePad.Tabs;
 
 namespace SimplePad.Windowing;
 
 public sealed class SimplePadWindowingModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<SimplePadMultiTabModule>();
+    public override DependsOn DependModules => DependsOn.Create<SimplePadTabsModule>();
 }

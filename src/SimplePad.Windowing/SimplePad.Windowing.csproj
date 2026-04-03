@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
+    <ProjectReference Include="..\SimplePad.Tabs\SimplePad.Tabs.csproj" />
   </ItemGroup>
 </Project>

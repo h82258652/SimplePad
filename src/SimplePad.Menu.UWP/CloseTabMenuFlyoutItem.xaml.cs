@@ -7,7 +7,7 @@ public sealed partial class CloseTabMenuFlyoutItem : MenuFlyoutItem
 {
     public CloseTabMenuFlyoutItem()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     private void OnClick(object sender, RoutedEventArgs e)

@@ -7,6 +7,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
+    <RootNamespace>SimplePad.Settings</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
@@ -14,9 +15,10 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimplePad.Editor.UWP\SimplePad.Editor.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Fonts.UWP\SimplePad.Fonts.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Editor.Settings.UWP\SimplePad.Editor.Settings.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Fonts.Settings.UWP\SimplePad.Fonts.Settings.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
-    <ProjectReference Include="..\SimplePad.Themes.UWP\SimplePad.Themes.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Tabs.Settings.UWP\SimplePad.Tabs.Settings.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.Settings.UWP\SimplePad.Themes.Settings.UWP.csproj" />
   </ItemGroup>
 </Project>

@@ -5,22 +5,10 @@ namespace SimplePad.Windowing;
 
 public sealed partial class ShellView : UserControl
 {
-    public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-        nameof(ViewModel),
-        typeof(AppWindowViewModel),
-        typeof(ShellView),
-        new PropertyMetadata(null));
-
-    public ShellView(AppWindowViewModel viewModel)
+    public ShellView(IAppWindow appWindow)
     {
         InitializeComponent();
 
-        //SettingsView.SettingsState = viewModel.SettingsState;
-    }
-
-    public AppWindowViewModel? ViewModel
-    {
-        get => (AppWindowViewModel?)GetValue(ViewModelProperty);
-        set => SetValue(ViewModelProperty, value);
+        Window.Current.SetTitleBar(TabView.TitleBar);
     }
 }

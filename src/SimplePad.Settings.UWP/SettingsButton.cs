@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SimplePad.Settings.UWP.Controls;
+namespace SimplePad.Settings;
 
 public sealed partial class SettingsButton : Button
 {

@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:settings="using:SimplePad.Settings"
+    xmlns:tabs="using:SimplePad.Tabs"
     xmlns:themes="using:SimplePad.Themes"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
@@ -11,24 +13,30 @@
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
     <themes:ThemeContainer>
-        <!--<Grid>
-            <multiTab:AppTabView>
-                <multiTab:AppTabView.TitleBar>
+        <Grid>
+            <tabs:AppTabView x:Name="TabView">
+                <tabs:AppTabView.TitleBar>
                     <Border x:Name="TitleBar" Background="Transparent" />
-                </multiTab:AppTabView.TitleBar>
-                <multiTab:AppTabView.TabStripHeader>
+                </tabs:AppTabView.TitleBar>
+                <tabs:AppTabView.TabStripHeader>
                     <Image
                         Width="28"
                         Height="28"
                         Margin="9,0,5,0"
                         IsHitTestVisible="False"
                         Source="/Assets/Square44x44Logo.png" />
-                </multiTab:AppTabView.TabStripHeader>
-                <multiTab:AppTabView.TabStripFooter>
+                </tabs:AppTabView.TabStripHeader>
+                <tabs:AppTabView.TabStripFooter>
                     <Border Width="192" />
-                </multiTab:AppTabView.TabStripFooter>
-            </multiTab:AppTabView>
-            <settings:SettingsView x:Name="SettingsView" />
-        </Grid>-->
+                </tabs:AppTabView.TabStripFooter>
+                <tabs:AppTabView.TabItemTemplate>
+                    <DataTemplate>
+                        <!--<tabs:AppTabViewItem />-->
+                        <winui:TabViewItem />
+                    </DataTemplate>
+                </tabs:AppTabView.TabItemTemplate>
+            </tabs:AppTabView>
+            <!--<settings:SettingsView />-->
+        </Grid>
     </themes:ThemeContainer>
 </UserControl>

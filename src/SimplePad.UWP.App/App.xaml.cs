@@ -1,4 +1,6 @@
-﻿using SimplePad.UWP.UI.Views;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Windowing;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
@@ -6,7 +8,7 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
-namespace SimplePad.UWP.App
+namespace SimplePad.App
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default <see cref="Application"/> class.
@@ -31,8 +33,10 @@ namespace SimplePad.UWP.App
             // just ensure that the window is active.
             if (Window.Current.Content is not ShellView shellView)
             {
+                IAppWindowManager appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
+
                 // Create a Frame to act as the navigation context and navigate to the first page
-                shellView = new ShellView();
+                shellView = new ShellView(appWindowManager.CreateAppWindow());
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
