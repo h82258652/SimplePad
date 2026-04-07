@@ -1,30 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using SimplePad.Editor;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
-namespace SimplePad.Menu
+namespace SimplePad.Menu;
+
+public sealed partial class GoToLineMenuFlyoutItem : MenuFlyoutItem
 {
-    public sealed partial class GoToLineMenuFlyoutItem : MenuFlyoutItem
+    public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
+        nameof(TextBox),
+        typeof(IAppTextBox),
+        typeof(GoToLineMenuFlyoutItem),
+        null);
+
+    public GoToLineMenuFlyoutItem()
     {
-        public GoToLineMenuFlyoutItem()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void OnClick(object sender, RoutedEventArgs e)
-        {
+    public IAppTextBox? TextBox
+    {
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
+        set => SetValue(TextBoxProperty, value);
+    }
 
+    private void OnClick(object sender, RoutedEventArgs e)
+    {
+        if (TextBox is { } textBox)
+        {
         }
     }
 }
