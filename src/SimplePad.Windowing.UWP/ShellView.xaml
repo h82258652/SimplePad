@@ -31,8 +31,8 @@
                 </tabs:AppTabView.TabStripFooter>
                 <tabs:AppTabView.TabItemTemplate>
                     <DataTemplate>
-                        <!--<tabs:AppTabViewItem />-->
-                        <winui:TabViewItem />
+                        <tabs:AppTabViewItem />
+                        <!--<winui:TabViewItem />-->
                     </DataTemplate>
                 </tabs:AppTabView.TabItemTemplate>
             </tabs:AppTabView>
