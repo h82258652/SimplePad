@@ -4,6 +4,7 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <Nullable>enable</Nullable>
     <UseUwp>true</UseUwp>
+    <Platforms>x86;x64;arm64</Platforms>
     <DefaultLanguage>en-US</DefaultLanguage>
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
@@ -12,7 +13,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Uwp.Controls.SettingsControls" Version="8.2.251219" />
-    <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Editor.Settings.UWP\SimplePad.Editor.Settings.UWP.csproj" />

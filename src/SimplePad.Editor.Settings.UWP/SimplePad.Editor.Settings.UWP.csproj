@@ -4,6 +4,7 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <Nullable>enable</Nullable>
     <UseUwp>true</UseUwp>
+    <Platforms>x86;x64;arm64</Platforms>
     <DefaultLanguage>en-US</DefaultLanguage>
     <IsAotCompatible>true</IsAotCompatible>
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
