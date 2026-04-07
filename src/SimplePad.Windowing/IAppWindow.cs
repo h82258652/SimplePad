@@ -7,7 +7,7 @@ public interface IAppWindow
 {
     SettingsState SettingsState { get; }
 
-    TabManager TabManager { get; }
+    TabRoot TabRoot { get; }
 
     void Close();
 }

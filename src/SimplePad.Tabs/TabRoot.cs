@@ -3,17 +3,11 @@ using System.Collections.ObjectModel;
 
 namespace SimplePad.Tabs;
 
-public sealed class TabManager
+public sealed class TabRoot
 {
     private readonly ObservableCollection<Tab> _tabs = [];
 
-    public IReadOnlyList<Tab> Tabs
-    {
-        get
-        {
-            return _tabs;
-        }
-    }
+    public IReadOnlyList<Tab> Tabs => _tabs;
 
     public void Add()
     {

@@ -13,6 +13,7 @@ public sealed partial class ShellView : UserControl
         _settingsState = appWindow.SettingsState;
 
         InitializeComponent();
+        TabView.TabRoot = appWindow.TabRoot;
 
         Window.Current.SetTitleBar(TabView.TitleBar);
 

@@ -23,13 +23,25 @@ public sealed partial class AppTabView : TabView
         TabCloseRequested += OnTabCloseRequested;
     }
 
+    public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
+        nameof(TabRoot),
+        typeof(TabRoot),
+        typeof(AppTabView),
+        null);
+
+    public TabRoot? TabRoot
+    {
+        get => (TabRoot?)GetValue(TabRootProperty);
+        set => SetValue(TabRootProperty, value);
+    }
+
     private void OnTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
     {
     }
 
     private void OnAddTabButtonClick(TabView sender, object args)
     {
-
+        TabRoot?.Add();
     }
 
     public UIElement? TitleBar

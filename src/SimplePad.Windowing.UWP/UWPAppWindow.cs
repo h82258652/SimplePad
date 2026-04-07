@@ -17,7 +17,7 @@ public sealed class UWPAppWindow : IAppWindow
 
     public SettingsState SettingsState { get; } = new SettingsState();
 
-    public TabManager TabManager { get; } = new TabManager();
+    public TabRoot TabRoot { get; } = new TabRoot();
 
     public void Close()
     {
