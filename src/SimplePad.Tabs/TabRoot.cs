@@ -5,12 +5,10 @@ namespace SimplePad.Tabs;
 
 public sealed class TabRoot
 {
-    private readonly ObservableCollection<Tab> _tabs = [];
-
-    public IReadOnlyList<Tab> Tabs => _tabs;
+    public ObservableCollection<Tab> Tabs { get; } = [];
 
     public void Add()
     {
-        _tabs.Add(new Tab());
+        Tabs.Add(new Tab());
     }
 }

@@ -4,17 +4,17 @@ using Windows.UI.Xaml;
 
 namespace SimplePad.Tabs;
 
-public sealed partial class AppTabView : TabView
+public sealed partial class AppTabView2 : TabView
 {
     public static readonly DependencyProperty TitleBarProperty = DependencyProperty.Register(
         nameof(TitleBar),
         typeof(UIElement),
-        typeof(AppTabView),
+        typeof(AppTabView2),
         null);
 
-    public AppTabView()
+    public AppTabView2()
     {
-        DefaultStyleKey = typeof(AppTabView);
+        DefaultStyleKey = typeof(AppTabView2);
         DefaultStyleResourceUri = new Uri(
             "ms-appx:///SimplePad.Tabs.UWP/AppTabView.xaml"
         );
@@ -26,7 +26,7 @@ public sealed partial class AppTabView : TabView
     public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
         nameof(TabRoot),
         typeof(TabRoot),
-        typeof(AppTabView),
+        typeof(AppTabView2),
         null);
 
     public TabRoot? TabRoot
