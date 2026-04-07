@@ -469,8 +469,8 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <menu:AppMenuBar TextBox="{x:Bind TextBox}" />
-            <Button Grid.Column="1" Click="Button_Click" />
+            <menu:AppMenuBar Tab="{x:Bind Tab, Mode=OneWay}" TextBox="{x:Bind TextBox}" />
+            <Button Grid.Column="1" />
             <!--  TODO menubar  -->
             <!--  TODO content control for settings button  -->
         </Grid>

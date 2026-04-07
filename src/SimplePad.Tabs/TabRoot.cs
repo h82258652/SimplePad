@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace SimplePad.Tabs;
 
@@ -9,6 +8,6 @@ public sealed class TabRoot
 
     public void Add()
     {
-        Tabs.Add(new Tab());
+        Tabs.Add(new Tab(this));
     }
 }

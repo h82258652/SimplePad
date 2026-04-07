@@ -7,6 +7,12 @@ namespace SimplePad.Tabs;
 
 public sealed partial class AppTabViewItem : TabViewItem
 {
+    public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
+        nameof(Tab),
+        typeof(Tab),
+        typeof(AppTabViewItem),
+        null);
+
     private const string CommonStatesGroupName = "CommonStates";
     private const string LayoutRootTemplateName = "LayoutRoot";
     private const string ModifiedIndicatorTemplateName = "PART_ModifiedIndicator";
@@ -20,6 +26,12 @@ public sealed partial class AppTabViewItem : TabViewItem
     public AppTabViewItem()
     {
         InitializeComponent();
+    }
+
+    public Tab? Tab
+    {
+        get => (Tab?)GetValue(TabProperty);
+        set => SetValue(TabProperty, value);
     }
 
     protected override void OnApplyTemplate()
@@ -65,10 +77,5 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
 
         // TODO is modified to visible, otherwise to collapsed
-    }
-
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-
     }
 }

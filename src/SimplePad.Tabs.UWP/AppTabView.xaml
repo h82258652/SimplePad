@@ -193,8 +193,8 @@
         </ControlTemplate>
     </winui:TabView.Template>
     <winui:TabView.TabItemTemplate>
-        <DataTemplate>
-            <tabs:AppTabViewItem />
+        <DataTemplate x:DataType="tabs:Tab">
+            <tabs:AppTabViewItem Tab="{x:Bind}" />
         </DataTemplate>
     </winui:TabView.TabItemTemplate>
 </winui:TabView>
