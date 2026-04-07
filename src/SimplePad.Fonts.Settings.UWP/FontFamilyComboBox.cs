@@ -24,7 +24,7 @@ public sealed partial class FontFamilyComboBox : ComboBox
 
         DefaultStyleKey = typeof(FontFamilyComboBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontFamilyComboBox.xaml"
+            "ms-appx:///SimplePad.Fonts.Settings.UWP/FontFamilyComboBox.xaml"
         );
 
         ItemsSource = _systemFontFamilies;

@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <!--<settings:BackButton VerticalAlignment="Center" />-->
+            <settings:BackButton VerticalAlignment="Center" />
             <Image
                 Grid.Column="1"
                 Width="28"
@@ -117,7 +117,6 @@
                                 </toolkit:SettingsCard>
                             </toolkit:SettingsExpander.Items>
                         </toolkit:SettingsExpander>
-                        <!--
                         <toolkit:SettingsCard
                             Margin="0,4,0,0"
                             Description="Fit text within window by default"
@@ -143,7 +142,7 @@
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF87B;" />
                             </toolkit:SettingsCard.HeaderIcon>
                             <editor:IsSpellCheckEnabledSettingsControl />
-                        </toolkit:SettingsCard>-->
+                        </toolkit:SettingsCard>
                     </StackPanel>
                     <StackPanel
                         x:Name="AboutSection"

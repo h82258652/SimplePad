@@ -26,7 +26,7 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 
         DefaultStyleKey = typeof(OpenFileBehaviorComboBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Tabs.Settings.UWP/Controls/OpenFileBehaviorComboBox.xaml"
+            "ms-appx:///SimplePad.Tabs.Settings.UWP/OpenFileBehaviorComboBox.xaml"
         );
 
         ItemsSource = _items;

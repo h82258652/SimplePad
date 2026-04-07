@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontFamilyComboBox.xaml" />
-        <ResourceDictionary Source="ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontSizeComboBox.xaml" />
-        <ResourceDictionary Source="ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontStyleComboBox.xaml" />
+        <ResourceDictionary Source="ms-appx:///SimplePad.Fonts.Settings.UWP/FontFamilyComboBox.xaml" />
+        <ResourceDictionary Source="ms-appx:///SimplePad.Fonts.Settings.UWP/FontSizeComboBox.xaml" />
+        <ResourceDictionary Source="ms-appx:///SimplePad.Fonts.Settings.UWP/FontStyleComboBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

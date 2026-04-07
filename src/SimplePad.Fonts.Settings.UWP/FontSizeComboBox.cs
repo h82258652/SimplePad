@@ -41,7 +41,7 @@ public sealed partial class FontSizeComboBox : ComboBox
 
         DefaultStyleKey = typeof(FontSizeComboBox);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Fonts.Settings.UWP/Controls/FontSizeComboBox.xaml"
+            "ms-appx:///SimplePad.Fonts.Settings.UWP/FontSizeComboBox.xaml"
         );
 
         for (int i = AppFontSizeConstants.Minimum; i <= AppFontSizeConstants.Maximum; i++)
