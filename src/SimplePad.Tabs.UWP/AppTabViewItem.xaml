@@ -469,7 +469,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <menu:AppMenuBar />
+            <menu:AppMenuBar TextBox="{x:Bind TextBox}" />
             <Button Grid.Column="1" Click="Button_Click" />
             <!--  TODO menubar  -->
             <!--  TODO content control for settings button  -->
