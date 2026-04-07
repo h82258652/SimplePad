@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
+    xmlns:tabs="using:SimplePad.Tabs"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Padding="{ThemeResource TabViewHeaderPadding}"
     VerticalAlignment="Stretch"
@@ -191,4 +192,9 @@
             </Grid>
         </ControlTemplate>
     </winui:TabView.Template>
+    <winui:TabView.TabItemTemplate>
+        <DataTemplate>
+            <tabs:AppTabViewItem />
+        </DataTemplate>
+    </winui:TabView.TabItemTemplate>
 </winui:TabView>

@@ -16,7 +16,7 @@
         <Grid>
             <tabs:AppTabView x:Name="TabView">
                 <tabs:AppTabView.TitleBar>
-                    <Border x:Name="TitleBar" Background="Transparent" />
+                    <Border Background="Transparent" />
                 </tabs:AppTabView.TitleBar>
                 <tabs:AppTabView.TabStripHeader>
                     <Image
@@ -29,12 +29,6 @@
                 <tabs:AppTabView.TabStripFooter>
                     <Border Width="192" />
                 </tabs:AppTabView.TabStripFooter>
-                <tabs:AppTabView.TabItemTemplate>
-                    <DataTemplate>
-                        <tabs:AppTabViewItem />
-                        <!--<winui:TabViewItem />-->
-                    </DataTemplate>
-                </tabs:AppTabView.TabItemTemplate>
             </tabs:AppTabView>
             <!--<settings:SettingsView />-->
         </Grid>
