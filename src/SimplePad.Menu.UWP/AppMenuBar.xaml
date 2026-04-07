@@ -24,12 +24,12 @@
         <menu:ExitMenuFlyoutItem MinWidth="230" />
     </MenuBarItem>
     <MenuBarItem Title="Edit" Margin="4,0,0,0">
-        <menu:UndoMenuFlyoutItem MinWidth="230" />
+        <menu:UndoMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
-        <menu:CutMenuFlyoutItem MinWidth="230" />
-        <menu:CopyMenuFlyoutItem MinWidth="230" />
+        <menu:CutMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:CopyMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:SelectAllMenuFlyoutItem MinWidth="230" />
-        <menu:TimeDateMenuFlyoutItem MinWidth="230" />
+        <menu:TimeDateMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:FontMenuFlyoutItem MinWidth="230" SettingsState="{x:Bind SettingsState, Mode=OneWay}" />
     </MenuBarItem>
