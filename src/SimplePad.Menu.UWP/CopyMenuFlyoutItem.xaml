@@ -6,6 +6,7 @@
     xmlns:local="using:SimplePad.Menu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Click="OnClick"
+    IsEnabled="False"
     Text="Copy"
     mc:Ignorable="d">
     <MenuFlyoutItem.KeyboardAccelerators>
