@@ -5,7 +5,7 @@ namespace SimplePad.Editor;
 
 public sealed class SimplePadEditorUWPModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<SimplePadEditorUWPModule>();
+    public override DependsOn DependModules => DependsOn.Create<SimplePadEditorModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
