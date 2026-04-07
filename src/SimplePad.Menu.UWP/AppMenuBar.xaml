@@ -43,7 +43,10 @@
         <menu:FontMenuFlyoutItem MinWidth="230" SettingsState="{x:Bind SettingsState, Mode=OneWay}" />
     </MenuBarItem>
     <MenuBarItem Title="View" Margin="4,0,0,0">
-        <MenuFlyoutSubItem MinWidth="230" Text="Zoom">
+        <MenuFlyoutSubItem
+            MinWidth="230"
+            Style="{StaticResource DefaultMenuFlyoutSubItemStyle}"
+            Text="Zoom">
             <menu:ZoomInMenuFlyoutItem MinWidth="230" />
             <menu:ZoomOutMenuFlyoutItem MinWidth="230" />
             <menu:RestoreDefaultZoomMenuFlyoutItem MinWidth="230" />

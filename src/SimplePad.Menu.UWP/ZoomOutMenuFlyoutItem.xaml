@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Click="OnClick"
     KeyboardAcceleratorTextOverride="Ctrl+Minus"
+    Style="{StaticResource DefaultMenuFlyoutItemStyle}"
     Text="Zoom out"
     mc:Ignorable="d">
     <MenuFlyoutItem.KeyboardAccelerators>

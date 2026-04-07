@@ -6,6 +6,7 @@
     xmlns:local="using:SimplePad.Menu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Click="OnClick"
+    Style="{StaticResource DefaultMenuFlyoutItemStyle}"
     Text="Save all"
     mc:Ignorable="d">
     <MenuFlyoutItem.KeyboardAccelerators>

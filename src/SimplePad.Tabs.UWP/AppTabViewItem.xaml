@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:editor="using:SimplePad.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:menu="using:SimplePad.Menu"
     xmlns:statusBar="using:SimplePad.StatusBar"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
@@ -463,11 +464,13 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Height="50">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <menu:AppMenuBar />
+            <Button Grid.Column="1" Click="Button_Click" />
             <!--  TODO menubar  -->
             <!--  TODO content control for settings button  -->
         </Grid>

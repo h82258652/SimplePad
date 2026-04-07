@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
 using SimplePad.Editor;
+using SimplePad.Menu;
 using SimplePad.StatusBar;
 
 namespace SimplePad.Tabs;
@@ -9,6 +10,7 @@ public sealed class SimplePadTabsUWPModule : AppModuleBase
 {
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadTabsModule,
+        SimplePadMenuUWPModule,
         SimplePadEditorUWPModule,
         SimplePadStatusBarUWPModule>();
 

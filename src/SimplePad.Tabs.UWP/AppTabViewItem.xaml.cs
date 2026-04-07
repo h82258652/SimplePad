@@ -66,4 +66,9 @@ public sealed partial class AppTabViewItem : TabViewItem
 
         // TODO is modified to visible, otherwise to collapsed
     }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

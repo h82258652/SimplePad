@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Click="OnClick"
     IsEnabled="False"
+    Style="{StaticResource DefaultMenuFlyoutItemStyle}"
     Text="Copy"
     mc:Ignorable="d">
     <MenuFlyoutItem.KeyboardAccelerators>
