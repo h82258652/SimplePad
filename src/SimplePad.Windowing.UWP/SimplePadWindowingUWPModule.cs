@@ -9,6 +9,7 @@ namespace SimplePad.Windowing;
 public sealed class SimplePadWindowingUWPModule : AppModuleBase
 {
     public override DependsOn DependModules => DependsOn.Create<
+        SimplePadWindowingModule,
         SimplePadThemesUWPModule,
         SimplePadTabsUWPModule,
         SimplePadSettingsUWPModule>();
