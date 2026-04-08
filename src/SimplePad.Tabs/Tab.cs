@@ -1,4 +1,5 @@
 ﻿using SimplePad.File;
+using System;
 using System.Threading.Tasks;
 
 namespace SimplePad.Tabs;
@@ -9,6 +10,10 @@ public sealed class Tab
     {
         Root = root;
     }
+
+    public event EventHandler<bool>? IsModifiedChanged;
+
+    public bool IsModified { get; }
 
     public TabRoot Root { get; }
 
