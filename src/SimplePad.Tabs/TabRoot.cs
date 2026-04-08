@@ -10,4 +10,9 @@ public sealed class TabRoot
     {
         Tabs.Add(new Tab(this));
     }
+
+    public void AddTabFromFile(object file)
+    {
+        throw new System.NotImplementedException();
+    }
 }
