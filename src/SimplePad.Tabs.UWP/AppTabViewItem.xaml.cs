@@ -14,6 +14,8 @@ public sealed partial class AppTabViewItem : TabViewItem
         typeof(AppTabViewItem),
         new PropertyMetadata(null, OnTabChanged));
 
+    public static readonly DependencyProperty SettingsStateProperty;
+
     private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppTabViewItem self = (AppTabViewItem)d;
