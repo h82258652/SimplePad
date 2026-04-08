@@ -1,4 +1,5 @@
 ﻿using System;
+using SimplePad.File;
 using SimplePad.Tabs;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -42,8 +43,6 @@ public sealed partial class OpenMenuFlyoutItem : MenuFlyoutItem
             return;
         }
 
-        // TODO
-
-        tabRoot.AddTabFromFile(file);
+        tabRoot.AddTabFromFile(new UWPFile(file));
     }
 }

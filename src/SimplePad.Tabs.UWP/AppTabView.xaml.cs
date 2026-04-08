@@ -56,7 +56,7 @@ public sealed partial class AppTabView : TabView
 
     private void OnAddTabButtonClick(TabView sender, object args)
     {
-        TabRoot?.Add();
+        TabRoot?.AddBlankTab();
     }
 
     private void OnTabViewTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)

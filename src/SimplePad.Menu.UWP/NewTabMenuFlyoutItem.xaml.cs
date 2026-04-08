@@ -25,6 +25,6 @@ public sealed partial class NewTabMenuFlyoutItem : MenuFlyoutItem
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        TabRoot?.Add();
+        TabRoot?.AddBlankTab();
     }
 }

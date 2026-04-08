@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using SimplePad.File;
+using System.Collections.ObjectModel;
 
 namespace SimplePad.Tabs;
 
@@ -6,13 +7,13 @@ public sealed class TabRoot
 {
     public ObservableCollection<Tab> Tabs { get; } = [];
 
-    public void Add()
+    public void AddBlankTab()
     {
-        Tabs.Add(new Tab(this));
+        Tabs.Add(Tab.CreateBlank(this));
     }
 
-    public void AddTabFromFile(object file)
+    public void AddTabFromFile(IFile file)
     {
-        throw new System.NotImplementedException();
+        Tabs.Add(Tab.CreateFromFile(this, file));
     }
 }

@@ -9,11 +9,13 @@ public sealed partial class SettingsView : UserControl
         nameof(SettingsState),
         typeof(SettingsState),
         typeof(SettingsView),
-        null);
+        new PropertyMetadata(null, OnSettingsStateChanged));
 
     public SettingsView()
     {
         InitializeComponent();
+
+        UpdateVisibility();
     }
 
     public SettingsState? SettingsState
@@ -23,4 +25,22 @@ public sealed partial class SettingsView : UserControl
     }
 
     public UIElement TitleBar => TitleBarElement;
+
+    private static void OnSettingsStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        SettingsView self = (SettingsView)d;
+        self.UpdateVisibility();
+    }
+
+    private void UpdateVisibility()
+    {
+        if (SettingsState is { IsVisible: true })
+        {
+            Visibility = Visibility.Visible;
+        }
+        else
+        {
+            Visibility = Visibility.Collapsed;
+        }
+    }
 }

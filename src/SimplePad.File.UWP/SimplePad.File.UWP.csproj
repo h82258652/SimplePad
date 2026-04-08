@@ -11,4 +11,7 @@
 	<RootNamespace>SimplePad.File</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.File\SimplePad.File.csproj" />
+  </ItemGroup>
 </Project>

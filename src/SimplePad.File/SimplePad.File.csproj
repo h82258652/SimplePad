@@ -3,4 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
+  </ItemGroup>
 </Project>
