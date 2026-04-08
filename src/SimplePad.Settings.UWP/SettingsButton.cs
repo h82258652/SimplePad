@@ -16,7 +16,7 @@ public sealed partial class SettingsButton : Button
     {
         DefaultStyleKey = typeof(SettingsButton);
         DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Settings.UWP/Controls/SettingsButton.xaml"
+            "ms-appx:///SimplePad.Settings.UWP/SettingsButton.xaml"
         );
 
         Click += OnClick;

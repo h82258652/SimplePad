@@ -7,6 +7,7 @@
     xmlns:editor="using:SimplePad.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:menu="using:SimplePad.Menu"
+    xmlns:settings="using:SimplePad.Settings"
     xmlns:statusBar="using:SimplePad.StatusBar"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
@@ -470,9 +471,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <menu:AppMenuBar Tab="{x:Bind Tab, Mode=OneWay}" TextBox="{x:Bind TextBox}" />
-            <Button Grid.Column="1" />
-            <!--  TODO menubar  -->
-            <!--  TODO content control for settings button  -->
+            <settings:SettingsButton Grid.Column="1" />
         </Grid>
         <editor:AppTextBox x:Name="TextBox" Grid.Row="1" />
         <statusBar:AppStatusBar Grid.Row="2" TextBox="{x:Bind TextBox}" />

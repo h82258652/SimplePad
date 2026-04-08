@@ -2,6 +2,7 @@
 using SimplePad.Core.Modularity;
 using SimplePad.Editor;
 using SimplePad.Menu;
+using SimplePad.Settings;
 using SimplePad.StatusBar;
 
 namespace SimplePad.Tabs;
@@ -11,6 +12,7 @@ public sealed class SimplePadTabsUWPModule : AppModuleBase
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadTabsModule,
         SimplePadMenuUWPModule,
+        SimplePadSettingsUWPModule,
         SimplePadEditorUWPModule,
         SimplePadStatusBarUWPModule>();
 
