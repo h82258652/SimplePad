@@ -52,6 +52,7 @@
                 FontSize="12"
                 Text="Simple Pad" />
             <Border
+                x:Name="TitleBarElement"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Background="Transparent" />
