@@ -1,4 +1,6 @@
-﻿using SimplePad.Settings;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Settings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -14,7 +16,7 @@ public sealed partial class ShellView : UserControl
 
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
-        SettingsView.SettingsState = _settingsState;
+        //SettingsView.SettingsState = _settingsState;
 
         UpdateTitleBar();
 
@@ -36,5 +38,10 @@ public sealed partial class ShellView : UserControl
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateTitleBar();
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        _ = ServiceLocator.Current.GetRequiredService<IAppWindowManager>().ShowNewWindowAsync();
     }
 }

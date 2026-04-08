@@ -96,9 +96,11 @@
                         </toolkit:SettingsExpander>
                         <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
                         <toolkit:SettingsExpander
+                            x:Name="FontSettingsExpander"
                             Margin="0,12,0,0"
-                            Header="Font"
-                            IsExpanded="{x:Bind SettingsState.IsFontSettingsExpanded, Mode=OneWay}">
+                            Collapsed="FontSettingsExpander_Collapsed"
+                            Expanded="FontSettingsExpander_Expanded"
+                            Header="Font">
                             <toolkit:SettingsExpander.HeaderIcon>
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8D2;" />
                             </toolkit:SettingsExpander.HeaderIcon>

@@ -1,40 +1,48 @@
-﻿using Windows.UI.Xaml;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Settings;
 
 public sealed partial class SettingsView : UserControl
 {
-    public static readonly DependencyProperty SettingsStateProperty = DependencyProperty.Register(
-        nameof(SettingsState),
-        typeof(SettingsState),
-        typeof(SettingsView),
-        new PropertyMetadata(null, OnSettingsStateChanged));
+    private readonly SettingsState _settingsState;
 
     public SettingsView()
     {
+        _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
+
         InitializeComponent();
 
         UpdateVisibility();
+        UpdateXo();
+
+        _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
+        _settingsState.IsFontSettingsExpandedChanged += _settingsState_IsFontSettingsExpandedChanged;
     }
 
-    public SettingsState? SettingsState
+    private void UpdateXo()
     {
-        get => (SettingsState?)GetValue(SettingsStateProperty);
-        set => SetValue(SettingsStateProperty, value);
+        FontSettingsExpander.IsExpanded = _settingsState.IsFontSettingsExpanded;
+    }
+
+    private void _settingsState_IsFontSettingsExpandedChanged(object? sender, bool e)
+    {
+        UpdateXo();
+    }
+
+    private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
+    {
+        UpdateVisibility();
     }
 
     public UIElement TitleBar => TitleBarElement;
 
-    private static void OnSettingsStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        SettingsView self = (SettingsView)d;
-        self.UpdateVisibility();
-    }
-
     private void UpdateVisibility()
     {
-        if (SettingsState is { IsVisible: true })
+        if (_settingsState is { IsVisible: true })
         {
             Visibility = Visibility.Visible;
         }
@@ -42,5 +50,15 @@ public sealed partial class SettingsView : UserControl
         {
             Visibility = Visibility.Collapsed;
         }
+    }
+
+    private void FontSettingsExpander_Expanded(object sender, System.EventArgs e)
+    {
+        _settingsState.IsFontSettingsExpanded = true;
+    }
+
+    private void FontSettingsExpander_Collapsed(object sender, System.EventArgs e)
+    {
+        _settingsState.IsFontSettingsExpanded = false;
     }
 }

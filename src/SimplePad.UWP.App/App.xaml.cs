@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Windowing;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
@@ -19,12 +20,17 @@ namespace SimplePad.App
         /// Initializes the singleton application object. This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-        public App()
+        /// <param name="serviceProvider">TODO</param>
+        public App(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
+
             InitializeComponent();
 
             Suspending += OnSuspending;
         }
+
+        private readonly IServiceProvider _serviceProvider;
 
         /// <inheritdoc/>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -33,7 +39,7 @@ namespace SimplePad.App
             // just ensure that the window is active.
             if (Window.Current.Content is not ShellView shellView)
             {
-                IAppWindowManager appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
+                IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
 
                 // Create a Frame to act as the navigation context and navigate to the first page
                 shellView = new ShellView(appWindowManager.CreateAppWindow());

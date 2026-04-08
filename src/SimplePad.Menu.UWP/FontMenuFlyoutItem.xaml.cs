@@ -1,4 +1,6 @@
-﻿using SimplePad.Settings;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Settings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -6,29 +8,21 @@ namespace SimplePad.Menu;
 
 public sealed partial class FontMenuFlyoutItem : MenuFlyoutItem
 {
-    public static readonly DependencyProperty SettingsStateProperty = DependencyProperty.Register(
-        nameof(SettingsState),
-        typeof(SettingsState),
-        typeof(FontMenuFlyoutItem),
-        null);
+
+    private readonly SettingsState _settingsState;
 
     public FontMenuFlyoutItem()
     {
-        InitializeComponent();
-    }
+_settingsState =        ServiceLocator.Current.GetRequiredService<SettingsState>();
 
-    public SettingsState? SettingsState
-    {
-        get => (SettingsState?)GetValue(SettingsStateProperty);
-        set => SetValue(SettingsStateProperty, value);
+        InitializeComponent();
     }
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        if (SettingsState is { } settingsState)
         {
-            settingsState.IsVisible = true;
-            settingsState.IsFontSettingsExpanded = true;
+            _settingsState.IsVisible = true;
+            _settingsState.IsFontSettingsExpanded = true;
         }
     }
 }

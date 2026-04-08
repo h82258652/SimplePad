@@ -17,7 +17,7 @@ public static class Program
             .Create<SimplePadUWPAppModule>(() => Host.CreateDefaultBuilder(args))
             .Build();
         host.Start();
-        ServiceLocator.SetLocatorProvider(host.Services);
+        //ServiceLocator.SetLocatorProvider(host.Services);
 
         Application.Start(
             (p) =>
@@ -26,7 +26,7 @@ public static class Program
                     DispatcherQueue.GetForCurrentThread()
                 );
                 SynchronizationContext.SetSynchronizationContext(context);
-                _ = new App();
+                _ = new App(host.Services);
             }
         );
     }

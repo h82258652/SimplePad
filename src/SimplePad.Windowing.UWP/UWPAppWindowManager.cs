@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
@@ -15,8 +19,31 @@ public sealed class UWPAppWindowManager : IAppWindowManager
 
     public IReadOnlyList<IAppWindow> Instances => _instances;
 
+    private readonly IServiceProvider _serviceProvider;
+
+    public UWPAppWindowManager(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
+    private static readonly HashSet<int> _ddd = [];
+
     public IAppWindow CreateAppWindow()
     {
+        var agagh = Thread.CurrentThread.ManagedThreadId;
+        var ghgg = System.Threading.SynchronizationContext.Current;
+
+        if (_ddd.Contains(agagh))
+        {
+            Debugger.Break();
+        }
+
+        _ddd.Add(agagh);
+
+        var s = _serviceProvider.CreateScope();
+        ServiceLocator.SetLocatorProvider(s.ServiceProvider);
+        // todo dispose ?
+
         UWPAppWindow instance = new(this);
         _instances.Add(instance);
         return instance;

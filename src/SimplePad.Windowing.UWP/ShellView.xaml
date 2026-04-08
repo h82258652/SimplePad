@@ -31,6 +31,11 @@
                 </tabs:AppTabView.TabStripFooter>
             </tabs:AppTabView>
             <settings:SettingsView x:Name="SettingsView" />
+            <Button
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="Button_Click"
+                Content="Test" />
         </Grid>
     </themes:ThemeContainer>
 </UserControl>
