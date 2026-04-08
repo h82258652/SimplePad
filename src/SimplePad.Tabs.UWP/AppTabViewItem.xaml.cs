@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml;
@@ -11,7 +12,17 @@ public sealed partial class AppTabViewItem : TabViewItem
         nameof(Tab),
         typeof(Tab),
         typeof(AppTabViewItem),
-        null);
+        new PropertyMetadata(null, OnTabChanged));
+
+    private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppTabViewItem self = (AppTabViewItem)d;
+        var oldTab = (Tab?)e.OldValue;
+    // TODO
+
+        var newTab = (Tab?)e.NewValue;
+    // TODO
+    }
 
     private const string CommonStatesGroupName = "CommonStates";
     private const string LayoutRootTemplateName = "LayoutRoot";
@@ -76,6 +87,13 @@ public sealed partial class AppTabViewItem : TabViewItem
             return;
         }
 
-        // TODO is modified to visible, otherwise to collapsed
+        if (Tab is { IsModified: true })
+        {
+            modifiedIndicator.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            modifiedIndicator.Visibility = Visibility.Collapsed;
+        }
     }
 }
