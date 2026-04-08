@@ -14,20 +14,27 @@ public sealed partial class ShellView : UserControl
 
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
+        SettingsView.SettingsState = _settingsState;
 
-        Window.Current.SetTitleBar(TabView.TitleBar);
+        UpdateTitleBar();
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
     }
 
-    private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
+    private void UpdateTitleBar()
     {
         if (_settingsState.IsVisible)
         {
+            Window.Current.SetTitleBar(SettingsView.TitleBar);
         }
         else
         {
             Window.Current.SetTitleBar(TabView.TitleBar);
         }
+    }
+
+    private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
+    {
+        UpdateTitleBar();
     }
 }

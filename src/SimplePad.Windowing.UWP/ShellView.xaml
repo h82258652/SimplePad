@@ -30,7 +30,7 @@
                     <Border Width="192" />
                 </tabs:AppTabView.TabStripFooter>
             </tabs:AppTabView>
-            <settings:SettingsView />
+            <settings:SettingsView x:Name="SettingsView" />
         </Grid>
     </themes:ThemeContainer>
 </UserControl>

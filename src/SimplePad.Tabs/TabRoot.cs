@@ -1,19 +1,47 @@
 ﻿using SimplePad.File;
+using System;
 using System.Collections.ObjectModel;
 
 namespace SimplePad.Tabs;
 
 public sealed class TabRoot
 {
-    public ObservableCollection<Tab> Tabs { get; } = [];
+    private Tab? _selectedTab;
+
+    public TabRoot()
+    {
+        Tabs = [];
+        AddBlankTab();
+    }
+
+    public event EventHandler<Tab?>? SelectedTabChanged;
+
+    public Tab? SelectedTab
+    {
+        get => _selectedTab;
+        set
+        {
+            if (_selectedTab != value)
+            {
+                _selectedTab = value;
+                SelectedTabChanged?.Invoke(this, value);
+            }
+        }
+    }
+
+    public ObservableCollection<Tab> Tabs { get; }
 
     public void AddBlankTab()
     {
-        Tabs.Add(Tab.CreateBlank(this));
+        Tab newTab = Tab.CreateBlank(this);
+        Tabs.Add(newTab);
+        SelectedTab = newTab;
     }
 
     public void AddTabFromFile(IFile file)
     {
-        Tabs.Add(Tab.CreateFromFile(this, file));
+        Tab newTab = Tab.CreateFromFile(this, file);
+        Tabs.Add(newTab);
+        SelectedTab = newTab;
     }
 }
