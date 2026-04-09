@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -6,14 +8,12 @@ namespace SimplePad.Settings;
 
 public sealed partial class SettingsButton : Button
 {
-    public static readonly DependencyProperty SettingsStateProperty = DependencyProperty.Register(
-        nameof(SettingsState),
-        typeof(SettingsState),
-        typeof(SettingsButton),
-        null);
+    private readonly SettingsState _settingsState;
 
     public SettingsButton()
     {
+        _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
+
         DefaultStyleKey = typeof(SettingsButton);
         DefaultStyleResourceUri = new Uri(
             "ms-appx:///SimplePad.Settings.UWP/SettingsButton.xaml"
@@ -22,14 +22,8 @@ public sealed partial class SettingsButton : Button
         Click += OnClick;
     }
 
-    public SettingsState? SettingsState
-    {
-        get => (SettingsState?)GetValue(SettingsStateProperty);
-        set => SetValue(SettingsStateProperty, value);
-    }
-
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        SettingsState?.IsVisible = true;
+        _settingsState.IsVisible = true;
     }
 }

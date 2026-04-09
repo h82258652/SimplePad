@@ -17,20 +17,27 @@ public sealed partial class SettingsView : UserControl
         InitializeComponent();
 
         UpdateVisibility();
-        UpdateXo();
+        UpdateFontSettingsExpander();
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
-        _settingsState.IsFontSettingsExpandedChanged += _settingsState_IsFontSettingsExpandedChanged;
+        _settingsState.IsFontSettingsExpandedChanged += OnSettingsStateIsFontSettingsExpandedChanged;
     }
 
-    private void UpdateXo()
+    public UIElement TitleBar => TitleBarElement;
+
+    private void OnFontSettingsExpanderCollapsed(object sender, EventArgs e)
     {
-        FontSettingsExpander.IsExpanded = _settingsState.IsFontSettingsExpanded;
+        _settingsState.IsFontSettingsExpanded = false;
     }
 
-    private void _settingsState_IsFontSettingsExpandedChanged(object? sender, bool e)
+    private void OnFontSettingsExpanderExpanded(object sender, EventArgs e)
     {
-        UpdateXo();
+        _settingsState.IsFontSettingsExpanded = true;
+    }
+
+    private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)
+    {
+        UpdateFontSettingsExpander();
     }
 
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
@@ -38,7 +45,10 @@ public sealed partial class SettingsView : UserControl
         UpdateVisibility();
     }
 
-    public UIElement TitleBar => TitleBarElement;
+    private void UpdateFontSettingsExpander()
+    {
+        FontSettingsExpander.IsExpanded = _settingsState.IsFontSettingsExpanded;
+    }
 
     private void UpdateVisibility()
     {
@@ -50,15 +60,5 @@ public sealed partial class SettingsView : UserControl
         {
             Visibility = Visibility.Collapsed;
         }
-    }
-
-    private void FontSettingsExpander_Expanded(object sender, System.EventArgs e)
-    {
-        _settingsState.IsFontSettingsExpanded = true;
-    }
-
-    private void FontSettingsExpander_Collapsed(object sender, System.EventArgs e)
-    {
-        _settingsState.IsFontSettingsExpanded = false;
     }
 }

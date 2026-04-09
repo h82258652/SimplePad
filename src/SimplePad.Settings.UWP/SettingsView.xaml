@@ -98,8 +98,8 @@
                         <toolkit:SettingsExpander
                             x:Name="FontSettingsExpander"
                             Margin="0,12,0,0"
-                            Collapsed="FontSettingsExpander_Collapsed"
-                            Expanded="FontSettingsExpander_Expanded"
+                            Collapsed="OnFontSettingsExpanderCollapsed"
+                            Expanded="OnFontSettingsExpanderExpanded"
                             Header="Font">
                             <toolkit:SettingsExpander.HeaderIcon>
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8D2;" />
