@@ -27,6 +27,23 @@
                     <VisualState.Setters>
                         <Setter Target="TitleText.Margin" Value="0,22" />
                         <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="958" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitleText.Margin" Value="0,22" />
+                        <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
+                        <Setter Target="SettingsSection.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="SettingsSection.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="AboutSection.(Grid.Column)" Value="1" />
+                        <Setter Target="AboutSection.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="AboutSection.(Grid.Row)" Value="0" />
+                        <Setter Target="AboutSection.(Grid.RowSpan)" Value="2" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
