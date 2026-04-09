@@ -7,7 +7,9 @@ namespace SimplePad.Tabs;
 public sealed class Tab
 {
     private string _content = string.Empty;
+    private IFile? _file;
     private bool _isModified;
+    private string _originalContent = string.Empty;
     private string _title = TabConstants.DefaultTabTitle;
 
     private Tab(TabRoot root)
@@ -64,12 +66,39 @@ public sealed class Tab
         }
     }
 
-    private IFile? File { get; set; }
+    internal IFile? File
+    {
+        get => _file;
+        set
+        {
+            if (_file != value)
+            {
+                _file = value;
+                UpdateTitle();
+            }
+        }
+    }
 
-    private string OriginalContent { get; set; } = string.Empty;
+    internal string OriginalContent
+    {
+        get => _originalContent;
+        set
+        {
+            if (_originalContent != value)
+            {
+                _originalContent = value;
+                UpdateIsModified();
+            }
+        }
+    }
 
     public void Close()
     {
+        if (IsModified)
+        {
+            // TODO: Prompt to save changes
+        }
+
         Root.Tabs.Remove(this);
     }
 
