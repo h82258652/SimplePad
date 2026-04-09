@@ -44,7 +44,11 @@ public sealed partial class CopyMenuFlyoutItem : MenuFlyoutItem
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        TextBox?.CopySelectionToClipboard();
+        if (TextBox is { } textBox)
+        {
+            textBox.CopySelectionToClipboard();
+            textBox.Focus();
+        }
     }
 
     private void OnTextBoxSelectionChanged(object? sender, EventArgs e)

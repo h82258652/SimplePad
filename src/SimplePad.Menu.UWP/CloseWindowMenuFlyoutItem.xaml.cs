@@ -14,6 +14,7 @@ public sealed partial class CloseWindowMenuFlyoutItem : MenuFlyoutItem
 
     private async void OnClick(object sender, RoutedEventArgs e)
     {
+        // TODO move to window manager
         _ = await ApplicationView.GetForCurrentView().TryConsolidateAsync();
     }
 }

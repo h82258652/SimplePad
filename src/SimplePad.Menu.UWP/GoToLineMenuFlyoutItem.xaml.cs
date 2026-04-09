@@ -25,8 +25,6 @@ public sealed partial class GoToLineMenuFlyoutItem : MenuFlyoutItem
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        if (TextBox is { } textBox)
-        {
-        }
+        TextBox?.GoToLine();
     }
 }

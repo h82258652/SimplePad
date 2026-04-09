@@ -2,9 +2,9 @@
 
 namespace SimplePad.Editor;
 
-public sealed partial class GoToLineDialog : ContentDialog
+internal sealed partial class GoToLineDialog : ContentDialog
 {
-    public GoToLineDialog(int currentLine, int maxLine)
+    internal GoToLineDialog(int currentLine, int maxLine)
     {
         InitializeComponent();
 
@@ -12,7 +12,7 @@ public sealed partial class GoToLineDialog : ContentDialog
         LineNumberBox.Maximum = maxLine;
     }
 
-    public int LineNumber { get; private set; }
+    internal int LineNumber { get; private set; }
 
     private void OnPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
     {

@@ -96,6 +96,38 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         set => SetValue(ZoomedFontSizeProperty, value);
     }
 
+    public void Focus()
+    {
+        Focus(FocusState.Programmatic);
+    }
+
+    public async void GoToLine()
+    {
+        string text = Text;
+        int totalLines = text.Split('\r').Length;
+
+        GoToLineDialog goToLineDialog = new(CursorPosition.Row, totalLines);
+        ContentDialogResult dialogResult = await goToLineDialog.ShowAsync();
+        if (dialogResult == ContentDialogResult.Primary)
+        {
+            int selectionStart = 0;
+            int row = 1;
+
+            for (int i = 0; i < text.Length && row < goToLineDialog.LineNumber; i++)
+            {
+                char c = text[i];
+                selectionStart++;
+
+                if (c == '\r')
+                {
+                    row++;
+                }
+            }
+
+            SelectionStart = selectionStart;
+        }
+    }
+
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();

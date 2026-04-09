@@ -28,6 +28,10 @@ public interface IAppTextBox
 
     void CutSelectionToClipboard();
 
+    void Focus();
+
+    void GoToLine();
+
     void PasteFromClipboard();
 
     void SelectAll();

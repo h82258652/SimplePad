@@ -44,7 +44,11 @@ public sealed partial class CutMenuFlyoutItem : MenuFlyoutItem
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        TextBox?.CutSelectionToClipboard();
+        if (TextBox is { } textBox)
+        {
+            textBox.CutSelectionToClipboard();
+            textBox.Focus();
+        }
     }
 
     private void OnTextBoxSelectionChanged(object? sender, EventArgs e)
