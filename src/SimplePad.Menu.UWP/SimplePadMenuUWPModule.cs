@@ -12,10 +12,10 @@ public sealed class SimplePadMenuUWPModule : AppModuleBase
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadMenuModule,
         SimplePadWindowingModule,
-        SimplePadFileUWPModule,
         SimplePadEditorModule,
         SimplePadSettingsModule,
-        SimplePadStatusBarModule>();
+        SimplePadStatusBarModule,
+        SimplePadFileUWPModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

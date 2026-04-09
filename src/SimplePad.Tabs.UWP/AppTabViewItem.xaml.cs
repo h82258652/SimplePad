@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml;
@@ -13,18 +12,6 @@ public sealed partial class AppTabViewItem : TabViewItem
         typeof(Tab),
         typeof(AppTabViewItem),
         new PropertyMetadata(null, OnTabChanged));
-
-    public static readonly DependencyProperty SettingsStateProperty;
-
-    private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        AppTabViewItem self = (AppTabViewItem)d;
-        var oldTab = (Tab?)e.OldValue;
-    // TODO
-
-        var newTab = (Tab?)e.NewValue;
-    // TODO
-    }
 
     private const string CommonStatesGroupName = "CommonStates";
     private const string LayoutRootTemplateName = "LayoutRoot";
@@ -65,6 +52,21 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
     }
 
+    private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppTabViewItem self = (AppTabViewItem)d;
+        Tab? oldTab = (Tab?)e.OldValue;
+        if (oldTab is not null)
+        {
+            // TODO
+        }
+
+        Tab? newTab = (Tab?)e.NewValue;
+        if (newTab is not null)
+        {
+            // TODO
+        }
+    }
     private void OnCommonStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
     {
         UpdateModifiedIndicatorVisibility();
