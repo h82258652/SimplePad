@@ -6,7 +6,7 @@ using Windows.Storage;
 
 namespace SimplePad.Editor;
 
-public sealed class UWPEditorSettings : AppSettingsBase, IEditorSettings
+internal sealed class UWPEditorSettings : AppSettingsBase, IEditorSettings
 {
     private bool _isSpellCheckEnabled = true;
     private bool _isWordWrap = true;
