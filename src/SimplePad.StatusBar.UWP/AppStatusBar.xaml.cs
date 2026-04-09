@@ -18,8 +18,8 @@ public sealed partial class AppStatusBar : UserControl
         new PropertyMetadata(null, OnTextBoxChanged)
     );
 
+    private readonly CoreDispatcher _dispatcher;
     private readonly EditorZoomState _editorZoomState;
-
     private readonly IStatusBarSettings _statusBarSettings;
 
     public AppStatusBar()
@@ -68,8 +68,6 @@ public sealed partial class AppStatusBar : UserControl
         self.UpdateCursorPositionIndicator();
         self.UpdateCharacterIndicator();
     }
-
-    private readonly CoreDispatcher _dispatcher;
 
     private async void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
     {
