@@ -12,11 +12,10 @@ public sealed partial class ShellView : UserControl
 
     public ShellView(IAppWindow appWindow)
     {
-        _settingsState = appWindow.SettingsState;
+        _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
-        //SettingsView.SettingsState = _settingsState;
 
         UpdateTitleBar();
 
