@@ -1,4 +1,6 @@
-﻿using SimplePad.Tabs;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Tabs;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -12,8 +14,12 @@ public sealed partial class SaveAllMenuFlyoutItem : MenuFlyoutItem
         typeof(SaveAllMenuFlyoutItem),
         null);
 
+    private readonly TabManager _tabManager;
+
     public SaveAllMenuFlyoutItem()
     {
+        _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
+
         InitializeComponent();
     }
 
@@ -23,7 +29,19 @@ public sealed partial class SaveAllMenuFlyoutItem : MenuFlyoutItem
         set => SetValue(TabRootProperty, value);
     }
 
-    private void OnClick(object sender, RoutedEventArgs e)
+    private async void OnClick(object sender, RoutedEventArgs e)
     {
+        if (TabRoot is not { } tabRoot)
+        {
+            return;
+        }
+
+        foreach (Tab tab in tabRoot.Tabs)
+        {
+            if (!await _tabManager.SaveAsync(tab))
+            {
+                return;
+            }
+        }
     }
 }

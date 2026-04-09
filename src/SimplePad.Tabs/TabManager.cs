@@ -12,28 +12,42 @@ public sealed class TabManager
         _filePickerService = filePickerService;
     }
 
-    public async Task SaveAsync(Tab tab)
+    public async Task<bool> SaveAsync(Tab tab)
     {
         if (!tab.IsModified)
         {
-            return;
+            return true;
         }
 
         if (tab.File is not null)
         {
             await tab.File.WriteAllTextAsync(tab.Content);
             tab.OriginalContent = tab.Content;
-            return;
+            return true;
         }
 
         IFile? file = await _filePickerService.PickSaveFileAsync();
         if (file is null)
         {
-            return;
+            return false;
         }
 
         await file.WriteAllTextAsync(tab.Content);
         tab.File = file;
         tab.OriginalContent = tab.Content;
+        return true;
+    }
+
+    public async Task<bool> CloseAsync(Tab tab)
+    {
+        if (!tab.IsModified)
+        {
+            tab.Root.Tabs.Remove(tab);
+            return true;
+        }
+
+        // TODO dialog
+
+        return false;
     }
 }
