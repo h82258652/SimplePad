@@ -67,6 +67,7 @@ public sealed partial class AppTabViewItem : TabViewItem
             // TODO
         }
     }
+
     private void OnCommonStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
     {
         UpdateModifiedIndicatorVisibility();

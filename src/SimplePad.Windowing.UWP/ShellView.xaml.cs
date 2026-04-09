@@ -17,9 +17,28 @@ public sealed partial class ShellView : UserControl
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
 
+        UpdateTabViewVisibility();
         UpdateTitleBar();
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
+    }
+
+    private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
+    {
+        UpdateTabViewVisibility();
+        UpdateTitleBar();
+    }
+
+    private void UpdateTabViewVisibility()
+    {
+        if (_settingsState.IsVisible)
+        {
+            TabView.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            TabView.Visibility = Visibility.Visible;
+        }
     }
 
     private void UpdateTitleBar()
@@ -32,15 +51,5 @@ public sealed partial class ShellView : UserControl
         {
             Window.Current.SetTitleBar(TabView.TitleBar);
         }
-    }
-
-    private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
-    {
-        UpdateTitleBar();
-    }
-
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-        _ = ServiceLocator.Current.GetRequiredService<IAppWindowManager>().ShowNewWindowAsync();
     }
 }
