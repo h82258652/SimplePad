@@ -1,9 +1,12 @@
 ﻿using SimplePad.Core.Modularity;
+using SimplePad.File;
 using SimplePad.Windowing;
 
 namespace SimplePad.App;
 
 public sealed class SimplePadUWPAppModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<SimplePadWindowingUWPModule>();
+    public override DependsOn DependModules => DependsOn.Create<
+        SimplePadWindowingUWPModule,
+        SimplePadFileUWPModule>();
 }

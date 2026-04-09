@@ -15,7 +15,7 @@ public sealed class SimplePadMenuUWPModule : AppModuleBase
         SimplePadEditorModule,
         SimplePadSettingsModule,
         SimplePadStatusBarModule,
-        SimplePadFileUWPModule>();
+        SimplePadFileModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

@@ -1,11 +1,8 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.File;
 using SimplePad.Tabs;
 using SimplePad.Windowing;
-using Windows.Storage;
-using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -21,11 +18,13 @@ public sealed partial class OpenMenuFlyoutItem : MenuFlyoutItem
 
     private readonly ITabsSettings _tabSettings;
     private readonly IAppWindowManager _appWindowManager;
+    private readonly IFilePickerService _filePickerService;
 
     public OpenMenuFlyoutItem()
     {
         _tabSettings = ServiceLocator.Current.GetRequiredService<ITabsSettings>();
         _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
+        _filePickerService = ServiceLocator.Current.GetRequiredService<IFilePickerService>();
 
         InitializeComponent();
     }
@@ -43,10 +42,7 @@ public sealed partial class OpenMenuFlyoutItem : MenuFlyoutItem
             return;
         }
 
-        FileOpenPicker fileOpenPicker = new();
-        fileOpenPicker.FileTypeFilter.Add(".txt");
-        fileOpenPicker.FileTypeFilter.Add("*");
-        StorageFile? file = await fileOpenPicker.PickSingleFileAsync();
+        IFile? file = await _filePickerService.PickOpenFileAsync();
         if (file is null)
         {
             return;
@@ -54,12 +50,12 @@ public sealed partial class OpenMenuFlyoutItem : MenuFlyoutItem
 
         if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewTab)
         {
-            tabRoot.AddTabFromFile(new UWPFile(file));
+            tabRoot.AddTabFromFile(file);
         }
         else if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewWindow)
         {
             IAppWindow newAppWindow = await _appWindowManager.ShowNewWindowAsync();
-            newAppWindow.Execute(appWindow => appWindow.TabRoot.AddTabFromFile(new UWPFile(file)));
+            newAppWindow.Execute(appWindow => appWindow.TabRoot.AddTabFromFile(file));
         }
     }
 }

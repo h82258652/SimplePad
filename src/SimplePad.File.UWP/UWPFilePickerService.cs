@@ -8,6 +8,20 @@ namespace SimplePad.File;
 
 internal sealed class UWPFilePickerService : IFilePickerService
 {
+    public async Task<IFile?> PickOpenFileAsync()
+    {
+        FileOpenPicker fileOpenPicker = new();
+        fileOpenPicker.FileTypeFilter.Add(".txt");
+        fileOpenPicker.FileTypeFilter.Add("*");
+        StorageFile? file = await fileOpenPicker.PickSingleFileAsync();
+        if (file is null)
+        {
+            return null;
+        }
+
+        return new UWPFile(file);
+    }
+
     public async Task<IFile?> PickSaveFileAsync()
     {
         FileSavePicker fileSavePicker = new();

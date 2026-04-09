@@ -17,7 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
-    <ProjectReference Include="..\SimplePad.File.UWP\SimplePad.File.UWP.csproj" />
+    <ProjectReference Include="..\SimplePad.File\SimplePad.File.csproj" />
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />

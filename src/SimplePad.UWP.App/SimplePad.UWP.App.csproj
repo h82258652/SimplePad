@@ -17,6 +17,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.File.UWP\SimplePad.File.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing.UWP\SimplePad.Windowing.UWP.csproj" />
   </ItemGroup>
 </Project>
