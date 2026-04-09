@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
+using SimplePad.Editor;
 using SimplePad.StatusBar;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -10,6 +11,12 @@ namespace SimplePad.Menu;
 
 public sealed partial class IsStatusBarVisibleToggleMenuFlyoutItem : ToggleMenuFlyoutItem
 {
+    public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
+        nameof(TextBox),
+        typeof(IAppTextBox),
+        typeof(IsStatusBarVisibleToggleMenuFlyoutItem),
+        null);
+
     private readonly CoreDispatcher _dispatcher;
     private readonly IStatusBarSettings _statusBarSettings;
 
@@ -25,9 +32,16 @@ public sealed partial class IsStatusBarVisibleToggleMenuFlyoutItem : ToggleMenuF
         _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
     }
 
+    public IAppTextBox? TextBox
+    {
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
+        set => SetValue(TextBoxProperty, value);
+    }
+
     private void OnClick(object sender, RoutedEventArgs e)
     {
         _statusBarSettings.IsStatusBarVisible = IsChecked;
+        TextBox?.Focus();
     }
 
     private async void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
