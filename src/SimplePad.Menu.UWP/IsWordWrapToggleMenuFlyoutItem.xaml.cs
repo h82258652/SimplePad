@@ -10,12 +10,12 @@ namespace SimplePad.Menu;
 
 public sealed partial class IsWordWrapToggleMenuFlyoutItem : ToggleMenuFlyoutItem
 {
-    private readonly CoreDispatcher _coreDispatcher;
+    private readonly CoreDispatcher _dispatcher;
     private readonly IEditorSettings _editorSettings;
 
     public IsWordWrapToggleMenuFlyoutItem()
     {
-        _coreDispatcher = Dispatcher;
+        _dispatcher = Dispatcher;
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
 
         InitializeComponent();
@@ -32,7 +32,7 @@ public sealed partial class IsWordWrapToggleMenuFlyoutItem : ToggleMenuFlyoutIte
 
     private async void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
     {
-        await _coreDispatcher.SafeRunAsync(UpdateIsChecked);
+        await _dispatcher.SafeRunAsync(UpdateIsChecked);
     }
 
     private void UpdateIsChecked()

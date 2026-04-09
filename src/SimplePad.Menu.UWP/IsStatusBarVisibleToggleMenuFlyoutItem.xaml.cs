@@ -10,12 +10,12 @@ namespace SimplePad.Menu;
 
 public sealed partial class IsStatusBarVisibleToggleMenuFlyoutItem : ToggleMenuFlyoutItem
 {
-    private readonly CoreDispatcher _coreDispatcher;
+    private readonly CoreDispatcher _dispatcher;
     private readonly IStatusBarSettings _statusBarSettings;
 
     public IsStatusBarVisibleToggleMenuFlyoutItem()
     {
-        _coreDispatcher = Dispatcher;
+        _dispatcher = Dispatcher;
         _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
 
         InitializeComponent();
@@ -32,7 +32,7 @@ public sealed partial class IsStatusBarVisibleToggleMenuFlyoutItem : ToggleMenuF
 
     private async void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
     {
-        await _coreDispatcher.SafeRunAsync(UpdateIsChecked);
+        await _dispatcher.SafeRunAsync(UpdateIsChecked);
     }
 
     private void UpdateIsChecked()

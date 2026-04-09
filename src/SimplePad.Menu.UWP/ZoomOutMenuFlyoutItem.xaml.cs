@@ -10,12 +10,12 @@ namespace SimplePad.Menu;
 
 public sealed partial class ZoomOutMenuFlyoutItem : MenuFlyoutItem
 {
-    private readonly CoreDispatcher _coreDispatcher;
+    private readonly CoreDispatcher _dispatcher;
     private readonly EditorZoomState _editorZoomState;
 
     public ZoomOutMenuFlyoutItem()
     {
-        _coreDispatcher = Dispatcher;
+        _dispatcher = Dispatcher;
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         InitializeComponent();
@@ -32,7 +32,7 @@ public sealed partial class ZoomOutMenuFlyoutItem : MenuFlyoutItem
 
     private async void OnEditorZoomStateCanZoomOutChanged(object? sender, bool e)
     {
-        await _coreDispatcher.SafeRunAsync(UpdateIsEnabled);
+        await _dispatcher.SafeRunAsync(UpdateIsEnabled);
     }
 
     private void UpdateIsEnabled()
