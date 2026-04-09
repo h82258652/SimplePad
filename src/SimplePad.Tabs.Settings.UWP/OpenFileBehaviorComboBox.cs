@@ -11,7 +11,7 @@ namespace SimplePad.Tabs;
 public sealed partial class OpenFileBehaviorComboBox : ComboBox
 {
     private readonly CoreDispatcher _dispatcher;
-    private readonly OpenFileBehaviorComboBoxItem[] _items;
+    private readonly OpenFileBehavior[] _items;
     private readonly ITabsSettings _multiTabSettings;
 
     public OpenFileBehaviorComboBox()
@@ -20,8 +20,8 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
         _multiTabSettings = ServiceLocator.Current.GetRequiredService<ITabsSettings>();
         _items =
         [
-            new OpenFileBehaviorComboBoxItem(OpenFileBehavior.NewTab, "Open in a new tab"),
-            new OpenFileBehaviorComboBoxItem(OpenFileBehavior.NewWindow, "Open in a new window"),
+            OpenFileBehavior.NewTab,
+            OpenFileBehavior.NewWindow
         ];
 
         DefaultStyleKey = typeof(OpenFileBehaviorComboBox);
@@ -43,9 +43,9 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (SelectedItem is OpenFileBehaviorComboBoxItem selectedItem)
+        if (SelectedItem is OpenFileBehavior selectedItem)
         {
-            _multiTabSettings.OpenFileBehavior = selectedItem.Value;
+            _multiTabSettings.OpenFileBehavior = selectedItem;
         }
     }
 

@@ -30,7 +30,7 @@ public sealed class UWPTabsSettings : AppSettingsBase, ITabsSettings
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
         if (settingsValue.TryGetValue(nameof(OpenFileBehavior), out object? openFileBehavior))
         {
-            OpenFileBehavior = (OpenFileBehavior)openFileBehavior;
+            OpenFileBehavior = OpenFileBehavior.FromValue((int)openFileBehavior);
         }
 
         return Task.CompletedTask;
@@ -39,7 +39,7 @@ public sealed class UWPTabsSettings : AppSettingsBase, ITabsSettings
     public override Task SaveAsync()
     {
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
-        settingsValue[nameof(OpenFileBehavior)] = (int)OpenFileBehavior;
+        settingsValue[nameof(OpenFileBehavior)] = OpenFileBehavior.Value;
 
         return Task.CompletedTask;
     }
