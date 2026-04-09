@@ -11,6 +11,11 @@ public sealed class Tab
         Root = root;
     }
 
+    public void Close()
+    {
+        // TODO
+    }
+
     public event EventHandler<bool>? IsModifiedChanged;
 
     public bool IsModified { get; }

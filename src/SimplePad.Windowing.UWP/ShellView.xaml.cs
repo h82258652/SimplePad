@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Settings;
+using SimplePad.Themes;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Windowing;
 
-public sealed partial class ShellView : UserControl
+public sealed partial class ShellView : ThemeContainer
 {
     private readonly SettingsState _settingsState;
 

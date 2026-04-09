@@ -86,8 +86,7 @@ public sealed partial class AppTabView : TabView
     {
         if (args.Item is Tab tab)
         {
-            // TODO
-            //tab.Close();
+            tab.Close();
         }
     }
 
