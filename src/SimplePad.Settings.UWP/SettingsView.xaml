@@ -14,6 +14,13 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///SimplePad.Settings.UWP/AppSettingsExpanderStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="44" />
@@ -102,7 +109,8 @@
                         <toolkit:SettingsExpander
                             Margin="0,12,0,0"
                             Description="Select which app theme to display"
-                            Header="App theme">
+                            Header="App theme"
+                            Style="{StaticResource AppSettingsExpanderStyle}">
                             <toolkit:SettingsExpander.HeaderIcon>
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE790;" />
                             </toolkit:SettingsExpander.HeaderIcon>
