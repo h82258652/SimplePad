@@ -1,6 +1,7 @@
 ﻿using SimplePad.Core.Modularity;
 using SimplePad.Editor;
 using SimplePad.File;
+using SimplePad.Search;
 using SimplePad.Settings;
 using SimplePad.StatusBar;
 using SimplePad.Windowing;
@@ -15,7 +16,8 @@ public sealed class SimplePadMenuUWPModule : AppModuleBase
         SimplePadEditorModule,
         SimplePadSettingsModule,
         SimplePadStatusBarModule,
-        SimplePadFileModule>();
+        SimplePadFileModule,
+        SimplePadSearchModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

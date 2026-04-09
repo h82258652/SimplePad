@@ -25,6 +25,10 @@ public sealed partial class PasteMenuFlyoutItem : MenuFlyoutItem
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        TextBox?.PasteFromClipboard();
+        if (TextBox is { } textBox)
+        {
+            textBox.PasteFromClipboard();
+            textBox.Focus();
+        }
     }
 }
