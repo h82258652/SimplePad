@@ -43,7 +43,11 @@ public sealed partial class UndoMenuFlyoutItem : MenuFlyoutItem
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        TextBox?.Undo();
+        if (TextBox is { } textBox)
+        {
+            textBox.Undo();
+            textBox.Focus();
+        }
     }
 
     private void OnTextBoxCanUndoChanged(object? sender, bool e)
