@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Tabs;
 
@@ -58,19 +59,55 @@ public sealed partial class AppTabViewItem : TabViewItem
         Tab? oldTab = (Tab?)e.OldValue;
         if (oldTab is not null)
         {
-            // TODO
+            oldTab.TitleChanged -= self.OnTabTitleChanged;
+            oldTab.IsModifiedChanged -= self.OnTabIsModifiedChanged;
+            oldTab.ContentChanged -= self.OnTabContentChanged;
         }
 
         Tab? newTab = (Tab?)e.NewValue;
         if (newTab is not null)
         {
-            // TODO
+            newTab.TitleChanged += self.OnTabTitleChanged;
+            newTab.IsModifiedChanged += self.OnTabIsModifiedChanged;
+            newTab.ContentChanged += self.OnTabContentChanged;
         }
+
+        self.UpdateHeader();
+        self.UpdateModifiedIndicatorVisibility();
+        self.UpdateTextBox();
     }
 
     private void OnCommonStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
     {
         UpdateModifiedIndicatorVisibility();
+    }
+
+    private void OnTabContentChanged(object? sender, string e)
+    {
+        UpdateTextBox();
+    }
+
+    private void OnTabIsModifiedChanged(object? sender, bool e)
+    {
+        UpdateModifiedIndicatorVisibility();
+    }
+
+    private void OnTabTitleChanged(object? sender, string e)
+    {
+        UpdateHeader();
+    }
+
+    private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (Tab is { } tab)
+        {
+            tab.Content = TextBox.Text;
+        }
+    }
+
+    private void UpdateHeader()
+    {
+        Header = Tab?.Title ?? TabConstants.DefaultTabTitle;
     }
 
     private void UpdateModifiedIndicatorVisibility()
@@ -100,5 +137,10 @@ public sealed partial class AppTabViewItem : TabViewItem
         {
             modifiedIndicator.Visibility = Visibility.Collapsed;
         }
+    }
+
+    private void UpdateTextBox()
+    {
+        TextBox.Text = Tab?.Content ?? string.Empty;
     }
 }

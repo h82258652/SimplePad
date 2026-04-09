@@ -12,7 +12,7 @@
     <MenuBarItem Title="File" Margin="4,0,0,0">
         <menu:NewTabMenuFlyoutItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
         <menu:NewWindowMenuFlyoutItem MinWidth="230" />
-        <menu:OpenMenuFlyoutItem MinWidth="230" />
+        <menu:OpenMenuFlyoutItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
         <menu:SaveMenuFlyoutItem MinWidth="230" />
         <menu:SaveAsMenuFlyoutItem MinWidth="230" />
         <menu:SaveAllMenuFlyoutItem MinWidth="230" />

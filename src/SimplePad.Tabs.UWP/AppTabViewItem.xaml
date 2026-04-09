@@ -473,7 +473,10 @@
             <menu:AppMenuBar Tab="{x:Bind Tab, Mode=OneWay}" TextBox="{x:Bind TextBox}" />
             <settings:SettingsButton Grid.Column="1" />
         </Grid>
-        <editor:AppTextBox x:Name="TextBox" Grid.Row="1" />
+        <editor:AppTextBox
+            x:Name="TextBox"
+            Grid.Row="1"
+            TextChanged="OnTextBoxTextChanged" />
         <statusBar:AppStatusBar Grid.Row="2" TextBox="{x:Bind TextBox}" />
     </Grid>
 </winui:TabViewItem>

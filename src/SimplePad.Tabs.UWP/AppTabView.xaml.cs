@@ -77,6 +77,17 @@ public sealed partial class AppTabView : TabView
         TabRoot?.AddBlankTab();
     }
 
+    private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (TabRoot is { } tabRoot)
+        {
+            tabRoot.SelectedTab = (Tab?)SelectedItem;
+        }
+
+        // TODO add comment for this
+        CloseButtonOverlayMode = TabViewCloseButtonOverlayMode.OnPointerOver;
+    }
+
     private void OnTabRootSelectedTabChanged(object? sender, Tab? e)
     {
         UpdateSelectedItem();
