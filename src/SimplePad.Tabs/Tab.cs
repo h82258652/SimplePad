@@ -92,16 +92,6 @@ public sealed class Tab
         }
     }
 
-    public void Close()
-    {
-        if (IsModified)
-        {
-            // TODO: Prompt to save changes
-        }
-
-        Root.Tabs.Remove(this);
-    }
-
     internal static Tab CreateBlank(TabRoot root)
     {
         return new Tab(root);

@@ -1,4 +1,6 @@
-﻿using SimplePad.Tabs;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Tabs;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -12,8 +14,12 @@ public sealed partial class CloseTabMenuFlyoutItem : MenuFlyoutItem
         typeof(CloseTabMenuFlyoutItem),
         null);
 
+    private readonly TabManager _tabManager;
+
     public CloseTabMenuFlyoutItem()
     {
+        _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
+
         InitializeComponent();
     }
 
@@ -23,8 +29,11 @@ public sealed partial class CloseTabMenuFlyoutItem : MenuFlyoutItem
         set => SetValue(TabProperty, value);
     }
 
-    private void OnClick(object sender, RoutedEventArgs e)
+    private async void OnClick(object sender, RoutedEventArgs e)
     {
-        Tab?.Close();
+        if (Tab is { } tab)
+        {
+            await _tabManager.CloseAsync(tab);
+        }
     }
 }

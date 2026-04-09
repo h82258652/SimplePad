@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml.Controls;
+using SimplePad.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -21,10 +23,13 @@ public sealed partial class AppTabView : TabView
 
     private const string TitleBarContainerTemplateName = "PART_TitleBarContainer";
 
+    private readonly TabManager _tabManager;
     private Border? _titleBarContainer;
 
     public AppTabView()
     {
+        _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
+
         InitializeComponent();
     }
 
@@ -93,11 +98,11 @@ public sealed partial class AppTabView : TabView
         UpdateSelectedItem();
     }
 
-    private void OnTabViewTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+    private async void OnTabViewTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
     {
         if (args.Item is Tab tab)
         {
-            tab.Close();
+            await _tabManager.CloseAsync(tab);
         }
     }
 
