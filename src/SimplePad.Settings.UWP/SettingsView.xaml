@@ -153,32 +153,61 @@
                                 </toolkit:SettingsExpander.Items>
                             </toolkit:SettingsExpander>
                         </Border>
-                        <toolkit:SettingsCard
-                            Margin="0,4,0,0"
-                            Description="Fit text within window by default"
-                            Header="Word wrap">
-                            <toolkit:SettingsCard.HeaderIcon>
-                                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE751;" />
-                            </toolkit:SettingsCard.HeaderIcon>
-                            <editor:IsWordWrapSettingsControl />
-                        </toolkit:SettingsCard>
-                        <TextBlock Margin="0,12,0,0" Text="Opening Simple Pad" />
-                        <toolkit:SettingsCard
+                        <Border x:Name="WordWrapSettingsCardBorder">
+                            <animations:Implicit.Animations>
+                                <animations:OffsetAnimation Duration="0:0:0.3" />
+                            </animations:Implicit.Animations>
+                            <toolkit:SettingsCard
+                                Margin="0,4,0,0"
+                                Description="Fit text within window by default"
+                                Header="Word wrap">
+                                <toolkit:SettingsCard.HeaderIcon>
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE751;" />
+                                </toolkit:SettingsCard.HeaderIcon>
+                                <editor:IsWordWrapSettingsControl />
+                            </toolkit:SettingsCard>
+                        </Border>
+                        <TextBlock
+                            x:Name="OpenFileBehaviorTextBlock"
                             Margin="0,12,0,0"
-                            Description="Choose where your files are opened"
-                            Header="Opening files">
-                            <toolkit:SettingsCard.HeaderIcon>
-                                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8A7;" />
-                            </toolkit:SettingsCard.HeaderIcon>
-                            <tabs:OpenFileBehaviorComboBox MinWidth="148" />
-                        </toolkit:SettingsCard>
-                        <TextBlock Margin="0,12,0,0" Text="Spelling" />
-                        <toolkit:SettingsCard Margin="0,12,0,0" Header="Spell check">
-                            <toolkit:SettingsCard.HeaderIcon>
-                                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF87B;" />
-                            </toolkit:SettingsCard.HeaderIcon>
-                            <editor:IsSpellCheckEnabledSettingsControl />
-                        </toolkit:SettingsCard>
+                            Text="Opening Simple Pad">
+                            <animations:Implicit.Animations>
+                                <animations:OffsetAnimation Duration="0:0:0.3" />
+                            </animations:Implicit.Animations>
+                        </TextBlock>
+                        <Border x:Name="OpenFileBehaviorSettingsCardBorder">
+                            <animations:Implicit.Animations>
+                                <animations:OffsetAnimation Duration="0:0:0.3" />
+                            </animations:Implicit.Animations>
+                            <toolkit:SettingsCard
+                                Margin="0,12,0,0"
+                                Description="Choose where your files are opened"
+                                Header="Opening files">
+                                <toolkit:SettingsCard.HeaderIcon>
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8A7;" />
+                                </toolkit:SettingsCard.HeaderIcon>
+                                <tabs:OpenFileBehaviorComboBox MinWidth="148" />
+                            </toolkit:SettingsCard>
+                        </Border>
+                        <TextBlock
+                            x:Name="SpellingTextBlock"
+                            Margin="0,12,0,0"
+                            Text="Spelling">
+                            <animations:Implicit.Animations>
+                                <animations:OffsetAnimation Duration="0:0:0.3" />
+                            </animations:Implicit.Animations>
+                        </TextBlock>
+                        <Border x:Name="SpellCheckSettingsCardBorder">
+                            <animations:Implicit.Animations>
+                                <animations:OffsetAnimation Duration="0:0:0.3" />
+                            </animations:Implicit.Animations>
+                            <toolkit:SettingsCard Margin="0,12,0,0" Header="Spell check">
+                                <toolkit:SettingsCard.HeaderIcon>
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF87B;" />
+                                </toolkit:SettingsCard.HeaderIcon>
+                                <editor:IsSpellCheckEnabledSettingsControl />
+                            </toolkit:SettingsCard>
+                        </Border>
                     </StackPanel>
                     <StackPanel
                         x:Name="AboutSection"
