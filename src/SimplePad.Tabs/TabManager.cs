@@ -7,12 +7,12 @@ public sealed class TabManager
 {
     private readonly IFilePickerService _filePickerService;
 
-    public TabManager(IFilePickerService filePickerService)
+    internal TabManager(IFilePickerService filePickerService)
     {
         _filePickerService = filePickerService;
     }
 
-    public async Task Save(Tab tab)
+    public async Task SaveAsync(Tab tab)
     {
         if (!tab.IsModified)
         {
