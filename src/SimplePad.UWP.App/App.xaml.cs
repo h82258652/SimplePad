@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.File;
 using SimplePad.Windowing;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -31,6 +33,23 @@ namespace SimplePad.App
         }
 
         private readonly IServiceProvider _serviceProvider;
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            if (args.Kind == ActivationKind.File)
+            {
+                var fileArgs = args as FileActivatedEventArgs;
+                var f = fileArgs.Files[0] as StorageFile;
+
+                IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
+                appWindowManager.CreateAppWindow().Execute(wwww =>
+                {
+                    wwww.TabRoot.AddTabFromFile(new UWPFile(f));
+                });
+            }
+        }
 
         /// <inheritdoc/>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
