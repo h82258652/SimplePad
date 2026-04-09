@@ -20,5 +20,6 @@ public sealed partial class FindMenuFlyoutItem : MenuFlyoutItem
     private void OnClick(object sender, RoutedEventArgs e)
     {
         _searchViewState.IsVisible = true;
+        _searchViewState.IsReplaceMode = false;
     }
 }
