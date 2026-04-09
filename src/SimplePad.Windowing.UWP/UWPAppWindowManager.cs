@@ -30,7 +30,9 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         ServiceLocator.SetLocatorProvider(s.ServiceProvider);
         // todo dispose ?
 
-        UWPAppWindow instance = new(this);
+        var d = CoreApplication.GetCurrentView().Dispatcher;
+
+        UWPAppWindow instance = new(this, d);
         _instances.Add(instance);
         return instance;
     }
@@ -45,19 +47,25 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
     }
 
-    public async Task ShowNewWindowAsync()
+    public async Task<IAppWindow> ShowNewWindowAsync()
     {
         CoreApplicationView newView = CoreApplication.CreateNewView();
         int newViewId = 0;
+        TaskCompletionSource<IAppWindow> tcs = new TaskCompletionSource<IAppWindow>();
         await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
         {
             ExtendViewIntoTitleBar();
 
-            Window.Current.Content = new ShellView(CreateAppWindow());
+            IAppWindow newAppWindow = CreateAppWindow();
+            tcs.SetResult(newAppWindow);
+
+            Window.Current.Content = new ShellView(newAppWindow);
             Window.Current.Activate();
 
             newViewId = ApplicationView.GetForCurrentView().Id;
         });
         await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+        return await tcs.Task;
     }
 }

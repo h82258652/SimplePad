@@ -6,5 +6,5 @@ public interface IAppWindowManager
 
     IAppWindow CreateAppWindow();
 
-    Task ShowNewWindowAsync();
+    Task<IAppWindow> ShowNewWindowAsync();
 }

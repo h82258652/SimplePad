@@ -42,7 +42,9 @@ namespace SimplePad.App
                 IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
 
                 // Create a Frame to act as the navigation context and navigate to the first page
-                shellView = new ShellView(appWindowManager.CreateAppWindow());
+                var appWindow = appWindowManager.CreateAppWindow();
+                appWindow.Execute(w => w.TabRoot.AddBlankTab());
+                shellView = new ShellView(appWindow);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

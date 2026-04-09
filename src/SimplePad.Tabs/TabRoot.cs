@@ -8,12 +8,6 @@ public sealed class TabRoot
 {
     private Tab? _selectedTab;
 
-    public TabRoot()
-    {
-        Tabs = [];
-        AddBlankTab();
-    }
-
     public event EventHandler<Tab?>? SelectedTabChanged;
 
     public Tab? SelectedTab
@@ -29,7 +23,7 @@ public sealed class TabRoot
         }
     }
 
-    public ObservableCollection<Tab> Tabs { get; }
+    public ObservableCollection<Tab> Tabs { get; } = [];
 
     public void AddBlankTab()
     {

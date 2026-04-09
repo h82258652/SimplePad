@@ -1,6 +1,9 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
 using SimplePad.File;
 using SimplePad.Tabs;
+using SimplePad.Windowing;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
@@ -16,8 +19,14 @@ public sealed partial class OpenMenuFlyoutItem : MenuFlyoutItem
         typeof(OpenMenuFlyoutItem),
         null);
 
+    private readonly ITabsSettings _tabSettings;
+    private readonly IAppWindowManager _appWindowManager;
+
     public OpenMenuFlyoutItem()
     {
+        _tabSettings = ServiceLocator.Current.GetRequiredService<ITabsSettings>();
+        _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
+
         InitializeComponent();
     }
 
@@ -43,6 +52,14 @@ public sealed partial class OpenMenuFlyoutItem : MenuFlyoutItem
             return;
         }
 
-        tabRoot.AddTabFromFile(new UWPFile(file));
+        if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewTab)
+        {
+            tabRoot.AddTabFromFile(new UWPFile(file));
+        }
+        else if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewWindow)
+        {
+            IAppWindow newAppWindow = await _appWindowManager.ShowNewWindowAsync();
+            newAppWindow.Execute(appWindow => appWindow.TabRoot.AddTabFromFile(new UWPFile(file)));
+        }
     }
 }

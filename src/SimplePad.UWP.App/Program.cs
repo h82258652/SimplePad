@@ -1,8 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimplePad.Core;
 using SimplePad.Core.Modularity;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -17,7 +15,6 @@ public static class Program
             .Create<SimplePadUWPAppModule>(() => Host.CreateDefaultBuilder(args))
             .Build();
         host.Start();
-        //ServiceLocator.SetLocatorProvider(host.Services);
 
         Application.Start(
             (p) =>

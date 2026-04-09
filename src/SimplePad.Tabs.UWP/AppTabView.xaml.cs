@@ -11,7 +11,7 @@ public sealed partial class AppTabView : TabView
         nameof(TabRoot),
         typeof(TabRoot),
         typeof(AppTabView),
-        null);
+        new PropertyMetadata(null, OnTabRootChanged));
 
     public static readonly DependencyProperty TitleBarProperty = DependencyProperty.Register(
         nameof(TitleBar),
@@ -48,6 +48,24 @@ public sealed partial class AppTabView : TabView
         UpdateTitleBar();
     }
 
+    private static void OnTabRootChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppTabView self = (AppTabView)d;
+        TabRoot? oldTabRoot = (TabRoot?)e.OldValue;
+        if (oldTabRoot is not null)
+        {
+            oldTabRoot.SelectedTabChanged -= self.OnTabRootSelectedTabChanged;
+        }
+
+        TabRoot? newTabRoot = (TabRoot?)e.NewValue;
+        if (newTabRoot is not null)
+        {
+            newTabRoot.SelectedTabChanged += self.OnTabRootSelectedTabChanged;
+        }
+
+        self.UpdateSelectedItem();
+    }
+
     private static void OnTitleBarChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppTabView self = (AppTabView)d;
@@ -59,8 +77,23 @@ public sealed partial class AppTabView : TabView
         TabRoot?.AddBlankTab();
     }
 
+    private void OnTabRootSelectedTabChanged(object? sender, Tab? e)
+    {
+        UpdateSelectedItem();
+    }
+
     private void OnTabViewTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
     {
+        if (args.Item is Tab tab)
+        {
+            // TODO
+            //tab.Close();
+        }
+    }
+
+    private void UpdateSelectedItem()
+    {
+        SelectedItem = TabRoot?.SelectedTab;
     }
 
     private void UpdateTitleBar()

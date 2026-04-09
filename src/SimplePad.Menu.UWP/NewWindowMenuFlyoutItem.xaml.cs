@@ -19,6 +19,7 @@ public sealed partial class NewWindowMenuFlyoutItem : MenuFlyoutItem
 
     private async void OnClick(object sender, RoutedEventArgs e)
     {
-        await _appWindowManager.ShowNewWindowAsync();
+        IAppWindow newAppWindow = await _appWindowManager.ShowNewWindowAsync();
+        newAppWindow.Execute(appWindow => appWindow.TabRoot.AddBlankTab());
     }
 }
