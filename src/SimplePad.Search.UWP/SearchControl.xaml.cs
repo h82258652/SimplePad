@@ -16,12 +16,32 @@ public sealed partial class SearchControl : UserControl
         InitializeComponent();
 
         UpdateVisibility();
+        UpdateGgggg();
 
         _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
+        _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
+    }
+
+    private void UpdateGgggg()
+    {
+        if (_searchViewState.IsReplaceMode)
+        {
+            // TODO
+        }
+        else
+        {
+            // TODO
+        }
+    }
+
+    private void OnSearchViewStateIsReplaceModeChanged(object? sender, bool e)
+    {
+        UpdateGgggg();
     }
 
     private void OnExitButtonClick(object sender, RoutedEventArgs e)
     {
+        _searchViewState.IsVisible = false;
     }
 
     private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
