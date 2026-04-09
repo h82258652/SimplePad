@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace SimplePad.Editor;
 
@@ -30,7 +31,7 @@ public interface IAppTextBox
 
     void Focus();
 
-    void GoToLine();
+    Task GoToLineAsync();
 
     void PasteFromClipboard();
 

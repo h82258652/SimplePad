@@ -23,8 +23,12 @@ public sealed partial class GoToLineMenuFlyoutItem : MenuFlyoutItem
         set => SetValue(TextBoxProperty, value);
     }
 
-    private void OnClick(object sender, RoutedEventArgs e)
+    private async void OnClick(object sender, RoutedEventArgs e)
     {
-        TextBox?.GoToLine();
+        if (TextBox is { } textBox)
+        {
+            await textBox.GoToLineAsync();
+            textBox.Focus();
+        }
     }
 }

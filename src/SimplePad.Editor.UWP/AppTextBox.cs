@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
@@ -101,7 +102,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         Focus(FocusState.Programmatic);
     }
 
-    public async void GoToLine()
+    public async Task GoToLineAsync()
     {
         string text = Text;
         int totalLines = text.Split('\r').Length;

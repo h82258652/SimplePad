@@ -47,6 +47,7 @@ public sealed partial class DeleteMenuFlyoutItem : MenuFlyoutItem
         if (TextBox is { SelectionLength: > 0 } textBox)
         {
             textBox.SelectedText = string.Empty;
+            textBox.Focus();
         }
     }
 

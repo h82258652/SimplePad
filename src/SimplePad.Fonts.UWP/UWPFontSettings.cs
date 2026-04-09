@@ -6,7 +6,7 @@ using Windows.Storage;
 
 namespace SimplePad.Fonts;
 
-public sealed class UWPFontSettings : AppSettingsBase, IFontSettings
+internal sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 {
     private string _fontFamily = "Consolas";
 
