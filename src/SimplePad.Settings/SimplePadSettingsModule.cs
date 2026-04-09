@@ -9,6 +9,6 @@ public sealed class SimplePadSettingsModule : AppModuleBase
     {
         base.ConfigureServices(context);
 
-        context.Services.AddScoped<SettingsState>();
+        context.Services.AddScoped(_ => new SettingsState());
     }
 }

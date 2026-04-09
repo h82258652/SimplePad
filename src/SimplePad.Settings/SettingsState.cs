@@ -5,6 +5,10 @@ public sealed class SettingsState
     private bool _isFontSettingsExpanded;
     private bool _isVisible;
 
+    internal SettingsState()
+    {
+    }
+
     public event EventHandler<bool>? IsFontSettingsExpandedChanged;
 
     public event EventHandler<bool>? IsVisibleChanged;
