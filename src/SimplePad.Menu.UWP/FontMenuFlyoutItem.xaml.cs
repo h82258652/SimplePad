@@ -8,21 +8,18 @@ namespace SimplePad.Menu;
 
 public sealed partial class FontMenuFlyoutItem : MenuFlyoutItem
 {
-
     private readonly SettingsState _settingsState;
 
     public FontMenuFlyoutItem()
     {
-_settingsState =        ServiceLocator.Current.GetRequiredService<SettingsState>();
+        _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
     }
 
     private void OnClick(object sender, RoutedEventArgs e)
     {
-        {
-            _settingsState.IsVisible = true;
-            _settingsState.IsFontSettingsExpanded = true;
-        }
+        _settingsState.IsVisible = true;
+        _settingsState.IsFontSettingsExpanded = true;
     }
 }
