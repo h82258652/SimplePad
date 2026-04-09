@@ -157,7 +157,7 @@
                             <toolkit:SettingsCard.HeaderIcon>
                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8A7;" />
                             </toolkit:SettingsCard.HeaderIcon>
-                            <tabs:OpenFileBehaviorComboBox />
+                            <tabs:OpenFileBehaviorComboBox MinWidth="148" />
                         </toolkit:SettingsCard>
                         <TextBlock Margin="0,12,0,0" Text="Spelling" />
                         <toolkit:SettingsCard Margin="0,12,0,0" Header="Spell check">
