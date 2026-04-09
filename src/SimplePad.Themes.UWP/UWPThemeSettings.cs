@@ -6,7 +6,7 @@ using Windows.Storage;
 
 namespace SimplePad.Themes;
 
-public sealed class UWPThemeSettings : AppSettingsBase, IThemeSettings
+internal sealed class UWPThemeSettings : AppSettingsBase, IThemeSettings
 {
     private AppTheme _appTheme = AppTheme.Default;
 
