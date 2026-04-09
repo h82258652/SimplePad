@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
+using SimplePad.Search;
 using SimplePad.Settings;
 using SimplePad.Tabs;
 using SimplePad.Themes;
@@ -11,6 +12,7 @@ public sealed class SimplePadWindowingUWPModule : AppModuleBase
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadWindowingModule,
         SimplePadThemesUWPModule,
+        SimplePadSearchUWPModule,
         SimplePadTabsUWPModule,
         SimplePadSettingsUWPModule>();
 

@@ -61,9 +61,9 @@
                 Grid.ColumnSpan="2"
                 Content="Replace">
                 <SplitButton.Flyout>
-                    <CommandBarFlyout>
-                        <AppBarButton Label="Replace all" />
-                    </CommandBarFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Replace all" />
+                    </MenuFlyout>
                 </SplitButton.Flyout>
             </SplitButton>
         </Grid>

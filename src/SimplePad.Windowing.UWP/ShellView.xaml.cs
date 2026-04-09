@@ -17,7 +17,7 @@ public sealed partial class ShellView : ThemeContainer
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
 
-        UpdateTabViewVisibility();
+        UpdateContentGridVisibility();
         UpdateTitleBar();
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
@@ -25,19 +25,19 @@ public sealed partial class ShellView : ThemeContainer
 
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
-        UpdateTabViewVisibility();
+        UpdateContentGridVisibility();
         UpdateTitleBar();
     }
 
-    private void UpdateTabViewVisibility()
+    private void UpdateContentGridVisibility()
     {
         if (_settingsState.IsVisible)
         {
-            TabView.Visibility = Visibility.Collapsed;
+            ContentGrid.Visibility = Visibility.Collapsed;
         }
         else
         {
-            TabView.Visibility = Visibility.Visible;
+            ContentGrid.Visibility = Visibility.Visible;
         }
     }
 
