@@ -7,21 +7,33 @@ public static class AppFontStyleUWPExtensions
 {
     public static FontStyle GetUWPFontStyle(this AppFontStyle fontStyle)
     {
-        return fontStyle switch
+        if (fontStyle == AppFontStyle.Regular || fontStyle == AppFontStyle.Bold)
         {
-            AppFontStyle.Regular or AppFontStyle.Bold => FontStyle.Normal,
-            AppFontStyle.Italic or AppFontStyle.BoldItalic => FontStyle.Italic,
-            _ => throw new ArgumentOutOfRangeException(nameof(fontStyle)),
-        };
+            return FontStyle.Normal;
+        }
+        else if (fontStyle == AppFontStyle.Italic || fontStyle == AppFontStyle.BoldItalic)
+        {
+            return FontStyle.Italic;
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException(nameof(fontStyle));
+        }
     }
 
     public static FontWeight GetUWPFontWeight(this AppFontStyle fontStyle)
     {
-        return fontStyle switch
+        if (fontStyle == AppFontStyle.Regular || fontStyle == AppFontStyle.Italic)
         {
-            AppFontStyle.Regular or AppFontStyle.Italic => FontWeights.Normal,
-            AppFontStyle.Bold or AppFontStyle.BoldItalic => FontWeights.Bold,
-            _ => throw new ArgumentOutOfRangeException(nameof(fontStyle)),
-        };
+            return FontWeights.Normal;
+        }
+        else if (fontStyle == AppFontStyle.Bold || fontStyle == AppFontStyle.BoldItalic)
+        {
+            return FontWeights.Bold;
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException(nameof(fontStyle));
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using SimplePad.Core;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -16,12 +17,17 @@ namespace SimplePad.Fonts.TestApp
         /// Initializes the singleton application object. This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-        public App()
+        /// <param name="serviceProvider">TODO</param>
+        public App(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
+
             InitializeComponent();
 
             Suspending += OnSuspending;
         }
+
+        private readonly IServiceProvider _serviceProvider;
 
         /// <inheritdoc/>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -38,6 +44,8 @@ namespace SimplePad.Fonts.TestApp
                 {
                     // TODO: Load state from previously suspended application
                 }
+
+                ServiceLocator.SetLocatorProvider(_serviceProvider);
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;

@@ -12,7 +12,7 @@ public sealed partial class FontStyleComboBox : ComboBox
 {
     private readonly CoreDispatcher _dispatcher;
     private readonly IFontSettings _fontSettings;
-    private readonly FontStyleComboBoxItem[] _items;
+    private readonly AppFontStyle[] _items;
 
     public FontStyleComboBox()
     {
@@ -20,10 +20,10 @@ public sealed partial class FontStyleComboBox : ComboBox
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _items =
         [
-            new FontStyleComboBoxItem(AppFontStyle.Regular, "Regular"),
-            new FontStyleComboBoxItem(AppFontStyle.Italic, "Italic"),
-            new FontStyleComboBoxItem(AppFontStyle.Bold, "Bold"),
-            new FontStyleComboBoxItem(AppFontStyle.BoldItalic, "Bold Italic"),
+            AppFontStyle.Regular,
+            AppFontStyle.Italic,
+            AppFontStyle.Bold,
+            AppFontStyle.BoldItalic
         ];
 
         DefaultStyleKey = typeof(FontStyleComboBox);
@@ -45,9 +45,9 @@ public sealed partial class FontStyleComboBox : ComboBox
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (SelectedItem is FontStyleComboBoxItem selectedItem)
+        if (SelectedItem is AppFontStyle selectedItem)
         {
-            _fontSettings.FontStyle = selectedItem.Value;
+            _fontSettings.FontStyle = selectedItem;
         }
     }
 

@@ -17,7 +17,6 @@ public static class Program
             .Create<SimplePadFontsUWPTestAppModule>(() => Host.CreateDefaultBuilder(args))
             .Build();
         host.Start();
-        ServiceLocator.SetLocatorProvider(host.Services);
 
         await host.Services.GetRequiredService<IFontSettings>().LoadAsync();
 
@@ -28,7 +27,7 @@ public static class Program
                     DispatcherQueue.GetForCurrentThread()
                 );
                 SynchronizationContext.SetSynchronizationContext(context);
-                _ = new App();
+                _ = new App(host.Services);
             }
         );
     }

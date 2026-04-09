@@ -74,7 +74,7 @@ public sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 
         if (settingsValue.TryGetValue(nameof(FontStyle), out object? fontStyle))
         {
-            FontStyle = (AppFontStyle)fontStyle;
+            FontStyle = AppFontStyle.FromValue((int)fontStyle);
         }
 
         return Task.CompletedTask;
@@ -85,7 +85,7 @@ public sealed class UWPFontSettings : AppSettingsBase, IFontSettings
         IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
         settingsValue[nameof(FontFamily)] = FontFamily;
         settingsValue[nameof(FontSize)] = FontSize;
-        settingsValue[nameof(FontStyle)] = (int)FontStyle;
+        settingsValue[nameof(FontStyle)] = FontStyle.Value;
 
         return Task.CompletedTask;
     }
