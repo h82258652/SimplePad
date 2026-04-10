@@ -79,7 +79,7 @@
                                 <VisualState x:Name="ExpandUp">
                                     <VisualState.Setters>
                                         <Setter Target="ExpanderHeader.CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BottomCornerRadiusFilterConverter}}" />
-                                        <Setter Target="FixExpanderCollapseControl.IsVisible" Value="True" />
+                                        <Setter Target="FixExpanderCollapsePanel.IsLayoutSpaceOccupied" Value="True" />
                                     </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
@@ -98,7 +98,7 @@
                                 </VisualState>
                                 <VisualState x:Name="CollapseDown">
                                     <VisualState.Setters>
-                                        <Setter Target="FixExpanderCollapseControl.IsVisible" Value="False" />
+                                        <Setter Target="FixExpanderCollapsePanel.IsLayoutSpaceOccupied" Value="False" />
                                     </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
@@ -118,7 +118,7 @@
                                 <VisualState x:Name="ExpandDown">
                                     <VisualState.Setters>
                                         <Setter Target="ExpanderHeader.CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TopCornerRadiusFilterConverter}}" />
-                                        <Setter Target="FixExpanderCollapseControl.IsVisible" Value="True" />
+                                        <Setter Target="FixExpanderCollapsePanel.IsLayoutSpaceOccupied" Value="True" />
                                     </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
@@ -137,7 +137,7 @@
                                 </VisualState>
                                 <VisualState x:Name="CollapseUp">
                                     <VisualState.Setters>
-                                        <Setter Target="FixExpanderCollapseControl.IsVisible" Value="False" />
+                                        <Setter Target="FixExpanderCollapsePanel.IsLayoutSpaceOccupied" Value="False" />
                                     </VisualState.Setters>
                                     <VisualState.Storyboard>
                                         <Storyboard>
@@ -163,7 +163,7 @@
                                         <Setter Target="ExpanderContent.BorderThickness" Value="{StaticResource ExpanderContentUpBorderThickness}" />
                                         <Setter Target="ExpanderContent.CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TopCornerRadiusFilterConverter}}" />
                                         <Setter Target="ExpanderHeader.(Grid.Row)" Value="1" />
-                                        <Setter Target="ExpanderContentClip.(Grid.Row)" Value="0" />
+                                        <Setter Target="FixExpanderCollapsePanel.(Grid.Row)" Value="0" />
                                         <Setter Target="Row0.Height" Value="*" />
                                         <Setter Target="Row1.Height" Value="Auto" />
                                     </VisualState.Setters>
@@ -190,9 +190,12 @@
                             IsEnabled="{TemplateBinding IsEnabled}"
                             IsTabStop="True"
                             Style="{StaticResource SettingsExpanderHeaderDownStyle}" />
-                        <!--  The clip is a composition clip applied in code  -->
-                        <Border x:Name="ExpanderContentClip" Grid.Row="1">
-                            <settings:FixExpanderCollapseControl x:Name="FixExpanderCollapseControl" IsVisible="False">
+                        <settings:FixExpanderCollapsePanel
+                            x:Name="FixExpanderCollapsePanel"
+                            Grid.Row="1"
+                            IsLayoutSpaceOccupied="False">
+                            <!--  The clip is a composition clip applied in code  -->
+                            <Border x:Name="ExpanderContentClip">
                                 <Border
                                     x:Name="ExpanderContent"
                                     MinHeight="{ThemeResource SettingsExpanderContentMinHeight}"
@@ -215,8 +218,8 @@
                                         <CompositeTransform />
                                     </Border.RenderTransform>
                                 </Border>
-                            </settings:FixExpanderCollapseControl>
-                        </Border>
+                            </Border>
+                        </settings:FixExpanderCollapsePanel>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
