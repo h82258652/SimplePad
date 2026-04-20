@@ -6,10 +6,12 @@ namespace SimplePad.Tabs;
 public sealed class TabManager
 {
     private readonly IFilePickerService _filePickerService;
+    private readonly IConfirmCloseService _confirmCloseService;
 
-    internal TabManager(IFilePickerService filePickerService)
+    internal TabManager(IFilePickerService filePickerService, IConfirmCloseService confirmCloseService)
     {
         _filePickerService = filePickerService;
+        _confirmCloseService = confirmCloseService;
     }
 
     public async Task<bool> SaveAsync(Tab tab)
@@ -46,7 +48,24 @@ public sealed class TabManager
             return true;
         }
 
-        // TODO dialog
+        ConfirmCloseResult confirmCloseResult = await _confirmCloseService.ConfirmCloseAsync(tab);
+        if (confirmCloseResult == ConfirmCloseResult.Save)
+        {
+            bool saveResult = await SaveAsync(tab);
+            if (!saveResult)
+            {
+                return false;
+            }
+
+            tab.Root.Tabs.Remove(tab);
+            return true;
+        }
+        
+        if (confirmCloseResult == ConfirmCloseResult.Discard)
+        {
+            tab.Root.Tabs.Remove(tab);
+            return true;
+        }
 
         return false;
     }

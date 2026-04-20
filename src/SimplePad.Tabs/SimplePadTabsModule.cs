@@ -12,6 +12,6 @@ public sealed class SimplePadTabsModule : AppModuleBase
     {
         base.ConfigureServices(context);
 
-        context.Services.AddTransient(serviceProvider => new TabManager(serviceProvider.GetRequiredService<IFilePickerService>()));
+        context.Services.AddTransient(serviceProvider => new TabManager(serviceProvider.GetRequiredService<IFilePickerService>(), serviceProvider.GetRequiredService<IConfirmCloseService>()));
     }
 }

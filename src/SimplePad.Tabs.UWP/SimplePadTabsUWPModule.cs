@@ -21,5 +21,6 @@ public sealed class SimplePadTabsUWPModule : AppModuleBase
         base.ConfigureServices(context);
 
         context.Services.AddSingleton<ITabsSettings, UWPTabsSettings>();
+        context.Services.AddTransient<IConfirmCloseService, UWPConfirmCloseService>();
     }
 }
