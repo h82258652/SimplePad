@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Tabs;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;
@@ -18,10 +19,12 @@ public sealed class UWPAppWindowManager : IAppWindowManager
     private readonly SemaphoreSlim _closeLock = new(1);
     private readonly List<UWPAppWindow> _instances = [];
     private readonly IServiceProvider _serviceProvider;
+    private readonly TabManager _tabManager;
 
-    public UWPAppWindowManager(IServiceProvider serviceProvider)
+    public UWPAppWindowManager(IServiceProvider serviceProvider, TabManager tabManager)
     {
         _serviceProvider = serviceProvider;
+        _tabManager = tabManager;
     }
 
     public IAppWindow? CurrentWindow
@@ -50,15 +53,28 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         await _closeLock.WaitAsync();
         try
         {
-            TaskCompletionSource<object?> tcs = new();
-            uwpWindow.Execute(async _ =>
+            TaskCompletionSource<bool> tcs = new();
+            uwpWindow.Execute(async uwpWindowInstance =>
             {
+                foreach (Tab tab in uwpWindowInstance.TabRoot.Tabs)
+                {
+                    if (!await _tabManager.CloseAsync(tab))
+                    {
+                        tcs.SetResult(false);
+                        break;
+                    }
+                }
+
                 await ApplicationView.GetForCurrentView().TryConsolidateAsync();
-                tcs.SetResult(null);
+                tcs.SetResult(true);
             });
-            await tcs.Task;
-            _instances.Remove(uwpWindow);
-            return true;
+            bool allTabsClsoed = await tcs.Task;
+            if (allTabsClsoed)
+            {
+                _instances.Remove(uwpWindow);
+            }
+
+            return allTabsClsoed;
         }
         finally
         {
