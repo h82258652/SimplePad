@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
@@ -13,15 +15,55 @@ namespace SimplePad.Windowing;
 
 public sealed class UWPAppWindowManager : IAppWindowManager
 {
-    private readonly List<IAppWindow> _instances = [];
-
-    public IReadOnlyList<IAppWindow> Instances => _instances;
-
+    private readonly SemaphoreSlim _closeLock = new(1);
+    private readonly List<UWPAppWindow> _instances = [];
     private readonly IServiceProvider _serviceProvider;
 
     public UWPAppWindowManager(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
+    }
+
+    public IAppWindow? CurrentWindow
+    {
+        get
+        {
+            CoreDispatcher dispatcher = CoreApplication.GetCurrentView().Dispatcher;
+            return _instances.FirstOrDefault(instance => instance.Dispatcher == dispatcher);
+        }
+    }
+
+    public IReadOnlyList<IAppWindow> Instances => _instances;
+
+    public async Task<bool> CloseAsync(IAppWindow window)
+    {
+        if (window is not UWPAppWindow uwpWindow)
+        {
+            throw new InvalidOperationException();
+        }
+
+        if (!_instances.Contains(uwpWindow))
+        {
+            return false;
+        }
+
+        await _closeLock.WaitAsync();
+        try
+        {
+            TaskCompletionSource<object?> tcs = new();
+            uwpWindow.Execute(async _ =>
+            {
+                await ApplicationView.GetForCurrentView().TryConsolidateAsync();
+                tcs.SetResult(null);
+            });
+            await tcs.Task;
+            _instances.Remove(uwpWindow);
+            return true;
+        }
+        finally
+        {
+            _closeLock.Release();
+        }
     }
 
     public IAppWindow CreateAppWindow()
@@ -35,16 +77,6 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         UWPAppWindow instance = new(this, d);
         _instances.Add(instance);
         return instance;
-    }
-
-    private static void ExtendViewIntoTitleBar()
-    {
-        CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-        coreTitleBar.ExtendViewIntoTitleBar = true;
-
-        ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-        titleBar.ButtonBackgroundColor = Colors.Transparent;
-        titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
     }
 
     public async Task<IAppWindow> ShowNewWindowAsync()
@@ -67,5 +99,15 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
 
         return await tcs.Task;
+    }
+
+    private static void ExtendViewIntoTitleBar()
+    {
+        CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+        coreTitleBar.ExtendViewIntoTitleBar = true;
+
+        ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+        titleBar.ButtonBackgroundColor = Colors.Transparent;
+        titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
     }
 }
