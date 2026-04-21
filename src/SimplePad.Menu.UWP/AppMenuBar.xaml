@@ -9,7 +9,17 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-    <MenuBarItem Title="File" Margin="4,0,0,0">
+    <MenuBar.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///SimplePad.Menu.UWP/AppMenuBarItemStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </MenuBar.Resources>
+    <MenuBarItem
+        Title="File"
+        Margin="4,0,0,0"
+        Style="{StaticResource AppMenuBarItemStyle}">
         <menu:NewTabMenuFlyoutItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
         <menu:NewWindowMenuFlyoutItem MinWidth="230" />
         <menu:OpenMenuFlyoutItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
@@ -23,7 +33,10 @@
         <menu:CloseWindowMenuFlyoutItem MinWidth="230" />
         <menu:ExitMenuFlyoutItem MinWidth="230" />
     </MenuBarItem>
-    <MenuBarItem Title="Edit" Margin="4,0,0,0">
+    <MenuBarItem
+        Title="Edit"
+        Margin="4,0,0,0"
+        Style="{StaticResource AppMenuBarItemStyle}">
         <menu:UndoMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:CutMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
@@ -42,7 +55,10 @@
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:FontMenuFlyoutItem MinWidth="230" />
     </MenuBarItem>
-    <MenuBarItem Title="View" Margin="4,0,0,0">
+    <MenuBarItem
+        Title="View"
+        Margin="4,0,0,0"
+        Style="{StaticResource AppMenuBarItemStyle}">
         <MenuFlyoutSubItem
             MinWidth="230"
             Style="{StaticResource DefaultMenuFlyoutSubItemStyle}"

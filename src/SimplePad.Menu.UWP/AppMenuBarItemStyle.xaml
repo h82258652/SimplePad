@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="AppMenuBarItemStyle" TargetType="MenuBarItem">
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuBarItem">
+                    <Grid
+                        x:Name="ContentRoot"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid.Resources>
+                            <!--  Stop the contained button from setting its background to anything but transparent  -->
+                            <!--  Can't do this because of : Bug 16889199: StaticResource tag in a ControlTemplate hits asserts in CHK build  -->
+                            <!--<StaticResource x:Key="ButtonBackground" ResourceKey="SystemControlTransparentBrush"/>
+                            <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="SystemControlTransparentBrush"/>
+                            <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="SystemControlTransparentBrush"/>
+                            <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="SystemControlTransparentBrush"/>-->
+                            <!--  Use SolidColorBrush instead for now.  -->
+                            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent" />
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent" />
+                            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent" />
+                            <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="Transparent" />
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="Background.Background" Value="{ThemeResource MenuBarItemBackgroundPointerOver}" />
+                                        <Setter Target="Background.BorderBrush" Value="{ThemeResource MenuBarItemBorderBrushPointerOver}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="Background.Background" Value="{ThemeResource MenuBarItemBackgroundPressed}" />
+                                        <Setter Target="Background.BorderBrush" Value="{ThemeResource MenuBarItemBorderBrushPressed}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Target="Background.Background" Value="{ThemeResource MenuBarItemBackgroundSelected}" />
+                                        <Setter Target="Background.BorderBrush" Value="{ThemeResource MenuBarItemBorderBrushSelected}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border
+                            x:Name="Background"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Button
+                            x:Name="ContentButton"
+                            Padding="{StaticResource MenuBarItemButtonPadding}"
+                            VerticalAlignment="Stretch"
+                            AutomationProperties.AccessibilityView="Raw"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Content="{TemplateBinding Title}"
+                            IsTabStop="False" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
