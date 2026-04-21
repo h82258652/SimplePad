@@ -52,22 +52,9 @@ public sealed partial class SearchControl : UserControl
         UpdateGgggg();
     }
 
-    private void OnExitButtonClick(object sender, RoutedEventArgs e)
-    {
-        _searchViewState.IsVisible = false;
-    }
-
     private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();
-    }
-
-    private void OnXoooo(object sender, RoutedEventArgs e)
-    {
-    }
-
-    private void Onyyyyy(object sender, RoutedEventArgs e)
-    {
     }
 
     private void UpdateVisibility()
