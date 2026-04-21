@@ -83,7 +83,7 @@ public sealed class UWPAppWindowManager : IAppWindowManager
     {
         CoreApplicationView newView = CoreApplication.CreateNewView();
         int newViewId = 0;
-        TaskCompletionSource<IAppWindow> tcs = new TaskCompletionSource<IAppWindow>();
+        TaskCompletionSource<IAppWindow> tcs = new();
         await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
         {
             ExtendViewIntoTitleBar();
