@@ -15,6 +15,8 @@ public sealed class SearchViewState
 
     public event EventHandler<bool>? IsVisibleChanged;
 
+    public event EventHandler<string>? SearchTextChanged;
+
     public bool IsReplaceMode
     {
         get => _isReplaceMode;
@@ -41,5 +43,18 @@ public sealed class SearchViewState
         }
     }
 
-    public string SearchText { get; set; } = string.Empty;
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            if (_searchText != value)
+            {
+                _searchText = value;
+                SearchTextChanged?.Invoke(this, value);
+            }
+        }
+    }
+
+    private string _searchText = string.Empty;
 }

@@ -20,6 +20,19 @@ public sealed partial class SearchControl : UserControl
 
         _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
         _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
+        _searchViewState.SearchTextChanged += OnSearchViewStateSearchTextChanged;
+
+        UpdateSearchTextBox();
+    }
+
+    private void OnSearchViewStateSearchTextChanged(object? sender, string e)
+    {
+        UpdateSearchTextBox();
+    }
+
+    private void UpdateSearchTextBox()
+    {
+        SearchTextBox.Text = _searchViewState.SearchText;
     }
 
     private void UpdateGgggg()
@@ -67,5 +80,10 @@ public sealed partial class SearchControl : UserControl
         {
             Visibility = Visibility.Collapsed;
         }
+    }
+
+    private void OnSearchTextBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+    {
+        _searchViewState.SearchText = SearchTextBox.Text;
     }
 }

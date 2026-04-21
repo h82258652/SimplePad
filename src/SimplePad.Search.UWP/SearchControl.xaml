@@ -18,7 +18,18 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup />
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="883" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ReplaceButton.Visibility" Value="Visible" />
+                        <Setter Target="ReplaceAllButton.Visibility" Value="Visible" />
+                        <Setter Target="ReplaceSplitButton.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <ToggleButton Checked="OnXoooo" Unchecked="Onyyyyy" />
         <Grid Grid.Column="1">
@@ -29,7 +40,10 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <AutoSuggestBox QueryIcon="Find" />
+            <AutoSuggestBox
+                x:Name="SearchTextBox"
+                QueryIcon="Find"
+                TextChanged="OnSearchTextBoxTextChanged" />
             <Button Grid.Column="1" Content="↓" />
             <Button Grid.Column="2" Content="↑" />
             <Button Grid.Column="3" Content="More options" />
@@ -57,6 +71,7 @@
                 Content="Replace all"
                 Visibility="Collapsed" />
             <SplitButton
+                x:Name="ReplaceSplitButton"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Content="Replace">
