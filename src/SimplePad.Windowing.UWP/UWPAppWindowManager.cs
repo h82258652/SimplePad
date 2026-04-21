@@ -56,7 +56,7 @@ public sealed class UWPAppWindowManager : IAppWindowManager
             TaskCompletionSource<bool> tcs = new();
             uwpWindow.Execute(async uwpWindowInstance =>
             {
-                foreach (Tab tab in uwpWindowInstance.TabRoot.Tabs)
+                foreach (Tab tab in uwpWindowInstance.TabRoot.Tabs.ToList())
                 {
                     if (!await _tabManager.CloseAsync(tab))
                     {
