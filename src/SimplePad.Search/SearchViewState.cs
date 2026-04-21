@@ -40,4 +40,6 @@ public sealed class SearchViewState
             }
         }
     }
+
+    public string SearchText { get; set; } = string.Empty;
 }
