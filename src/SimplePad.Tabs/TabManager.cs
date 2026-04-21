@@ -5,39 +5,13 @@ namespace SimplePad.Tabs;
 
 public sealed class TabManager
 {
-    private readonly IFilePickerService _filePickerService;
     private readonly IConfirmCloseService _confirmCloseService;
+    private readonly IFilePickerService _filePickerService;
 
     internal TabManager(IFilePickerService filePickerService, IConfirmCloseService confirmCloseService)
     {
         _filePickerService = filePickerService;
         _confirmCloseService = confirmCloseService;
-    }
-
-    public async Task<bool> SaveAsync(Tab tab)
-    {
-        if (!tab.IsModified)
-        {
-            return true;
-        }
-
-        if (tab.File is not null)
-        {
-            await tab.File.WriteAllTextAsync(tab.Content);
-            tab.OriginalContent = tab.Content;
-            return true;
-        }
-
-        IFile? file = await _filePickerService.PickSaveFileAsync();
-        if (file is null)
-        {
-            return false;
-        }
-
-        await file.WriteAllTextAsync(tab.Content);
-        tab.File = file;
-        tab.OriginalContent = tab.Content;
-        return true;
     }
 
     public async Task<bool> CloseAsync(Tab tab)
@@ -60,7 +34,7 @@ public sealed class TabManager
             tab.Root.Tabs.Remove(tab);
             return true;
         }
-        
+
         if (confirmCloseResult == ConfirmCloseResult.Discard)
         {
             tab.Root.Tabs.Remove(tab);
@@ -68,5 +42,36 @@ public sealed class TabManager
         }
 
         return false;
+    }
+
+    public async Task<bool> SaveToAnotherFileAsync(Tab tab)
+    {
+        IFile? file = await _filePickerService.PickSaveFileAsync();
+        if (file is null)
+        {
+            return false;
+        }
+
+        await file.WriteAllTextAsync(tab.Content);
+        tab.File = file;
+        tab.OriginalContent = tab.Content;
+        return true;
+    }
+
+    public async Task<bool> SaveAsync(Tab tab)
+    {
+        if (!tab.IsModified)
+        {
+            return true;
+        }
+
+        if (tab.File is not null)
+        {
+            await tab.File.WriteAllTextAsync(tab.Content);
+            tab.OriginalContent = tab.Content;
+            return true;
+        }
+
+        return await SaveToAnotherFileAsync(tab);
     }
 }

@@ -33,7 +33,7 @@ public sealed partial class SaveAsMenuFlyoutItem : MenuFlyoutItem
     {
         if (Tab is { } tab)
         {
-            await _tabManager.SaveAsync(tab);
+            await _tabManager.SaveToAnotherFileAsync(tab);
         }
     }
 }
