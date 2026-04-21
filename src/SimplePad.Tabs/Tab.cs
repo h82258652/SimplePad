@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using SimplePad.File;
 
@@ -137,6 +139,7 @@ public sealed class Tab
             firstLine = Content;
         }
 
+        firstLine = new string([.. firstLine.Where(character => !Path.GetInvalidFileNameChars().Contains(character))]);
         firstLine = firstLine.Trim();
         if (firstLine.Length > 0)
         {

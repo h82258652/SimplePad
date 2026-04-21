@@ -6,6 +6,7 @@ public sealed class SearchViewState
 {
     private bool _isReplaceMode;
     private bool _isVisible;
+    private string _searchText = string.Empty;
 
     internal SearchViewState()
     {
@@ -55,6 +56,4 @@ public sealed class SearchViewState
             }
         }
     }
-
-    private string _searchText = string.Empty;
 }

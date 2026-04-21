@@ -31,7 +31,7 @@ public sealed partial class TimeDateMenuFlyoutItem : MenuFlyoutItem
             return;
         }
 
-        string timeDateText = DateTime.Now.ToString("hh:mm tt MM/dd/yyyy");
+        string timeDateText = DateTime.Now.ToString("HH:mm yyyy/M/dd");
         textBox.SelectedText = timeDateText;
         textBox.SelectionLength = 0;
         textBox.SelectionStart += timeDateText.Length;
