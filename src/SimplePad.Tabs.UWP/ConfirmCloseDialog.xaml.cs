@@ -1,15 +1,29 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Tabs;
 
 public sealed partial class ConfirmCloseDialog : ContentDialog
 {
-    public ConfirmCloseDialog()
+    public ConfirmCloseDialog(Tab tab)
     {
         InitializeComponent();
+
+        FileNameText.Text = GetFileName(tab);
     }
 
     public ConfirmCloseResult? Result { get; private set; }
+
+    private static string GetFileName(Tab tab)
+    {
+        if (tab.File is { } file)
+        {
+            return file.FileName;
+        }
+
+        string title = tab.Title;
+        return title[..Math.Min(title.Length, 35)] + ".txt";
+    }
 
     private void OnCloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
     {

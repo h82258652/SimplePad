@@ -66,10 +66,10 @@ public sealed class Tab
         }
     }
 
-    internal IFile? File
+    public IFile? File
     {
         get => _file;
-        set
+        internal set
         {
             if (_file != value)
             {

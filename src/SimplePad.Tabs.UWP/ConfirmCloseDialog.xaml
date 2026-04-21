@@ -14,5 +14,5 @@
     SecondaryButtonText="Don't save"
     Style="{StaticResource DefaultContentDialogStyle}"
     mc:Ignorable="d">
-    <TextBlock Text="Do you want to save changes to xxx.txt" />
+    <TextBlock TextWrapping="WrapWholeWords"><Run Text="Do you want to save changes to " /><Run x:Name="FileNameText" /><Run Text="?" /></TextBlock>
 </ContentDialog>
