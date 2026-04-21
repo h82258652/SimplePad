@@ -97,7 +97,10 @@
             </Button>
             <search:ExitFindAndReplaceButton Grid.Column="4" />
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
