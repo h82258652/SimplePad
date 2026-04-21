@@ -62,17 +62,17 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <settings:BackButton VerticalAlignment="Center" />
+            <settings:BackButton Margin="6,0,0,0" VerticalAlignment="Center" />
             <Image
                 Grid.Column="1"
                 Width="28"
                 Height="28"
-                Margin="2,0,0,0"
+                Margin="6,0,0,0"
                 VerticalAlignment="Center"
                 Source="/Assets/Square44x44Logo.png" />
             <TextBlock
                 Grid.Column="2"
-                Margin="8,0,0,0"
+                Margin="10,0,0,0"
                 VerticalAlignment="Center"
                 FontSize="12"
                 Text="Simple Pad" />

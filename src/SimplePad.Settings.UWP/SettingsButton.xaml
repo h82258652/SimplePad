@@ -20,12 +20,13 @@
                             <animatedVisuals:AnimatedSettingsVisualSource />
                         </winui:AnimatedIcon.Source>
                         <winui:AnimatedIcon.FallbackIconSource>
-                            <winui:FontIconSource FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;" />
+                            <winui:FontIconSource FontFamily="Segoe Fluent Icons" Glyph="&#xE713;" />
                         </winui:AnimatedIcon.FallbackIconSource>
                     </winui:AnimatedIcon>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="ToolTipService.ToolTip" Value="Settings" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="settings:SettingsButton">

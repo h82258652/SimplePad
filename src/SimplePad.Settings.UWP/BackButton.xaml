@@ -1,6 +1,88 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:settings="using:SimplePad.Settings">
-    <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="settings:BackButton" />
+    xmlns:animatedVisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    xmlns:settings="using:SimplePad.Settings"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+    <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="settings:BackButton">
+        <Setter Property="Background" Value="{ThemeResource MenuBarItemBackground}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource MenuBarItemBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{ThemeResource MenuBarItemBorderThickness}" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <winui:AnimatedIcon>
+                        <winui:AnimatedIcon.Source>
+                            <animatedVisuals:AnimatedBackVisualSource />
+                        </winui:AnimatedIcon.Source>
+                        <winui:AnimatedIcon.FallbackIconSource>
+                            <winui:FontIconSource FontFamily="Segoe Fluent Icons" Glyph="&#xE72B;" />
+                        </winui:AnimatedIcon.FallbackIconSource>
+                    </winui:AnimatedIcon>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ToolTipService.ToolTip" Value="Back" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="settings:BackButton">
+                    <ContentPresenter
+                        x:Name="ContentPresenter"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        winui:AnimatedIcon.State="Normal"
+                        AutomationProperties.AccessibilityView="Raw"
+                        Background="{TemplateBinding Background}"
+                        BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        ContentTransitions="{TemplateBinding ContentTransitions}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter.BackgroundTransition>
+                            <BrushTransition Duration="0:0:0.083" />
+                        </ContentPresenter.BackgroundTransition>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuBarItemBackgroundPointerOver}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuBarItemBorderBrushPointerOver}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.(winui:AnimatedIcon.State)" Value="PointerOver" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuBarItemBackgroundPressed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource MenuBarItemBorderBrushPressed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.(winui:AnimatedIcon.State)" Value="Pressed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ContentPresenter>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
