@@ -1,18 +1,13 @@
 ﻿<ContentDialog
-    x:Class="SimplePad.Tabs.ConfirmCloseDialog"
+    x:Class="SimplePad.Search.SearchTextNotFoundDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Simple Pad"
-    CloseButtonClick="OnCloseButtonClick"
-    CloseButtonText="Cancel"
-    PrimaryButtonClick="OnPrimaryButtonClick"
     PrimaryButtonStyle="{StaticResource AccentButtonStyle}"
-    PrimaryButtonText="Save"
-    SecondaryButtonClick="OnSecondaryButtonClick"
-    SecondaryButtonText="Don't save"
+    PrimaryButtonText="OK"
     Style="{StaticResource DefaultContentDialogStyle}"
     mc:Ignorable="d">
-    <TextBlock TextWrapping="WrapWholeWords"><Run Text="Do you want to save changes to " /><Run x:Name="FileNameText" /><Run Text="?" /></TextBlock>
+    <TextBlock TextWrapping="WrapWholeWords"><Run Text="Cannot find &quot;" /><Run x:Name="SearchText" /><Run Text="&quot;" /></TextBlock>
 </ContentDialog>
