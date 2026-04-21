@@ -471,7 +471,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <menu:AppMenuBar Tab="{x:Bind Tab, Mode=OneWay}" TextBox="{x:Bind TextBox}" />
-            <settings:SettingsButton Grid.Column="1" />
+            <settings:SettingsButton Grid.Column="1" Margin="0,0,8,0" />
         </Grid>
         <editor:AppTextBox
             x:Name="TextBox"
