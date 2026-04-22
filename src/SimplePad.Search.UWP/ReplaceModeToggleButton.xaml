@@ -1,6 +1,78 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:search="using:SimplePad.Search">
-    <Style BasedOn="{StaticResource DefaultToggleButtonStyle}" TargetType="search:ReplaceModeToggleButton" />
+    xmlns:animatedVisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    xmlns:search="using:SimplePad.Search"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+    <Style BasedOn="{StaticResource DefaultToggleButtonStyle}" TargetType="search:ReplaceModeToggleButton">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <winui:AnimatedIcon>
+                        <winui:AnimatedIcon.Source>
+                            <animatedVisuals:AnimatedChevronUpDownSmallVisualSource />
+                        </winui:AnimatedIcon.Source>
+                        <winui:AnimatedIcon.FallbackIconSource>
+                            <winui:FontIconSource FontFamily="Segoe Fluent Icons" Glyph="&#xE70E;" />
+                        </winui:AnimatedIcon.FallbackIconSource>
+                    </winui:AnimatedIcon>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--<Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="search:ReplaceModeToggleButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="ContentPresenterRotateTransform"
+                                            Storyboard.TargetProperty="Angle"
+                                            To="180" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPointerOver" />
+                                <VisualState x:Name="CheckedPressed" />
+                                <VisualState x:Name="CheckedDisabled" />
+                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="IndeterminatePointerOver" />
+                                <VisualState x:Name="IndeterminatePressed" />
+                                <VisualState x:Name="IndeterminateDisabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border
+                            x:Name="Background"
+                            Background="{TemplateBinding Background}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                            <Border.BackgroundTransition>
+                                <BrushTransition Duration="0:0:0.083" />
+                            </Border.BackgroundTransition>
+                        </Border>
+                        <ContentPresenter
+                            x:Name="ContentPresenter"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            AutomationProperties.AccessibilityView="Raw"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            ContentTransitions="{TemplateBinding ContentTransitions}"
+                            RenderTransformOrigin="0.5,0.5">
+                            <ContentPresenter.RenderTransform>
+                                <RotateTransform x:Name="ContentPresenterRotateTransform" />
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>-->
+    </Style>
 </ResourceDictionary>
