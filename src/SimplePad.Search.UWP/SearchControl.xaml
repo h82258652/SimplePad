@@ -36,7 +36,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <search:ReplaceModeToggleButton />
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
