@@ -35,7 +35,7 @@ public sealed partial class FixExpanderCollapsePanel : Panel
         double desiredHeight = 0;
         foreach (UIElement child in Children)
         {
-            child.Measure(new Size(availableSize.Width, double.PositiveInfinity));
+            child.Measure(availableSize);
             desiredWidth = Math.Max(desiredWidth, child.DesiredSize.Width);
             desiredHeight = Math.Max(desiredHeight, child.DesiredSize.Height);
         }
