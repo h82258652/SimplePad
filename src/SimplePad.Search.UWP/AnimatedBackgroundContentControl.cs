@@ -284,7 +284,7 @@ internal sealed partial class AnimatedBackgroundContentControl : ContentControl
     private Vector2KeyFrameAnimation SetupImplicitSizeAnimation(Visual visual)
     {
         Vector2KeyFrameAnimation resizeAnimation = _compositor.CreateVector2KeyFrameAnimation();
-        resizeAnimation.InsertExpressionKeyFrame(0f, "this.StartingValue.X > 0 && this.StartingValue.Y > 0 ? this.StartingValue : this.FinalValue");
+        resizeAnimation.InsertExpressionKeyFrame(0f, "this.StartingValue.Y > 0 ? Vector2(this.FinalValue.X, this.StartingValue.Y) : this.FinalValue");
         resizeAnimation.InsertExpressionKeyFrame(1f, "this.FinalValue");
         resizeAnimation.Target = nameof(visual.Size);
         resizeAnimation.Duration = ResizeAnimationDuration;

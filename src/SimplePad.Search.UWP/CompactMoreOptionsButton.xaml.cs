@@ -2,7 +2,7 @@
 
 namespace SimplePad.Search;
 
-public sealed partial class CompactMoreOptionsButton : Button
+public sealed partial class CompactMoreOptionsButton : UserControl
 {
     public CompactMoreOptionsButton()
     {

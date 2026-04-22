@@ -30,6 +30,8 @@ internal sealed class CompositionRoundedRectangleGeometryProvider : DependencyOb
 
     private readonly Compositor _compositor;
     private readonly CompositionRoundedRectangleGeometry _roundedRectangleGeometry;
+    private bool _isFirstSetCornerRadius = true;
+    private bool _isSetNonZeroSize;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CompositionRoundedRectangleGeometryProvider"/> class.
@@ -77,7 +79,7 @@ internal sealed class CompositionRoundedRectangleGeometryProvider : DependencyOb
 
         _roundedRectangleGeometry.Offset = new Vector2((float)geometryInfoContext.OffsetX, (float)geometryInfoContext.OffsetY);
 
-        if (CompositionAnimationDurationHelper.IsValidAnimationDuration(geometryInfoContext.ResizeAnimationDuration))
+        if (CompositionAnimationDurationHelper.IsValidAnimationDuration(geometryInfoContext.ResizeAnimationDuration) && _isSetNonZeroSize)
         {
             Vector2KeyFrameAnimation animation = _compositor.CreateVector2KeyFrameAnimation();
             animation.InsertKeyFrame(1f, new Vector2((float)geometryInfoContext.Width, (float)geometryInfoContext.Height));
@@ -89,6 +91,11 @@ internal sealed class CompositionRoundedRectangleGeometryProvider : DependencyOb
         {
             _roundedRectangleGeometry.Size = new Vector2((float)geometryInfoContext.Width, (float)geometryInfoContext.Height);
         }
+
+        if (geometryInfoContext.Width > 0 && geometryInfoContext.Height > 0)
+        {
+            _isSetNonZeroSize = true;
+        }
     }
 
     private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -96,7 +103,7 @@ internal sealed class CompositionRoundedRectangleGeometryProvider : DependencyOb
         CompositionRoundedRectangleGeometryProvider self = (CompositionRoundedRectangleGeometryProvider)d;
         double radius = (double)e.NewValue;
 
-        if (CompositionAnimationDurationHelper.IsValidAnimationDuration(self.CornerRadiusAnimationDuration))
+        if (CompositionAnimationDurationHelper.IsValidAnimationDuration(self.CornerRadiusAnimationDuration) && !self._isFirstSetCornerRadius)
         {
             Vector2KeyFrameAnimation animation = self._compositor.CreateVector2KeyFrameAnimation();
             animation.InsertKeyFrame(1f, new Vector2((float)radius));
@@ -107,6 +114,7 @@ internal sealed class CompositionRoundedRectangleGeometryProvider : DependencyOb
         else
         {
             self._roundedRectangleGeometry.CornerRadius = new Vector2((float)radius);
+            self._isFirstSetCornerRadius = false;
         }
     }
 }
