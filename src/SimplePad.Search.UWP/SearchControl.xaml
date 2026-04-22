@@ -88,18 +88,14 @@
                     </Button.Flyout>
                     <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" />
                 </Button>
-                <Button
+                <search:SearchDownButton
                     x:Name="SearchDownButton"
                     Grid.Column="1"
-                    Visibility="Collapsed">
-                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE74B;" />
-                </Button>
-                <Button
+                    Visibility="Collapsed" />
+                <search:SearchUpButton
                     x:Name="SearchUpButton"
                     Grid.Column="2"
-                    Visibility="Collapsed">
-                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE74A;" />
-                </Button>
+                    Visibility="Collapsed" />
                 <Button
                     x:Name="ExpandedMoreOptionsButton"
                     Grid.Column="3"

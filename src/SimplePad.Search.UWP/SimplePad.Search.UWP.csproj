@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
   </ItemGroup>
 </Project>
