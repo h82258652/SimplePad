@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Tabs;
+using SimplePad.Themes;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;
@@ -90,7 +91,7 @@ public sealed class UWPAppWindowManager : IAppWindowManager
 
         var d = CoreApplication.GetCurrentView().Dispatcher;
 
-        UWPAppWindow instance = new(this, d);
+        UWPAppWindow instance = new(d, s.ServiceProvider.GetRequiredService<IThemeSettings>());
         _instances.Add(instance);
         return instance;
     }
