@@ -8,6 +8,21 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <StaticResource x:Key="BackgroundBorderColor" ResourceKey="ControlStrongStrokeColorDefault" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <StaticResource x:Key="BackgroundBorderColor" ResourceKey="ControlStrongStrokeColorDefault" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <StaticResource x:Key="BackgroundBorderColor" ResourceKey="SystemColorButtonTextColor" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -27,8 +42,10 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <Border Background="Transparent" CornerRadius="8" />
         <search:SearchControlBackground
-            BorderThickness="1"
+            BorderColor="{ThemeResource BackgroundBorderColor}"
+            BorderThickness="2"
             CornerRadius="8"
             ShadowBlurRadius="8"
             ShadowOffset="0,4"
@@ -103,11 +120,13 @@
                 <Button
                     x:Name="ReplaceButton"
                     Grid.Column="1"
+                    MinWidth="88"
                     Content="Replace"
                     Visibility="Collapsed" />
                 <Button
                     x:Name="ReplaceAllButton"
                     Grid.Column="2"
+                    MinWidth="88"
                     Click="OnReplaceAllButtonClick"
                     Content="Replace all"
                     Visibility="Collapsed" />

@@ -15,13 +15,13 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         nameof(BorderColor),
         typeof(Color),
         typeof(SearchControlBackground),
-        new PropertyMetadata(Colors.Transparent));
+        new PropertyMetadata(Colors.Transparent, OnBorderColorChanged));
 
     public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(
         nameof(BorderThickness),
         typeof(double),
         typeof(SearchControlBackground),
-        new PropertyMetadata(0d));
+        new PropertyMetadata(0d, OnBorderThicknessChanged));
 
     public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
         nameof(Color),
@@ -66,15 +66,12 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         new PropertyMetadata(1d, OnShadowOpacityChanged));
 
     private readonly RectangleClip _clip;
-
     private readonly Compositor _compositor = Window.Current.Compositor;
-
     private readonly ContainerVisual _containerVisual;
-
-    private readonly SpriteVisual _contentVisual;
-
+    private readonly ShapeVisual _contentVisual;
     private readonly Vector2KeyFrameAnimation _resizeAnimation;
-
+    private readonly CompositionSpriteShape _roundedRectangle;
+    private readonly CompositionRoundedRectangleGeometry _roundedRectangleGeometry;
     private readonly DropShadow _shadow;
 
     public SearchControlBackground()
@@ -89,9 +86,17 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         shadowVisual.RelativeSizeAdjustment = Vector2.One;
         shadowVisual.Shadow = _shadow;
 
-        _contentVisual = _compositor.CreateSpriteVisual();
+        _roundedRectangleGeometry = _compositor.CreateRoundedRectangleGeometry();
+        UpdateRoundedRectangleGeometryRadius();
+
+        _roundedRectangle = _compositor.CreateSpriteShape(_roundedRectangleGeometry);
+        UpdateRoundedRectangleFillColor();
+        UpdateRoundedRectangleStrokeThickness();
+        UpdateRoundedRectangleStrokeColor();
+
+        _contentVisual = _compositor.CreateShapeVisual();
+        _contentVisual.Shapes.Add(_roundedRectangle);
         _contentVisual.RelativeSizeAdjustment = Vector2.One;
-        UpdateContentVisualColor();
 
         _containerVisual = _compositor.CreateContainerVisual();
         _containerVisual.Children.InsertAtBottom(shadowVisual);
@@ -102,6 +107,8 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         contentVisualSurface.StartAnimation(nameof(contentVisualSurface.SourceSize), _containerVisual.GetReference().Size);
         CompositionSurfaceBrush contentVisualSurfaceBrush = _compositor.CreateSurfaceBrush(contentVisualSurface);
         _shadow.Mask = contentVisualSurfaceBrush;
+
+        _roundedRectangleGeometry.StartAnimation(nameof(_roundedRectangleGeometry.Size), _containerVisual.GetReference().Size);
 
         _clip = _compositor.CreateRectangleClip();
         _clip.StartAnimation(nameof(_clip.Right), _containerVisual.GetReference().Size.X);
@@ -177,15 +184,28 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         set => SetValue(ShadowOpacityProperty, value);
     }
 
+    private static void OnBorderColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        SearchControlBackground self = (SearchControlBackground)d;
+        self.UpdateRoundedRectangleStrokeColor();
+    }
+
+    private static void OnBorderThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        SearchControlBackground self = (SearchControlBackground)d;
+        self.UpdateRoundedRectangleStrokeThickness();
+    }
+
     private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         SearchControlBackground self = (SearchControlBackground)d;
-        self.UpdateContentVisualColor();
+        self.UpdateRoundedRectangleFillColor();
     }
 
     private static void OnCornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         SearchControlBackground self = (SearchControlBackground)d;
+        self.UpdateRoundedRectangleGeometryRadius();
         self.UpdateClipRadius();
     }
 
@@ -233,14 +253,30 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         _clip.BottomLeftRadius = new Vector2(cornerRadius);
     }
 
-    private void UpdateContentVisualColor()
-    {
-        _contentVisual.Brush = _compositor.CreateColorBrush(Color);
-    }
-
     private void UpdateResizeAnimationDuration()
     {
         _resizeAnimation.Duration = ResizeAnimationDuration;
+    }
+
+    private void UpdateRoundedRectangleFillColor()
+    {
+        _roundedRectangle.FillBrush = _compositor.CreateColorBrush(Color);
+    }
+
+    private void UpdateRoundedRectangleGeometryRadius()
+    {
+        float cornerRadius = (float)CornerRadius;
+        _roundedRectangleGeometry.CornerRadius = new Vector2(cornerRadius);
+    }
+
+    private void UpdateRoundedRectangleStrokeColor()
+    {
+        _roundedRectangle.StrokeBrush = _compositor.CreateColorBrush(BorderColor);
+    }
+
+    private void UpdateRoundedRectangleStrokeThickness()
+    {
+        _roundedRectangle.StrokeThickness = (float)BorderThickness;
     }
 
     private void UpdateShadowBlurRadius()
