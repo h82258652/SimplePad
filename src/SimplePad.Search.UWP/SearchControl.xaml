@@ -103,7 +103,8 @@
                     x:Name="ReplaceSplitButton"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
-                    Content="Replace">
+                    Content="Replace"
+                    Style="{StaticResource SplitButtonStyle}">
                     <SplitButton.Flyout>
                         <MenuFlyout>
                             <MenuFlyoutItem Text="Replace all" />

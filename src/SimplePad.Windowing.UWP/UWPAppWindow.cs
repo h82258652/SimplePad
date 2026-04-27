@@ -3,6 +3,7 @@ using CommunityToolkit.WinUI.Helpers;
 using SimplePad.Core.Extensions;
 using SimplePad.Tabs;
 using SimplePad.Themes;
+using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Core.Preview;
@@ -27,6 +28,8 @@ internal sealed class UWPAppWindow : IAppWindow
         _tabManager = tabManager;
 
         UpdateTitleBarButtons();
+
+        ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 195));
 
         _themeSettings.AppThemeChanged += OnThemeSettingsAppThemeChanged;
         _themeListener.ThemeChanged += OnThemeListenerThemeChanged;
