@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace SimplePad.Search;
 
-public sealed class SearchUpCommand : ICommand
+public sealed class SearchDownCommand : ICommand
 {
     private readonly ISearchDialogService _searchDialogService;
     private readonly ISearchNotificationService _searchNotificationService;
@@ -14,7 +14,7 @@ public sealed class SearchUpCommand : ICommand
     private readonly SearchViewState _searchViewState;
     private bool _executable = true;
 
-    public SearchUpCommand()
+    public SearchDownCommand()
     {
         _searchSettings = ServiceLocator.Current.GetRequiredService<ISearchSettings>();
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
@@ -60,12 +60,12 @@ public sealed class SearchUpCommand : ICommand
         }
 
         RegexOptions regexOptions = SearchSettingsHelper.GetRegexOptions(_searchSettings);
-        regexOptions |= RegexOptions.RightToLeft;
         Regex regex = new(Regex.Escape(searchText), regexOptions);
         string text = textBox.Text;
         int selectionStart = textBox.SelectionStart;
+        int selectionLength = textBox.SelectionLength;
 
-        Match match = regex.Match(text, selectionStart);
+        Match match = regex.Match(text, selectionStart + selectionLength);
         if (match.Success)
         {
             textBox.SelectionStart = match.Index;
@@ -78,7 +78,7 @@ public sealed class SearchUpCommand : ICommand
         {
             textBox.SelectionStart = match.Index;
             textBox.SelectionLength = match.Length;
-            _searchNotificationService.ShowFindPreviousFromBottomNotification();
+            _searchNotificationService.ShowFindNextFromTopNotification();
         }
         else
         {

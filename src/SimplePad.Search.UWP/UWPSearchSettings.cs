@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SimplePad.Core.Settings;
+using System;
 using System.Threading.Tasks;
-using SimplePad.Core.Settings;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 
@@ -43,7 +43,7 @@ internal sealed class UWPSearchSettings : AppSettingsBase, ISearchSettings
 
     public override Task LoadAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         if (settingsValue.TryGetValue(nameof(IsMatchCase), out object? isMatchCase))
         {
             IsMatchCase = (bool)isMatchCase;
@@ -59,10 +59,15 @@ internal sealed class UWPSearchSettings : AppSettingsBase, ISearchSettings
 
     public override Task SaveAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         settingsValue[nameof(IsMatchCase)] = IsMatchCase;
         settingsValue[nameof(IsWrapAround)] = IsWrapAround;
 
         return Task.CompletedTask;
+    }
+
+    private static IPropertySet GetSettings()
+    {
+        return ApplicationData.Current.LocalSettings.CreateContainer("Search", ApplicationDataCreateDisposition.Always).Values;
     }
 }

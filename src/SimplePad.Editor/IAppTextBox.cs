@@ -23,7 +23,7 @@ public interface IAppTextBox
 
     int SelectionStart { get; set; }
 
-    string Text { get; }
+    string Text { get; set; }
 
     void CopySelectionToClipboard();
 

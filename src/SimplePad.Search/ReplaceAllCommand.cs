@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using Microsoft.Extensions.DependencyInjection;
-using SimplePad.Core;
 
 namespace SimplePad.Search;
 
@@ -40,10 +40,11 @@ public sealed class ReplaceAllCommand : ICommand
         RegexOptions regexOptions = SearchSettingsHelper.GetRegexOptions(_searchSettings);
         Regex regex = new(Regex.Escape(searchText), regexOptions);
         string text = textBox.Text;
+        string replaceText = _searchViewState.ReplaceText;
 
-        var r = regex.Replace(text, "");
+        string replacedText = regex.Replace(text, replaceText);
 
-        //textBox.Text = r;
+        textBox.Text = replacedText;
         textBox.SelectionStart = 0;
     }
 }

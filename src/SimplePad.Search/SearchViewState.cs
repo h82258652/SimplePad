@@ -7,6 +7,7 @@ public sealed class SearchViewState
 {
     private bool _isReplaceMode;
     private bool _isVisible;
+    private string _replaceText = string.Empty;
     private string _searchText = string.Empty;
 
     internal SearchViewState()
@@ -16,6 +17,8 @@ public sealed class SearchViewState
     public event EventHandler<bool>? IsReplaceModeChanged;
 
     public event EventHandler<bool>? IsVisibleChanged;
+
+    public event EventHandler<string>? ReplaceTextChanged;
 
     public event EventHandler<string>? SearchTextChanged;
 
@@ -41,6 +44,19 @@ public sealed class SearchViewState
             {
                 _isVisible = value;
                 IsVisibleChanged?.Invoke(this, value);
+            }
+        }
+    }
+
+    public string ReplaceText
+    {
+        get => _replaceText;
+        set
+        {
+            if (_replaceText != value)
+            {
+                _replaceText = value;
+                ReplaceTextChanged?.Invoke(this, value);
             }
         }
     }
