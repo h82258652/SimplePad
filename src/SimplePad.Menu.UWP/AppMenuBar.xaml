@@ -63,9 +63,9 @@
             MinWidth="230"
             Style="{StaticResource DefaultMenuFlyoutSubItemStyle}"
             Text="Zoom">
-            <menu:ZoomInMenuFlyoutItem MinWidth="230" />
-            <menu:ZoomOutMenuFlyoutItem MinWidth="230" />
-            <menu:RestoreDefaultZoomMenuFlyoutItem MinWidth="230" />
+            <menu:ZoomInMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+            <menu:ZoomOutMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+            <menu:RestoreDefaultZoomMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         </MenuFlyoutSubItem>
         <menu:IsStatusBarVisibleToggleMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:IsWordWrapToggleMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />

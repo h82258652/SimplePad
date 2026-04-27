@@ -11,6 +11,18 @@ namespace SimplePad.Search;
 
 internal sealed partial class SearchControlBackground : FrameworkElement
 {
+    public static readonly DependencyProperty BorderColorProperty = DependencyProperty.Register(
+        nameof(BorderColor),
+        typeof(Color),
+        typeof(SearchControlBackground),
+        new PropertyMetadata(Colors.Transparent));
+
+    public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(
+        nameof(BorderThickness),
+        typeof(double),
+        typeof(SearchControlBackground),
+        new PropertyMetadata(0d));
+
     public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
         nameof(Color),
         typeof(Color),
@@ -54,10 +66,15 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         new PropertyMetadata(1d, OnShadowOpacityChanged));
 
     private readonly RectangleClip _clip;
+
     private readonly Compositor _compositor = Window.Current.Compositor;
+
     private readonly ContainerVisual _containerVisual;
+
     private readonly SpriteVisual _contentVisual;
+
     private readonly Vector2KeyFrameAnimation _resizeAnimation;
+
     private readonly DropShadow _shadow;
 
     public SearchControlBackground()
@@ -104,6 +121,18 @@ internal sealed partial class SearchControlBackground : FrameworkElement
         ElementCompositionPreview.SetElementChildVisual(this, _containerVisual);
 
         SizeChanged += OnSizeChanged;
+    }
+
+    public Color BorderColor
+    {
+        get => (Color)GetValue(BorderColorProperty);
+        set => SetValue(BorderColorProperty, value);
+    }
+
+    public double BorderThickness
+    {
+        get => (double)GetValue(BorderThicknessProperty);
+        set => SetValue(BorderThicknessProperty, value);
     }
 
     public Color Color

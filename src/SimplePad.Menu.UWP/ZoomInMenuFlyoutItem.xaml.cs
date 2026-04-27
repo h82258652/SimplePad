@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.Editor;
@@ -10,6 +11,12 @@ namespace SimplePad.Menu;
 
 public sealed partial class ZoomInMenuFlyoutItem : MenuFlyoutItem
 {
+    public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
+        nameof(TextBox),
+        typeof(IAppTextBox),
+        typeof(ZoomInMenuFlyoutItem),
+        null);
+
     private readonly CoreDispatcher _dispatcher;
     private readonly EditorZoomState _editorZoomState;
 
@@ -25,9 +32,17 @@ public sealed partial class ZoomInMenuFlyoutItem : MenuFlyoutItem
         _editorZoomState.CanZoomInChanged += OnEditorZoomStateCanZoomInChanged;
     }
 
-    private void OnClick(object sender, RoutedEventArgs e)
+    public IAppTextBox? TextBox
+    {
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
+        set => SetValue(TextBoxProperty, value);
+    }
+
+    private async void OnClick(object sender, RoutedEventArgs e)
     {
         _editorZoomState.ZoomIn();
+        await Task.Yield();
+        TextBox?.Focus();
     }
 
     private async void OnEditorZoomStateCanZoomInChanged(object? sender, bool e)

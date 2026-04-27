@@ -29,7 +29,9 @@
         </VisualStateManager.VisualStateGroups>
         <search:SearchControlBackground
             CornerRadius="8"
+            ShadowBlurRadius="8"
             ShadowOffset="0,4"
+            ShadowOpacity="0.14"
             Color="{ThemeResource ControlSolidFillColorDefault}" />
         <Grid Margin="8" ColumnSpacing="8">
             <Grid.ColumnDefinitions>

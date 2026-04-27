@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Editor;
 using Windows.UI.Xaml;
@@ -8,6 +9,12 @@ namespace SimplePad.Menu;
 
 public sealed partial class RestoreDefaultZoomMenuFlyoutItem : MenuFlyoutItem
 {
+    public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
+        nameof(TextBox),
+        typeof(IAppTextBox),
+        typeof(RestoreDefaultZoomMenuFlyoutItem),
+        null);
+
     private readonly EditorZoomState _editorZoomState;
 
     public RestoreDefaultZoomMenuFlyoutItem()
@@ -17,8 +24,16 @@ public sealed partial class RestoreDefaultZoomMenuFlyoutItem : MenuFlyoutItem
         InitializeComponent();
     }
 
-    private void OnClick(object sender, RoutedEventArgs e)
+    public IAppTextBox? TextBox
+    {
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
+        set => SetValue(TextBoxProperty, value);
+    }
+
+    private async void OnClick(object sender, RoutedEventArgs e)
     {
         _editorZoomState.ResetZoomFactor();
+        await Task.Yield();
+        TextBox?.Focus();
     }
 }
