@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="SimplePad.Search.ExandedMoreOptionsButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:search="using:SimplePad.Search"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/SearchControlIconButtonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Button Style="{StaticResource SearchControlIconButtonStyle}" ToolTipService.ToolTip="More options">
+        <Button.Flyout>
+            <MenuFlyout>
+                <search:IsMatchCaseToggleMenuFlyoutItem />
+                <search:IsWrapAroundToggleMenuFlyoutItem />
+            </MenuFlyout>
+        </Button.Flyout>
+        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE9E9;" />
+    </Button>
+</UserControl>

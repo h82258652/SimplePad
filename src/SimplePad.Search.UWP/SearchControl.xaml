@@ -66,13 +66,10 @@
                     x:Name="SearchUpButton"
                     Grid.Column="2"
                     Visibility="Collapsed" />
-                <Button
+                <search:ExandedMoreOptionsButton
                     x:Name="ExpandedMoreOptionsButton"
                     Grid.Column="3"
-                    ToolTipService.ToolTip="More options"
-                    Visibility="Collapsed">
-                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE9E9;" />
-                </Button>
+                    Visibility="Collapsed" />
                 <search:ExitFindAndReplaceButton Grid.Column="4" />
             </Grid>
             <Grid
