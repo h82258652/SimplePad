@@ -27,7 +27,11 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <search:AnimatedBackgroundContentControl ResizeAnimationDuration="0:0:0.3">
+        <search:SearchControlBackground
+            CornerRadius="8"
+            ShadowOffset="0,4"
+            Color="{ThemeResource ControlSolidFillColorDefault}" />
+        <!--<search:AnimatedBackgroundContentControl ResizeAnimationDuration="0:0:0.3">
             <search:AnimatedBackgroundContentControl.BackgroundGeometry>
                 <search:CompositionRoundedRectangleGeometryProvider CornerRadius="8" />
             </search:AnimatedBackgroundContentControl.BackgroundGeometry>
@@ -37,7 +41,7 @@
             <search:AnimatedBackgroundContentControl.ShadowProvider>
                 <search:CompositionDropShadowProvider />
             </search:AnimatedBackgroundContentControl.ShadowProvider>
-        </search:AnimatedBackgroundContentControl>
+        </search:AnimatedBackgroundContentControl>-->
         <Grid Margin="8" ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -87,7 +91,8 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="0,8,0,0"
-                ColumnSpacing="8">
+                ColumnSpacing="8"
+                Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />

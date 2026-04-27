@@ -39,11 +39,11 @@ public sealed partial class SearchControl : UserControl
     {
         if (_searchViewState.IsReplaceMode)
         {
-            // TODO
+            ReplaceModePanel.Visibility = Visibility.Visible;
         }
         else
         {
-            // TODO
+            ReplaceModePanel.Visibility = Visibility.Collapsed;
         }
     }
 
