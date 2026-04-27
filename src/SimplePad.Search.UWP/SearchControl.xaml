@@ -31,17 +31,6 @@
             CornerRadius="8"
             ShadowOffset="0,4"
             Color="{ThemeResource ControlSolidFillColorDefault}" />
-        <!--<search:AnimatedBackgroundContentControl ResizeAnimationDuration="0:0:0.3">
-            <search:AnimatedBackgroundContentControl.BackgroundGeometry>
-                <search:CompositionRoundedRectangleGeometryProvider CornerRadius="8" />
-            </search:AnimatedBackgroundContentControl.BackgroundGeometry>
-            <search:AnimatedBackgroundContentControl.BackgroundBrush>
-                <search:CompositionColorBrushProvider Color="{ThemeResource ControlSolidFillColorDefault}" />
-            </search:AnimatedBackgroundContentControl.BackgroundBrush>
-            <search:AnimatedBackgroundContentControl.ShadowProvider>
-                <search:CompositionDropShadowProvider />
-            </search:AnimatedBackgroundContentControl.ShadowProvider>
-        </search:AnimatedBackgroundContentControl>-->
         <Grid Margin="8" ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

@@ -1,6 +1,5 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/AnimatedBackgroundContentControl.xaml" />
         <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/ExitFindAndReplaceButton.xaml" />
         <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/ReplaceModeToggleButton.xaml" />
         <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/SearchDownButton.xaml" />

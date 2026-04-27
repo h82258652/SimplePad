@@ -33,7 +33,7 @@
             </tabs:AppTabView>
             <search:SearchControl
                 MaxWidth="860"
-                Margin="0,100,0,0"
+                Margin="0,88,0,0"
                 VerticalAlignment="Top" />
         </Grid>
         <settings:SettingsView x:Name="SettingsView" />
