@@ -1,4 +1,5 @@
 ﻿using System;
+using SimplePad.Editor;
 
 namespace SimplePad.Search;
 
@@ -56,4 +57,6 @@ public sealed class SearchViewState
             }
         }
     }
+
+    public IAppTextBox? TextBox { get; set; }
 }

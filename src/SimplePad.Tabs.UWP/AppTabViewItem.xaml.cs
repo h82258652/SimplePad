@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
+using SimplePad.Core;
+using SimplePad.Search;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -21,12 +24,17 @@ public sealed partial class AppTabViewItem : TabViewItem
     private const string PointerOverStateName = "PointerOver";
     private const string PressedSelectedStateName = "PressedSelected";
     private const string PressedStateName = "Pressed";
+    private readonly SearchViewState _searchViewState;
     private VisualStateGroup? _commonStates;
     private UIElement? _modifiedIndicator;
 
     public AppTabViewItem()
     {
+        _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
+
         InitializeComponent();
+
+        RegisterPropertyChangedCallback(IsSelectedProperty, OnIsSelectedChanged);
     }
 
     public Tab? Tab
@@ -80,6 +88,14 @@ public sealed partial class AppTabViewItem : TabViewItem
     private void OnCommonStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
     {
         UpdateModifiedIndicatorVisibility();
+    }
+
+    private void OnIsSelectedChanged(DependencyObject sender, DependencyProperty dp)
+    {
+        if (IsSelected)
+        {
+            _searchViewState.TextBox = TextBox;
+        }
     }
 
     private void OnTabContentChanged(object? sender, string e)
