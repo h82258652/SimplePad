@@ -28,6 +28,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <search:SearchControlBackground
+            BorderThickness="1"
             CornerRadius="8"
             ShadowBlurRadius="8"
             ShadowOffset="0,4"
