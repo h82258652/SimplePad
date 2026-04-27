@@ -192,8 +192,8 @@
                         Grid.Row="1"
                         Grid.ColumnSpan="2">
                         <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="About this app" />
-                        <TextBlock Margin="0,8,0,0" Text="Simple Pad" />
-                        <TextBlock Text="© 2026" />
+                        <TextBlock Margin="0,8,0,0"><Run Text="Simple Pad " /><Run x:Name="VersionText" /></TextBlock>
+                        <TextBlock Text="© 2026 h82258652. All rights reserved." />
                     </StackPanel>
                 </Grid>
             </StackPanel>

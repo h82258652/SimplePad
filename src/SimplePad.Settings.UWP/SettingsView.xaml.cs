@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using System;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -15,6 +16,8 @@ public sealed partial class SettingsView : UserControl
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
+        PackageVersion version = Package.Current.Id.Version;
+        VersionText.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
 
         UpdateVisibility();
         UpdateFontSettingsExpander();
