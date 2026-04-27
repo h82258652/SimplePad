@@ -2,7 +2,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:search="using:SimplePad.Search">
-    <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="search:ExitFindAndReplaceButton">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/SearchControlIconButtonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style BasedOn="{StaticResource SearchControlIconButtonStyle}" TargetType="search:ExitFindAndReplaceButton">
         <Setter Property="ToolTipService.ToolTip" Value="Exit Find and Replace" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
