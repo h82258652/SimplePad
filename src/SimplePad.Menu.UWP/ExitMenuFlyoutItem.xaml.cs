@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Windowing;
 using Windows.UI.Xaml;
@@ -17,11 +19,8 @@ public sealed partial class ExitMenuFlyoutItem : MenuFlyoutItem
         InitializeComponent();
     }
 
-    private void OnClick(object sender, RoutedEventArgs e)
+    private async void OnClick(object sender, RoutedEventArgs e)
     {
-        foreach (IAppWindow appWindow in _appWindowManager.Instances)
-        {
-            _ = _appWindowManager.CloseAsync(appWindow);
-        }
+        await Task.WhenAll(_appWindowManager.Instances.Select(_appWindowManager.CloseAsync));
     }
 }
