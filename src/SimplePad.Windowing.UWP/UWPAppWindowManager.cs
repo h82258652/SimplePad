@@ -62,7 +62,7 @@ public sealed class UWPAppWindowManager : IAppWindowManager
                     if (!await _tabManager.CloseAsync(tab))
                     {
                         tcs.SetResult(false);
-                        break;
+                        return;
                     }
                 }
 
@@ -91,7 +91,7 @@ public sealed class UWPAppWindowManager : IAppWindowManager
 
         var d = CoreApplication.GetCurrentView().Dispatcher;
 
-        UWPAppWindow instance = new(d, s.ServiceProvider.GetRequiredService<IThemeSettings>());
+        UWPAppWindow instance = new(this, d, s.ServiceProvider.GetRequiredService<IThemeSettings>(), s.ServiceProvider.GetRequiredService<TabManager>());
         _instances.Add(instance);
         return instance;
     }

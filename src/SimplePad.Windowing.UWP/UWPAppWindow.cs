@@ -5,26 +5,34 @@ using SimplePad.Tabs;
 using SimplePad.Themes;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
 namespace SimplePad.Windowing;
 
-public sealed class UWPAppWindow : IAppWindow
+internal sealed class UWPAppWindow : IAppWindow
 {
+    private readonly IAppWindowManager _appWindowManager;
+    private readonly TabManager _tabManager;
     private readonly ThemeListener _themeListener;
     private readonly IThemeSettings _themeSettings;
 
-    public UWPAppWindow(CoreDispatcher dispatcher, IThemeSettings themeSettings)
+    internal UWPAppWindow(IAppWindowManager appWindowManager, CoreDispatcher dispatcher, IThemeSettings themeSettings, TabManager tabManager)
     {
         _themeListener = new ThemeListener();
+        _appWindowManager = appWindowManager;
         Dispatcher = dispatcher;
         _themeSettings = themeSettings;
+        _tabManager = tabManager;
 
         UpdateTitleBarButtons();
 
         _themeSettings.AppThemeChanged += OnThemeSettingsAppThemeChanged;
         _themeListener.ThemeChanged += OnThemeListenerThemeChanged;
+
+        TabRoot.Tabs.CollectionChanged += OnTabsCollectionChanged;
+        SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += OnAppWindowCloseRequested;
     }
 
     public TabRoot TabRoot { get; } = new TabRoot();
@@ -50,6 +58,26 @@ public sealed class UWPAppWindow : IAppWindow
         titleBar.ButtonForegroundColor = Colors.Black;
         titleBar.ButtonHoverForegroundColor = Colors.Black;
         titleBar.ButtonHoverBackgroundColor = Color.FromArgb(24, 0, 0, 0);
+    }
+
+    private async void OnAppWindowCloseRequested(object? sender, SystemNavigationCloseRequestedPreviewEventArgs e)
+    {
+        foreach (Tab tab in TabRoot.Tabs)
+        {
+            if (!await _tabManager.CloseAsync(tab))
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+    }
+
+    private async void OnTabsCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        if (TabRoot.Tabs.Count == 0)
+        {
+            await _appWindowManager.CloseAsync(this);
+        }
     }
 
     private async void OnThemeListenerThemeChanged(ThemeListener sender)
