@@ -108,6 +108,7 @@
                 <Button
                     x:Name="ReplaceAllButton"
                     Grid.Column="2"
+                    Click="OnReplaceAllButtonClick"
                     Content="Replace all"
                     Visibility="Collapsed" />
             </Grid>

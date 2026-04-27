@@ -72,4 +72,9 @@ public sealed partial class SearchControl : UserControl
             Visibility = Visibility.Collapsed;
         }
     }
+
+    private void OnReplaceAllButtonClick(object sender, RoutedEventArgs e)
+    {
+        new ReplaceAllCommand().Execute(null);
+    }
 }
