@@ -27,7 +27,7 @@ internal sealed class UWPStatusBarSettings : AppSettingsBase, IStatusBarSettings
 
     public override Task LoadAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         if (settingsValue.TryGetValue(nameof(IsStatusBarVisible), out object? isStatusBarVisible))
         {
             IsStatusBarVisible = (bool)isStatusBarVisible;
@@ -38,9 +38,14 @@ internal sealed class UWPStatusBarSettings : AppSettingsBase, IStatusBarSettings
 
     public override Task SaveAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         settingsValue[nameof(IsStatusBarVisible)] = IsStatusBarVisible;
 
         return Task.CompletedTask;
+    }
+
+    private static IPropertySet GetSettings()
+    {
+        return ApplicationData.Current.LocalSettings.CreateContainer("StatusBar", ApplicationDataCreateDisposition.Always).Values;
     }
 }

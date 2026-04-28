@@ -9,9 +9,7 @@ namespace SimplePad.Fonts;
 internal sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 {
     private string _fontFamily = "Consolas";
-
     private int _fontSize = 14;
-
     private AppFontStyle _fontStyle = AppFontStyle.Regular;
 
     public event EventHandler<string>? FontFamilyChanged;
@@ -61,7 +59,7 @@ internal sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 
     public override Task LoadAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         if (settingsValue.TryGetValue(nameof(FontFamily), out object? fontFamily))
         {
             FontFamily = (string)fontFamily;
@@ -82,11 +80,16 @@ internal sealed class UWPFontSettings : AppSettingsBase, IFontSettings
 
     public override Task SaveAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         settingsValue[nameof(FontFamily)] = FontFamily;
         settingsValue[nameof(FontSize)] = FontSize;
         settingsValue[nameof(FontStyle)] = FontStyle.Value;
 
         return Task.CompletedTask;
+    }
+
+    private static IPropertySet GetSettings()
+    {
+        return ApplicationData.Current.LocalSettings.CreateContainer("Fonts", ApplicationDataCreateDisposition.Always).Values;
     }
 }
