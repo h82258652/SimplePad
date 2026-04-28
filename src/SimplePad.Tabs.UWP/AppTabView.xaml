@@ -193,6 +193,16 @@
             </Grid>
         </ControlTemplate>
     </winui:TabView.Template>
+    <winui:TabView.KeyboardAccelerators>
+        <KeyboardAccelerator
+            Key="N"
+            Invoked="OnNewTabKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+        <KeyboardAccelerator
+            Key="W"
+            Invoked="OnCloseTabKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+    </winui:TabView.KeyboardAccelerators>
     <winui:TabView.TabItemTemplate>
         <DataTemplate x:DataType="tabs:Tab">
             <tabs:AppTabViewItem Tab="{x:Bind}" />

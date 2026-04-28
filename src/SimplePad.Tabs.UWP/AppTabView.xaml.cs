@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace SimplePad.Tabs;
 
@@ -77,9 +78,29 @@ public sealed partial class AppTabView : TabView
         self.UpdateTitleBar();
     }
 
-    private void OnAddTabButtonClick(TabView sender, object args)
+    private void AddBlankTab()
     {
         TabRoot?.AddBlankTab();
+    }
+
+    private void OnAddTabButtonClick(TabView sender, object args)
+    {
+        AddBlankTab();
+    }
+
+    private async void OnCloseTabKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (TabRoot?.SelectedTab is { } selectedTab)
+        {
+            await _tabManager.CloseAsync(selectedTab);
+        }
+    }
+
+    private void OnNewTabKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        AddBlankTab();
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
