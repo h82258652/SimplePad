@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using SimplePad.Editor;
 using SimplePad.Search;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -9,12 +8,6 @@ namespace SimplePad.Menu;
 
 public sealed partial class FindPreviousMenuFlyoutItem : MenuFlyoutItem
 {
-    public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
-        nameof(TextBox),
-        typeof(IAppTextBox),
-        typeof(FindPreviousMenuFlyoutItem),
-        null);
-
     private readonly SearchViewState _searchViewState;
 
     public FindPreviousMenuFlyoutItem()
@@ -22,12 +15,6 @@ public sealed partial class FindPreviousMenuFlyoutItem : MenuFlyoutItem
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
 
         InitializeComponent();
-    }
-
-    public IAppTextBox? TextBox
-    {
-        get => (IAppTextBox?)GetValue(TextBoxProperty);
-        set => SetValue(TextBoxProperty, value);
     }
 
     private void OnClick(object sender, RoutedEventArgs e)
@@ -40,18 +27,7 @@ public sealed partial class FindPreviousMenuFlyoutItem : MenuFlyoutItem
             return;
         }
 
-        if (TextBox is not { } textBox)
-        {
-            return;
-        }
-
-        if (textBox.Text.Contains(searchText))
-        {
-            // TODO jump selection
-        }
-        else
-        {
-            // TODO show not find dialog
-        }
+        SearchUpCommand searchUpCommand = new();
+        searchUpCommand.Execute(null);
     }
 }
