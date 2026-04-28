@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
+using SimplePad.File;
 using SimplePad.Search;
 using SimplePad.StatusBar;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ public sealed partial class AppTabViewItem : TabViewItem
 
         UpdateTextBoxPadding();
         UpdateStatusBarDividerVisibility();
+        UpdateStatusBarLineEndings();
 
         _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
         _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
@@ -86,6 +88,7 @@ public sealed partial class AppTabViewItem : TabViewItem
             oldTab.TitleChanged -= self.OnTabTitleChanged;
             oldTab.IsModifiedChanged -= self.OnTabIsModifiedChanged;
             oldTab.ContentChanged -= self.OnTabContentChanged;
+            oldTab.FileChanged -= self.OnTabFileChanged;
         }
 
         Tab? newTab = (Tab?)e.NewValue;
@@ -94,11 +97,13 @@ public sealed partial class AppTabViewItem : TabViewItem
             newTab.TitleChanged += self.OnTabTitleChanged;
             newTab.IsModifiedChanged += self.OnTabIsModifiedChanged;
             newTab.ContentChanged += self.OnTabContentChanged;
+            newTab.FileChanged += self.OnTabFileChanged;
         }
 
         self.UpdateHeader();
         self.UpdateModifiedIndicatorVisibility();
         self.UpdateTextBox();
+        self.UpdateStatusBarLineEndings();
     }
 
     private void OnCommonStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
@@ -132,6 +137,11 @@ public sealed partial class AppTabViewItem : TabViewItem
     private async void OnTabContentChanged(object? sender, string e)
     {
         await _dispatcher.SafeRunAsync(UpdateTextBox);
+    }
+
+    private void OnTabFileChanged(object? sender, IFile? e)
+    {
+        UpdateStatusBarLineEndings();
     }
 
     private async void OnTabIsModifiedChanged(object? sender, bool e)
@@ -196,6 +206,11 @@ public sealed partial class AppTabViewItem : TabViewItem
         {
             StatusBarDivider.Visibility = Visibility.Collapsed;
         }
+    }
+
+    private void UpdateStatusBarLineEndings()
+    {
+        StatusBar.LineEndings = Tab?.File?.LineEndings ?? LineEndings.CRLF;
     }
 
     private void UpdateTextBox()

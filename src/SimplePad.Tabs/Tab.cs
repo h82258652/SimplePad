@@ -21,6 +21,8 @@ public sealed class Tab
 
     public event EventHandler<string>? ContentChanged;
 
+    public event EventHandler<IFile?>? FileChanged;
+
     public event EventHandler<bool>? IsModifiedChanged;
 
     public event EventHandler<string>? TitleChanged;
@@ -48,6 +50,7 @@ public sealed class Tab
             if (_file != value)
             {
                 _file = value;
+                FileChanged?.Invoke(this, value);
                 UpdateTitle();
             }
         }

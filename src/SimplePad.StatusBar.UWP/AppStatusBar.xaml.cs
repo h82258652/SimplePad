@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.Editor;
+using SimplePad.File;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -11,6 +12,12 @@ namespace SimplePad.StatusBar;
 
 public sealed partial class AppStatusBar : UserControl
 {
+    public static readonly DependencyProperty LineEndingsProperty = DependencyProperty.Register(
+        nameof(LineEndings),
+        typeof(LineEndings),
+        typeof(AppStatusBar),
+        new PropertyMetadata(LineEndings.CRLF));
+
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
@@ -38,6 +45,12 @@ public sealed partial class AppStatusBar : UserControl
         _statusBarSettings.IsStatusBarVisibleChanged +=
             OnStatusBarSettingsIsStatusBarVisibleChanged;
         _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
+    }
+
+    public LineEndings LineEndings
+    {
+        get => (LineEndings)GetValue(LineEndingsProperty);
+        set => SetValue(LineEndingsProperty, value);
     }
 
     public IAppTextBox? TextBox

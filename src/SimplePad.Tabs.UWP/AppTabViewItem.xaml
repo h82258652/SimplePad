@@ -488,6 +488,9 @@
             Grid.Row="3"
             Height="1"
             Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-        <statusBar:AppStatusBar Grid.Row="4" TextBox="{x:Bind TextBox}" />
+        <statusBar:AppStatusBar
+            x:Name="StatusBar"
+            Grid.Row="4"
+            TextBox="{x:Bind TextBox}" />
     </Grid>
 </winui:TabViewItem>
