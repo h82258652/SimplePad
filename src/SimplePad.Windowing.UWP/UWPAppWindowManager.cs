@@ -15,7 +15,7 @@ using Windows.UI.Xaml;
 
 namespace SimplePad.Windowing;
 
-public sealed class UWPAppWindowManager : IAppWindowManager
+internal sealed class UWPAppWindowManager : IAppWindowManager
 {
     private readonly SemaphoreSlim _closeLock = new(1);
     private readonly List<UWPAppWindow> _instances = [];
