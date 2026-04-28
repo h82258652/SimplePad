@@ -1,6 +1,10 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:fonts="using:SimplePad.Fonts">
+    xmlns:fonts="using:SimplePad.Fonts"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <winui:XamlControlsResources />
+    </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="fonts:FontStyleComboBox" />
 </ResourceDictionary>
