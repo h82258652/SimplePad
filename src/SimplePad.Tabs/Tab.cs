@@ -40,10 +40,23 @@ public sealed class Tab
         }
     }
 
+    public IFile? File
+    {
+        get => _file;
+        internal set
+        {
+            if (_file != value)
+            {
+                _file = value;
+                UpdateTitle();
+            }
+        }
+    }
+
     public bool IsModified
     {
         get => _isModified;
-        set
+        private set
         {
             if (_isModified != value)
             {
@@ -68,19 +81,6 @@ public sealed class Tab
         }
     }
 
-    public IFile? File
-    {
-        get => _file;
-        internal set
-        {
-            if (_file != value)
-            {
-                _file = value;
-                UpdateTitle();
-            }
-        }
-    }
-
     internal string OriginalContent
     {
         get => _originalContent;
@@ -97,6 +97,20 @@ public sealed class Tab
     internal static Tab CreateBlank(TabRoot root)
     {
         return new Tab(root);
+    }
+
+    internal static Tab CreateClone(TabRoot newRoot, Tab tab)
+    {
+        Tab clonedTab = new(newRoot)
+        {
+            _content = tab._content,
+            _originalContent = tab._originalContent,
+            _title = tab._title,
+            _isModified = tab._isModified,
+            _file = tab._file
+        };
+
+        return clonedTab;
     }
 
     internal static Tab CreateFromFile(TabRoot root, IFile file)

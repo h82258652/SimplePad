@@ -129,8 +129,7 @@ public sealed partial class AppTabView : TabView
             IAppWindow newWindow = await _appWindowManager.ShowNewWindowAsync();
             newWindow.Execute(window =>
             {
-                window.TabRoot.Tabs.Add(tab);
-                window.TabRoot.SelectedTab = tab;
+                window.TabRoot.AddCloneOfTab(tab);
             });
         }
     }

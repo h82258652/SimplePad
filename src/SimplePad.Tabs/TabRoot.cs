@@ -1,6 +1,6 @@
-﻿using SimplePad.File;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using SimplePad.File;
 
 namespace SimplePad.Tabs;
 
@@ -28,6 +28,13 @@ public sealed class TabRoot
     public void AddBlankTab()
     {
         Tab newTab = Tab.CreateBlank(this);
+        Tabs.Add(newTab);
+        SelectedTab = newTab;
+    }
+
+    public void AddCloneOfTab(Tab tab)
+    {
+        Tab newTab = Tab.CreateClone(this, tab);
         Tabs.Add(newTab);
         SelectedTab = newTab;
     }
