@@ -26,6 +26,14 @@ public sealed partial class ShellView : ThemeContainer
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
     }
 
+    private async void OnCloseWindowKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        if (_appWindowManager.CurrentWindow is { } currentWindow)
+        {
+            _ = await _appWindowManager.CloseAsync(currentWindow);
+        }
+    }
+
     private async void OnNewWindowKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         args.Handled = true;

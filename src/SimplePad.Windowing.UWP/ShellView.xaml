@@ -18,6 +18,10 @@
             Key="N"
             Invoked="OnNewWindowKeyboardAcceleratorInvoked"
             Modifiers="Control,Shift" />
+        <KeyboardAccelerator
+            Key="W"
+            Invoked="OnCloseWindowKeyboardAcceleratorInvoked"
+            Modifiers="Control,Shift" />
     </themes:ThemeContainer.KeyboardAccelerators>
     <Grid>
         <Grid x:Name="ContentGrid">
