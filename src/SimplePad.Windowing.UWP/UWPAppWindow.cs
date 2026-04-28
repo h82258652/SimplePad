@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 using CommunityToolkit.WinUI.Helpers;
 using SimplePad.Core.Extensions;
@@ -85,7 +86,7 @@ internal sealed class UWPAppWindow : IAppWindow
         }
     }
 
-    private async void OnTabsCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    private async void OnTabsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         if (TabRoot.Tabs.Count == 0)
         {
