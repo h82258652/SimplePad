@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
+using SimplePad.Windowing;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,14 +27,16 @@ public sealed partial class AppTabView : TabView
 
     private const string TitleBarContainerTemplateName = "PART_TitleBarContainer";
 
+    private readonly IAppWindowManager _appWindowManager;
+    private readonly CoreDispatcher _dispatcher;
     private readonly TabManager _tabManager;
     private Border? _titleBarContainer;
-    private readonly CoreDispatcher _dispatcher;
 
     public AppTabView()
     {
         _dispatcher = Dispatcher;
         _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
+        _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
 
         InitializeComponent();
     }
@@ -116,6 +119,20 @@ public sealed partial class AppTabView : TabView
 
         // TODO add comment for this
         CloseButtonOverlayMode = TabViewCloseButtonOverlayMode.OnPointerOver;
+    }
+
+    private async void OnTabDroppedOutside(TabView sender, TabViewTabDroppedOutsideEventArgs args)
+    {
+        if (TabRoot is { Tabs.Count: > 1 } tabRoot && args.Item is Tab tab)
+        {
+            tabRoot.Tabs.Remove(tab);
+            IAppWindow newWindow = await _appWindowManager.ShowNewWindowAsync();
+            newWindow.Execute(window =>
+            {
+                window.TabRoot.Tabs.Add(tab);
+                window.TabRoot.SelectedTab = tab;
+            });
+        }
     }
 
     private async void OnTabRootSelectedTabChanged(object? sender, Tab? e)

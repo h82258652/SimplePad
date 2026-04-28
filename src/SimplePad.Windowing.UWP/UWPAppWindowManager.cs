@@ -85,15 +85,7 @@ public sealed class UWPAppWindowManager : IAppWindowManager
 
     public IAppWindow CreateAppWindow()
     {
-        var s = _serviceProvider.CreateScope();
-        ServiceLocator.SetLocatorProvider(s.ServiceProvider);
-        // todo dispose ?
-
-        var d = CoreApplication.GetCurrentView().Dispatcher;
-
-        UWPAppWindow instance = new(this, d, s.ServiceProvider.GetRequiredService<IThemeSettings>(), s.ServiceProvider.GetRequiredService<TabManager>());
-        _instances.Add(instance);
-        return instance;
+        return CreateAppWindowInternal();
     }
 
     public async Task<IAppWindow> ShowNewWindowAsync()
@@ -105,7 +97,8 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         {
             ExtendViewIntoTitleBar();
 
-            IAppWindow newAppWindow = CreateAppWindow();
+            UWPAppWindow newAppWindow = CreateAppWindowInternal();
+            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(newAppWindow.Dispatcher));
             tcs.SetResult(newAppWindow);
 
             Window.Current.Content = new ShellView(newAppWindow);
@@ -126,5 +119,18 @@ public sealed class UWPAppWindowManager : IAppWindowManager
         ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
         titleBar.ButtonBackgroundColor = Colors.Transparent;
         titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+    }
+
+    private UWPAppWindow CreateAppWindowInternal()
+    {
+        var s = _serviceProvider.CreateScope();
+        ServiceLocator.SetLocatorProvider(s.ServiceProvider);
+        // todo dispose ?
+
+        var d = CoreApplication.GetCurrentView().Dispatcher;
+
+        UWPAppWindow instance = new(this, d, s.ServiceProvider.GetRequiredService<IThemeSettings>(), s.ServiceProvider.GetRequiredService<TabManager>());
+        _instances.Add(instance);
+        return instance;
     }
 }

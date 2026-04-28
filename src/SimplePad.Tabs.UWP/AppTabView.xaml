@@ -11,10 +11,12 @@
     VerticalAlignment="Stretch"
     AddTabButtonClick="OnAddTabButtonClick"
     Background="{ThemeResource TabViewBackground}"
+    CanDragTabs="True"
     IsTabStop="False"
     KeyboardAcceleratorPlacementMode="Hidden"
     SelectionChanged="OnSelectionChanged"
     TabCloseRequested="OnTabViewTabCloseRequested"
+    TabDroppedOutside="OnTabDroppedOutside"
     TabItemsSource="{x:Bind TabRoot.Tabs, Mode=OneWay}"
     mc:Ignorable="d">
     <winui:TabView.Template>

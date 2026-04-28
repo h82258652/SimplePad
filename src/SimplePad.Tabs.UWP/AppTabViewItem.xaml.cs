@@ -3,7 +3,9 @@ using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
+using SimplePad.Core.Extensions;
 using SimplePad.Search;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -24,12 +26,14 @@ public sealed partial class AppTabViewItem : TabViewItem
     private const string PointerOverStateName = "PointerOver";
     private const string PressedSelectedStateName = "PressedSelected";
     private const string PressedStateName = "Pressed";
+    private readonly CoreDispatcher _dispatcher;
     private readonly SearchViewState _searchViewState;
     private VisualStateGroup? _commonStates;
     private UIElement? _modifiedIndicator;
 
     public AppTabViewItem()
     {
+        _dispatcher = Dispatcher;
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
 
         InitializeComponent();
@@ -101,19 +105,19 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
     }
 
-    private void OnTabContentChanged(object? sender, string e)
+    private async void OnTabContentChanged(object? sender, string e)
     {
-        UpdateTextBox();
+        await _dispatcher.SafeRunAsync(UpdateTextBox);
     }
 
-    private void OnTabIsModifiedChanged(object? sender, bool e)
+    private async void OnTabIsModifiedChanged(object? sender, bool e)
     {
-        UpdateModifiedIndicatorVisibility();
+        await _dispatcher.SafeRunAsync(UpdateModifiedIndicatorVisibility);
     }
 
-    private void OnTabTitleChanged(object? sender, string e)
+    private async void OnTabTitleChanged(object? sender, string e)
     {
-        UpdateHeader();
+        await _dispatcher.SafeRunAsync(UpdateHeader);
     }
 
     private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)

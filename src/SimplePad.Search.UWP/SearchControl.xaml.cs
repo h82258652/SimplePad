@@ -77,6 +77,10 @@ public sealed partial class SearchControl : UserControl
 
     private async void OnReplaceAllButtonClick(object sender, RoutedEventArgs e)
     {
+        NotificationFlyout.Hide();
+
+        await Task.Delay(3000);
+
         FlyoutBase.ShowAttachedFlyout(RootGrid);
 
         await Task.Delay(3000);
