@@ -148,8 +148,7 @@ public sealed partial class AppTabViewItem : TabViewItem
     {
         if (Tab is { } tab)
         {
-            // UWP's TextBox uses \r for new lines, for content, uses \r\n for new lines
-            tab.Content = TextBox.Text.Replace("\r", "\r\n");
+            tab.Content = TextBox.Text;
         }
     }
 
