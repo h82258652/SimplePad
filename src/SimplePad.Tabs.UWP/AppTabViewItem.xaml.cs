@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.Search;
+using System.Collections.Generic;
+using System.Linq;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -38,6 +38,10 @@ public sealed partial class AppTabViewItem : TabViewItem
 
         InitializeComponent();
 
+        UpdateTextBoxPadding();
+
+        _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
+        _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
         RegisterPropertyChangedCallback(IsSelectedProperty, OnIsSelectedChanged);
     }
 
@@ -105,6 +109,16 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
     }
 
+    private void OnSearchViewStateIsReplaceModeChanged(object? sender, bool e)
+    {
+        UpdateTextBoxPadding();
+    }
+
+    private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
+    {
+        UpdateTextBoxPadding();
+    }
+
     private async void OnTabContentChanged(object? sender, string e)
     {
         await _dispatcher.SafeRunAsync(UpdateTextBox);
@@ -124,7 +138,8 @@ public sealed partial class AppTabViewItem : TabViewItem
     {
         if (Tab is { } tab)
         {
-            tab.Content = TextBox.Text;
+            // UWP's TextBox uses \r for new lines, for content, uses \r\n for new lines
+            tab.Content = TextBox.Text.Replace("\r", "\r\n");
         }
     }
 
@@ -165,5 +180,23 @@ public sealed partial class AppTabViewItem : TabViewItem
     private void UpdateTextBox()
     {
         TextBox.Text = Tab?.Content ?? string.Empty;
+    }
+
+    private void UpdateTextBoxPadding()
+    {
+        Thickness padding = new(16);
+        if (_searchViewState.IsVisible)
+        {
+            if (_searchViewState.IsReplaceMode)
+            {
+                padding.Top = 120;
+            }
+            else
+            {
+                padding.Top = 80;
+            }
+        }
+
+        TextBox.Padding = padding;
     }
 }
