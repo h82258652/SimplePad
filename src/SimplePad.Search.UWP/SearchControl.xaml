@@ -23,25 +23,25 @@
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
-            <VisualState>
-                <VisualState.StateTriggers>
-                    <AdaptiveTrigger MinWindowWidth="883" />
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter Target="CompactMoreOptionsButton.Visibility" Value="Collapsed" />
-                    <Setter Target="SearchDownButton.Visibility" Value="Visible" />
-                    <Setter Target="SearchUpButton.Visibility" Value="Visible" />
-                    <Setter Target="ExpandedMoreOptionsButton.Visibility" Value="Visible" />
-                    <Setter Target="ReplaceSplitButton.Visibility" Value="Collapsed" />
-                    <Setter Target="ReplaceButton.Visibility" Value="Visible" />
-                    <Setter Target="ReplaceAllButton.Visibility" Value="Visible" />
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
     <Grid x:Name="RootGrid">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="883" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CompactMoreOptionsButton.Visibility" Value="Collapsed" />
+                        <Setter Target="SearchDownButton.Visibility" Value="Visible" />
+                        <Setter Target="SearchUpButton.Visibility" Value="Visible" />
+                        <Setter Target="ExpandedMoreOptionsButton.Visibility" Value="Visible" />
+                        <Setter Target="ReplaceSplitButton.Visibility" Value="Collapsed" />
+                        <Setter Target="ReplaceButton.Visibility" Value="Visible" />
+                        <Setter Target="ReplaceAllButton.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Border Background="Transparent" CornerRadius="8" />
         <search:SearchControlBackground
             BorderColor="{ThemeResource BackgroundBorderColor}"
@@ -133,10 +133,9 @@
             </Grid>
         </Grid>
         <FlyoutBase.AttachedFlyout>
-            <Flyout
-                x:Name="NotificationFlyout"
-                Content="TODO"
-                Placement="Bottom" />
+            <Flyout x:Name="NotificationFlyout" Placement="Bottom">
+                <TextBlock Text="TODO" />
+            </Flyout>
         </FlyoutBase.AttachedFlyout>
     </Grid>
 </UserControl>
