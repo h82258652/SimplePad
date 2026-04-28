@@ -115,7 +115,7 @@ public sealed partial class AppTabView : TabView
     {
         args.Handled = true;
         SaveAllCommand saveAllCommand = new();
-        saveAllCommand.Execute(null);        
+        saveAllCommand.Execute(null);
     }
 
     private async void OnSaveAsKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
@@ -138,13 +138,19 @@ public sealed partial class AppTabView : TabView
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (TabRoot is { } tabRoot)
-        {
-            tabRoot.SelectedTab = (Tab?)SelectedItem;
-        }
-
         // TODO add comment for this
         CloseButtonOverlayMode = TabViewCloseButtonOverlayMode.OnPointerOver;
+
+        if (TabRoot is { } tabRoot)
+        {
+            Tab? tab = (Tab?)SelectedItem;
+            tabRoot.SelectedTab = tab;
+
+            if (tab is not null)
+            {
+                // TODO check should reload
+            }
+        }
     }
 
     private async void OnTabDroppedOutside(TabView sender, TabViewTabDroppedOutsideEventArgs args)

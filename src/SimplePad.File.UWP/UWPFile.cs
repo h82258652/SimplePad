@@ -3,6 +3,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 
 namespace SimplePad.File;
@@ -19,6 +20,12 @@ public sealed class UWPFile : IFile
     public string FileName => _storageFile.Name;
 
     public string Path => _storageFile.Path;
+
+    public async Task<DateTimeOffset> GetModificationTimeAsync()
+    {
+        BasicProperties basicProperties = await _storageFile.GetBasicPropertiesAsync();
+        return basicProperties.DateModified;
+    }
 
     public async Task<string> ReadAllTextAsync()
     {
