@@ -5,6 +5,7 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Title="Go to line"
     PrimaryButtonClick="OnPrimaryButtonClick"
     PrimaryButtonStyle="{StaticResource AccentButtonStyle}"
@@ -12,6 +13,13 @@
     SecondaryButtonText="Cancel"
     Style="{StaticResource DefaultContentDialogStyle}"
     mc:Ignorable="d">
+    <ContentDialog.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <winui:XamlControlsResources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentDialog.Resources>
     <controls:NumberBox
         x:Name="LineNumberBox"
         Header="Line number"

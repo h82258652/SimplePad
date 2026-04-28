@@ -43,7 +43,7 @@ internal sealed class UWPEditorSettings : AppSettingsBase, IEditorSettings
 
     public override Task LoadAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         if (settingsValue.TryGetValue(nameof(IsSpellCheckEnabled), out object? isSpellCheckEnabled))
         {
             IsSpellCheckEnabled = (bool)isSpellCheckEnabled;
@@ -59,10 +59,15 @@ internal sealed class UWPEditorSettings : AppSettingsBase, IEditorSettings
 
     public override Task SaveAsync()
     {
-        IPropertySet settingsValue = ApplicationData.Current.LocalSettings.Values;
+        IPropertySet settingsValue = GetSettings();
         settingsValue[nameof(IsSpellCheckEnabled)] = IsSpellCheckEnabled;
         settingsValue[nameof(IsWordWrap)] = IsWordWrap;
 
         return Task.CompletedTask;
+    }
+
+    private static IPropertySet GetSettings()
+    {
+        return ApplicationData.Current.LocalSettings.CreateContainer("Editor", ApplicationDataCreateDisposition.Always).Values;
     }
 }

@@ -11,99 +11,95 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
-namespace SimplePad.App
+namespace SimplePad.App;
+
+public sealed partial class App : Application
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default <see cref="Application"/> class.
-    /// </summary>
-    public sealed partial class App : Application
+    private readonly IServiceProvider _serviceProvider;
+
+    public App(IServiceProvider serviceProvider)
     {
-        /// <summary>
-        /// Initializes the singleton application object. This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
-        /// <param name="serviceProvider">TODO</param>
-        public App(IServiceProvider serviceProvider)
+        _serviceProvider = serviceProvider;
+
+        InitializeComponent();
+
+        Suspending += OnSuspending;
+    }
+
+    protected override void OnActivated(IActivatedEventArgs args)
+    {
+        base.OnActivated(args);
+
+        if (args.Kind == ActivationKind.File)
         {
-            _serviceProvider = serviceProvider;
+            var fileArgs = args as FileActivatedEventArgs;
+            var f = fileArgs.Files[0] as StorageFile;
 
-            InitializeComponent();
-
-            Suspending += OnSuspending;
-        }
-
-        private readonly IServiceProvider _serviceProvider;
-
-        protected override void OnActivated(IActivatedEventArgs args)
-        {
-            base.OnActivated(args);
-
-            if (args.Kind == ActivationKind.File)
+            IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
+            appWindowManager.CreateAppWindow().Execute(wwww =>
             {
-                var fileArgs = args as FileActivatedEventArgs;
-                var f = fileArgs.Files[0] as StorageFile;
-
-                IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
-                appWindowManager.CreateAppWindow().Execute(wwww =>
-                {
-                    wwww.TabRoot.AddTabFromFile(new UWPFile(f));
-                });
-            }
+                wwww.TabRoot.AddTabFromFile(new UWPFile(f));
+            });
         }
+    }
 
-        /// <inheritdoc/>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+    protected override void OnLaunched(LaunchActivatedEventArgs e)
+    {
+        // Do not repeat app initialization when the Window already has content,
+        // just ensure that the window is active.
+        if (Window.Current.Content is not ShellView shellView)
         {
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active.
-            if (Window.Current.Content is not ShellView shellView)
+            IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
+
+            // Create a Frame to act as the navigation context and navigate to the first page
+            var appWindow = appWindowManager.CreateAppWindow();
+            appWindow.Execute(w => w.TabRoot.AddBlankTab());
+            shellView = new ShellView(appWindow);
+
+            if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
             {
-                IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
-
-                // Create a Frame to act as the navigation context and navigate to the first page
-                var appWindow = appWindowManager.CreateAppWindow();
-                appWindow.Execute(w => w.TabRoot.AddBlankTab());
-                shellView = new ShellView(appWindow);
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    // TODO: Load state from previously suspended application
-                }
-
-                ExtendViewIntoTitleBar();
-
-                // Place the frame in the current Window
-                Window.Current.Content = shellView;
+                // TODO: Load state from previously suspended application
             }
 
-            if (e.PrelaunchActivated == false)
-            {
-                // Ensure the current window is active
-                Window.Current.Activate();
-            }
+            ExtendViewIntoTitleBar();
+
+            // Place the frame in the current Window
+            Window.Current.Content = shellView;
         }
 
-        private static void ExtendViewIntoTitleBar()
+        if (e.PrelaunchActivated == false)
         {
-            CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-            coreTitleBar.ExtendViewIntoTitleBar = true;
-
-            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ButtonBackgroundColor = Colors.Transparent;
-            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            // Ensure the current window is active
+            Window.Current.Activate();
         }
+    }
 
-        /// <summary>
-        /// Invoked when application execution is being suspended. Application state is saved
-        /// without knowing whether the application will be terminated or resumed with the contents
-        /// of memory still intact.
-        /// </summary>
-        /// <param name="sender">The source of the suspend request.</param>
-        /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+    private static void ExtendViewIntoTitleBar()
+    {
+        CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+        coreTitleBar.ExtendViewIntoTitleBar = true;
+
+        ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+        titleBar.ButtonBackgroundColor = Colors.Transparent;
+        titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+    }
+
+    /// <summary>
+    /// Invoked when application execution is being suspended. Application state is saved
+    /// without knowing whether the application will be terminated or resumed with the contents
+    /// of memory still intact.
+    /// </summary>
+    /// <param name="sender">The source of the suspend request.</param>
+    /// <param name="e">Details about the suspend request.</param>
+    private void OnSuspending(object sender, SuspendingEventArgs e)
+    {
+        SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
+
+        try
         {
-            SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-
+        }
+        finally
+        {
             // TODO: Save application state and stop any background activity
             deferral.Complete();
         }

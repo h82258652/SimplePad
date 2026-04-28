@@ -2,7 +2,7 @@
 
 public sealed class CursorPosition
 {
-    internal CursorPosition(int row, int column)
+    public CursorPosition(int row, int column)
     {
         Row = row;
         Column = column;

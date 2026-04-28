@@ -1,7 +1,11 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:editor="using:SimplePad.Editor">
+    xmlns:editor="using:SimplePad.Editor"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <winui:XamlControlsResources />
+    </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="editor:AppTextBox">
         <Setter Property="AcceptsReturn" Value="True" />
         <Setter Property="BorderBrush" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
