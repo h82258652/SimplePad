@@ -17,7 +17,15 @@ public sealed class ReplaceAllCommand : ICommand
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
     }
 
-    public event EventHandler? CanExecuteChanged;
+    public event EventHandler? CanExecuteChanged
+    {
+        add
+        {
+        }
+        remove
+        {
+        }
+    }
 
     public bool CanExecute(object? parameter)
     {
