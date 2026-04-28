@@ -6,7 +6,7 @@ using Windows.Storage;
 
 namespace SimplePad.Tabs;
 
-public sealed class UWPTabsSettings : AppSettingsBase, ITabsSettings
+internal sealed class UWPTabsSettings : AppSettingsBase, ITabsSettings
 {
     private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
 

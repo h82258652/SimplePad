@@ -4,6 +4,9 @@
     xmlns:animatedVisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:settings="using:SimplePad.Settings"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <winui:XamlControlsResources />
+    </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="settings:SettingsButton">
         <Setter Property="Background" Value="{ThemeResource MenuBarItemBackground}" />
         <Setter Property="BorderBrush" Value="{ThemeResource MenuBarItemBorderBrush}" />

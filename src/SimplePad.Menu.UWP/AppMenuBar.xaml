@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:menu="using:SimplePad.Menu"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Height="32"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -12,6 +13,7 @@
     <MenuBar.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <winui:XamlControlsResources />
                 <ResourceDictionary Source="ms-appx:///SimplePad.Menu.UWP/AppMenuBarItemStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

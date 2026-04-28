@@ -6,7 +6,7 @@ using Windows.Storage;
 
 namespace SimplePad.StatusBar;
 
-public sealed class UWPStatusBarSettings : AppSettingsBase, IStatusBarSettings
+internal sealed class UWPStatusBarSettings : AppSettingsBase, IStatusBarSettings
 {
     private bool _isStatusBarVisible = true;
 
