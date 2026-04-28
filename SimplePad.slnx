@@ -61,10 +61,7 @@
     <Project Path="src/SimplePad.Fonts/SimplePad.Fonts.csproj" Id="ae213d3d-1755-4b75-9f8e-60282907e9e0" />
   </Folder>
   <Folder Name="/src/Legacy/">
-    <Project Path="src/SimplePad.Services.UWP/SimplePad.Services.UWP.csproj" Id="21c159fc-b40d-4888-9e0b-06aca7a8b319" />
-    <Project Path="src/SimplePad.Services/SimplePad.Services.csproj" Id="7c36a7df-6863-4be9-b670-e709ebfd1ffd" />
     <Project Path="src/SimplePad.UWP.UI/SimplePad.UWP.UI.csproj" Id="412a0a39-7710-453d-a7e7-aa394412b863" />
-    <Project Path="src/SimplePad.ViewModels/SimplePad.ViewModels.csproj" Id="5371cde9-e832-408b-a0ba-51e2f03221ae" />
   </Folder>
   <Folder Name="/src/Menu/">
     <Project Path="src/SimplePad.Menu.UWP/SimplePad.Menu.UWP.csproj" Id="f027335a-18c4-49a1-af28-8a3dd6723ac1">
