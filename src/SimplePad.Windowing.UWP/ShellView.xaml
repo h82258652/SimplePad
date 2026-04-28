@@ -13,6 +13,12 @@
     d:DesignWidth="400"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
+    <themes:ThemeContainer.KeyboardAccelerators>
+        <KeyboardAccelerator
+            Key="N"
+            Invoked="OnNewWindowKeyboardAcceleratorInvoked"
+            Modifiers="Control,Shift" />
+    </themes:ThemeContainer.KeyboardAccelerators>
     <Grid>
         <Grid x:Name="ContentGrid">
             <tabs:AppTabView x:Name="TabView">
