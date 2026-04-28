@@ -25,6 +25,8 @@ public sealed class Tab
 
     public event EventHandler<bool>? IsModifiedChanged;
 
+    public event EventHandler<LineEndings>? LineEndingsChanged;
+
     public event EventHandler<string>? TitleChanged;
 
     public string Content
@@ -47,12 +49,27 @@ public sealed class Tab
         get => _file;
         internal set
         {
-            if (_file != value)
+            if (_file == value)
             {
-                _file = value;
-                FileChanged?.Invoke(this, value);
-                UpdateTitle();
+                return;
             }
+
+            if (_file is { } oldFile)
+            {
+                oldFile.LineEndingsChanged -= OnFileLineEndingsChanged;
+            }
+
+            if (value is { } newFile)
+            {
+                newFile.LineEndingsChanged += OnFileLineEndingsChanged;
+            }
+
+            _file = value;
+            FileChanged?.Invoke(this, value);
+            UpdateTitle();
+
+            // If file is changed, the line endings may different
+            LineEndingsChanged?.Invoke(this, LineEndings);
         }
     }
 
@@ -68,6 +85,8 @@ public sealed class Tab
             }
         }
     }
+
+    public LineEndings LineEndings => _file?.LineEndings ?? LineEndings.CRLF;
 
     public TabRoot Root { get; }
 
@@ -130,6 +149,11 @@ public sealed class Tab
         string text = await file.ReadAllTextAsync();
         OriginalContent = text;
         Content = text;
+    }
+
+    private void OnFileLineEndingsChanged(object? sender, LineEndings e)
+    {
+        LineEndingsChanged?.Invoke(this, e);
     }
 
     private void UpdateIsModified()

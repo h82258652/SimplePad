@@ -88,7 +88,7 @@ public sealed partial class AppTabViewItem : TabViewItem
             oldTab.TitleChanged -= self.OnTabTitleChanged;
             oldTab.IsModifiedChanged -= self.OnTabIsModifiedChanged;
             oldTab.ContentChanged -= self.OnTabContentChanged;
-            oldTab.FileChanged -= self.OnTabFileChanged;
+            oldTab.LineEndingsChanged -= self.OnTabLineEndingsChanged;
         }
 
         Tab? newTab = (Tab?)e.NewValue;
@@ -97,7 +97,7 @@ public sealed partial class AppTabViewItem : TabViewItem
             newTab.TitleChanged += self.OnTabTitleChanged;
             newTab.IsModifiedChanged += self.OnTabIsModifiedChanged;
             newTab.ContentChanged += self.OnTabContentChanged;
-            newTab.FileChanged += self.OnTabFileChanged;
+            newTab.LineEndingsChanged += self.OnTabLineEndingsChanged;
         }
 
         self.UpdateHeader();
@@ -139,14 +139,14 @@ public sealed partial class AppTabViewItem : TabViewItem
         await _dispatcher.SafeRunAsync(UpdateTextBox);
     }
 
-    private void OnTabFileChanged(object? sender, IFile? e)
-    {
-        UpdateStatusBarLineEndings();
-    }
-
     private async void OnTabIsModifiedChanged(object? sender, bool e)
     {
         await _dispatcher.SafeRunAsync(UpdateModifiedIndicatorVisibility);
+    }
+
+    private void OnTabLineEndingsChanged(object? sender, LineEndings e)
+    {
+        UpdateStatusBarLineEndings();
     }
 
     private async void OnTabTitleChanged(object? sender, string e)
@@ -210,7 +210,7 @@ public sealed partial class AppTabViewItem : TabViewItem
 
     private void UpdateStatusBarLineEndings()
     {
-        StatusBar.LineEndings = Tab?.File?.LineEndings ?? LineEndings.CRLF;
+        StatusBar.LineEndings = Tab?.LineEndings ?? LineEndings.CRLF;
     }
 
     private void UpdateTextBox()

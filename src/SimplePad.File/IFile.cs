@@ -5,6 +5,8 @@ namespace SimplePad.File;
 
 public interface IFile
 {
+    event EventHandler<LineEndings>? LineEndingsChanged;
+
     string FileName { get; }
 
     LineEndings LineEndings { get; }

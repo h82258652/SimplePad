@@ -11,15 +11,29 @@ namespace SimplePad.File;
 public sealed class UWPFile : IFile
 {
     private readonly StorageFile _storageFile;
+    private LineEndings _lineEndings = LineEndings.CRLF;
 
     public UWPFile(StorageFile storageFile)
     {
         _storageFile = storageFile;
     }
 
+    public event EventHandler<LineEndings>? LineEndingsChanged;
+
     public string FileName => _storageFile.Name;
 
-    public LineEndings LineEndings { get; private set; } = LineEndings.CRLF;
+    public LineEndings LineEndings
+    {
+        get => _lineEndings;
+        private set
+        {
+            if (_lineEndings != value)
+            {
+                _lineEndings = value;
+                LineEndingsChanged?.Invoke(this, value);
+            }
+        }
+    }
 
     public string Path => _storageFile.Path;
 
@@ -34,9 +48,9 @@ public sealed class UWPFile : IFile
         IBuffer buffer = await FileIO.ReadBufferAsync(_storageFile);
         string text = Encoding.UTF8.GetString(buffer.ToArray());
         DetectLineEndings(text);
-        
+
         // Use CR \r in app to adapt the UWP TextBox
-        if (LineEndings == LineEndings.CRLF) 
+        if (LineEndings == LineEndings.CRLF)
         {
             text = text.Replace(LineEndings.CRLF.NewLine, LineEndings.CR.NewLine);
         }
@@ -44,8 +58,14 @@ public sealed class UWPFile : IFile
         {
             text = text.Replace(LineEndings.LF.NewLine, LineEndings.CR.NewLine);
         }
-   
+
         return text;
+    }
+
+    public async Task WriteAllTextAsync(string text)
+    {
+        text = string.Join(LineEndings.NewLine, text.Split([LineEndings.CRLF.NewLine, LineEndings.CR.NewLine, LineEndings.LF.NewLine], StringSplitOptions.None));
+        await FileIO.WriteTextAsync(_storageFile, text);
     }
 
     private void DetectLineEndings(string text)
@@ -62,11 +82,5 @@ public sealed class UWPFile : IFile
         {
             LineEndings = LineEndings.LF;
         }
-    }
-
-    public async Task WriteAllTextAsync(string text)
-    {
-        text = string.Join(LineEndings.NewLine, text.Split([LineEndings.CRLF.NewLine, LineEndings.CR.NewLine, LineEndings.LF.NewLine], StringSplitOptions.None));
-        await FileIO.WriteTextAsync(_storageFile, text);
     }
 }
