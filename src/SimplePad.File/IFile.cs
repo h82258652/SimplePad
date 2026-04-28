@@ -7,6 +7,8 @@ public interface IFile
 {
     string FileName { get; }
 
+    LineEndings LineEndings { get; }
+
     string Path { get; }
 
     Task<DateTimeOffset> GetModificationTimeAsync();
