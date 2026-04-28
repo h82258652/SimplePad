@@ -129,6 +129,7 @@ public sealed partial class AppTabView : TabView
             IAppWindow newWindow = await _appWindowManager.ShowNewWindowAsync();
             newWindow.Execute(window =>
             {
+                // We can't just move the tab, because they have different TabRoot
                 window.TabRoot.AddCloneOfTab(tab);
             });
         }
