@@ -1,9 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimplePad.Core;
 using SimplePad.Core.Modularity;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
 
