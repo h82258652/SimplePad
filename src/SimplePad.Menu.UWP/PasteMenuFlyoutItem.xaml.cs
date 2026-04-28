@@ -22,13 +22,4 @@ public sealed partial class PasteMenuFlyoutItem : MenuFlyoutItem
         get => (IAppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
     }
-
-    private void OnClick(object sender, RoutedEventArgs e)
-    {
-        if (TextBox is { } textBox)
-        {
-            textBox.PasteFromClipboard();
-            textBox.Focus();
-        }
-    }
 }

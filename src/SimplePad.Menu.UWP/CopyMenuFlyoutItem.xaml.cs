@@ -1,5 +1,4 @@
-﻿using System;
-using SimplePad.Editor;
+﻿using SimplePad.Editor;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -11,7 +10,7 @@ public sealed partial class CopyMenuFlyoutItem : MenuFlyoutItem
         nameof(TextBox),
         typeof(IAppTextBox),
         typeof(CopyMenuFlyoutItem),
-        new PropertyMetadata(null, OnTextBoxChanged));
+        null);
 
     public CopyMenuFlyoutItem()
     {
@@ -22,42 +21,5 @@ public sealed partial class CopyMenuFlyoutItem : MenuFlyoutItem
     {
         get => (IAppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
-    }
-
-    private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        CopyMenuFlyoutItem self = (CopyMenuFlyoutItem)d;
-        IAppTextBox? oldTextBox = (IAppTextBox?)e.OldValue;
-        if (oldTextBox is not null)
-        {
-            oldTextBox.SelectionChanged -= self.OnTextBoxSelectionChanged;
-        }
-
-        IAppTextBox? newTextBox = (IAppTextBox?)e.NewValue;
-        if (newTextBox is not null)
-        {
-            newTextBox.SelectionChanged += self.OnTextBoxSelectionChanged;
-        }
-
-        self.UpdateIsEnabled();
-    }
-
-    private void OnClick(object sender, RoutedEventArgs e)
-    {
-        if (TextBox is { } textBox)
-        {
-            textBox.CopySelectionToClipboard();
-            textBox.Focus();
-        }
-    }
-
-    private void OnTextBoxSelectionChanged(object? sender, EventArgs e)
-    {
-        UpdateIsEnabled();
-    }
-
-    private void UpdateIsEnabled()
-    {
-        IsEnabled = TextBox is { SelectionLength: > 0 };
     }
 }

@@ -1,5 +1,4 @@
 ﻿using SimplePad.Core.Modularity;
-using SimplePad.Editor;
 using SimplePad.File;
 using SimplePad.Search;
 using SimplePad.Settings;
@@ -13,7 +12,6 @@ public sealed class SimplePadMenuUWPModule : AppModuleBase
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadMenuModule,
         SimplePadWindowingModule,
-        SimplePadEditorModule,
         SimplePadSettingsModule,
         SimplePadStatusBarModule,
         SimplePadFileModule,
