@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,18 +33,10 @@ public sealed partial class SearchControl : UserControl
         NotificationFlyout.Hide();
     }
 
-    private async void OnReplaceAllButtonClick(object sender, RoutedEventArgs e)
+    private void OnReplaceAllButtonClick(object sender, RoutedEventArgs e)
     {
-        NotificationFlyout.Hide();
-
-        await Task.Delay(3000);
-
-        FlyoutBase.ShowAttachedFlyout(RootGrid);
-
-        await Task.Delay(3000);
-
-        NotificationFlyout.Hide();
-        //new ReplaceAllCommand().Execute(null);
+        ReplaceAllCommand replaceAllCommand = new();
+        replaceAllCommand.Execute(null);
     }
 
     private void OnSearchTextBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

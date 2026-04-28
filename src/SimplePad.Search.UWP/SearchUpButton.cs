@@ -14,7 +14,7 @@ internal sealed partial class SearchUpButton : Button
         Click += OnClick;
     }
 
-    private async void OnClick(object sender, RoutedEventArgs e)
+    private void OnClick(object sender, RoutedEventArgs e)
     {
         SearchUpCommand searchUpCommand = new();
         searchUpCommand.Execute(null);
