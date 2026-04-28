@@ -22,4 +22,9 @@ internal sealed class DispatcherSynchronizationContext : SynchronizationContext
     {
         await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => d(state));
     }
+
+    public override void Send(SendOrPostCallback d, object? state)
+    {
+        throw new NotSupportedException();
+    }
 }
