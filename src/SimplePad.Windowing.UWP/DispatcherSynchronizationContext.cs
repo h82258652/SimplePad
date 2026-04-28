@@ -8,7 +8,7 @@ internal sealed class DispatcherSynchronizationContext : SynchronizationContext
 {
     private readonly CoreDispatcher _dispatcher;
 
-    public DispatcherSynchronizationContext(CoreDispatcher dispatcher)
+    internal DispatcherSynchronizationContext(CoreDispatcher dispatcher)
     {
         _dispatcher = dispatcher;
     }
