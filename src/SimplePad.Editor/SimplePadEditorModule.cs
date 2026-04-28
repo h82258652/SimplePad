@@ -12,6 +12,6 @@ public sealed class SimplePadEditorModule : AppModuleBase
     {
         base.ConfigureServices(context);
 
-        context.Services.AddSingleton<EditorZoomState>();
+        context.Services.AddSingleton(_ => new EditorZoomState());
     }
 }

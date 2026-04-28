@@ -14,6 +14,10 @@ public sealed class EditorZoomState
     private bool _canZoomOut = true;
     private double _zoomFactor = 1;
 
+    internal EditorZoomState()
+    {
+    }
+
     public event EventHandler<bool>? CanZoomInChanged;
 
     public event EventHandler<bool>? CanZoomOutChanged;
