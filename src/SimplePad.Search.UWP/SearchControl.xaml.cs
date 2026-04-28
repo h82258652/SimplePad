@@ -9,13 +9,16 @@ namespace SimplePad.Search;
 
 public sealed partial class SearchControl : UserControl
 {
+    private readonly UWPSearchNotificationService _searchNotificationService;
     private readonly SearchViewState _searchViewState;
 
     public SearchControl()
     {
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
+        _searchNotificationService = ServiceLocator.Current.GetRequiredService<UWPSearchNotificationService>();
 
         InitializeComponent();
+        _searchNotificationService.Configure(ShowNotificationFlyout, HideNotificationFlyout, SetNotificationText);
 
         UpdateVisibility();
         UpdateGgggg();
@@ -24,6 +27,25 @@ public sealed partial class SearchControl : UserControl
         _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
         _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
         _searchViewState.SearchTextChanged += OnSearchViewStateSearchTextChanged;
+    }
+
+    private void HideNotificationFlyout()
+    {
+        NotificationFlyout.Hide();
+    }
+
+    private async void OnReplaceAllButtonClick(object sender, RoutedEventArgs e)
+    {
+        NotificationFlyout.Hide();
+
+        await Task.Delay(3000);
+
+        FlyoutBase.ShowAttachedFlyout(RootGrid);
+
+        await Task.Delay(3000);
+
+        NotificationFlyout.Hide();
+        //new ReplaceAllCommand().Execute(null);
     }
 
     private void OnSearchTextBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -44,6 +66,16 @@ public sealed partial class SearchControl : UserControl
     private void OnSearchViewStateSearchTextChanged(object? sender, string e)
     {
         UpdateSearchTextBox();
+    }
+
+    private void SetNotificationText(string notificationText)
+    {
+        NotificationText.Text = notificationText;
+    }
+
+    private void ShowNotificationFlyout()
+    {
+        FlyoutBase.ShowAttachedFlyout(RootGrid);
     }
 
     private void UpdateGgggg()
@@ -73,19 +105,5 @@ public sealed partial class SearchControl : UserControl
         {
             Visibility = Visibility.Collapsed;
         }
-    }
-
-    private async void OnReplaceAllButtonClick(object sender, RoutedEventArgs e)
-    {
-        NotificationFlyout.Hide();
-
-        await Task.Delay(3000);
-
-        FlyoutBase.ShowAttachedFlyout(RootGrid);
-
-        await Task.Delay(3000);
-
-        NotificationFlyout.Hide();
-        //new ReplaceAllCommand().Execute(null);
     }
 }

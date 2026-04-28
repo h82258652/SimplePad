@@ -66,14 +66,22 @@ internal sealed class UWPAppWindow : IAppWindow
 
     private async void OnAppWindowCloseRequested(object? sender, SystemNavigationCloseRequestedPreviewEventArgs e)
     {
-        // CloseAsync will modify the Tabs collection, we cast to List first to avoid the "Collection was modified" exception.
-        foreach (Tab tab in TabRoot.Tabs.ToList())
+        Deferral deferral = e.GetDeferral();
+        try
         {
-            if (!await _tabManager.CloseAsync(tab))
+            // CloseAsync will modify the Tabs collection, we cast to List first to avoid the "Collection was modified" exception.
+            foreach (Tab tab in TabRoot.Tabs.ToList())
             {
-                e.Handled = true;
-                return;
+                if (!await _tabManager.CloseAsync(tab))
+                {
+                    e.Handled = true;
+                    return;
+                }
             }
+        }
+        finally
+        {
+            deferral.Complete();
         }
     }
 

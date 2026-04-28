@@ -134,7 +134,7 @@
         </Grid>
         <FlyoutBase.AttachedFlyout>
             <Flyout x:Name="NotificationFlyout" Placement="Bottom">
-                <TextBlock Text="TODO" />
+                <TextBlock x:Name="NotificationText" />
             </Flyout>
         </FlyoutBase.AttachedFlyout>
     </Grid>

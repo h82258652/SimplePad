@@ -12,7 +12,10 @@ public sealed class SimplePadSearchUWPModule : AppModuleBase
         base.ConfigureServices(context);
 
         context.Services.AddSingleton<ISearchSettings, UWPSearchSettings>();
-        context.Services.AddScoped<ISearchNotificationService, UWPSearchNotificationService>();
+
+        context.Services.AddScoped<UWPSearchNotificationService>();
+        context.Services.AddScoped<ISearchNotificationService, UWPSearchNotificationService>(serviceProvider => serviceProvider.GetRequiredService<UWPSearchNotificationService>());
+
         context.Services.AddScoped<ISearchDialogService, UWPSearchDialogService>();
     }
 }
