@@ -462,7 +462,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
@@ -473,10 +475,19 @@
             <menu:AppMenuBar Tab="{x:Bind Tab, Mode=OneWay}" TextBox="{x:Bind TextBox}" />
             <settings:SettingsButton Grid.Column="1" Margin="0,0,8,0" />
         </Grid>
+        <Rectangle
+            Grid.Row="1"
+            Height="1"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
         <editor:AppTextBox
             x:Name="TextBox"
-            Grid.Row="1"
+            Grid.Row="2"
             TextChanged="OnTextBoxTextChanged" />
-        <statusBar:AppStatusBar Grid.Row="2" TextBox="{x:Bind TextBox}" />
+        <Rectangle
+            x:Name="StatusBarDivider"
+            Grid.Row="3"
+            Height="1"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <statusBar:AppStatusBar Grid.Row="4" TextBox="{x:Bind TextBox}" />
     </Grid>
 </winui:TabViewItem>

@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.Search;
+using SimplePad.StatusBar;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Core;
@@ -28,6 +29,7 @@ public sealed partial class AppTabViewItem : TabViewItem
     private const string PressedStateName = "Pressed";
     private readonly CoreDispatcher _dispatcher;
     private readonly SearchViewState _searchViewState;
+    private readonly IStatusBarSettings _statusBarSettings;
     private VisualStateGroup? _commonStates;
     private UIElement? _modifiedIndicator;
 
@@ -35,13 +37,16 @@ public sealed partial class AppTabViewItem : TabViewItem
     {
         _dispatcher = Dispatcher;
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
+        _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
 
         InitializeComponent();
 
         UpdateTextBoxPadding();
+        UpdateStatusBarDividerVisibility();
 
         _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
         _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
+        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
         RegisterPropertyChangedCallback(IsSelectedProperty, OnIsSelectedChanged);
     }
 
@@ -119,6 +124,11 @@ public sealed partial class AppTabViewItem : TabViewItem
         UpdateTextBoxPadding();
     }
 
+    private void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
+    {
+        UpdateStatusBarDividerVisibility();
+    }
+
     private async void OnTabContentChanged(object? sender, string e)
     {
         await _dispatcher.SafeRunAsync(UpdateTextBox);
@@ -174,6 +184,18 @@ public sealed partial class AppTabViewItem : TabViewItem
         else
         {
             modifiedIndicator.Visibility = Visibility.Collapsed;
+        }
+    }
+
+    private void UpdateStatusBarDividerVisibility()
+    {
+        if (_statusBarSettings.IsStatusBarVisible)
+        {
+            StatusBarDivider.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            StatusBarDivider.Visibility = Visibility.Collapsed;
         }
     }
 
