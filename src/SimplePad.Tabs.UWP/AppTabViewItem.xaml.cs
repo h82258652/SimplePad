@@ -59,6 +59,9 @@ public sealed partial class AppTabViewItem : TabViewItem
             _commonStates.CurrentStateChanged -= OnCommonStatesCurrentStateChanged;
             _commonStates.CurrentStateChanged += OnCommonStatesCurrentStateChanged;
         }
+
+        Button closeButton = (Button)GetTemplateChild("CloseButton");
+        ToolTipService.SetToolTip(closeButton, "Close tab (Ctrl+W)");
     }
 
     private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
