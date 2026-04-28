@@ -12,6 +12,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
+    KeyboardAcceleratorPlacementMode="Hidden"
     mc:Ignorable="d">
     <themes:ThemeContainer.KeyboardAccelerators>
         <KeyboardAccelerator

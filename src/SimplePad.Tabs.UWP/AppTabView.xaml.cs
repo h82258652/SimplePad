@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
+using SimplePad.Menu;
 using SimplePad.Windowing;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -108,6 +109,31 @@ public sealed partial class AppTabView : TabView
     {
         args.Handled = true;
         AddBlankTab();
+    }
+
+    private void OnSaveAllKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        SaveAllCommand saveAllCommand = new();
+        saveAllCommand.Execute(null);        
+    }
+
+    private async void OnSaveAsKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (TabRoot?.SelectedTab is { } selectedTab)
+        {
+            _ = await _tabManager.SaveToAnotherFileAsync(selectedTab);
+        }
+    }
+
+    private async void OnSaveKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (TabRoot?.SelectedTab is { } selectedTab)
+        {
+            _ = await _tabManager.SaveAsync(selectedTab);
+        }
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

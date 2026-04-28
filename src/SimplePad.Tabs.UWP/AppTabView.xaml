@@ -201,6 +201,18 @@
             Invoked="OnNewTabKeyboardAcceleratorInvoked"
             Modifiers="Control" />
         <KeyboardAccelerator
+            Key="S"
+            Invoked="OnSaveKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+        <KeyboardAccelerator
+            Key="S"
+            Invoked="OnSaveAsKeyboardAcceleratorInvoked"
+            Modifiers="Control,Shift" />
+        <KeyboardAccelerator
+            Key="S"
+            Invoked="OnSaveAllKeyboardAcceleratorInvoked"
+            Modifiers="Control,Menu" />
+        <KeyboardAccelerator
             Key="W"
             Invoked="OnCloseTabKeyboardAcceleratorInvoked"
             Modifiers="Control" />
