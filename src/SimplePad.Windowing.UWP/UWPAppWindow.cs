@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using CommunityToolkit.WinUI.Helpers;
 using SimplePad.Core.Extensions;
 using SimplePad.Tabs;
@@ -65,7 +66,7 @@ internal sealed class UWPAppWindow : IAppWindow
 
     private async void OnAppWindowCloseRequested(object? sender, SystemNavigationCloseRequestedPreviewEventArgs e)
     {
-        foreach (Tab tab in TabRoot.Tabs)
+        foreach (Tab tab in TabRoot.Tabs.ToList())
         {
             if (!await _tabManager.CloseAsync(tab))
             {

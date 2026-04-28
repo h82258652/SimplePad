@@ -18,6 +18,8 @@ public sealed class UWPFile : IFile
 
     public string FileName => _storageFile.Name;
 
+    public string Path => _storageFile.Path;
+
     public async Task<string> ReadAllTextAsync()
     {
         IBuffer buffer = await FileIO.ReadBufferAsync(_storageFile);

@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.File;
 using SimplePad.Tabs;
 using SimplePad.Windowing;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -46,6 +48,27 @@ public sealed partial class OpenMenuFlyoutItem : MenuFlyoutItem
         if (file is null)
         {
             return;
+        }
+
+        foreach (IAppWindow appWindow in _appWindowManager.Instances)
+        {
+            foreach (Tab tab in appWindow.TabRoot.Tabs)
+            {
+                if (tab.File is not { } tabFile)
+                {
+                    continue;
+                }
+
+                if (tabFile.Path == file.Path)
+                {
+                    appWindow.Execute(async window =>
+                    {
+                        window.TabRoot.SelectedTab = tab;
+                        await ApplicationViewSwitcher.TryShowAsStandaloneAsync(ApplicationView.GetForCurrentView().Id);
+                    });
+                    return;
+                }
+            }
         }
 
         if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewTab)

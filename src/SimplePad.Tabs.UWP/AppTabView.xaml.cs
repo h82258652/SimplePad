@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
+using SimplePad.Core.Extensions;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -26,9 +28,11 @@ public sealed partial class AppTabView : TabView
 
     private readonly TabManager _tabManager;
     private Border? _titleBarContainer;
+    private readonly CoreDispatcher _dispatcher;
 
     public AppTabView()
     {
+        _dispatcher = Dispatcher;
         _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
 
         InitializeComponent();
@@ -114,9 +118,9 @@ public sealed partial class AppTabView : TabView
         CloseButtonOverlayMode = TabViewCloseButtonOverlayMode.OnPointerOver;
     }
 
-    private void OnTabRootSelectedTabChanged(object? sender, Tab? e)
+    private async void OnTabRootSelectedTabChanged(object? sender, Tab? e)
     {
-        UpdateSelectedItem();
+        await _dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
 
     private async void OnTabViewTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
