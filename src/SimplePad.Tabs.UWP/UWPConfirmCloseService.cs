@@ -7,6 +7,8 @@ internal sealed class UWPConfirmCloseService : IConfirmCloseService
 {
     public async Task<ConfirmCloseResult> ConfirmCloseAsync(Tab tab)
     {
+        // Ensure the tab is selected before showing the dialog.
+        tab.Root.SelectedTab = tab;
         ConfirmCloseDialog dialog = new(tab);
         await dialog.ShowAsync();
         return dialog.Result ?? ConfirmCloseResult.Cancel;
