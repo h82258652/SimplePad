@@ -2,6 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/ExitFindAndReplaceButton.xaml" />
         <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/ReplaceModeToggleButton.xaml" />
+        <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/SearchControlExpander.xaml" />
         <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/SearchDownButton.xaml" />
         <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/SearchUpButton.xaml" />
     </ResourceDictionary.MergedDictionaries>

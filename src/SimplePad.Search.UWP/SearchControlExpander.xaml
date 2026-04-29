@@ -1,0 +1,139 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:search="using:SimplePad.Search">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///SimplePad.Search.UWP/SearchControlExpanderToggleButtonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="SearchControlBackgroundBorderColor" ResourceKey="ControlStrongStrokeColorDefault" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="SearchControlBackgroundBorderColor" ResourceKey="ControlStrongStrokeColorDefault" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="SearchControlBackgroundBorderColor" ResourceKey="SystemColorButtonTextColor" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+    <Style TargetType="search:SearchControlExpander">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="search:SearchControlExpander">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ExpandStates">
+                                <VisualState x:Name="ExpandUp" />
+                                <VisualState x:Name="CollapseDown" />
+                                <VisualState x:Name="ExpandDown">
+                                    <VisualState.Setters>
+                                        <Setter Target="FixExpanderCollapsePanel.IsLayoutSpaceOccupied" Value="True" />
+                                    </VisualState.Setters>
+                                    <VisualState.Storyboard>
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ExpanderContent"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                                                To="1"
+                                                Duration="0:0:0.2">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualState.Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CollapseUp">
+                                    <VisualState.Setters>
+                                        <Setter Target="FixExpanderCollapsePanel.IsLayoutSpaceOccupied" Value="False" />
+                                    </VisualState.Setters>
+                                    <VisualState.Storyboard>
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpanderContent" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="Collapsed" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ExpanderContent"
+                                                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                                                To="0"
+                                                Duration="0:0:0.2">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualState.Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ExpandDirectionStates">
+                                <VisualState x:Name="Down" />
+                                <VisualState x:Name="Up" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Background="Transparent" CornerRadius="{TemplateBinding CornerRadius}" />
+                        <search:SearchControlBackground
+                            BorderColor="{ThemeResource SearchControlBackgroundBorderColor}"
+                            BorderThickness="2"
+                            CornerRadius="8"
+                            ShadowBlurRadius="8"
+                            ShadowOffset="0,4"
+                            ShadowOpacity="0.14"
+                            Color="{ThemeResource ControlSolidFillColorDefault}" />
+                        <Grid Margin="{TemplateBinding Padding}" ColumnSpacing="8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="Row0" Height="Auto" />
+                                <RowDefinition x:Name="Row1" Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ToggleButton
+                                x:Name="ExpanderHeader"
+                                AutomationProperties.AutomationId="ExpanderToggleButton"
+                                IsChecked="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsExpanded, Mode=TwoWay}"
+                                IsEnabled="{TemplateBinding IsEnabled}"
+                                Style="{StaticResource SearchControlExpanderToggleButtonStyle}" />
+                            <ContentPresenter
+                                Grid.Column="1"
+                                AutomationProperties.AccessibilityView="Raw"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" />
+                            <search:FixExpanderCollapsePanel
+                                x:Name="FixExpanderCollapsePanel"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                IsLayoutSpaceOccupied="False">
+                                <Border x:Name="ExpanderContentClip">
+                                    <Border
+                                        x:Name="ExpanderContent"
+                                        Margin="0,8,0,0"
+                                        Visibility="Collapsed">
+                                        <ContentPresenter
+                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Content="{TemplateBinding Content}"
+                                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+                                        <Border.RenderTransform>
+                                            <CompositeTransform ScaleY="0" />
+                                        </Border.RenderTransform>
+                                    </Border>
+                                </Border>
+                            </search:FixExpanderCollapsePanel>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -8,22 +8,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Default">
-                    <StaticResource x:Key="BackgroundBorderColor" ResourceKey="ControlStrongStrokeColorDefault" />
-                </ResourceDictionary>
-                <ResourceDictionary x:Key="Light">
-                    <StaticResource x:Key="BackgroundBorderColor" ResourceKey="ControlStrongStrokeColorDefault" />
-                </ResourceDictionary>
-                <ResourceDictionary x:Key="HighContrast">
-                    <StaticResource x:Key="BackgroundBorderColor" ResourceKey="SystemColorButtonTextColor" />
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-    <Grid x:Name="RootGrid">
+    <Border x:Name="RootContainer">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -42,63 +27,41 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Border Background="Transparent" CornerRadius="8" />
-        <search:SearchControlBackground
-            BorderColor="{ThemeResource BackgroundBorderColor}"
-            BorderThickness="2"
-            CornerRadius="8"
-            ShadowBlurRadius="8"
-            ShadowOffset="0,4"
-            ShadowOpacity="0.14"
-            Color="{ThemeResource ControlSolidFillColorDefault}" />
-        <Grid Margin="8" ColumnSpacing="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <search:ReplaceModeToggleButton />
-            <Grid Grid.Column="1" ColumnSpacing="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <AutoSuggestBox
-                    x:Name="SearchTextBox"
-                    PlaceholderText="Find"
-                    QueryIcon="Find"
-                    TextChanged="OnSearchTextBoxTextChanged" />
-                <search:CompactMoreOptionsButton
-                    x:Name="CompactMoreOptionsButton"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3" />
-                <search:SearchDownButton
-                    x:Name="SearchDownButton"
-                    Grid.Column="1"
-                    Visibility="Collapsed" />
-                <search:SearchUpButton
-                    x:Name="SearchUpButton"
-                    Grid.Column="2"
-                    Visibility="Collapsed" />
-                <search:ExandedMoreOptionsButton
-                    x:Name="ExpandedMoreOptionsButton"
-                    Grid.Column="3"
-                    Visibility="Collapsed" />
-                <search:ExitFindAndReplaceButton Grid.Column="4" />
-            </Grid>
-            <Grid
-                x:Name="ReplaceModePanel"
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="0,8,0,0"
-                ColumnSpacing="8"
-                Visibility="Collapsed">
+        <search:SearchControlExpander>
+            <search:SearchControlExpander.Header>
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <AutoSuggestBox
+                        x:Name="SearchTextBox"
+                        PlaceholderText="Find"
+                        QueryIcon="Find"
+                        TextChanged="OnSearchTextBoxTextChanged" />
+                    <search:CompactMoreOptionsButton
+                        x:Name="CompactMoreOptionsButton"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3" />
+                    <search:SearchDownButton
+                        x:Name="SearchDownButton"
+                        Grid.Column="1"
+                        Visibility="Collapsed" />
+                    <search:SearchUpButton
+                        x:Name="SearchUpButton"
+                        Grid.Column="2"
+                        Visibility="Collapsed" />
+                    <search:ExandedMoreOptionsButton
+                        x:Name="ExpandedMoreOptionsButton"
+                        Grid.Column="3"
+                        Visibility="Collapsed" />
+                    <search:ExitFindAndReplaceButton Grid.Column="4" />
+                </Grid>
+            </search:SearchControlExpander.Header>
+            <Grid ColumnSpacing="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
@@ -131,11 +94,11 @@
                     Content="Replace all"
                     Visibility="Collapsed" />
             </Grid>
-        </Grid>
+        </search:SearchControlExpander>
         <FlyoutBase.AttachedFlyout>
             <Flyout x:Name="NotificationFlyout" Placement="Bottom">
                 <TextBlock x:Name="NotificationText" />
             </Flyout>
         </FlyoutBase.AttachedFlyout>
-    </Grid>
+    </Border>
 </UserControl>
