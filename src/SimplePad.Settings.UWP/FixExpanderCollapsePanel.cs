@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Settings;
 
-public sealed partial class FixExpanderCollapsePanel : Panel
+internal sealed partial class FixExpanderCollapsePanel : Panel
 {
     public static readonly DependencyProperty IsLayoutSpaceOccupiedProperty = DependencyProperty.Register(
         nameof(IsLayoutSpaceOccupied),
