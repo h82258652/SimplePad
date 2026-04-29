@@ -3,7 +3,9 @@ using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.Menu;
+using SimplePad.Settings;
 using SimplePad.Windowing;
+using System.Collections.Specialized;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -30,6 +32,7 @@ public sealed partial class AppTabView : TabView
 
     private readonly IAppWindowManager _appWindowManager;
     private readonly CoreDispatcher _dispatcher;
+    private readonly SettingsState _settingsState;
     private readonly TabManager _tabManager;
     private Border? _titleBarContainer;
 
@@ -38,6 +41,7 @@ public sealed partial class AppTabView : TabView
         _dispatcher = Dispatcher;
         _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
         _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
+        _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
     }
@@ -68,12 +72,14 @@ public sealed partial class AppTabView : TabView
         TabRoot? oldTabRoot = (TabRoot?)e.OldValue;
         if (oldTabRoot is not null)
         {
+            oldTabRoot.Tabs.CollectionChanged -= self.OnTabRootTabsCollectionChanged;
             oldTabRoot.SelectedTabChanged -= self.OnTabRootSelectedTabChanged;
         }
 
         TabRoot? newTabRoot = (TabRoot?)e.NewValue;
         if (newTabRoot is not null)
         {
+            newTabRoot.Tabs.CollectionChanged += self.OnTabRootTabsCollectionChanged;
             newTabRoot.SelectedTabChanged += self.OnTabRootSelectedTabChanged;
         }
 
@@ -170,6 +176,12 @@ public sealed partial class AppTabView : TabView
     private async void OnTabRootSelectedTabChanged(object? sender, Tab? e)
     {
         await _dispatcher.SafeRunAsync(UpdateSelectedItem);
+    }
+
+    private void OnTabRootTabsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        // If the Tabs collection is changed (eg. Open a file), close the settings view to ensure the new tab is visible
+        _settingsState.IsVisible = false;
     }
 
     private async void OnTabViewTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
