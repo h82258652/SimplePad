@@ -67,7 +67,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBox PlaceholderText="Replace" />
+                <search:ReplaceTextBox />
                 <SplitButton
                     x:Name="ReplaceSplitButton"
                     Grid.Column="1"
