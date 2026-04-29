@@ -7,6 +7,7 @@ using SimplePad.Search;
 using SimplePad.StatusBar;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -111,11 +112,12 @@ public sealed partial class AppTabViewItem : TabViewItem
         UpdateModifiedIndicatorVisibility();
     }
 
-    private void OnIsSelectedChanged(DependencyObject sender, DependencyProperty dp)
+    private async void OnIsSelectedChanged(DependencyObject sender, DependencyProperty dp)
     {
         if (IsSelected)
         {
             _searchViewState.TextBox = TextBox;
+            await Task.Yield();
             TextBox.Focus();
         }
     }

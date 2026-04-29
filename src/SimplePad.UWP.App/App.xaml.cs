@@ -2,6 +2,7 @@
 using SimplePad.Editor;
 using SimplePad.File;
 using SimplePad.Fonts;
+using SimplePad.Menu;
 using SimplePad.Search;
 using SimplePad.StatusBar;
 using SimplePad.Tabs;
@@ -44,27 +45,7 @@ public sealed partial class App : Application
         }
 
         IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
-        foreach (IAppWindow appWindow in appWindowManager.Instances)
-        {
-            foreach (Tab tab in appWindow.TabRoot.Tabs)
-            {
-                if (tab.File is not { } tabFile)
-                {
-                    continue;
-                }
-
-                if (tabFile.Path == file.Path)
-                {
-                    appWindow.Execute(async window =>
-                    {
-                        window.TabRoot.SelectedTab = tab;
-                        await ApplicationViewSwitcher.TryShowAsStandaloneAsync(ApplicationView.GetForCurrentView().Id);
-                    });
-                    return;
-                }
-            }
-        }
-
+       
         if (Window.Current.Content is not ShellView shellView)
         {
             IAppWindow appWindow = appWindowManager.CreateAppWindow();
@@ -79,8 +60,8 @@ public sealed partial class App : Application
         }
         else
         {
-            IAppWindow appWindow = await appWindowManager.ShowNewWindowAsync();
-            appWindow.Execute(window => window.TabRoot.AddTabFromFile(new UWPFile(file)));
+            OpenCommand openCommand = new();
+            openCommand.ExecuteWithFile(new UWPFile(file));
         }
     }
 

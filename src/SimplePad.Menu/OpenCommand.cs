@@ -4,6 +4,7 @@ using SimplePad.File;
 using SimplePad.Tabs;
 using SimplePad.Windowing;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SimplePad.Menu;
@@ -36,28 +37,54 @@ public sealed class OpenCommand : ICommand
         return true;
     }
 
-    public async void Execute(IFile file)
-    {
-        if (_appWindowManager.CurrentWindow is { TabRoot: { } tabRoot })
-        {
-            ExecuteInternal(file, tabRoot);
-        }
-    }
-
     public async void Execute(object? parameter)
     {
-        if (_appWindowManager.CurrentWindow is { TabRoot: { } tabRoot })
+        if (_appWindowManager.CurrentWindow is not { TabRoot: { } tabRoot })
         {
-            IFile? file = parameter as IFile;
-            file ??= await _filePickerService.PickOpenFileAsync();
-            if (file is not null)
-            {
-                ExecuteInternal(file, tabRoot);
-            }
+            return;
+        }
+
+        IFile? file = parameter as IFile;
+        file ??= await _filePickerService.PickOpenFileAsync();
+        if (file is null)
+        {
+            return;
+        }
+
+        if (TryShowExistTab(file))
+        {
+            return;
+        }
+
+        if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewTab)
+        {
+            OpenFileOnNewTab(tabRoot, file);
+        }
+        else if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewWindow)
+        {
+            await OpenFileOnNewWindowAsync(file);
         }
     }
 
-    private async void ExecuteInternal(IFile file, TabRoot tabRoot)
+    public async void ExecuteWithFile(IFile file)
+    {
+        if (!TryShowExistTab(file))
+        {
+            await OpenFileOnNewWindowAsync(file);
+        }
+    }
+    private static void OpenFileOnNewTab(TabRoot tabRoot, IFile file)
+    {
+        tabRoot.AddTabFromFile(file);
+    }
+
+    private async Task OpenFileOnNewWindowAsync(IFile file)
+    {
+        IAppWindow newAppWindow = await _appWindowManager.ShowNewWindowAsync();
+        newAppWindow.Execute(appWindow => appWindow.TabRoot.AddTabFromFile(file));
+    }
+
+    private bool TryShowExistTab(IFile file)
     {
         foreach (IAppWindow appWindow in _appWindowManager.Instances)
         {
@@ -75,19 +102,11 @@ public sealed class OpenCommand : ICommand
                         window.TabRoot.SelectedTab = tab;
                         await window.ShowAsync();
                     });
-                    return;
+                    return true;
                 }
             }
         }
 
-        if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewTab)
-        {
-            tabRoot.AddTabFromFile(file);
-        }
-        else if (_tabSettings.OpenFileBehavior == OpenFileBehavior.NewWindow)
-        {
-            IAppWindow newAppWindow = await _appWindowManager.ShowNewWindowAsync();
-            newAppWindow.Execute(appWindow => appWindow.TabRoot.AddTabFromFile(file));
-        }
+        return false;
     }
 }
