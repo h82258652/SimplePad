@@ -65,23 +65,14 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <search:ReplaceTextBox />
-                <winui:SplitButton
+                <search:ReplaceSplitButton
                     x:Name="ReplaceSplitButton"
                     Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                    Content="Replace"
-                    Style="{StaticResource SplitButtonStyle}">
-                    <winui:SplitButton.Flyout>
-                        <MenuFlyout>
-                            <search:ReplaceAllMenuFlyoutItem />
-                        </MenuFlyout>
-                    </winui:SplitButton.Flyout>
-                </winui:SplitButton>
-                <Button
+                    Grid.ColumnSpan="2" />
+                <search:ReplaceButton
                     x:Name="ReplaceButton"
                     Grid.Column="1"
                     MinWidth="88"
-                    Content="Replace"
                     Visibility="Collapsed" />
                 <search:ReplaceAllButton
                     x:Name="ReplaceAllButton"

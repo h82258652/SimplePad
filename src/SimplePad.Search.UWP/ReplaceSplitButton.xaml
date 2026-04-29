@@ -1,0 +1,21 @@
+﻿<winui:SplitButton
+    x:Class="SimplePad.Search.ReplaceSplitButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SimplePad.Search"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:search="using:SimplePad.Search"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Content="Replace"
+    Style="{StaticResource SplitButtonStyle}"
+    mc:Ignorable="d">
+    <winui:SplitButton.Flyout>
+        <MenuFlyout>
+            <search:ReplaceAllMenuFlyoutItem />
+        </MenuFlyout>
+    </winui:SplitButton.Flyout>
+    <winui:SplitButton.Command>
+        <search:ReplaceCommand />
+    </winui:SplitButton.Command>
+</winui:SplitButton>
