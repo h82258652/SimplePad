@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Button Style="{StaticResource SearchControlIconButtonStyle}" ToolTipService.ToolTip="More options">
         <Button.Flyout>
-            <MenuFlyout>
+            <MenuFlyout Placement="Bottom">
                 <MenuFlyoutSubItem Text="Find options">
                     <MenuFlyoutSubItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE9E9;" />

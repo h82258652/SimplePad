@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="using:SimplePad.Search"
     Content="Replace"
+    Style="{StaticResource DefaultButtonStyle}"
     mc:Ignorable="d">
     <Button.Command>
         <search:ReplaceCommand />

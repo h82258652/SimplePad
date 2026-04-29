@@ -11,7 +11,7 @@
     Style="{StaticResource SplitButtonStyle}"
     mc:Ignorable="d">
     <winui:SplitButton.Flyout>
-        <MenuFlyout>
+        <MenuFlyout Placement="Bottom">
             <search:ReplaceAllMenuFlyoutItem />
         </MenuFlyout>
     </winui:SplitButton.Flyout>

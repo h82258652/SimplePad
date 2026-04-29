@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Button Style="{StaticResource SearchControlIconButtonStyle}" ToolTipService.ToolTip="More options">
         <Button.Flyout>
-            <MenuFlyout>
+            <MenuFlyout Placement="Bottom">
                 <search:IsMatchCaseToggleMenuFlyoutItem />
                 <search:IsWrapAroundToggleMenuFlyoutItem />
             </MenuFlyout>
