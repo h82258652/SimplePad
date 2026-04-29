@@ -29,12 +29,6 @@ public sealed partial class SearchControl : UserControl
         NotificationFlyout.Hide();
     }
 
-    private void OnReplaceAllButtonClick(object sender, RoutedEventArgs e)
-    {
-        ReplaceAllCommand replaceAllCommand = new();
-        replaceAllCommand.Execute(null);
-    }
-
     private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();

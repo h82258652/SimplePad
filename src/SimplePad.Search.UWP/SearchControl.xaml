@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="using:SimplePad.Search"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -64,30 +65,28 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <search:ReplaceTextBox />
-                <SplitButton
+                <winui:SplitButton
                     x:Name="ReplaceSplitButton"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Content="Replace"
                     Style="{StaticResource SplitButtonStyle}">
-                    <SplitButton.Flyout>
+                    <winui:SplitButton.Flyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="Replace all" />
+                            <search:ReplaceAllMenuFlyoutItem />
                         </MenuFlyout>
-                    </SplitButton.Flyout>
-                </SplitButton>
+                    </winui:SplitButton.Flyout>
+                </winui:SplitButton>
                 <Button
                     x:Name="ReplaceButton"
                     Grid.Column="1"
                     MinWidth="88"
                     Content="Replace"
                     Visibility="Collapsed" />
-                <Button
+                <search:ReplaceAllButton
                     x:Name="ReplaceAllButton"
                     Grid.Column="2"
                     MinWidth="88"
-                    Click="OnReplaceAllButtonClick"
-                    Content="Replace all"
                     Visibility="Collapsed" />
             </Grid>
         </search:SearchControlExpander>
