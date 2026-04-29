@@ -24,7 +24,7 @@
         Style="{StaticResource AppMenuBarItemStyle}">
         <menu:NewTabMenuFlyoutItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
         <menu:NewWindowMenuFlyoutItem MinWidth="230" />
-        <menu:OpenMenuFlyoutItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
+        <menu:OpenMenuFlyoutItem MinWidth="230" />
         <menu:SaveMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:SaveAsMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:SaveAllMenuFlyoutItem MinWidth="230" />

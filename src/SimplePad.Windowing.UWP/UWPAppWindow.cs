@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Linq;
-using CommunityToolkit.WinUI.Helpers;
+﻿using CommunityToolkit.WinUI.Helpers;
 using SimplePad.Core.Extensions;
 using SimplePad.Tabs;
 using SimplePad.Themes;
+using System;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Core;
@@ -47,6 +48,11 @@ internal sealed class UWPAppWindow : IAppWindow
     public async void Execute(Action<IAppWindow> action)
     {
         await Dispatcher.SafeRunAsync(() => action(this));
+    }
+
+    public async Task ShowAsync()
+    {
+        await ApplicationViewSwitcher.TryShowAsStandaloneAsync(ApplicationView.GetForCurrentView().Id);
     }
 
     private static void UpdateTitleBarButtonsForDarkTheme()
