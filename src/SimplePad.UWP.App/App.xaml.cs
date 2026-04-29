@@ -8,6 +8,8 @@ using SimplePad.Tabs;
 using SimplePad.Themes;
 using SimplePad.Windowing;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -32,20 +34,54 @@ public sealed partial class App : Application
         Suspending += OnSuspending;
     }
 
-    protected override void OnActivated(IActivatedEventArgs args)
+    protected override async void OnFileActivated(FileActivatedEventArgs args)
     {
-        base.OnActivated(args);
+        base.OnFileActivated(args);
 
-        if (args.Kind == ActivationKind.File)
+        IReadOnlyList<IStorageItem> files = args.Files;
+        if (files.Count <= 0 || files[0] is not StorageFile file)
         {
-            var fileArgs = args as FileActivatedEventArgs;
-            var f = fileArgs.Files[0] as StorageFile;
+            return;
+        }
 
-            IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
-            appWindowManager.CreateAppWindow().Execute(wwww =>
+        IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
+        foreach (IAppWindow appWindow in appWindowManager.Instances)
+        {
+            foreach (Tab tab in appWindow.TabRoot.Tabs)
             {
-                wwww.TabRoot.AddTabFromFile(new UWPFile(f));
-            });
+                if (tab.File is not { } tabFile)
+                {
+                    continue;
+                }
+
+                if (tabFile.Path == file.Path)
+                {
+                    appWindow.Execute(async window =>
+                    {
+                        window.TabRoot.SelectedTab = tab;
+                        await ApplicationViewSwitcher.TryShowAsStandaloneAsync(ApplicationView.GetForCurrentView().Id);
+                    });
+                    return;
+                }
+            }
+        }
+
+        if (Window.Current.Content is not ShellView shellView)
+        {
+            IAppWindow appWindow = appWindowManager.CreateAppWindow();
+            appWindow.Execute(window => window.TabRoot.AddTabFromFile(new UWPFile(file)));
+            shellView = new ShellView(appWindow);
+
+            ExtendViewIntoTitleBar();
+
+            Window.Current.Content = shellView;
+
+            Window.Current.Activate();
+        }
+        else
+        {
+            IAppWindow appWindow = await appWindowManager.ShowNewWindowAsync();
+            appWindow.Execute(window => window.TabRoot.AddTabFromFile(new UWPFile(file)));
         }
     }
 
