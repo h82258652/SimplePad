@@ -9,7 +9,6 @@ using SimplePad.Themes;
 using SimplePad.Windowing;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
