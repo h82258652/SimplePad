@@ -116,6 +116,7 @@ public sealed partial class AppTabViewItem : TabViewItem
         if (IsSelected)
         {
             _searchViewState.TextBox = TextBox;
+            TextBox.Focus();
         }
     }
 
