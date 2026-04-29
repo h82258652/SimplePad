@@ -20,10 +20,8 @@ public sealed partial class SearchControl : UserControl
         _searchNotificationService.Configure(ShowNotificationFlyout, HideNotificationFlyout, SetNotificationText);
 
         UpdateVisibility();
-        UpdateSearchTextBox();
 
         _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
-        _searchViewState.SearchTextChanged += OnSearchViewStateSearchTextChanged;
     }
 
     private void HideNotificationFlyout()
@@ -37,19 +35,9 @@ public sealed partial class SearchControl : UserControl
         replaceAllCommand.Execute(null);
     }
 
-    private void OnSearchTextBoxTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
-    {
-        _searchViewState.SearchText = SearchTextBox.Text;
-    }
-
     private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();
-    }
-
-    private void OnSearchViewStateSearchTextChanged(object? sender, string e)
-    {
-        UpdateSearchTextBox();
     }
 
     private void SetNotificationText(string notificationText)
@@ -60,11 +48,6 @@ public sealed partial class SearchControl : UserControl
     private void ShowNotificationFlyout()
     {
         FlyoutBase.ShowAttachedFlyout(RootContainer);
-    }
-
-    private void UpdateSearchTextBox()
-    {
-        SearchTextBox.Text = _searchViewState.SearchText;
     }
 
     private void UpdateVisibility()

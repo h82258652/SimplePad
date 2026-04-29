@@ -37,11 +37,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <AutoSuggestBox
-                        x:Name="SearchTextBox"
-                        PlaceholderText="Find"
-                        QueryIcon="Find"
-                        TextChanged="OnSearchTextBoxTextChanged" />
+                    <search:SearchTextBox />
                     <search:CompactMoreOptionsButton
                         x:Name="CompactMoreOptionsButton"
                         Grid.Column="1"
