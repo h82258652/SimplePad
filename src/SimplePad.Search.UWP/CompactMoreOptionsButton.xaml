@@ -23,16 +23,8 @@
                     <search:IsMatchCaseToggleMenuFlyoutItem />
                     <search:IsWrapAroundToggleMenuFlyoutItem />
                 </MenuFlyoutSubItem>
-                <MenuFlyoutItem Text="Move up">
-                    <MenuFlyoutItem.Icon>
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE74A;" />
-                    </MenuFlyoutItem.Icon>
-                </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Move down">
-                    <MenuFlyoutItem.Icon>
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE74B;" />
-                    </MenuFlyoutItem.Icon>
-                </MenuFlyoutItem>
+                <search:MoveUpMenuFlyoutItem />
+                <search:MoveDownMenuFlyoutItem />
             </MenuFlyout>
         </Button.Flyout>
         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" />

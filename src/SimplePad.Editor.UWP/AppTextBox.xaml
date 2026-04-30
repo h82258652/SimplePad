@@ -14,6 +14,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="SelectionHighlightColorWhenNotFocused" Value="{ThemeResource TextControlSelectionHighlightColor}" />
+        <Setter Property="KeyboardAcceleratorPlacementMode" Value="Hidden" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="editor:AppTextBox">

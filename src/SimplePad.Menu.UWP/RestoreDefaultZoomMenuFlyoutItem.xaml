@@ -11,5 +11,6 @@
     mc:Ignorable="d">
     <MenuFlyoutItem.KeyboardAccelerators>
         <KeyboardAccelerator Key="Number0" Modifiers="Control" />
+        <KeyboardAccelerator Key="NumberPad0" Modifiers="Control" />
     </MenuFlyoutItem.KeyboardAccelerators>
 </MenuFlyoutItem>

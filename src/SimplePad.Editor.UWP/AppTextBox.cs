@@ -49,6 +49,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         DefaultStyleResourceUri = new Uri(
             "ms-appx:///SimplePad.Editor.UWP/AppTextBox.xaml"
         );
+        InitializeKeyboardAccelerators();
 
         _internalCanUndo = CanUndo;
         UpdateFontFamily();
@@ -148,6 +149,40 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         self.CursorPositionChanged?.Invoke(self, cursorPosition);
     }
 
+    private void InitializeKeyboardAccelerators()
+    {
+        KeyboardAccelerator zoomInKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.Add,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        zoomInKeyboardAccelerator.Invoked += OnZoomInKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(zoomInKeyboardAccelerator);
+
+        KeyboardAccelerator zoomOutKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.Subtract,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        zoomOutKeyboardAccelerator.Invoked += OnZoomOutKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(zoomOutKeyboardAccelerator);
+
+        KeyboardAccelerator restoreDefaultZoomKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.Number0,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        restoreDefaultZoomKeyboardAccelerator.Invoked += OnRestoreDefaultZoomKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(restoreDefaultZoomKeyboardAccelerator);
+        restoreDefaultZoomKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.NumberPad0,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        restoreDefaultZoomKeyboardAccelerator.Invoked += OnRestoreDefaultZoomKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(restoreDefaultZoomKeyboardAccelerator);
+    }
+
     private void OnContentElementPointerWheelChanged(object sender, PointerRoutedEventArgs e)
     {
         if (e.KeyModifiers.HasFlag(VirtualKeyModifiers.Control))
@@ -201,6 +236,12 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         UpdateZoomedFontSize();
     }
 
+    private void OnRestoreDefaultZoomKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        _editorZoomState.ResetZoomFactor();
+    }
+
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
     {
         UpdateCursorPosition();
@@ -219,6 +260,18 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         {
             handler?.Invoke(this, Text);
         }
+    }
+
+    private void OnZoomInKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        _editorZoomState.ZoomIn();
+    }
+
+    private void OnZoomOutKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        _editorZoomState.ZoomOut();
     }
 
     private void UpdateCursorPosition()
