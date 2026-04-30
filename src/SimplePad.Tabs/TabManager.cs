@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using SimplePad.File;
 
 namespace SimplePad.Tabs;
@@ -7,6 +8,7 @@ public sealed class TabManager
 {
     private readonly IConfirmCloseService _confirmCloseService;
     private readonly IFilePickerService _filePickerService;
+    private readonly SemaphoreSlim _saveLock = new(1);
 
     internal TabManager(IFilePickerService filePickerService, IConfirmCloseService confirmCloseService)
     {
@@ -44,20 +46,6 @@ public sealed class TabManager
         return false;
     }
 
-    public async Task<bool> SaveToAnotherFileAsync(Tab tab)
-    {
-        IFile? file = await _filePickerService.PickSaveFileAsync();
-        if (file is null)
-        {
-            return false;
-        }
-
-        await file.WriteAllTextAsync(tab.Content);
-        tab.File = file;
-        tab.OriginalContent = tab.Content;
-        return true;
-    }
-
     public async Task<bool> SaveAsync(Tab tab)
     {
         if (!tab.IsModified)
@@ -65,13 +53,48 @@ public sealed class TabManager
             return true;
         }
 
-        if (tab.File is not null)
+        await _saveLock.WaitAsync();
+        try
         {
-            await tab.File.WriteAllTextAsync(tab.Content);
-            tab.OriginalContent = tab.Content;
-            return true;
+            if (!tab.IsModified)
+            {
+                return true;
+            }
+
+            if (tab.File is not null)
+            {
+                await tab.File.WriteAllTextAsync(tab.Content);
+                tab.OriginalContent = tab.Content;
+                return true;
+            }
+        }
+        finally
+        {
+            _saveLock.Release();
         }
 
         return await SaveToAnotherFileAsync(tab);
+    }
+
+    public async Task<bool> SaveToAnotherFileAsync(Tab tab)
+    {
+        await _saveLock.WaitAsync();
+        try
+        {
+            IFile? file = await _filePickerService.PickSaveFileAsync();
+            if (file is null)
+            {
+                return false;
+            }
+
+            await file.WriteAllTextAsync(tab.Content);
+            tab.File = file;
+            tab.OriginalContent = tab.Content;
+            return true;
+        }
+        finally
+        {
+            _saveLock.Release();
+        }
     }
 }

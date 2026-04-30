@@ -63,6 +63,13 @@ public sealed partial class ShellView : ThemeContainer
         newAppWindow.Execute(appWindow => appWindow.TabRoot.AddBlankTab());
     }
 
+    private void OnOpenKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        OpenCommand openCommand = new();
+        openCommand.Execute(null);
+    }
+
     private void OnReplaceKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         args.Handled = true;

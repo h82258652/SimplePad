@@ -21,6 +21,10 @@
                     Invoked="OnNewWindowKeyboardAcceleratorInvoked"
                     Modifiers="Control,Shift" />
                 <KeyboardAccelerator
+                    Key="O"
+                    Invoked="OnOpenKeyboardAcceleratorInvoked"
+                    Modifiers="Control" />
+                <KeyboardAccelerator
                     Key="W"
                     Invoked="OnCloseWindowKeyboardAcceleratorInvoked"
                     Modifiers="Control,Shift" />
