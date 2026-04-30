@@ -6,6 +6,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
     <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
+    <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
   </ItemGroup>
 </Project>

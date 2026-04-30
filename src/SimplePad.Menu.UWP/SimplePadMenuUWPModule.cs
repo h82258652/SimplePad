@@ -1,6 +1,5 @@
 ﻿using SimplePad.Core.Modularity;
 using SimplePad.File;
-using SimplePad.Search;
 using SimplePad.Settings;
 using SimplePad.StatusBar;
 using SimplePad.Windowing;
@@ -14,6 +13,5 @@ public sealed class SimplePadMenuUWPModule : AppModuleBase
         SimplePadWindowingModule,
         SimplePadSettingsModule,
         SimplePadStatusBarModule,
-        SimplePadFileModule,
-        SimplePadSearchModule>();
+        SimplePadFileModule>();
 }
