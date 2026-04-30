@@ -123,13 +123,16 @@ internal sealed class UWPAppWindowManager : IAppWindowManager
 
     private UWPAppWindow CreateAppWindowInternal()
     {
-        var s = _serviceProvider.CreateScope();
-        ServiceLocator.SetLocatorProvider(s.ServiceProvider);
-        // todo dispose ?
+        IServiceScope scope = _serviceProvider.CreateScope();
 
-        var d = CoreApplication.GetCurrentView().Dispatcher;
+        IServiceProvider scopeServiceProvider = scope.ServiceProvider;
+        ServiceLocator.SetLocatorProvider(scopeServiceProvider);
 
-        UWPAppWindow instance = new(this, d, s.ServiceProvider.GetRequiredService<IThemeSettings>(), s.ServiceProvider.GetRequiredService<TabManager>());
+        CoreDispatcher dispatcher = CoreApplication.GetCurrentView().Dispatcher;
+        IThemeSettings themeSettings = scopeServiceProvider.GetRequiredService<IThemeSettings>();
+        TabManager tabManager = scopeServiceProvider.GetRequiredService<TabManager>();
+
+        UWPAppWindow instance = new(this, dispatcher, themeSettings, tabManager);
         _instances.Add(instance);
         return instance;
     }
