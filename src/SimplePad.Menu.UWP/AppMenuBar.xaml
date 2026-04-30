@@ -28,11 +28,8 @@
         <menu:SaveMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:SaveAsMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:SaveAllMenuFlyoutItem MinWidth="230" />
-        <MenuFlyoutSeparator MinWidth="230" Visibility="Collapsed" />
-        <menu:PrintMenuFlyoutItem
-            MinWidth="230"
-            Tab="{x:Bind Tab, Mode=OneWay}"
-            Visibility="Collapsed" />
+        <!--<MenuFlyoutSeparator MinWidth="230" />
+        <menu:PrintMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />-->
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:CloseTabMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:CloseWindowMenuFlyoutItem MinWidth="230" />
