@@ -34,5 +34,6 @@ public sealed class TimeDateCommand : ICommand
         textBox.SelectedText = timeDateText;
         textBox.SelectionLength = 0;
         textBox.SelectionStart += timeDateText.Length;
+        textBox.Focus();
     }
 }
