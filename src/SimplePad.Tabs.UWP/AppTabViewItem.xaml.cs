@@ -1,16 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.File;
+using SimplePad.Menu;
 using SimplePad.Search;
 using SimplePad.StatusBar;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace SimplePad.Tabs;
 
@@ -163,6 +165,16 @@ public sealed partial class AppTabViewItem : TabViewItem
         {
             tab.Content = TextBox.Text;
         }
+    }
+
+    private void OnTimeDateKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        TimeDateCommand timeDateCommand = new()
+        {
+            TextBox = TextBox
+        };
+        timeDateCommand.Execute(null);
     }
 
     private void UpdateHeader()

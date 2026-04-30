@@ -459,6 +459,9 @@
             </Grid>
         </ControlTemplate>
     </winui:TabViewItem.Template>
+    <winui:TabViewItem.KeyboardAccelerators>
+        <KeyboardAccelerator Key="F5" Invoked="OnTimeDateKeyboardAcceleratorInvoked" />
+    </winui:TabViewItem.KeyboardAccelerators>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

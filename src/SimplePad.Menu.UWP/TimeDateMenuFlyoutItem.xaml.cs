@@ -1,5 +1,4 @@
-﻿using System;
-using SimplePad.Editor;
+﻿using SimplePad.Editor;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -22,18 +21,5 @@ public sealed partial class TimeDateMenuFlyoutItem : MenuFlyoutItem
     {
         get => (IAppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
-    }
-
-    private void OnClick(object sender, RoutedEventArgs e)
-    {
-        if (TextBox is not { } textBox)
-        {
-            return;
-        }
-
-        string timeDateText = DateTime.Now.ToString("HH:mm yyyy/M/dd");
-        textBox.SelectedText = timeDateText;
-        textBox.SelectionLength = 0;
-        textBox.SelectionStart += timeDateText.Length;
     }
 }
