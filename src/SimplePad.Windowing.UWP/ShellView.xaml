@@ -33,6 +33,10 @@
                     Key="F3"
                     Invoked="OnFindPreviousKeyboardAcceleratorInvoked"
                     Modifiers="Shift" />
+                <KeyboardAccelerator
+                    Key="H"
+                    Invoked="OnReplaceKeyboardAcceleratorInvoked"
+                    Modifiers="Control" />
             </Grid.KeyboardAccelerators>
             <tabs:AppTabView x:Name="TabView">
                 <tabs:AppTabView.TitleBar>

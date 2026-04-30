@@ -63,6 +63,13 @@ public sealed partial class ShellView : ThemeContainer
         newAppWindow.Execute(appWindow => appWindow.TabRoot.AddBlankTab());
     }
 
+    private void OnReplaceKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        ReplaceCommand replaceCommand = new();
+        replaceCommand.Execute(null);
+    }
+
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateContentGridVisibility();
