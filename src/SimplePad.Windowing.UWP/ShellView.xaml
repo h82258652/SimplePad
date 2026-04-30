@@ -12,29 +12,28 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
-    KeyboardAcceleratorPlacementMode="Hidden"
     mc:Ignorable="d">
-    <themes:ThemeContainer.KeyboardAccelerators>
-        <KeyboardAccelerator
-            Key="N"
-            Invoked="OnNewWindowKeyboardAcceleratorInvoked"
-            Modifiers="Control,Shift" />
-        <KeyboardAccelerator
-            Key="W"
-            Invoked="OnCloseWindowKeyboardAcceleratorInvoked"
-            Modifiers="Control,Shift" />
-        <KeyboardAccelerator
-            Key="F"
-            Invoked="OnFindKeyboardAcceleratorInvoked"
-            Modifiers="Control" />
-        <KeyboardAccelerator Key="F3" Invoked="OnFindNextKeyboardAcceleratorInvoked" />
-        <KeyboardAccelerator
-            Key="F3"
-            Invoked="OnFindPreviousKeyboardAcceleratorInvoked"
-            Modifiers="Shift" />
-    </themes:ThemeContainer.KeyboardAccelerators>
     <Grid>
-        <Grid x:Name="ContentGrid">
+        <Grid x:Name="ContentGrid" KeyboardAcceleratorPlacementMode="Hidden">
+            <Grid.KeyboardAccelerators>
+                <KeyboardAccelerator
+                    Key="N"
+                    Invoked="OnNewWindowKeyboardAcceleratorInvoked"
+                    Modifiers="Control,Shift" />
+                <KeyboardAccelerator
+                    Key="W"
+                    Invoked="OnCloseWindowKeyboardAcceleratorInvoked"
+                    Modifiers="Control,Shift" />
+                <KeyboardAccelerator
+                    Key="F"
+                    Invoked="OnFindKeyboardAcceleratorInvoked"
+                    Modifiers="Control" />
+                <KeyboardAccelerator Key="F3" Invoked="OnFindNextKeyboardAcceleratorInvoked" />
+                <KeyboardAccelerator
+                    Key="F3"
+                    Invoked="OnFindPreviousKeyboardAcceleratorInvoked"
+                    Modifiers="Shift" />
+            </Grid.KeyboardAccelerators>
             <tabs:AppTabView x:Name="TabView">
                 <tabs:AppTabView.TitleBar>
                     <Border Background="Transparent" />
