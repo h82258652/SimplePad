@@ -23,6 +23,11 @@
             Key="W"
             Invoked="OnCloseWindowKeyboardAcceleratorInvoked"
             Modifiers="Control,Shift" />
+        <KeyboardAccelerator
+            Key="F"
+            Invoked="OnFindKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+        <KeyboardAccelerator Key="F3" Invoked="OnFindNextKeyboardAcceleratorInvoked" />
     </themes:ThemeContainer.KeyboardAccelerators>
     <Grid>
         <Grid x:Name="ContentGrid">

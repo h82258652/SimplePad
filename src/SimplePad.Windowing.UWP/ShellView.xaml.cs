@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.Menu;
 using SimplePad.Settings;
 using SimplePad.Themes;
 using Windows.UI.Xaml;
@@ -32,6 +33,20 @@ public sealed partial class ShellView : ThemeContainer
         {
             _ = await _appWindowManager.CloseAsync(currentWindow);
         }
+    }
+
+    private void OnFindKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        FindCommand findCommand = new();
+        findCommand.Execute(null);
+    }
+
+    private void OnFindNextKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        FindNextCommand findNextCommand = new();
+        findNextCommand.Execute(null);
     }
 
     private async void OnNewWindowKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)

@@ -1,0 +1,46 @@
+﻿using System;
+using System.Windows.Input;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Search;
+
+namespace SimplePad.Menu;
+
+public sealed class FindNextCommand : ICommand
+{
+    private readonly SearchViewState _searchViewState;
+
+    public FindNextCommand()
+    {
+        _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
+    }
+
+    public event EventHandler? CanExecuteChanged
+    {
+        add
+        {
+        }
+        remove
+        {
+        }
+    }
+
+    public bool CanExecute(object? parameter)
+    {
+        return true;
+    }
+
+    public void Execute(object? parameter)
+    {
+        string searchText = _searchViewState.SearchText;
+        if (string.IsNullOrEmpty(searchText))
+        {
+            _searchViewState.IsVisible = true;
+            _searchViewState.IsReplaceMode = false;
+            return;
+        }
+
+        SearchDownCommand searchDownCommand = new();
+        searchDownCommand.Execute(null);
+    }
+}
