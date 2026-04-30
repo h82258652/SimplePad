@@ -216,6 +216,10 @@
             Key="W"
             Invoked="OnCloseTabKeyboardAcceleratorInvoked"
             Modifiers="Control" />
+        <KeyboardAccelerator
+            Key="G"
+            Invoked="OnGoToLineKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
         <KeyboardAccelerator Key="F5" Invoked="OnTimeDateKeyboardAcceleratorInvoked" />
     </winui:TabView.KeyboardAccelerators>
     <winui:TabView.TabItemTemplate>

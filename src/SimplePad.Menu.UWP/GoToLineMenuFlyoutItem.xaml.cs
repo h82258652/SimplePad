@@ -22,13 +22,4 @@ public sealed partial class GoToLineMenuFlyoutItem : MenuFlyoutItem
         get => (IAppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
     }
-
-    private async void OnClick(object sender, RoutedEventArgs e)
-    {
-        if (TextBox is { } textBox)
-        {
-            await textBox.GoToLineAsync();
-            textBox.Focus();
-        }
-    }
 }

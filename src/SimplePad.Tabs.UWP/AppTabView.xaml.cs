@@ -111,6 +111,20 @@ public sealed partial class AppTabView : TabView
         }
     }
 
+    private void OnGoToLineKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (SelectedItem is { } selectedItem
+            && ContainerFromItem(selectedItem) is AppTabViewItem tabViewItem)
+        {
+            GoToLineCommand goToLineCommand = new()
+            {
+                TextBox = tabViewItem.TextBox
+            };
+            goToLineCommand.Execute(null);
+        }
+    }
+
     private void OnNewTabKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         args.Handled = true;
