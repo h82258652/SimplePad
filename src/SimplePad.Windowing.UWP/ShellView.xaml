@@ -28,6 +28,10 @@
             Invoked="OnFindKeyboardAcceleratorInvoked"
             Modifiers="Control" />
         <KeyboardAccelerator Key="F3" Invoked="OnFindNextKeyboardAcceleratorInvoked" />
+        <KeyboardAccelerator
+            Key="F3"
+            Invoked="OnFindPreviousKeyboardAcceleratorInvoked"
+            Modifiers="Shift" />
     </themes:ThemeContainer.KeyboardAccelerators>
     <Grid>
         <Grid x:Name="ContentGrid">

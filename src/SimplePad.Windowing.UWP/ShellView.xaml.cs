@@ -49,6 +49,13 @@ public sealed partial class ShellView : ThemeContainer
         findNextCommand.Execute(null);
     }
 
+    private void OnFindPreviousKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        FindPreviousCommand findPreviousCommand = new();
+        findPreviousCommand.Execute(null);
+    }
+
     private async void OnNewWindowKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         args.Handled = true;
