@@ -216,6 +216,7 @@
             Key="W"
             Invoked="OnCloseTabKeyboardAcceleratorInvoked"
             Modifiers="Control" />
+        <KeyboardAccelerator Key="F5" Invoked="OnTimeDateKeyboardAcceleratorInvoked" />
     </winui:TabView.KeyboardAccelerators>
     <winui:TabView.TabItemTemplate>
         <DataTemplate x:DataType="tabs:Tab">

@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Collections.Specialized;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.Menu;
 using SimplePad.Settings;
 using SimplePad.Windowing;
-using System.Collections.Specialized;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -189,6 +189,20 @@ public sealed partial class AppTabView : TabView
         if (args.Item is Tab tab)
         {
             await _tabManager.CloseAsync(tab);
+        }
+    }
+
+    private void OnTimeDateKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (SelectedItem is { } selectedItem
+            && ContainerFromItem(selectedItem) is AppTabViewItem tabViewItem)
+        {
+            TimeDateCommand timeDateCommand = new()
+            {
+                TextBox = tabViewItem.TextBox
+            };
+            timeDateCommand.Execute(null);
         }
     }
 

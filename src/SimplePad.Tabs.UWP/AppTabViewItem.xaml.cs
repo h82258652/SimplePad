@@ -6,13 +6,11 @@ using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.File;
-using SimplePad.Menu;
 using SimplePad.Search;
 using SimplePad.StatusBar;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 
 namespace SimplePad.Tabs;
 
@@ -167,15 +165,6 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
     }
 
-    private void OnTimeDateKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
-    {
-        args.Handled = true;
-        TimeDateCommand timeDateCommand = new()
-        {
-            TextBox = TextBox
-        };
-        timeDateCommand.Execute(null);
-    }
 
     private void UpdateHeader()
     {
