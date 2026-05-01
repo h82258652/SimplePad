@@ -1,11 +1,13 @@
-﻿using System.Collections.Specialized;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using SimplePad.Menu;
 using SimplePad.Settings;
 using SimplePad.Windowing;
+using System;
+using System.Collections.Specialized;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,6 +30,7 @@ public sealed partial class AppTabView : TabView
         typeof(AppTabView),
         new PropertyMetadata(null, OnTitleBarChanged));
 
+    private const string DragAndDropTabDataFormat = "SimplePadTabData";
     private const string TitleBarContainerTemplateName = "PART_TitleBarContainer";
 
     private readonly IAppWindowManager _appWindowManager;
@@ -111,6 +114,42 @@ public sealed partial class AppTabView : TabView
         }
     }
 
+    private async void OnDragOver(object sender, DragEventArgs e)
+    {
+        if (e.DataView.Contains(DragAndDropTabDataFormat))
+        {
+            e.AcceptedOperation = DataPackageOperation.Move;
+        }
+    }
+
+    private async void OnDrop(object sender, DragEventArgs e)
+    {
+        if (TabRoot is not { } tabRoot)
+        {
+            return;
+        }
+
+        if (e.DataView.Contains(DragAndDropTabDataFormat))
+        {
+            object? data = await e.DataView.GetDataAsync(DragAndDropTabDataFormat);
+            if (data is Guid tabId)
+            {
+                foreach (IAppWindow appWindow in _appWindowManager.Instances)
+                {
+                    foreach (Tab tab in appWindow.TabRoot.Tabs)
+                    {
+                        if (tab.Id == tabId)
+                        {
+                            appWindow.Execute(window => appWindow.TabRoot.Tabs.Remove(tab));
+                            tabRoot.AddCloneOfTab(tab);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void OnGoToLineKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         args.Handled = true;
@@ -184,6 +223,14 @@ public sealed partial class AppTabView : TabView
                 // We can't just move the tab, because they have different TabRoot
                 window.TabRoot.AddCloneOfTab(tab);
             });
+        }
+    }
+
+    private void OnTabListViewDragItemsStarting(object sender, DragItemsStartingEventArgs e)
+    {
+        if (e.Items.Count > 0 && e.Items[0] is Tab tab)
+        {
+            e.Data.SetData(DragAndDropTabDataFormat, tab.Id);
         }
     }
 

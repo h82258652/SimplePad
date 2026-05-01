@@ -10,6 +10,7 @@ public sealed class Tab
 {
     private string _content = string.Empty;
     private IFile? _file;
+    private Guid _id = Guid.NewGuid();
     private bool _isModified;
     private string _originalContent = string.Empty;
     private string _title = TabConstants.DefaultTabTitle;
@@ -73,6 +74,8 @@ public sealed class Tab
         }
     }
 
+    public Guid Id => _id;
+
     public bool IsModified
     {
         get => _isModified;
@@ -125,6 +128,7 @@ public sealed class Tab
     {
         Tab clonedTab = new(newRoot)
         {
+            _id = tab._id,
             _content = tab._content,
             _originalContent = tab._originalContent,
             _title = tab._title,

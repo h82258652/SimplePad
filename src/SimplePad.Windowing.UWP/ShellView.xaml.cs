@@ -42,9 +42,12 @@ public sealed partial class ShellView : ThemeContainer
 
     private void OnContentGridDragOver(object sender, DragEventArgs e)
     {
-        e.AcceptedOperation = DataPackageOperation.Copy;
-        e.DragUIOverride.Caption = "Open file";
-        e.DragUIOverride.IsCaptionVisible = true;
+        if (e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            e.AcceptedOperation = DataPackageOperation.Copy;
+            e.DragUIOverride.Caption = "Open file";
+            e.DragUIOverride.IsCaptionVisible = true;
+        }
     }
 
     private async void OnContentGridDrop(object sender, DragEventArgs e)
