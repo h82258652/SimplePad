@@ -53,6 +53,6 @@ public sealed partial class FontStyleComboBox : ComboBox
 
     private void UpdateSelectedItem()
     {
-        SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle);
+        SelectedItem = _items.FirstOrDefault(item => item.Value == _fontSettings.FontStyle.Value);
     }
 }

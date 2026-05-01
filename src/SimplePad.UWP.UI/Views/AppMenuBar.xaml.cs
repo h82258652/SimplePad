@@ -14,9 +14,9 @@ public sealed partial class AppMenuBar : UserControl
     public AppMenuBar()
     {
         InitializeComponent();
-        PrintMenuItem.Visibility = PrintManager.IsSupported()
-            ? Visibility.Visible
-            : Visibility.Collapsed;
+        //PrintMenuItem.Visibility = PrintManager.IsSupported()
+        //    ? Visibility.Visible
+        //    : Visibility.Collapsed;
     }
 
 

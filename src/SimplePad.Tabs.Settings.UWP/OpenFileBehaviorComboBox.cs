@@ -52,7 +52,7 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
     private void UpdateSelectedItem()
     {
         SelectedItem = _items.FirstOrDefault(item =>
-            item.Value == _multiTabSettings.OpenFileBehavior
+            item.Value == _multiTabSettings.OpenFileBehavior.Value
         );
     }
 }
