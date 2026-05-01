@@ -1,8 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using SimplePad.File;
 using SimplePad.Menu;
 using SimplePad.Settings;
 using SimplePad.Themes;
+using System;
+using System.Collections.Generic;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
@@ -32,6 +37,29 @@ public sealed partial class ShellView : ThemeContainer
         if (_appWindowManager.CurrentWindow is { } currentWindow)
         {
             _ = await _appWindowManager.CloseAsync(currentWindow);
+        }
+    }
+
+    private void OnContentGridDragOver(object sender, DragEventArgs e)
+    {
+        e.AcceptedOperation = DataPackageOperation.Copy;
+        e.DragUIOverride.Caption = "Open file";
+        e.DragUIOverride.IsCaptionVisible = true;
+    }
+
+    private async void OnContentGridDrop(object sender, DragEventArgs e)
+    {
+        if (e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            IReadOnlyList<IStorageItem> storageItems = await e.DataView.GetStorageItemsAsync();
+            foreach (IStorageItem storageItem in storageItems)
+            {
+                if (storageItem is StorageFile storageFile)
+                {
+                    OpenCommand openCommand = new();
+                    openCommand.ExecuteWithFile(new UWPFile(storageFile));
+                }
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
+using SimplePad.File;
 using SimplePad.Search;
 using SimplePad.Settings;
 using SimplePad.Tabs;
@@ -14,6 +15,7 @@ public sealed class SimplePadWindowingUWPModule : AppModuleBase
         SimplePadThemesUWPModule,
         SimplePadSearchUWPModule,
         SimplePadTabsUWPModule,
+        SimplePadFileUWPModule,
         SimplePadSettingsUWPModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)

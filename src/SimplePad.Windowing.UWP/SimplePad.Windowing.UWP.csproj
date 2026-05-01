@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.7" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.File.UWP\SimplePad.File.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Search.UWP\SimplePad.Search.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Settings.UWP\SimplePad.Settings.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Tabs.UWP\SimplePad.Tabs.UWP.csproj" />

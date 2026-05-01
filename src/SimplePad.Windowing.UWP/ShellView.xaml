@@ -14,7 +14,12 @@
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
     <Grid>
-        <Grid x:Name="ContentGrid" KeyboardAcceleratorPlacementMode="Hidden">
+        <Grid
+            x:Name="ContentGrid"
+            AllowDrop="True"
+            DragOver="OnContentGridDragOver"
+            Drop="OnContentGridDrop"
+            KeyboardAcceleratorPlacementMode="Hidden">
             <Grid.KeyboardAccelerators>
                 <KeyboardAccelerator
                     Key="N"
