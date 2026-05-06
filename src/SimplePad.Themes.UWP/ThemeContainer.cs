@@ -2,7 +2,6 @@
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Themes;
@@ -29,11 +28,6 @@ public partial class ThemeContainer : UserControl
 
     private void UpdateTheme()
     {
-        RequestedTheme = _themeSettings.AppTheme switch
-        {
-            AppTheme.Light => ElementTheme.Light,
-            AppTheme.Dark => ElementTheme.Dark,
-            _ => ElementTheme.Default,
-        };
+        RequestedTheme = AppThemeUWPExtensions.GetElementTheme(_themeSettings);
     }
 }
