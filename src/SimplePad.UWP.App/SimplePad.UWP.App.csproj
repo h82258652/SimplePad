@@ -26,7 +26,6 @@
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateThumbprint>585AA11C65BCAF6420EA08BD1D46CE111F2B80E6</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.File.UWP\SimplePad.File.UWP.csproj" />
