@@ -30,4 +30,9 @@ public sealed record AppFontStyle
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         };
     }
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }
