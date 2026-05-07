@@ -13,8 +13,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
-    <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
-    <ProjectReference Include="..\SimplePad.File\SimplePad.File.csproj" />
     <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
   </ItemGroup>
 </Project>

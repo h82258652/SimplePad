@@ -6,9 +6,7 @@ namespace SimplePad.StatusBar;
 
 public sealed class SimplePadStatusBarUWPModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<
-        SimplePadStatusBarModule,
-        SimplePadFileModule>();
+    public override DependsOn DependModules => DependsOn.Create<SimplePadStatusBarModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
