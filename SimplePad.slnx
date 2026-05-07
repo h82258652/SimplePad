@@ -123,6 +123,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Themes.WinUI/SimplePad.Themes.WinUI.csproj" Id="ed39a3ea-719b-42a6-9184-9378895f898d" />
     <Project Path="src/SimplePad.Themes/SimplePad.Themes.csproj" Id="3be60e45-351f-429a-8d79-d6579abbafb1" />
   </Folder>
   <Folder Name="/src/Windowing/">
