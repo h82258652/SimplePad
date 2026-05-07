@@ -1,9 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace SimplePad.Fonts;
 
-internal sealed class WPFFontSettings
+internal sealed class WPFFontSettings : IFontSettings
 {
+    public event EventHandler<string>? FontFamilyChanged;
+
+    public event EventHandler<int>? FontSizeChanged;
+
+    public event EventHandler<AppFontStyle>? FontStyleChanged;
+
+    public string FontFamily { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    
+    public int FontSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+  
+    public AppFontStyle FontStyle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public Task LoadAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task SaveAsync()
+    {
+        throw new NotImplementedException();
+    }
 }
