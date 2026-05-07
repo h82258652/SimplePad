@@ -5,7 +5,7 @@ namespace SimplePad.Core.Extensions;
 
 public static class DispatcherQueueExtensions
 {
-    public static async Task SaveRunAsync(this DispatcherQueue dispatcherQueue, DispatcherQueueHandler callback)
+    public static async Task SafeRunAsync(this DispatcherQueue dispatcherQueue, DispatcherQueueHandler callback)
     {
         if (dispatcherQueue.HasThreadAccess)
         {

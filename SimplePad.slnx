@@ -48,6 +48,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Fonts.Settings.WinUI/SimplePad.Fonts.Settings.WinUI.csproj" Id="cb8038f6-5d4d-4821-8c29-ee1c694e8b5c" />
     <Project Path="src/SimplePad.Fonts.UWP.TestApp/SimplePad.Fonts.UWP.TestApp.csproj" Id="777c41ab-aa44-4d0a-9171-f8570e3dd383">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
