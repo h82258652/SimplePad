@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using Wpf.Ui.Appearance;
 
 namespace SimplePad.Settings;
 
@@ -15,13 +17,20 @@ public sealed partial class SettingsView : UserControl
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
-        // TODO init Version text
+        ApplicationThemeManager.Apply(this);
+        InitializeVersionText();
 
         UpdateVisibility();
         UpdateFontSettingsExpander();
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
         _settingsState.IsFontSettingsExpandedChanged += OnSettingsStateIsFontSettingsExpandedChanged;
+    }
+
+    private void InitializeVersionText()
+    {
+        Version version = (Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly()).GetName().Version ?? new Version(1, 0, 0, 0);
+        VersionText.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 
     private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)

@@ -16,8 +16,7 @@ public sealed partial class SettingsView : UserControl
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
-        PackageVersion version = Package.Current.Id.Version;
-        VersionText.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        InitializeVersionText();
 
         UpdateVisibility();
         UpdateFontSettingsExpander();
@@ -27,6 +26,12 @@ public sealed partial class SettingsView : UserControl
     }
 
     public UIElement TitleBar => TitleBarElement;
+
+    private void InitializeVersionText()
+    {
+        PackageVersion version = Package.Current.Id.Version;
+        VersionText.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+    }
 
     private void OnFontSettingsExpanderCollapsed(object sender, EventArgs e)
     {
