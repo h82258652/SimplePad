@@ -5,7 +5,7 @@ using Microsoft.UI.Xaml.Media;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 
-namespace SimplePad.Fonts.Settings;
+namespace SimplePad.Fonts;
 
 public sealed partial class PreviewFontTextControl : UserControl
 {
