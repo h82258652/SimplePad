@@ -28,6 +28,6 @@ public partial class ThemeContainer : UserControl
 
     private void UpdateTheme()
     {
-        RequestedTheme = AppThemeUWPExtensions.GetElementTheme(_themeSettings.AppTheme);
+        RequestedTheme = _themeSettings.AppTheme.GetElementTheme();
     }
 }
