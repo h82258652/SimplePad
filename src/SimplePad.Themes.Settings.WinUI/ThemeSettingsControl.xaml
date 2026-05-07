@@ -7,6 +7,21 @@
     xmlns:local="using:SimplePad.Themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid />
+    <StackPanel Spacing="8">
+        <RadioButton
+            x:Name="LightThemeRadioButton"
+            Checked="OnLightThemeRadioButtonChecked"
+            Content="Light"
+            GroupName="AppTheme" />
+        <RadioButton
+            x:Name="DarkThemeRadioButton"
+            Checked="OnDarkThemeRadioButtonChecked"
+            Content="Dark"
+            GroupName="AppTheme" />
+        <RadioButton
+            x:Name="UseSystemSettingsThemeRadioButton"
+            Checked="OnUseSystemSettingsThemeRadioButtonChecked"
+            Content="Use system setting"
+            GroupName="AppTheme" />
+    </StackPanel>
 </UserControl>
