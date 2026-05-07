@@ -22,7 +22,7 @@ public class ThemeWindow : Window
 
     private void OnThemeSettingsAppThemeChanged(object? sender, AppTheme e)
     {
-        Dispatcher.Invoke(UpdateTheme);
+        _dispatcher.Invoke(UpdateTheme);
     }
 
     private void UpdateTheme()

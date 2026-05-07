@@ -144,6 +144,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Windowing.WPF/SimplePad.Windowing.WPF.csproj" Id="c607ff31-c79b-431e-8386-2b691bd5624d" />
     <Project Path="src/SimplePad.Windowing/SimplePad.Windowing.csproj" Id="07423f35-8b33-43d6-a883-b2eb2b9cb91b" />
   </Folder>
 </Solution>
