@@ -22,7 +22,11 @@ internal sealed class UWPAppWindow : IAppWindow
     private readonly ThemeListener _themeListener;
     private readonly IThemeSettings _themeSettings;
 
-    internal UWPAppWindow(IAppWindowManager appWindowManager, CoreDispatcher dispatcher, IThemeSettings themeSettings, TabManager tabManager)
+    internal UWPAppWindow(
+        IAppWindowManager appWindowManager,
+        CoreDispatcher dispatcher,
+        IThemeSettings themeSettings,
+        TabManager tabManager)
     {
         _themeListener = new ThemeListener();
         _appWindowManager = appWindowManager;

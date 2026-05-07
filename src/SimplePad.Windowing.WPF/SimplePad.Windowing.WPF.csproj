@@ -5,4 +5,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>SimplePad.Windowing</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
+  </ItemGroup>
 </Project>
