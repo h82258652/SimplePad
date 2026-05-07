@@ -135,6 +135,7 @@
       <Platform Solution="*|x86" Project="x86" />
     </Project>
     <Project Path="src/SimplePad.Themes.WinUI/SimplePad.Themes.WinUI.csproj" Id="ed39a3ea-719b-42a6-9184-9378895f898d" />
+    <Project Path="src/SimplePad.Themes.WPF/SimplePad.Themes.WPF.csproj" Id="0d16cd0f-9713-493e-94af-7186c9d92f54" />
     <Project Path="src/SimplePad.Themes/SimplePad.Themes.csproj" Id="3be60e45-351f-429a-8d79-d6579abbafb1" />
   </Folder>
   <Folder Name="/src/Windowing/">
