@@ -94,6 +94,8 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Settings.WinUI/SimplePad.Settings.WinUI.csproj" Id="5ab2daa9-d3d7-4c11-add2-d7e5e9cf68dc" />
+    <Project Path="src/SimplePad.Settings.WPF/SimplePad.Settings.WPF.csproj" Id="3e2429c7-545d-45c7-9cfd-dafb385b1587" />
     <Project Path="src/SimplePad.Settings/SimplePad.Settings.csproj" Id="8c2a786b-e304-4f8c-954f-d8d2c49320c4" />
   </Folder>
   <Folder Name="/src/StatusBar/">
