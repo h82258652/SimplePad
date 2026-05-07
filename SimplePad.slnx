@@ -40,6 +40,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.File.WinUI/SimplePad.File.WinUI.csproj" Id="83e07977-c2af-4ed8-83a9-8636394340dd" />
     <Project Path="src/SimplePad.File/SimplePad.File.csproj" Id="9e67b93e-525c-41a6-a86f-7403330ebccb" />
   </Folder>
   <Folder Name="/src/Fonts/">
