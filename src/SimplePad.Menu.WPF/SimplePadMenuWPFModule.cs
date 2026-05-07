@@ -5,7 +5,7 @@ using SimplePad.StatusBar;
 
 namespace SimplePad.Menu;
 
-public sealed class SimplePadMenuUWPModule : AppModuleBase
+public sealed class SimplePadMenuWPFModule : AppModuleBase
 {
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadMenuModule,
