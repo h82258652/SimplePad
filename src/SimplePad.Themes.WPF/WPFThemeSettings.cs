@@ -5,13 +5,22 @@ namespace SimplePad.Themes;
 
 internal sealed class WPFThemeSettings : IThemeSettings
 {
-    public AppTheme AppTheme
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
+    private AppTheme _appTheme = AppTheme.Default;
 
     public event EventHandler<AppTheme>? AppThemeChanged;
+
+    public AppTheme AppTheme
+    {
+        get => _appTheme;
+        set
+        {
+            if (_appTheme != value)
+            {
+                _appTheme = value;
+                AppThemeChanged?.Invoke(this, _appTheme);
+            }
+        }
+    }
 
     public Task LoadAsync()
     {
