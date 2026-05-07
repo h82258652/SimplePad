@@ -64,6 +64,7 @@
       <Platform Solution="*|x86" Project="x86" />
     </Project>
     <Project Path="src/SimplePad.Fonts.WinUI/SimplePad.Fonts.WinUI.csproj" Id="ce461602-8d7c-450a-80b2-04cb43eccc87" />
+    <Project Path="src/SimplePad.Fonts.WPF.TestApp/SimplePad.Fonts.WPF.TestApp.csproj" Id="4bc4cd7c-66c7-4139-a8e0-8964dfbaa558" />
     <Project Path="src/SimplePad.Fonts.WPF/SimplePad.Fonts.WPF.csproj" Id="4e3d3ac9-6e28-451a-b565-ba0c2e43cfe7" />
     <Project Path="src/SimplePad.Fonts/SimplePad.Fonts.csproj" Id="ae213d3d-1755-4b75-9f8e-60282907e9e0" />
   </Folder>
