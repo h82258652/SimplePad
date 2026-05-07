@@ -59,6 +59,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Fonts.WinUI/SimplePad.Fonts.WinUI.csproj" Id="ce461602-8d7c-450a-80b2-04cb43eccc87" />
     <Project Path="src/SimplePad.Fonts/SimplePad.Fonts.csproj" Id="ae213d3d-1755-4b75-9f8e-60282907e9e0" />
   </Folder>
   <Folder Name="/src/Legacy/">
