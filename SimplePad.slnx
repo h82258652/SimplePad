@@ -18,6 +18,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Core.WinUI/SimplePad.Core.WinUI.csproj" Id="ce4b0bb3-6b82-4304-88bc-5b6b77445175" />
     <Project Path="src/SimplePad.Core/SimplePad.Core.csproj" Id="7bd6b997-f727-44f4-8983-855db6c3d6dc" />
   </Folder>
   <Folder Name="/src/Editor/">
