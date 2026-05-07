@@ -121,6 +121,8 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Tabs.WinUI/SimplePad.Tabs.WinUI.csproj" Id="1b31d97b-9c1e-4522-be96-8e92b9656984" />
+    <Project Path="src/SimplePad.Tabs.WPF/SimplePad.Tabs.WPF.csproj" Id="21f2dd38-d330-4718-9ff1-7d143a7c757b" />
     <Project Path="src/SimplePad.Tabs/SimplePad.Tabs.csproj" Id="3f59faac-cb0c-4a91-a342-64ff8ecb02fd" />
   </Folder>
   <Folder Name="/src/Themes/">
