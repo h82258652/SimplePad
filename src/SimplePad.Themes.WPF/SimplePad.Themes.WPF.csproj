@@ -4,6 +4,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>SimplePad.Themes</RootNamespace>
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
