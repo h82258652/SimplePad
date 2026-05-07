@@ -127,6 +127,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Themes.Settings.WinUI/SimplePad.Themes.Settings.WinUI.csproj" Id="ccecf478-54cc-42d5-a59c-4df7f44dc34e" />
     <Project Path="src/SimplePad.Themes.UWP/SimplePad.Themes.UWP.csproj" Id="ed7a6847-27f2-4107-8778-15cc3c560a42">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
