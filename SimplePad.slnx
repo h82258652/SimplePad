@@ -100,6 +100,7 @@
       <Platform Solution="*|x86" Project="x86" />
     </Project>
     <Project Path="src/SimplePad.StatusBar.WinUI/SimplePad.StatusBar.WinUI.csproj" Id="c1ddfd77-5e69-4550-818f-bd89f0ce6972" />
+    <Project Path="src/SimplePad.StatusBar.WPF/SimplePad.StatusBar.WPF.csproj" Id="f667317c-b698-4a8d-b8a1-533062096361" />
     <Project Path="src/SimplePad.StatusBar/SimplePad.StatusBar.csproj" Id="95a45aed-93fc-4727-bfce-3e97e3afcf82" />
   </Folder>
   <Folder Name="/src/Tabs/">
