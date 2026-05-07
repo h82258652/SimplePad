@@ -1,11 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
+using SimplePad.Themes;
 
 namespace SimplePad.Search;
 
 public sealed class SimplePadSearchUWPModule : AppModuleBase
 {
-    public override DependsOn DependModules => DependsOn.Create<SimplePadSearchModule>();
+    public override DependsOn DependModules => DependsOn.Create<
+        SimplePadSearchModule,
+        SimplePadThemesUWPModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

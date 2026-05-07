@@ -73,6 +73,7 @@ public sealed class OpenCommand : ICommand
             await OpenFileOnNewWindowAsync(file);
         }
     }
+
     private static void OpenFileOnNewTab(TabRoot tabRoot, IFile file)
     {
         tabRoot.AddTabFromFile(file);

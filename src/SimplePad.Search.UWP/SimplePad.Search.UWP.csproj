@@ -18,5 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.UWP\SimplePad.Core.UWP.csproj" />
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.UWP\SimplePad.Themes.UWP.csproj" />
   </ItemGroup>
 </Project>

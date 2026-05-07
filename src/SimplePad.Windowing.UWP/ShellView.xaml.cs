@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
@@ -59,6 +60,10 @@ public sealed partial class ShellView : ThemeContainer
             {
                 if (storageItem is StorageFile storageFile)
                 {
+                    // For dragged into file, we reload it, otherwise, it may fail when saving.
+                    string token = StorageApplicationPermissions.FutureAccessList.Add(storageFile);
+                    storageFile = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(token);
+
                     OpenCommand openCommand = new();
                     openCommand.ExecuteWithFile(new UWPFile(storageFile));
                 }

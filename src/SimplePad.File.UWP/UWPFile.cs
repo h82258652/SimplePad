@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +67,19 @@ public sealed class UWPFile : IFile
     public async Task WriteAllTextAsync(string text)
     {
         text = string.Join(LineEndings.NewLine, text.Split([LineEndings.CRLF.NewLine, LineEndings.CR.NewLine, LineEndings.LF.NewLine], StringSplitOptions.None));
-        await FileIO.WriteTextAsync(_storageFile, text);
+
+        // We don't use FileIO.WriteTextAsync here, for dragged into file, it is readonly. But we can workaround it.
+        // https://github.com/microsoft/microsoft-ui-xaml/issues/2421
+        if (IsFileReadOnly() || !await IsFileWritableAsync())
+        {
+            Encoding encoding = Encoding.UTF8;
+            byte[] content = encoding.GetBytes(text);
+            await PathIO.WriteBytesAsync(_storageFile.Path, content);
+        }
+        else
+        {
+            await FileIO.WriteTextAsync(_storageFile, text);
+        }
     }
 
     private void DetectLineEndings(string text)
@@ -81,6 +95,24 @@ public sealed class UWPFile : IFile
         else if (text.Contains(LineEndings.LF.NewLine))
         {
             LineEndings = LineEndings.LF;
+        }
+    }
+
+    private bool IsFileReadOnly()
+    {
+        return (_storageFile.Attributes & Windows.Storage.FileAttributes.ReadOnly) != 0;
+    }
+
+    private async Task<bool> IsFileWritableAsync()
+    {
+        try
+        {
+            using var stream = await _storageFile.OpenStreamForWriteAsync();
+            return true;
+        }
+        catch
+        {
+            return false;
         }
     }
 }

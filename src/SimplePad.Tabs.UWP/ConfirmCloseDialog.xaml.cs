@@ -1,4 +1,7 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Themes;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Tabs;
@@ -7,7 +10,9 @@ public sealed partial class ConfirmCloseDialog : ContentDialog
 {
     public ConfirmCloseDialog(Tab tab)
     {
+        IThemeSettings themeSettings = ServiceLocator.Current.GetRequiredService<IThemeSettings>();
         InitializeComponent();
+        RequestedTheme = themeSettings.AppTheme.GetElementTheme();
 
         FileNameText.Text = GetFileName(tab);
     }
