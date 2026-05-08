@@ -6,4 +6,8 @@
     <RootNamespace>SimplePad.Fonts.TestApp</RootNamespace>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
 </Project>
