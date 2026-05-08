@@ -8,5 +8,6 @@
     </ResourceDictionary.MergedDictionaries>
     <Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="search:ReplaceTextBox">
         <Setter Property="PlaceholderText" Value="Replace" />
+        <Setter Property="IsSpellCheckEnabled" Value="False" />
     </Style>
 </ResourceDictionary>

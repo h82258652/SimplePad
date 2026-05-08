@@ -12,5 +12,11 @@
         x:Name="TextBox"
         PlaceholderText="Find"
         QueryIcon="Find"
-        TextChanged="OnTextBoxTextChanged" />
+        TextChanged="OnTextBoxTextChanged">
+        <AutoSuggestBox.TextBoxStyle>
+            <Style BasedOn="{StaticResource AutoSuggestBoxTextBoxStyle}" TargetType="TextBox">
+                <Setter Property="IsSpellCheckEnabled" Value="False" />
+            </Style>
+        </AutoSuggestBox.TextBoxStyle>
+    </AutoSuggestBox>
 </UserControl>
