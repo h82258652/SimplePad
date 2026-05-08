@@ -4,7 +4,6 @@ using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using Wpf.Ui.Appearance;
 
 namespace SimplePad.Settings;
 
@@ -17,7 +16,6 @@ public sealed partial class SettingsView : UserControl
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
-        ApplicationThemeManager.Apply(this);
         InitializeVersionText();
 
         UpdateVisibility();
