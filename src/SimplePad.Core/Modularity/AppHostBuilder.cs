@@ -49,7 +49,7 @@ internal sealed class AppHostBuilder : IHostBuilder
     /// <inheritdoc/>
     public IHost Build()
     {
-        return _hostBuilder.Build();
+        return new AppHost(_hostBuilder.Build(), _modules);
     }
 
     /// <inheritdoc/>
