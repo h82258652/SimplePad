@@ -145,7 +145,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     )
     {
         AppTextBox self = (AppTextBox)d;
-        var cursorPosition = (CursorPosition)e.NewValue;
+        CursorPosition cursorPosition = (CursorPosition)e.NewValue;
         self.CursorPositionChanged?.Invoke(self, cursorPosition);
     }
 
