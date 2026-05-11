@@ -6,6 +6,7 @@
     <RootNamespace>SimplePad.Windowing</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Search.WPF\SimplePad.Search.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Settings.WPF\SimplePad.Settings.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Tabs.WPF\SimplePad.Tabs.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.WPF\SimplePad.Themes.WPF.csproj" />

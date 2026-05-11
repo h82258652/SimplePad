@@ -90,6 +90,7 @@
       <Platform Solution="*|x86" Project="x86" />
     </Project>
     <Project Path="src/SimplePad.Search.WinUI/SimplePad.Search.WinUI.csproj" Id="6ad7c8d1-775b-4877-ae68-c43e19d81a1c" />
+    <Project Path="src/SimplePad.Search.WPF/SimplePad.Search.WPF.csproj" Id="498808ab-9f0e-4e6b-9b3a-d41e5cf56871" />
     <Project Path="src/SimplePad.Search/SimplePad.Search.csproj" Id="d19a19b2-8532-4b94-b2de-4eeea027af3e" />
   </Folder>
   <Folder Name="/src/Settings/">
