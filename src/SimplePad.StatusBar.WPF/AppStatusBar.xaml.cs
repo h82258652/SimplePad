@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -16,7 +15,7 @@ public sealed partial class AppStatusBar : UserControl
         nameof(LineEndings),
         typeof(LineEndings),
         typeof(AppStatusBar),
-        new PropertyMetadata(LineEndings.CRLF));
+        new PropertyMetadata(LineEndings.CRLF, OnLineEndingsChanged));
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
@@ -41,6 +40,7 @@ public sealed partial class AppStatusBar : UserControl
         UpdateCursorPositionIndicator();
         UpdateCharacterIndicator();
         UpdateZoomFactorIndicator();
+        UpdateLineEndingsNameText();
 
         _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
         _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
@@ -56,6 +56,12 @@ public sealed partial class AppStatusBar : UserControl
     {
         get => (IAppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
+    }
+
+    private static void OnLineEndingsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppStatusBar self = (AppStatusBar)d;
+        self.UpdateLineEndingsNameText();
     }
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -146,6 +152,11 @@ public sealed partial class AppStatusBar : UserControl
             CursorPositionText.Text =
                 $"Ln {TextBox.CursorPosition.Row}, Col {TextBox.CursorPosition.Column}";
         }
+    }
+
+    private void UpdateLineEndingsNameText()
+    {
+        LineEndingsNameText.Text = LineEndings.Name;
     }
 
     private void UpdateVisibility()
