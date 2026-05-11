@@ -1,49 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 
-namespace SimplePad.Tabs
+namespace SimplePad.Tabs;
+
+public partial class AppTabView : TabControl
 {
-    /// <summary>
-    /// Interaction logic for AppTabView.xaml
-    /// </summary>
-    public partial class AppTabView : TabControl
+    public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
+        nameof(TabRoot),
+        typeof(TabRoot),
+        typeof(AppTabView),
+        new PropertyMetadata(null, OnTabRootChanged));
+
+    private readonly Dispatcher _dispatcher;
+    private readonly TabManager _tabManager;
+
+    public AppTabView()
     {
-        public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
-            nameof(TabRoot),
-            typeof(TabRoot),
-            typeof(AppTabView),
-            new PropertyMetadata(null, OnTabRootChanged));
+        _dispatcher = Dispatcher;
+        _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
 
-        private static void OnTabRootChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        InitializeComponent();
+
+        UpdateItemsSource();
+    }
+
+    public TabRoot? TabRoot
+    {
+        get => (TabRoot?)GetValue(TabRootProperty);
+        set => SetValue(TabRootProperty, value);
+    }
+
+    private static void OnTabRootChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppTabView self = (AppTabView)d;
+        TabRoot? oldTabRoot = (TabRoot?)e.OldValue;
+        if (oldTabRoot is not null)
         {
-            throw new NotImplementedException();
+            oldTabRoot.SelectedTabChanged -= self.OnTabRootSelectedTabChanged;
         }
 
-        private readonly TabManager _tabManager;
-
-        public TabRoot? TabRoot
+        TabRoot? newTabRoot = (TabRoot?)e.NewValue;
+        if (newTabRoot is not null)
         {
-            get => (TabRoot?)GetValue(TabRootProperty);
-            set => SetValue(TabRootProperty, value);
+            newTabRoot.SelectedTabChanged += self.OnTabRootSelectedTabChanged;
         }
 
-        public AppTabView()
-        {
-            _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
+        self.UpdateItemsSource();
+        self.UpdateSelectedItem();
+    }
 
-            InitializeComponent();
-        }
+    private void OnTabRootSelectedTabChanged(object? sender, Tab? e)
+    {
+        _dispatcher.Invoke(UpdateSelectedItem);
+    }
+
+    private void UpdateItemsSource()
+    {
+        ItemsSource = TabRoot?.Tabs;
+    }
+
+    private void UpdateSelectedItem()
+    {
+        SelectedItem = TabRoot?.SelectedTab;
     }
 }

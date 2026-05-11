@@ -1,26 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
-namespace SimplePad.Tabs
+namespace SimplePad.Tabs;
+
+public partial class AppTabViewItem : TabItem
 {
-    /// <summary>
-    /// Interaction logic for AppTabViewItem.xaml
-    /// </summary>
-    public partial class AppTabViewItem : UserControl
+    public AppTabViewItem()
     {
-        public AppTabViewItem()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
