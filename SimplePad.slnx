@@ -38,13 +38,13 @@
     <Project Path="src/SimplePad.Editor/SimplePad.Editor.csproj" Id="45aa27a6-2ed8-41a0-8aff-b5e0b306bd0d" />
   </Folder>
   <Folder Name="/src/File/">
-    <Project Path="src/SimplePad.File.Desktop/SimplePad.File.Desktop.csproj" Id="90bd6377-9a61-410d-adf7-cf286bb519ab" />
     <Project Path="src/SimplePad.File.UWP/SimplePad.File.UWP.csproj" Id="dcb5aecd-20b2-4d71-8595-58b545fc3064">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
     <Project Path="src/SimplePad.File.WinUI/SimplePad.File.WinUI.csproj" Id="83e07977-c2af-4ed8-83a9-8636394340dd" />
+    <Project Path="src/SimplePad.File.WPF/SimplePad.File.WPF.csproj" Id="7bb6f0a1-962b-4f3d-aa78-ca979c686df9" />
     <Project Path="src/SimplePad.File/SimplePad.File.csproj" Id="9e67b93e-525c-41a6-a86f-7403330ebccb" />
   </Folder>
   <Folder Name="/src/Fonts/">
