@@ -1,6 +1,6 @@
 ﻿namespace SimplePad.Core;
 
-public interface IServiceProviderIdProvider
+public interface IServiceScopeIdProvider
 {
     int? Get();
 }
