@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:SimplePad.Tabs"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:menu="clr-namespace:SimplePad.Menu;assembly=SimplePad.Menu.WPF"
+    xmlns:statusBar="clr-namespace:SimplePad.StatusBar;assembly=SimplePad.StatusBar.WPF"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -30,5 +31,6 @@
             x:Name="StatusBarDivider"
             Grid.Row="3"
             Height="1" />
+        <statusBar:AppStatusBar />
     </Grid>
 </TabItem>

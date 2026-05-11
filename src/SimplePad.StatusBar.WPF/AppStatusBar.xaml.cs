@@ -30,6 +30,8 @@ public sealed partial class AppStatusBar : UserControl
 
     public AppStatusBar()
     {
+        // TODO switch to https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.primitives.statusbar?view=windowsdesktop-10.0
+
         _dispatcher = Dispatcher;
         _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();

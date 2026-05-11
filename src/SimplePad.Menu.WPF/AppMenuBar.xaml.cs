@@ -1,10 +1,17 @@
 ﻿using SimplePad.Editor;
+using SimplePad.Tabs;
 using System.Windows;
 
 namespace SimplePad.Menu;
 
 public partial class AppMenuBar : System.Windows.Controls.Menu
 {
+    public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
+        nameof(Tab),
+        typeof(Tab),
+        typeof(AppMenuBar),
+        null);
+
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
@@ -14,6 +21,12 @@ public partial class AppMenuBar : System.Windows.Controls.Menu
     public AppMenuBar()
     {
         InitializeComponent();
+    }
+
+    public Tab? Tab
+    {
+        get => (Tab?)GetValue(TabProperty);
+        set => SetValue(TabProperty, value);
     }
 
     public IAppTextBox? TextBox
