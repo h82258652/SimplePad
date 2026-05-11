@@ -34,7 +34,8 @@ public sealed class WPFFile : IFile
 
     public Task<DateTimeOffset> GetModificationTimeAsync()
     {
-        throw new NotImplementedException();
+        DateTime lastWriteTime = System.IO.File.GetLastWriteTime(_path);
+        return Task.FromResult<DateTimeOffset>(lastWriteTime);
     }
 
     public Task<string> ReadAllTextAsync()
