@@ -12,6 +12,8 @@
     mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <fonts:FontFamilyComboBox Width="220" />
+        <fonts:FontStyleComboBox Width="220" Margin="0,20,0,0" />
+        <fonts:FontSizeComboBox Width="220" Margin="0,20,0,0" />
         <fonts:PreviewFontTextControl Margin="0,20,0,0" />
     </StackPanel>
 </Window>
