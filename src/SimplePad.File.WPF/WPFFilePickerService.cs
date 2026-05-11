@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SimplePad.File;
 
-internal sealed class DesktopFilePickerService : IFilePickerService
+internal sealed class WPFFilePickerService : IFilePickerService
 {
     public Task<IFile?> PickOpenFileAsync()
     {

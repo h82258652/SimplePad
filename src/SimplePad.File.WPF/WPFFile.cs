@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace SimplePad.File;
 
-public sealed class DesktopFile : IFile
+public sealed class WPFFile : IFile
 {
     private readonly string _path;
     private LineEndings _lineEndings = LineEndings.CRLF;
 
-    public DesktopFile(string path)
+    public WPFFile(string path)
     {
         _path = path;
     }
