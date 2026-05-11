@@ -24,11 +24,14 @@ internal sealed class WPFStatusBarSettings : IStatusBarSettings
 
     public Task LoadAsync()
     {
-        throw new NotImplementedException();
+        IsStatusBarVisible = Properties.Settings.Default.IsStatusBarVisible;
+        return Task.CompletedTask;
     }
 
     public Task SaveAsync()
     {
-        throw new NotImplementedException();
+        Properties.Settings.Default.IsStatusBarVisible = IsStatusBarVisible;
+        Properties.Settings.Default.Save();
+        return Task.CompletedTask;
     }
 }
