@@ -33,6 +33,16 @@ public partial class AppTabView : TabControl
         set => SetValue(TabRootProperty, value);
     }
 
+    protected override DependencyObject GetContainerForItemOverride()
+    {
+        return new AppTabViewItem();
+    }
+
+    protected override bool IsItemItsOwnContainerOverride(object item)
+    {
+        return item is AppTabViewItem;
+    }
+
     private static void OnTabRootChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppTabView self = (AppTabView)d;
@@ -50,6 +60,16 @@ public partial class AppTabView : TabControl
 
         self.UpdateItemsSource();
         self.UpdateSelectedItem();
+    }
+
+    private void AddBlankTab()
+    {
+        TabRoot?.AddBlankTab();
+    }
+
+    private void OnAddTabButtonClick(object sender, RoutedEventArgs e)
+    {
+        AddBlankTab();
     }
 
     private void OnTabRootSelectedTabChanged(object? sender, Tab? e)

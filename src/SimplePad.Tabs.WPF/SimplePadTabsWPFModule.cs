@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
 using SimplePad.Editor;
+using SimplePad.Menu;
 
 namespace SimplePad.Tabs;
 
@@ -8,6 +9,7 @@ public sealed class SimplePadTabsWPFModule : AppModuleBase
 {
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadTabsModule,
+        SimplePadMenuWPFModule,
         SimplePadEditorWPFModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)

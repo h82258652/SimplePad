@@ -3,15 +3,15 @@ using System.Windows;
 
 namespace SimplePad.Menu;
 
-public partial class AppMenu : System.Windows.Controls.Menu
+public partial class AppMenuBar : System.Windows.Controls.Menu
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(AppMenu),
+        typeof(AppMenuBar),
         null);
 
-    public AppMenu()
+    public AppMenuBar()
     {
         InitializeComponent();
     }

@@ -7,4 +7,57 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d" />
+    mc:Ignorable="d">
+    <TabControl.Template>
+        <ControlTemplate TargetType="TabControl">
+            <Grid KeyboardNavigation.TabNavigation="Local">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Disabled" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TabPanel
+                        x:Name="HeaderPanel"
+                        Grid.Column="1"
+                        Margin="0"
+                        Panel.ZIndex="1"
+                        Background="Transparent"
+                        IsItemsHost="True"
+                        KeyboardNavigation.TabIndex="1" />
+                    <Button Grid.Column="2" Click="OnAddTabButtonClick" />
+                </Grid>
+                <Border
+                    x:Name="Border"
+                    Grid.Row="1"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="0,4,4,4"
+                    KeyboardNavigation.DirectionalNavigation="Contained"
+                    KeyboardNavigation.TabIndex="2"
+                    KeyboardNavigation.TabNavigation="Local">
+                    <ContentPresenter
+                        x:Name="PART_SelectedContentHost"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        ContentSource="SelectedContent"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                        TextElement.Foreground="{TemplateBinding Foreground}" />
+                </Border>
+            </Grid>
+        </ControlTemplate>
+    </TabControl.Template>
+</TabControl>
