@@ -10,6 +10,26 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        <TextBlock x:Name="CursorPositionText" />
+        <Rectangle Grid.Column="1" />
+        <TextBlock x:Name="CharacterIndicator" Grid.Column="2" />
+        <Rectangle Grid.Column="4" />
+        <TextBlock
+            x:Name="ZoomFactorIndicator"
+            Grid.Column="5"
+            MinWidth="44" />
+        <Rectangle Grid.Column="6" />
+        <TextBlock
+            x:Name="LineEndingsNameText"
+            Grid.Column="7"
+            MinWidth="134" />
     </Grid>
 </UserControl>
