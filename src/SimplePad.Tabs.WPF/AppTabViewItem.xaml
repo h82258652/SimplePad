@@ -13,6 +13,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,6 +23,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <menu:AppMenuBar />
+            <Button Grid.Column="1" Margin="0,0,8,0" />
         </Grid>
+        <Rectangle Grid.Row="1" Height="1" />
+        <Rectangle
+            x:Name="StatusBarDivider"
+            Grid.Row="3"
+            Height="1" />
     </Grid>
 </TabItem>
