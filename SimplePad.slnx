@@ -11,6 +11,7 @@
       <Platform Solution="*|x86" Project="x86" />
       <Deploy />
     </Project>
+    <Project Path="src/SimplePad.WPF.App/SimplePad.WPF.App.csproj" Id="5be448d1-a304-4d11-b03e-cd23b1c6248a" />
   </Folder>
   <Folder Name="/src/Core/">
     <Project Path="src/SimplePad.Core.UWP/SimplePad.Core.UWP.csproj" Id="752857f5-0db1-41a1-89fa-90ee4ce3fbd6">
