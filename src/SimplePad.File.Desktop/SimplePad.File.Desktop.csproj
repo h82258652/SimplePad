@@ -4,4 +4,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>SimplePad.File</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.File\SimplePad.File.csproj" />
+  </ItemGroup>
 </Project>
