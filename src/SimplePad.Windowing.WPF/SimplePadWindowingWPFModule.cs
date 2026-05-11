@@ -17,6 +17,6 @@ public sealed class SimplePadWindowingWPFModule : AppModuleBase
     {
         base.OnApplicationInitialization(context);
 
-        ServiceLocator.SetIdProvider(new WPFServiceProviderIdProvider(context.ServiceProvider.GetRequiredService<IAppWindowManager>());
+        ServiceLocator.SetIdProvider(new WPFServiceProviderIdProvider(context.ServiceProvider.GetRequiredService<IAppWindowManager>()));
     }
 }
