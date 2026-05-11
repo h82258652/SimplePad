@@ -8,21 +8,16 @@ internal sealed class WPFAppWindow : IAppWindow
 {
     public TabRoot TabRoot => throw new NotImplementedException();
 
+    internal ShellWindow? ShellWindow { get; set; }
+
     public void Execute(Action<IAppWindow> action)
     {
-        ShellWindow.Dispatcher.Invoke(() => action(this));
+        ShellWindow?.Dispatcher.Invoke(() => action(this));
     }
-
-    public WPFAppWindow(ShellWindow shellWindow)
-    {
-        ShellWindow = shellWindow;
-    }
-
-    internal ShellWindow ShellWindow { get; }
 
     public Task ShowAsync()
     {
-        ShellWindow.Show();
+        ShellWindow?.Show();
         return Task.CompletedTask;
     }
 }

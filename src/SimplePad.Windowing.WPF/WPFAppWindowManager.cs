@@ -65,7 +65,7 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
                     }
                 }
 
-                ((WPFAppWindow)wpfWindowInstance).ShellWindow.Close();
+                ((WPFAppWindow)wpfWindowInstance).ShellWindow?.Close();
                 tcs.SetResult(true);
             });
             bool allTabsClosed = await tcs.Task;
@@ -101,10 +101,13 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
         IServiceProvider scopeServiceProvder = scope.ServiceProvider;
         ServiceLocator.SetLocatorProvider(scopeServiceProvder);
 
-        ShellWindow shellWindow = new ShellWindow();
+        WPFAppWindow instance = new WPFAppWindow();
+        
+        ShellWindow shellWindow = new ShellWindow(instance);
+        instance.ShellWindow = shellWindow;
+
         shellWindow.Activated += OnShellWindowActivated;
 
-        WPFAppWindow instance = new WPFAppWindow(shellWindow);
         _instances.Add(instance);
         return instance;
     }

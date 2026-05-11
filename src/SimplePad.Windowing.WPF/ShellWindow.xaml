@@ -6,12 +6,16 @@
     xmlns:local="clr-namespace:SimplePad.Windowing"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:settings="clr-namespace:SimplePad.Settings;assembly=SimplePad.Settings.WPF"
+    xmlns:tabs="clr-namespace:SimplePad.Tabs;assembly=SimplePad.Tabs.WPF"
     xmlns:themes="clr-namespace:SimplePad.Themes;assembly=SimplePad.Themes.WPF"
     Title="ShellWindow"
     Width="800"
     Height="450"
     mc:Ignorable="d">
     <Grid>
+        <Grid>
+            <tabs:AppTabView />
+        </Grid>
         <settings:SettingsView />
     </Grid>
 </themes:ThemeWindow>
