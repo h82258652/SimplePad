@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SimplePad.Tabs.Properties;
 
 namespace SimplePad.Tabs;
 
@@ -7,7 +8,9 @@ internal sealed class WPFTabsSettings : ITabsSettings
 {
     private OpenFileBehavior _openFileBehavior = OpenFileBehavior.NewTab;
 
-    public OpenFileBehavior OpenFileBehavior 
+    public event EventHandler<OpenFileBehavior>? OpenFileBehaviorChanged;
+
+    public OpenFileBehavior OpenFileBehavior
     {
         get => _openFileBehavior;
         set
@@ -20,15 +23,16 @@ internal sealed class WPFTabsSettings : ITabsSettings
         }
     }
 
-    public event EventHandler<OpenFileBehavior>? OpenFileBehaviorChanged;
-
     public Task LoadAsync()
     {
-        throw new NotImplementedException();
+        OpenFileBehavior = OpenFileBehavior.FromValue(Settings.Default.OpenFileBehavior);
+        return Task.CompletedTask;
     }
 
     public Task SaveAsync()
     {
-        throw new NotImplementedException();
+        Settings.Default.OpenFileBehavior = OpenFileBehavior.Value;
+        Settings.Default.Save();
+        return Task.CompletedTask;
     }
 }
