@@ -30,6 +30,6 @@ public sealed class SimplePadWindowingUWPModule : AppModuleBase
     {
         base.OnApplicationInitialization(context);
 
-        ServiceLocator.SetIdProvider(new UWPServiceProviderIdProvider());
+        ServiceLocator.SetScopeIdProvider(new UWPServiceScopeIdProvider());
     }
 }

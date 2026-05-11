@@ -2,11 +2,11 @@
 
 namespace SimplePad.Windowing;
 
-internal sealed class WPFServiceProviderIdProvider : IServiceProviderIdProvider
+internal sealed class WPFServiceScopeIdProvider : IServiceScopeIdProvider
 {
     private readonly IAppWindowManager _appWindowManager;
 
-    public WPFServiceProviderIdProvider(IAppWindowManager appWindowManager)
+    public WPFServiceScopeIdProvider(IAppWindowManager appWindowManager)
     {
         _appWindowManager = appWindowManager;
     }

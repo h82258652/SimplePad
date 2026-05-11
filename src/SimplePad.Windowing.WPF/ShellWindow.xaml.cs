@@ -13,6 +13,7 @@ public partial class ShellWindow : ThemeWindow
     public ShellWindow(IAppWindow appWindow)
     {
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
+        AppWindow = appWindow;
 
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
@@ -21,6 +22,8 @@ public partial class ShellWindow : ThemeWindow
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
     }
+
+    internal IAppWindow AppWindow { get; }
 
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {

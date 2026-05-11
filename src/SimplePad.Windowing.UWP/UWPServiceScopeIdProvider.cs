@@ -3,7 +3,7 @@ using SimplePad.Core;
 
 namespace SimplePad.Windowing;
 
-internal sealed class UWPServiceProviderIdProvider : IServiceProviderIdProvider
+internal sealed class UWPServiceScopeIdProvider : IServiceScopeIdProvider
 {
     public int? Get()
     {

@@ -15,7 +15,6 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
     private readonly List<WPFAppWindow> _instances = [];
     private readonly IServiceProvider _serviceProvider;
     private readonly TabManager _tabManager;
-    private ShellWindow? _currentActivatedWindow;
 
     public WPFAppWindowManager(IServiceProvider serviceProvider, TabManager tabManager)
     {
@@ -23,18 +22,7 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
         _tabManager = tabManager;
     }
 
-    public IAppWindow? CurrentWindow
-    {
-        get
-        {
-            if (_currentActivatedWindow is null)
-            {
-                return null;
-            }
-
-            return _instances.FirstOrDefault(instance => instance.ShellWindow == _currentActivatedWindow);
-        }
-    }
+    public IAppWindow? CurrentWindow { get; private set; }
 
     public IReadOnlyList<IAppWindow> Instances => _instances;
 
@@ -99,10 +87,12 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
         IServiceScope scope = _serviceProvider.CreateScope();
 
         IServiceProvider scopeServiceProvder = scope.ServiceProvider;
-        ServiceLocator.SetLocatorProvider(scopeServiceProvder);
 
         WPFAppWindow instance = new(this);
-        
+        CurrentWindow = instance;
+
+        ServiceLocator.SetScopedLocatorProvider(instance.GetHashCode(), scopeServiceProvder);
+
         ShellWindow shellWindow = new(instance);
         instance.ShellWindow = shellWindow;
 
@@ -116,7 +106,7 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
     {
         if (sender is ShellWindow shellWindow)
         {
-            _currentActivatedWindow = shellWindow;
+            CurrentWindow = shellWindow.AppWindow;
         }
     }
 }

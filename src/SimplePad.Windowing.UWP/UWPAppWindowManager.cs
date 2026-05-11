@@ -126,7 +126,7 @@ internal sealed class UWPAppWindowManager : IAppWindowManager
         IServiceScope scope = _serviceProvider.CreateScope();
 
         IServiceProvider scopeServiceProvider = scope.ServiceProvider;
-        ServiceLocator.SetLocatorProvider(scopeServiceProvider);
+        ServiceLocator.SetScopedLocatorProvider(Environment.CurrentManagedThreadId, scopeServiceProvider);
 
         CoreDispatcher dispatcher = CoreApplication.GetCurrentView().Dispatcher;
         IThemeSettings themeSettings = scopeServiceProvider.GetRequiredService<IThemeSettings>();
