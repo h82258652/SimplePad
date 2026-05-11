@@ -13,8 +13,8 @@
     Height="450"
     mc:Ignorable="d">
     <Grid>
-        <Grid>
-            <tabs:AppTabView />
+        <Grid x:Name="ContentGrid">
+            <tabs:AppTabView x:Name="TabView" />
         </Grid>
         <settings:SettingsView />
     </Grid>

@@ -2,6 +2,7 @@
 using SimplePad.Core;
 using SimplePad.Settings;
 using SimplePad.Themes;
+using System.Windows;
 
 namespace SimplePad.Windowing;
 
@@ -14,5 +15,27 @@ public partial class ShellWindow : ThemeWindow
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
+        TabView.TabRoot = appWindow.TabRoot;
+
+        UpdateContentGridVisibility();
+
+        _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
+    }
+
+    private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
+    {
+        UpdateContentGridVisibility();
+    }
+
+    private void UpdateContentGridVisibility()
+    {
+        if (_settingsState.IsVisible)
+        {
+            ContentGrid.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            ContentGrid.Visibility = Visibility.Visible;
+        }
     }
 }
