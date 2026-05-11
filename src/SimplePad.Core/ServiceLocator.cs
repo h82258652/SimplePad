@@ -8,9 +8,9 @@ namespace SimplePad.Core;
 /// </summary>
 public static class ServiceLocator
 {
-    private static readonly Dictionary<int, IServiceProvider> _providers = [];
+    private static readonly Dictionary<int, IServiceProvider> _scopedProviders = [];
     private static IServiceProvider? _globalProvider;
-    private static IServiceProviderIdProvider? _idProvider;
+    private static IServiceScopeIdProvider? _scopeIdProvider;
 
     /// <summary>
     /// Gets the current <see cref="IServiceProvider"/> instance.
@@ -19,7 +19,7 @@ public static class ServiceLocator
     {
         get
         {
-            if (_idProvider is not { } idProvider)
+            if (_scopeIdProvider is not { } idProvider)
             {
                 throw new InvalidOperationException("The service provider ID provider has not been set.");
             }
@@ -27,7 +27,7 @@ public static class ServiceLocator
             int? providerId = idProvider.Get();
             if (providerId.HasValue)
             {
-                if (_providers.TryGetValue(providerId.Value, out IServiceProvider? serviceProvider))
+                if (_scopedProviders.TryGetValue(providerId.Value, out IServiceProvider? serviceProvider))
                 {
                     return serviceProvider;
                 }
@@ -46,42 +46,40 @@ public static class ServiceLocator
         }
     }
 
-    public static void SetIdProvider(IServiceProviderIdProvider idProvider)
+    public static void SetGlobalLocatorProvider(IServiceProvider serviceProvider)
     {
-        _idProvider = idProvider;
+        if (_globalProvider is not null)
+        {
+            throw new InvalidOperationException(
+                "The service provider has already been set and cannot be changed."
+            );
+        }
+
+        _globalProvider = serviceProvider;
     }
 
     /// <summary>
     /// Sets the <see cref="IServiceProvider"/> instance.
     /// </summary>
+    /// <param name="scopeId">TODO</param>
     /// <param name="serviceProvider">The <see cref="IServiceProvider"/> instance.</param>
-    public static void SetLocatorProvider(IServiceProvider serviceProvider)
+    public static void SetScopedLocatorProvider(int scopeId, IServiceProvider serviceProvider)
     {
-        if (_idProvider is not { } idProvider)
+        if (!_scopedProviders.TryAdd(scopeId, serviceProvider))
         {
-            throw new InvalidOperationException("The service provider ID provider has not been set.");
+            throw new InvalidOperationException(
+                "The service provider has already been set and cannot be changed."
+            );
+        }
+    }
+
+    public static void SetScopeIdProvider(IServiceScopeIdProvider idProvider)
+    {
+        if (_scopeIdProvider is not null)
+        {
+            throw new InvalidOperationException("The scope id provider has been set");
         }
 
-        int? providerId = idProvider.Get();
-        if (providerId.HasValue)
-        {
-            if (!_providers.TryAdd(providerId.Value, serviceProvider))
-            {
-                throw new InvalidOperationException(
-                    "The service provider has already been set and cannot be changed."
-                );
-            }
-        }
-        else
-        {
-            if (_globalProvider is not null)
-            {
-                throw new InvalidOperationException(
-                    "The service provider has already been set and cannot be changed."
-                );
-            }
-
-            _globalProvider = serviceProvider;
-        }
+        _scopeIdProvider = idProvider;
     }
 }
