@@ -10,4 +10,7 @@
     <ApplicationDefinition Remove="App.xaml" />
     <Page Include="App.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Fonts.Settings.WPF\SimplePad.Fonts.Settings.WPF.csproj" />
+  </ItemGroup>
 </Project>
