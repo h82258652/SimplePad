@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
 using SimplePad.Tabs;
 
 namespace SimplePad.Windowing;
@@ -11,16 +13,30 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
 {
     private readonly SemaphoreSlim _closeLock = new(1);
     private readonly List<WPFAppWindow> _instances = [];
-
-    public IAppWindow? CurrentWindow => throw new NotImplementedException();
-
-    public IReadOnlyList<IAppWindow> Instances => _instances;
+    private readonly IServiceProvider _serviceProvider;
     private readonly TabManager _tabManager;
+    private ShellWindow? _currentActivatedWindow;
 
-    public WPFAppWindowManager(TabManager tabManager)
+    public WPFAppWindowManager(IServiceProvider serviceProvider, TabManager tabManager)
     {
+        _serviceProvider = serviceProvider;
         _tabManager = tabManager;
     }
+
+    public IAppWindow? CurrentWindow
+    {
+        get
+        {
+            if (_currentActivatedWindow is null)
+            {
+                return null;
+            }
+
+            return _instances.FirstOrDefault(instance => instance.ShellWindow == _currentActivatedWindow);
+        }
+    }
+
+    public IReadOnlyList<IAppWindow> Instances => _instances;
 
     public async Task<bool> CloseAsync(IAppWindow window)
     {
@@ -49,7 +65,7 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
                     }
                 }
 
-                // TODO close window
+                ((WPFAppWindow)wpfWindowInstance).ShellWindow.Close();
                 tcs.SetResult(true);
             });
             bool allTabsClosed = await tcs.Task;
@@ -68,11 +84,36 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
 
     public IAppWindow CreateAppWindow()
     {
-        throw new NotImplementedException();
+        return CreateAppWindowInternal();
     }
 
-    public Task<IAppWindow> ShowNewWindowAsync()
+    public async Task<IAppWindow> ShowNewWindowAsync()
     {
-        throw new NotImplementedException();
+        WPFAppWindow newAppWindow = CreateAppWindowInternal();
+        await newAppWindow.ShowAsync();
+        return newAppWindow;
+    }
+
+    private WPFAppWindow CreateAppWindowInternal()
+    {
+        IServiceScope scope = _serviceProvider.CreateScope();
+
+        IServiceProvider scopeServiceProvder = scope.ServiceProvider;
+        ServiceLocator.SetLocatorProvider(scopeServiceProvder);
+
+        ShellWindow shellWindow = new ShellWindow();
+        shellWindow.Activated += OnShellWindowActivated;
+
+        WPFAppWindow instance = new WPFAppWindow(shellWindow);
+        _instances.Add(instance);
+        return instance;
+    }
+
+    private void OnShellWindowActivated(object? sender, EventArgs e)
+    {
+        if (sender is ShellWindow shellWindow)
+        {
+            _currentActivatedWindow = shellWindow;
+        }
     }
 }

@@ -13,6 +13,16 @@ internal sealed class WPFAppWindow : IAppWindow
         throw new NotImplementedException();
     }
 
+    public WPFAppWindow(ShellWindow shellWindow)
+    {
+        ShellWindow = shellWindow;
+    }
+
+    internal ShellWindow ShellWindow
+    {
+        get;
+    }
+
     public Task ShowAsync()
     {
         throw new NotImplementedException();
