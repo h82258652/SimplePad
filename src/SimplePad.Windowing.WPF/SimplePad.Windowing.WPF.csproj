@@ -7,6 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Settings.WPF\SimplePad.Settings.WPF.csproj" />
+    <ProjectReference Include="..\SimplePad.Tabs.WPF\SimplePad.Tabs.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.WPF\SimplePad.Themes.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
   </ItemGroup>

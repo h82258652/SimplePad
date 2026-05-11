@@ -7,4 +7,8 @@
     <RootNamespace>SimplePad.Tabs</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Tabs\SimplePad.Tabs.csproj" />
+  </ItemGroup>
+
 </Project>

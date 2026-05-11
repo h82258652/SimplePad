@@ -1,11 +1,20 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.Modularity;
+using SimplePad.Settings;
+using SimplePad.Tabs;
+using SimplePad.Themes;
 
 namespace SimplePad.Windowing;
 
 public sealed class SimplePadWindowingWPFModule : AppModuleBase
 {
+    public override DependsOn DependModules => DependsOn.Create<
+        SimplePadWindowingModule,
+        SimplePadThemesWPFModule,
+        SimplePadTabsWPFModule,
+        SimplePadSettingsModule>();
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         base.ConfigureServices(context);
