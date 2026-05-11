@@ -33,17 +33,17 @@ public sealed partial class SettingsView : UserControl
 
     private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        UpdateFontSettingsExpander();
     }
 
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        UpdateVisibility();
     }
 
     private void UpdateFontSettingsExpander()
     {
-        throw new NotImplementedException();
+        FontSettingsExpander.IsExpanded = _settingsState.IsFontSettingsExpanded;
     }
 
     private void UpdateVisibility()
