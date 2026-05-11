@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Fonts;
@@ -11,6 +13,13 @@ namespace SimplePad.Editor;
 
 public sealed class AppTextBox : TextBox, IAppTextBox
 {
+    public static readonly DependencyProperty CursorPositionProperty = DependencyProperty.Register(
+        nameof(CursorPosition),
+        typeof(CursorPosition),
+        typeof(AppTextBox),
+        new PropertyMetadata(null, OnCursorPositionChanged));
+
+    private readonly Dispatcher _dispatcher;
     private readonly IEditorSettings _editorSettings;
     private readonly EditorZoomState _editorZoomState;
     private readonly IFontSettings _fontSettings;
@@ -19,9 +28,12 @@ public sealed class AppTextBox : TextBox, IAppTextBox
 
     public AppTextBox()
     {
+        _dispatcher = Dispatcher;
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
+
+        CursorPosition = new CursorPosition(1, 1);
 
         UpdateFontFamily();
         UpdateFontStyle();
@@ -56,7 +68,11 @@ public sealed class AppTextBox : TextBox, IAppTextBox
         remove => _textChangedHandler.Remove(value);
     }
 
-    public CursorPosition CursorPosition => throw new NotImplementedException();
+    public CursorPosition CursorPosition
+    {
+        get => (CursorPosition)GetValue(CursorPositionProperty);
+        private set => SetValue(CursorPositionProperty, value);
+    }
 
     public void CopySelectionToClipboard()
     {
@@ -88,14 +104,21 @@ public sealed class AppTextBox : TextBox, IAppTextBox
         _ = Undo();
     }
 
+    private static void OnCursorPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppTextBox self = (AppTextBox)d;
+        CursorPosition cursorPosition = (CursorPosition)e.NewValue;
+        self.CursorPositionChanged?.Invoke(self, cursorPosition);
+    }
+
     private void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        _dispatcher.Invoke(UpdateIsSpellCheckEnabled);
     }
 
     private void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        _dispatcher.Invoke(UpdateTextWrapping);
     }
 
     private void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
@@ -141,7 +164,7 @@ public sealed class AppTextBox : TextBox, IAppTextBox
 
     private void UpdateFontSize()
     {
-        throw new NotImplementedException();
+        FontSize = _fontSettings.FontSize;
     }
 
     private void UpdateFontStyle()
