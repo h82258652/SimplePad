@@ -101,9 +101,9 @@ internal sealed class WPFAppWindowManager : IAppWindowManager
         IServiceProvider scopeServiceProvder = scope.ServiceProvider;
         ServiceLocator.SetLocatorProvider(scopeServiceProvder);
 
-        WPFAppWindow instance = new WPFAppWindow();
+        WPFAppWindow instance = new(this);
         
-        ShellWindow shellWindow = new ShellWindow(instance);
+        ShellWindow shellWindow = new(instance);
         instance.ShellWindow = shellWindow;
 
         shellWindow.Activated += OnShellWindowActivated;

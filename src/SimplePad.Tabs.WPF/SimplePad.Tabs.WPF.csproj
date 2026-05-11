@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Editor.WPF\SimplePad.Editor.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Tabs\SimplePad.Tabs.csproj" />
   </ItemGroup>
 

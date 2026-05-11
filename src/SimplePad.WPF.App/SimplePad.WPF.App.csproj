@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
+    <ProjectReference Include="..\SimplePad.File.WPF\SimplePad.File.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Fonts\SimplePad.Fonts.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing.WPF\SimplePad.Windowing.WPF.csproj" />
   </ItemGroup>

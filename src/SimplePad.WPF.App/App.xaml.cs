@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Windowing;
 
 namespace SimplePad.App;
 
@@ -17,11 +19,13 @@ public partial class App : Application
         InitializeComponent();
     }
 
-    protected override void OnStartup(StartupEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
 
-        Window window = new Window();
-        window.Show();
+        IAppWindowManager appWindowManager = _serviceProvider.GetRequiredService<IAppWindowManager>();
+
+        IAppWindow appWindow = await appWindowManager.ShowNewWindowAsync();
+        appWindow.Execute(window => window.TabRoot.AddBlankTab());
     }
 }
