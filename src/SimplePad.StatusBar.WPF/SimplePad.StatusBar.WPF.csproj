@@ -5,4 +5,7 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>SimplePad.StatusBar</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
+  </ItemGroup>
 </Project>

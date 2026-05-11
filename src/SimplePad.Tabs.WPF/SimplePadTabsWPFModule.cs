@@ -10,7 +10,8 @@ public sealed class SimplePadTabsWPFModule : AppModuleBase
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadTabsModule,
         SimplePadMenuWPFModule,
-        SimplePadEditorWPFModule>();
+        SimplePadEditorWPFModule,
+        SimplePadStatusBarWPFModule>();
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

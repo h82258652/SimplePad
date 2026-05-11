@@ -3,7 +3,7 @@ using SimplePad.Core.Modularity;
 
 namespace SimplePad.StatusBar;
 
-public sealed class SimplePadStatusBarUWPModule : AppModuleBase
+public sealed class SimplePadStatusBarWPFModule : AppModuleBase
 {
     public override DependsOn DependModules => DependsOn.Create<SimplePadStatusBarModule>();
 
@@ -11,6 +11,6 @@ public sealed class SimplePadStatusBarUWPModule : AppModuleBase
     {
         base.ConfigureServices(context);
 
-        context.Services.AddSingleton<IStatusBarSettings, UWPStatusBarSettings>();
+        context.Services.AddSingleton<IStatusBarSettings, WPFStatusBarSettings>();
     }
 }
