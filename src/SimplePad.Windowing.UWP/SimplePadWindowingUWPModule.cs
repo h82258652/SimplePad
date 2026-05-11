@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
 using SimplePad.Core.Modularity;
 using SimplePad.File;
 using SimplePad.Search;
@@ -23,5 +24,12 @@ public sealed class SimplePadWindowingUWPModule : AppModuleBase
         base.ConfigureServices(context);
 
         context.Services.AddSingleton<IAppWindowManager, UWPAppWindowManager>();
+    }
+
+    public override void OnApplicationInitialization(ApplicationInitializationContext context)
+    {
+        base.OnApplicationInitialization(context);
+
+        ServiceLocator.SetIdProvider(new UWPServiceProviderIdProvider());
     }
 }

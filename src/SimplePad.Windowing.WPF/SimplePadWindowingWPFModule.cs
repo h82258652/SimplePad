@@ -1,5 +1,14 @@
-﻿namespace SimplePad.Windowing;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core.Modularity;
 
-public sealed class SimplePadWindowingWPFModule
+namespace SimplePad.Windowing;
+
+public sealed class SimplePadWindowingWPFModule : AppModuleBase
 {
+    public override void ConfigureServices(ServiceConfigurationContext context)
+    {
+        base.ConfigureServices(context);
+
+        context.Services.AddSingleton<IAppWindowManager, WPFAppWindowManager>();
+    }
 }

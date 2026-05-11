@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
-    <ProjectReference Include="..\SimplePad.Fonts\SimplePad.Fonts.csproj" />
   </ItemGroup>
 </Project>
