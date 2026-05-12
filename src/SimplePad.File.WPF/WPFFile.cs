@@ -15,7 +15,7 @@ public sealed class WPFFile : IFile
 
     public event EventHandler<LineEndings>? LineEndingsChanged;
 
-    public string FileName => throw new NotImplementedException();
+    public string FileName => System.IO.Path.GetFileName(Path);
 
     public LineEndings LineEndings
     {
