@@ -28,11 +28,11 @@
             <Button Grid.Column="1" Margin="0,0,8,0" />
         </Grid>
         <Rectangle Grid.Row="1" Height="1" />
-        <editor:AppTextBox Grid.Row="2" />
+        <editor:AppTextBox x:Name="TextBox" Grid.Row="2" />
         <Rectangle
             x:Name="StatusBarDivider"
             Grid.Row="3"
             Height="1" />
-        <statusBar:AppStatusBar Grid.Row="4" />
+        <statusBar:AppStatusBar x:Name="StatusBar" Grid.Row="4" />
     </Grid>
 </TabItem>

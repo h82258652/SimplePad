@@ -7,5 +7,6 @@ public partial class AppTabViewItem : TabItem
     public AppTabViewItem()
     {
         InitializeComponent();
+        StatusBar.TextBox = TextBox;
     }
 }
