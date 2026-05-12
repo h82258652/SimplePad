@@ -19,14 +19,14 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="CursorPositionText" />
-        <Rectangle Grid.Column="1" />
+        <Separator Grid.Column="1" />
         <TextBlock x:Name="CharacterIndicator" Grid.Column="2" />
-        <Rectangle Grid.Column="4" />
+        <Separator Grid.Column="4" />
         <TextBlock
             x:Name="ZoomFactorIndicator"
             Grid.Column="5"
             MinWidth="44" />
-        <Rectangle Grid.Column="6" />
+        <Separator Grid.Column="6" />
         <TextBlock
             x:Name="LineEndingsNameText"
             Grid.Column="7"

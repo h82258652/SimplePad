@@ -5,6 +5,8 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <Style TargetType="editor:AppTextBox">
         <Setter Property="AcceptsReturn" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="editor:AppTextBox">
