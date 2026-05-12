@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
@@ -9,7 +8,7 @@ using SimplePad.File;
 
 namespace SimplePad.StatusBar;
 
-public sealed partial class AppStatusBar : UserControl
+public sealed partial class AppStatusBar : System.Windows.Controls.Primitives.StatusBar
 {
     public static readonly DependencyProperty LineEndingsProperty = DependencyProperty.Register(
         nameof(LineEndings),
@@ -30,8 +29,6 @@ public sealed partial class AppStatusBar : UserControl
 
     public AppStatusBar()
     {
-        // TODO switch to https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.primitives.statusbar?view=windowsdesktop-10.0
-
         _dispatcher = Dispatcher;
         _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
