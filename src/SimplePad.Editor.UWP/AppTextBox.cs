@@ -226,7 +226,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         await _dispatcher.SafeRunAsync(UpdateFontSize);
     }
 
-    private async void OnFontSettingsFontStyleChanged(object? sender, Fonts.AppFontStyle e)
+    private async void OnFontSettingsFontStyleChanged(object? sender, AppFontStyle e)
     {
         await _dispatcher.SafeRunAsync(UpdateFontStyle);
     }

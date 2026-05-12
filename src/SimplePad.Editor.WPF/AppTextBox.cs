@@ -26,6 +26,11 @@ public sealed class AppTextBox : TextBox, IAppTextBox
     private readonly List<EventHandler?> _selectionChagnedHandler = [];
     private readonly List<EventHandler<string>?> _textChangedHandler = [];
 
+    static AppTextBox()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(AppTextBox), new FrameworkPropertyMetadata(typeof(AppTextBox)));
+    }
+
     public AppTextBox()
     {
         _dispatcher = Dispatcher;
@@ -123,25 +128,25 @@ public sealed class AppTextBox : TextBox, IAppTextBox
 
     private void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
     {
-        throw new NotImplementedException();
+        _dispatcher.Invoke(UpdateZoomedFontSize);
     }
 
     private void OnFontSettingsFontFamilyChanged(object? sender, string e)
     {
-        throw new NotImplementedException();
+        _dispatcher.Invoke(UpdateFontFamily);
     }
 
     private void OnFontSettingsFontSizeChanged(object? sender, int e)
     {
-        throw new NotImplementedException();
+        _dispatcher.Invoke(UpdateFontSize);
     }
 
     private void OnFontSettingsFontStyleChanged(object? sender, AppFontStyle e)
     {
-        throw new NotImplementedException();
+        _dispatcher.Invoke(UpdateFontStyle);
     }
 
-    private void OnSelectionChanged(object sender, System.Windows.RoutedEventArgs e)
+    private void OnSelectionChanged(object sender, RoutedEventArgs e)
     {
         foreach (EventHandler? handler in _selectionChagnedHandler)
         {
@@ -180,7 +185,7 @@ public sealed class AppTextBox : TextBox, IAppTextBox
 
     private void UpdateTextWrapping()
     {
-        TextWrapping = _editorSettings.IsWordWrap ? System.Windows.TextWrapping.Wrap : System.Windows.TextWrapping.NoWrap;
+        TextWrapping = _editorSettings.IsWordWrap ? TextWrapping.Wrap : TextWrapping.NoWrap;
     }
 
     private void UpdateZoomedFontSize()
