@@ -59,7 +59,7 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="App theme" />
-                                    <TextBlock Text="Select which app theme to display" />
+                                    <TextBlock Grid.Row="1" Text="Select which app theme to display" />
                                 </Grid>
                             </Expander.Header>
                         </Expander>
