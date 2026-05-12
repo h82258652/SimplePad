@@ -19,6 +19,12 @@ public sealed class AppTextBox : TextBox, IAppTextBox
         typeof(AppTextBox),
         new PropertyMetadata(null, OnCursorPositionChanged));
 
+    private static readonly DependencyProperty ZoomedFontSizeProperty = DependencyProperty.Register(
+        nameof(ZoomedFontSize),
+        typeof(double),
+        typeof(AppTextBox),
+        new PropertyMetadata(14d));
+
     private readonly Dispatcher _dispatcher;
     private readonly IEditorSettings _editorSettings;
     private readonly EditorZoomState _editorZoomState;
@@ -77,6 +83,12 @@ public sealed class AppTextBox : TextBox, IAppTextBox
     {
         get => (CursorPosition)GetValue(CursorPositionProperty);
         private set => SetValue(CursorPositionProperty, value);
+    }
+
+    private double ZoomedFontSize
+    {
+        get => (double)GetValue(ZoomedFontSizeProperty);
+        set => SetValue(ZoomedFontSizeProperty, value);
     }
 
     public void CopySelectionToClipboard()
@@ -190,6 +202,6 @@ public sealed class AppTextBox : TextBox, IAppTextBox
 
     private void UpdateZoomedFontSize()
     {
-        throw new NotImplementedException();
+        ZoomedFontSize = FontSize * _editorZoomState.ZoomFactor;
     }
 }

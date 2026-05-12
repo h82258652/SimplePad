@@ -33,6 +33,6 @@
             x:Name="StatusBarDivider"
             Grid.Row="3"
             Height="1" />
-        <statusBar:AppStatusBar />
+        <statusBar:AppStatusBar Grid.Row="4" />
     </Grid>
 </TabItem>
