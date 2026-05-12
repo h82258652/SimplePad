@@ -1,5 +1,4 @@
 ﻿using SimplePad.Editor;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -53,7 +52,7 @@ public partial class UndoMenuItem : MenuItem
 
     private void OnTextBoxCanUndoChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        UpdateIsEnabled();
     }
 
     private void UpdateIsEnabled()

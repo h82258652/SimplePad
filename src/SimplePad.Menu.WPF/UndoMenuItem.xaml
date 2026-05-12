@@ -9,4 +9,5 @@
     d:DesignWidth="800"
     Click="OnClick"
     Header="Undo"
+    IsEnabled="False"
     mc:Ignorable="d" />
