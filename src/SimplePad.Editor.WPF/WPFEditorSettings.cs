@@ -1,25 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimplePad.Editor;
 
 internal sealed class WPFEditorSettings : IEditorSettings
 {
-    public bool IsSpellCheckEnabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public bool IsWordWrap { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    private bool _isSpellCheckEnabled = true;
+    private bool _isWordWrap = true;
 
     public event EventHandler<bool>? IsSpellCheckEnabledChanged;
+
     public event EventHandler<bool>? IsWordWrapChanged;
+
+    public bool IsSpellCheckEnabled
+    {
+        get => _isSpellCheckEnabled;
+        set
+        {
+            if (_isSpellCheckEnabled != value)
+            {
+                _isSpellCheckEnabled = value;
+                IsSpellCheckEnabledChanged?.Invoke(this, value);
+            }
+        }
+    }
+
+    public bool IsWordWrap
+    {
+        get => _isWordWrap;
+        set
+        {
+            if (_isWordWrap != value)
+            {
+                _isWordWrap = value;
+                IsWordWrapChanged?.Invoke(this, value);
+            }
+        }
+    }
 
     public Task LoadAsync()
     {
-        throw new NotImplementedException();
+        IsSpellCheckEnabled = Properties.Settings.Default.IsSpellCheckEnabled;
+        IsWordWrap = Properties.Settings.Default.IsWordWrap;
+        return Task.CompletedTask;
     }
 
     public Task SaveAsync()
     {
-        throw new NotImplementedException();
+        Properties.Settings.Default.IsSpellCheckEnabled = IsSpellCheckEnabled;
+        Properties.Settings.Default.IsWordWrap = IsWordWrap;
+        Properties.Settings.Default.Save();
+        return Task.CompletedTask;
     }
 }

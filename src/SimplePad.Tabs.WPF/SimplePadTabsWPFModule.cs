@@ -2,6 +2,7 @@
 using SimplePad.Core.Modularity;
 using SimplePad.Editor;
 using SimplePad.Menu;
+using SimplePad.StatusBar;
 
 namespace SimplePad.Tabs;
 
