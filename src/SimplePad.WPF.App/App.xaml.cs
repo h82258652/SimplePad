@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Fonts;
 using SimplePad.Windowing;
 
 namespace SimplePad.App;
@@ -17,6 +18,13 @@ public partial class App : Application
         _serviceProvider = serviceProvider;
 
         InitializeComponent();
+    }
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        _serviceProvider.GetRequiredService<IFontSettings>().SaveAsync().GetAwaiter().GetResult();
+
+        base.OnExit(e);
     }
 
     protected override async void OnStartup(StartupEventArgs e)
