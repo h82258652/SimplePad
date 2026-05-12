@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
@@ -111,6 +113,15 @@ public sealed class AppTextBox : TextBox, IAppTextBox
         throw new NotImplementedException();
     }
 
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        ScrollViewer contentHost = (ScrollViewer)GetTemplateChild("PART_ContentHost");
+        contentHost.MouseWheel -= OnContentHostMouseWheel;
+        contentHost.MouseWheel += OnContentHostMouseWheel;
+    }
+
     public void PasteFromClipboard()
     {
         Paste();
@@ -121,11 +132,39 @@ public sealed class AppTextBox : TextBox, IAppTextBox
         _ = Undo();
     }
 
+    protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+    {
+        base.OnPropertyChanged(e);
+
+        if (e.Property == FontSizeProperty)
+        {
+            UpdateZoomedFontSize();
+        }
+    }
+
     private static void OnCursorPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppTextBox self = (AppTextBox)d;
         CursorPosition cursorPosition = (CursorPosition)e.NewValue;
         self.CursorPositionChanged?.Invoke(self, cursorPosition);
+    }
+
+    private void OnContentHostMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+        {
+            e.Handled = true;
+
+            int delta = e.Delta;
+            if (delta > 0)
+            {
+                _editorZoomState.ZoomIn();
+            }
+            else
+            {
+                _editorZoomState.ZoomOut();
+            }
+        }
     }
 
     private void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
