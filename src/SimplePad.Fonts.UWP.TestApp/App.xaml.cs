@@ -45,7 +45,7 @@ namespace SimplePad.Fonts.TestApp
                     // TODO: Load state from previously suspended application
                 }
 
-                ServiceLocator.SetLocatorProvider(_serviceProvider);
+                ServiceLocator.SetScopedLocatorProvider(Environment.CurrentManagedThreadId, _serviceProvider);
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
