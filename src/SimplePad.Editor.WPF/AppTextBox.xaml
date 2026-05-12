@@ -23,6 +23,7 @@
                             Margin="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}"
                             CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}"
+                            FontSize="{TemplateBinding ZoomedFontSize}"
                             HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                             IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                             IsTabStop="{TemplateBinding ScrollViewer.IsTabStop}"
