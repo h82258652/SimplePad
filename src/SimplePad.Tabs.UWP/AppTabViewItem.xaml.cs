@@ -165,7 +165,6 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
     }
 
-
     private void UpdateHeader()
     {
         Header = Tab?.Title ?? TabConstants.DefaultTabTitle;
