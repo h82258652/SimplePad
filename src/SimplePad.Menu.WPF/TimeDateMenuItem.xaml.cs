@@ -4,15 +4,15 @@ using SimplePad.Editor;
 
 namespace SimplePad.Menu;
 
-public sealed partial class DeleteMenuItem : MenuItem
+public sealed partial class TimeDateMenuItem : MenuItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(DeleteMenuItem),
+        typeof(TimeDateMenuItem),
         new PropertyMetadata(null, OnTextBoxChanged));
 
-    public DeleteMenuItem()
+    public TimeDateMenuItem()
     {
         InitializeComponent();
     }
@@ -25,8 +25,8 @@ public sealed partial class DeleteMenuItem : MenuItem
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        DeleteMenuItem self = (DeleteMenuItem)d;
+        TimeDateMenuItem self = (TimeDateMenuItem)d;
         IAppTextBox? textBox = (IAppTextBox?)e.NewValue;
-        self.DeleteCommand.TextBox = textBox;
+        self.TimeDateCommand.TextBox = textBox;
     }
 }

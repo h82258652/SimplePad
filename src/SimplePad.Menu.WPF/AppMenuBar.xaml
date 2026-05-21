@@ -24,6 +24,18 @@
         <menu:CutMenuItem x:Name="CutMenuItem" />
         <menu:CopyMenuItem x:Name="CopyMenuItem" />
         <menu:PasteMenuItem x:Name="PasteMenuItem" />
+        <menu:DeleteMenuItem x:Name="DeleteMenuItem" />
+        <Separator />
+        <menu:FindMenuItem />
+        <menu:FindNextMenuItem />
+        <menu:FindPreviousMenuItem />
+        <menu:ReplaceMenuItem />
+        <menu:GoToLineMenuItem x:Name="GoToLineMenuItem" />
+        <Separator />
+        <menu:SelectAllMenuItem x:Name="SelectAllMenuItem" />
+        <menu:TimeDateMenuItem x:Name="TimeDateMenuItem" />
+        <Separator />
+        <menu:FontMenuItem />
     </MenuItem>
     <MenuItem Margin="4,0,0,0" Header="View" />
 </Menu>

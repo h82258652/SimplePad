@@ -43,6 +43,7 @@ public sealed partial class AppMenuBar : System.Windows.Controls.Menu
         self.NewTabMenuItem.TabRoot = tab?.Root;
         self.SaveMenuItem.Tab = tab;
         self.SaveAsMenuItem.Tab = tab;
+        self.CloseTabMenuItem.Tab = tab;
     }
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -51,5 +52,12 @@ public sealed partial class AppMenuBar : System.Windows.Controls.Menu
         IAppTextBox? textBox = (IAppTextBox?)e.NewValue;
 
         self.UndoMenuItem.TextBox = textBox;
+        self.CutMenuItem.TextBox = textBox;
+        self.CopyMenuItem.TextBox = textBox;
+        self.PasteMenuItem.TextBox = textBox;
+        self.DeleteMenuItem.TextBox = textBox;
+        self.GoToLineMenuItem.TextBox = textBox;
+        self.SelectAllMenuItem.TextBox = textBox;
+        self.TimeDateMenuItem.TextBox = textBox;
     }
 }
