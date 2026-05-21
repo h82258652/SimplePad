@@ -10,11 +10,13 @@
         <menu:NewTabMenuItem x:Name="NewTabMenuItem" />
         <menu:NewWindowMenuItem />
         <menu:OpenMenuItem />
-        <menu:SaveMenuItem />
-        <menu:SaveAsMenuItem />
+        <menu:SaveMenuItem x:Name="SaveMenuItem" />
+        <menu:SaveAsMenuItem x:Name="SaveAsMenuItem" />
         <menu:SaveAllMenuItem />
         <Separator />
-        <menu:CloseTabMenuItem />
+        <menu:CloseTabMenuItem x:Name="CloseTabMenuItem" />
+        <menu:CloseWindowMenuItem />
+        <menu:ExitMenuItem />
     </MenuItem>
     <MenuItem Margin="4,0,0,0" Header="Edit" />
     <MenuItem Margin="4,0,0,0" Header="View" />

@@ -41,5 +41,7 @@ public partial class AppMenuBar : System.Windows.Controls.Menu
         Tab? tab = (Tab?)e.NewValue;
 
         self.NewTabMenuItem.TabRoot = tab?.Root;
+        self.SaveMenuItem.Tab = tab;
+        self.SaveAsMenuItem.Tab = tab;
     }
 }
