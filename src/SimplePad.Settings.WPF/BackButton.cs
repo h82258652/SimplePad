@@ -9,6 +9,11 @@ public sealed class BackButton : Button
 {
     private readonly SettingsState _settingsState;
 
+    static BackButton()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(BackButton), new FrameworkPropertyMetadata(typeof(BackButton)));
+    }
+
     public BackButton()
     {
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();

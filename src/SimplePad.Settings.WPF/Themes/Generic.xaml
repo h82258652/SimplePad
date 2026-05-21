@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:SimplePad.Settings">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SimplePad.Settings.WPF;component/BackButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/SimplePad.Settings.WPF;component/SettingsButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
