@@ -8,6 +8,7 @@ public partial class AppTabViewItem : TabItem
     public AppTabViewItem()
     {
         InitializeComponent();
+        AppMenuBar.TextBox = TextBox;
         StatusBar.TextBox = TextBox;
 
         DataContextChanged += OnDataContextChanged;
@@ -25,6 +26,6 @@ public partial class AppTabViewItem : TabItem
         if (newTab is not null)
         {
 
-        }
+        } 
     }
 }

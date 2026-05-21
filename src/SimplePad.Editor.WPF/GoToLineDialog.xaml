@@ -20,7 +20,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Click="OnGoToButtonClick" Content="Go to" />
-            <Button Click="OnCancelButtonClick" Content="Cancel" />
+            <Button
+                Grid.Column="1"
+                Click="OnCancelButtonClick"
+                Content="Cancel" />
         </Grid>
     </StackPanel>
 </Window>

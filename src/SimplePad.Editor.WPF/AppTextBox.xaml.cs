@@ -269,6 +269,9 @@ public partial class AppTextBox : UserControl, IAppTextBox
 
     private void UpdateTextBoxInternalFontSize()
     {
-        TextBoxInternal.FontSize = _fontSettings.FontSize * _editorZoomState.ZoomFactor;
+        if (TextBoxInternal is { } textBoxInternal)
+        {
+            textBoxInternal.FontSize = _fontSettings.FontSize * _editorZoomState.ZoomFactor;
+        }
     }
 }
