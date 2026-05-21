@@ -6,6 +6,9 @@
     <RootNamespace>SimplePad.Editor</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
     <ProjectReference Include="..\SimplePad.Fonts.WPF\SimplePad.Fonts.WPF.csproj" />
   </ItemGroup>
