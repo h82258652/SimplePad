@@ -6,7 +6,7 @@ using SimplePad.Settings;
 
 namespace SimplePad.Menu;
 
-public partial class FontMenuItem : MenuItem
+public sealed partial class FontMenuItem : MenuItem
 {
     private readonly SettingsState _settingsState;
 

@@ -6,7 +6,7 @@ using SimplePad.Tabs;
 
 namespace SimplePad.Menu;
 
-public partial class SaveMenuItem : MenuItem
+public sealed partial class SaveMenuItem : MenuItem
 {
     public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
         nameof(Tab),

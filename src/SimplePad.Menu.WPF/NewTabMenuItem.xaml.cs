@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace SimplePad.Menu;
 
-public partial class NewTabMenuItem : MenuItem
+public sealed partial class NewTabMenuItem : MenuItem
 {
     public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
         nameof(TabRoot),

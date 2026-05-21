@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace SimplePad.Menu;
 
-public partial class UndoMenuItem : MenuItem
+public sealed partial class UndoMenuItem : MenuItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),

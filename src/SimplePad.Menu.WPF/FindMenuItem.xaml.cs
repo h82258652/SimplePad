@@ -1,26 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
-namespace SimplePad.Menu
+namespace SimplePad.Menu;
+
+public sealed partial class FindMenuItem : MenuItem
 {
-    /// <summary>
-    /// Interaction logic for FindMenuItem.xaml
-    /// </summary>
-    public partial class FindMenuItem : UserControl
+    public FindMenuItem()
     {
-        public FindMenuItem()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -2,9 +2,9 @@
 
 namespace SimplePad.Menu;
 
-public sealed partial class SaveAllMenuItem : MenuItem
+public sealed partial class GoToLineMenuItem : MenuItem
 {
-    public SaveAllMenuItem()
+    public GoToLineMenuItem()
     {
         InitializeComponent();
     }

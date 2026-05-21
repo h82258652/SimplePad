@@ -4,7 +4,7 @@ using SimplePad.Tabs;
 
 namespace SimplePad.Menu;
 
-public partial class AppMenuBar : System.Windows.Controls.Menu
+public sealed partial class AppMenuBar : System.Windows.Controls.Menu
 {
     public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
         nameof(Tab),
@@ -16,7 +16,7 @@ public partial class AppMenuBar : System.Windows.Controls.Menu
         nameof(TextBox),
         typeof(IAppTextBox),
         typeof(AppMenuBar),
-        null);
+        new PropertyMetadata(null, OnTextBoxChanged));
 
     public AppMenuBar()
     {
@@ -43,5 +43,13 @@ public partial class AppMenuBar : System.Windows.Controls.Menu
         self.NewTabMenuItem.TabRoot = tab?.Root;
         self.SaveMenuItem.Tab = tab;
         self.SaveAsMenuItem.Tab = tab;
+    }
+
+    private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppMenuBar self = (AppMenuBar)d;
+        IAppTextBox? textBox = (IAppTextBox?)e.NewValue;
+
+        self.UndoMenuItem.TextBox = textBox;
     }
 }

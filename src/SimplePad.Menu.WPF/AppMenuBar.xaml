@@ -18,6 +18,12 @@
         <menu:CloseWindowMenuItem />
         <menu:ExitMenuItem />
     </MenuItem>
-    <MenuItem Margin="4,0,0,0" Header="Edit" />
+    <MenuItem Margin="4,0,0,0" Header="Edit">
+        <menu:UndoMenuItem x:Name="UndoMenuItem" />
+        <Separator />
+        <menu:CutMenuItem x:Name="CutMenuItem" />
+        <menu:CopyMenuItem x:Name="CopyMenuItem" />
+        <menu:PasteMenuItem x:Name="PasteMenuItem" />
+    </MenuItem>
     <MenuItem Margin="4,0,0,0" Header="View" />
 </Menu>

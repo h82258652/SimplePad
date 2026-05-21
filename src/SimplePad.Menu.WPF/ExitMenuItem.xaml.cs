@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
@@ -6,11 +8,11 @@ using SimplePad.Windowing;
 
 namespace SimplePad.Menu;
 
-public sealed partial class NewWindowMenuItem : MenuItem
+public sealed partial class ExitMenuItem : MenuItem
 {
     private readonly IAppWindowManager _appWindowManager;
 
-    public NewWindowMenuItem()
+    public ExitMenuItem()
     {
         _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
 
@@ -19,7 +21,6 @@ public sealed partial class NewWindowMenuItem : MenuItem
 
     private async void OnClick(object sender, RoutedEventArgs e)
     {
-        IAppWindow newAppWindow = await _appWindowManager.ShowNewWindowAsync();
-        newAppWindow.Execute(appWindow => appWindow.TabRoot.AddBlankTab());
+        await Task.WhenAll(_appWindowManager.Instances.Select(_appWindowManager.CloseAsync));
     }
 }
