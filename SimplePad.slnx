@@ -119,6 +119,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Tabs.Settings.WPF/SimplePad.Tabs.Settings.WPF.csproj" Id="9bb90443-96eb-460f-b69b-b7972fcbcc65" />
     <Project Path="SRC/SimplePad.Tabs.UWP/SimplePad.Tabs.UWP.csproj" Id="1d445707-c47e-4468-8076-34fee5e0a8a3">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />

@@ -12,12 +12,12 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 {
     private readonly CoreDispatcher _dispatcher;
     private readonly OpenFileBehavior[] _items;
-    private readonly ITabsSettings _multiTabSettings;
+    private readonly ITabsSettings _tabsSettings;
 
     public OpenFileBehaviorComboBox()
     {
         _dispatcher = Dispatcher;
-        _multiTabSettings = ServiceLocator.Current.GetRequiredService<ITabsSettings>();
+        _tabsSettings = ServiceLocator.Current.GetRequiredService<ITabsSettings>();
         _items =
         [
             OpenFileBehavior.NewTab,
@@ -32,27 +32,27 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
         ItemsSource = _items;
         UpdateSelectedItem();
 
-        _multiTabSettings.OpenFileBehaviorChanged += OnMultiTabSettingsOpenFileBehaviorChanged;
+        _tabsSettings.OpenFileBehaviorChanged += OnTabsSettingsOpenFileBehaviorChanged;
         SelectionChanged += OnSelectionChanged;
-    }
-
-    private async void OnMultiTabSettingsOpenFileBehaviorChanged(object? sender, OpenFileBehavior e)
-    {
-        await _dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (SelectedItem is OpenFileBehavior selectedItem)
         {
-            _multiTabSettings.OpenFileBehavior = selectedItem;
+            _tabsSettings.OpenFileBehavior = selectedItem;
         }
+    }
+
+    private async void OnTabsSettingsOpenFileBehaviorChanged(object? sender, OpenFileBehavior e)
+    {
+        await _dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
 
     private void UpdateSelectedItem()
     {
         SelectedItem = _items.FirstOrDefault(item =>
-            item.Value == _multiTabSettings.OpenFileBehavior.Value
+            item.Value == _tabsSettings.OpenFileBehavior.Value
         );
     }
 }
