@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Fonts.Settings.WPF\SimplePad.Fonts.Settings.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
+    <ProjectReference Include="..\SimplePad.Tabs.Settings.WPF\SimplePad.Tabs.Settings.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.Settings.WPF\SimplePad.Themes.Settings.WPF.csproj" />
   </ItemGroup>
 </Project>

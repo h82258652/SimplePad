@@ -6,16 +6,69 @@
     xmlns:fonts="clr-namespace:SimplePad.Fonts;assembly=SimplePad.Fonts.Settings.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:settings="clr-namespace:SimplePad.Settings"
+    xmlns:tabs="clr-namespace:SimplePad.Tabs;assembly=SimplePad.Tabs.Settings.WPF"
     xmlns:themes="clr-namespace:SimplePad.Themes;assembly=SimplePad.Themes.Settings.WPF"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="44" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow" />
+                <VisualState x:Name="Middle">
+                    <Storyboard>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="TitleText" Storyboard.TargetProperty="Margin">
+                            <DiscreteThicknessKeyFrame KeyTime="0" Value="0,22" />
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ContentScrollViewer" Storyboard.TargetProperty="Padding">
+                            <DiscreteThicknessKeyFrame KeyTime="0" Value="54,0" />
+                        </ThicknessAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <Storyboard>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="TitleText" Storyboard.TargetProperty="Margin">
+                            <DiscreteThicknessKeyFrame KeyTime="0" Value="0,22" />
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ContentScrollViewer" Storyboard.TargetProperty="Padding">
+                            <DiscreteThicknessKeyFrame KeyTime="0" Value="54,0" />
+                        </ThicknessAnimationUsingKeyFrames>
+                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="SettingsSection" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                            <DiscreteInt32KeyFrame KeyTime="0" Value="1" />
+                        </Int32AnimationUsingKeyFrames>
+                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="SettingsSection" Storyboard.TargetProperty="(Grid.RowSpan)">
+                            <DiscreteInt32KeyFrame KeyTime="0" Value="3" />
+                        </Int32AnimationUsingKeyFrames>
+                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="AboutSection" Storyboard.TargetProperty="(Grid.Column)">
+                            <DiscreteInt32KeyFrame KeyTime="0" Value="2" />
+                        </Int32AnimationUsingKeyFrames>
+                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="AboutSection" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                            <DiscreteInt32KeyFrame KeyTime="0" Value="1" />
+                        </Int32AnimationUsingKeyFrames>
+                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="AboutSection" Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteInt32KeyFrame KeyTime="0" Value="0" />
+                        </Int32AnimationUsingKeyFrames>
+                        <Int32AnimationUsingKeyFrames Storyboard.TargetName="AboutSection" Storyboard.TargetProperty="(Grid.RowSpan)">
+                            <DiscreteInt32KeyFrame KeyTime="0" Value="3" />
+                        </Int32AnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -36,11 +89,15 @@
                 FontSize="12"
                 Text="Simple Pad" />
         </Grid>
-        <ScrollViewer Grid.Row="1" Padding="18,0">
+        <ScrollViewer
+            x:Name="ContentScrollViewer"
+            Grid.Row="1"
+            Padding="18,0">
             <StackPanel>
                 <TextBlock
                     x:Name="TitleText"
                     Margin="0,14"
+                    Style="{StaticResource TitleTextBlockStyle}"
                     Text="Settings" />
                 <Grid Margin="0,0,0,20">
                     <Grid.RowDefinitions>
@@ -117,7 +174,7 @@
                                     <TextBlock Grid.Row="1" Text="Choose where your files are opened" />
                                 </Grid>
                             </ui:CardControl.Header>
-                            <ComboBox />
+                            <tabs:OpenFileBehaviorComboBox />
                         </ui:CardControl>
                         <TextBlock Margin="0,12,0,0" Text="Spelling" />
                         <ui:CardControl Margin="0,12,0,0">
@@ -134,7 +191,7 @@
                         x:Name="AboutSection"
                         Grid.Row="2"
                         Grid.ColumnSpan="3">
-                        <TextBlock Text="About this app" />
+                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="About this app" />
                         <TextBlock Margin="0,8,0,0"><Run Text="Simple Pad " /><Run x:Name="VersionText" /></TextBlock>
                         <TextBlock Text="© 2026 h82258652. All rights reserved." />
                     </StackPanel>

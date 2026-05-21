@@ -9,6 +9,11 @@ public sealed class SettingsButton : Button
 {
     private readonly SettingsState _settingsState;
 
+    static SettingsButton()
+    {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(SettingsButton), new FrameworkPropertyMetadata(typeof(SettingsButton)));
+    }
+
     public SettingsButton()
     {
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();

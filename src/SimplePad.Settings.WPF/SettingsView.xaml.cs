@@ -11,6 +11,8 @@ public sealed partial class SettingsView : UserControl
 {
     private readonly SettingsState _settingsState;
 
+    private Window? _window;
+
     public SettingsView()
     {
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
@@ -31,6 +33,18 @@ public sealed partial class SettingsView : UserControl
         VersionText.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _window = Window.GetWindow(this);
+        if (_window is not null)
+        {
+            _window.SizeChanged -= OnWindowSizeChanged;
+            _window.SizeChanged += OnWindowSizeChanged;
+        }
+
+        UpdateVisualState();
+    }
+
     private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)
     {
         UpdateFontSettingsExpander();
@@ -39,6 +53,21 @@ public sealed partial class SettingsView : UserControl
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        if (_window is not null)
+        {
+            _window.SizeChanged -= OnWindowSizeChanged;
+        }
+
+        _window = null;
+    }
+
+    private void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        UpdateVisualState();
     }
 
     private void UpdateFontSettingsExpander()
@@ -55,6 +84,30 @@ public sealed partial class SettingsView : UserControl
         else
         {
             Visibility = Visibility.Collapsed;
+        }
+    }
+
+    private void UpdateVisualState()
+    {
+        if (_window is null)
+        {
+            return;
+        }
+
+        if (_window.ActualWidth < 646)
+        {
+            VisualStateManager.GoToState(this, nameof(Narrow), true);
+            TitleText.Style = (Style)FindResource("TitleTextBlockStyle");
+        }
+        else if (_window.ActualWidth < 958)
+        {
+            VisualStateManager.GoToState(this, nameof(Middle), true);
+            TitleText.Style = (Style)FindResource("TitleLargeTextBlockStyle");
+        }
+        else
+        {
+            VisualStateManager.GoToState(this, nameof(Wide), true);
+            TitleText.Style = (Style)FindResource("TitleLargeTextBlockStyle");
         }
     }
 }
