@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Remove="App.xaml" />
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
     <Page Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>

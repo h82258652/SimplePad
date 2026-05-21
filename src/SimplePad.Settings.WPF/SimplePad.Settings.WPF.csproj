@@ -6,6 +6,9 @@
     <RootNamespace>SimplePad.Settings</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Fonts.Settings.WPF\SimplePad.Fonts.Settings.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.Settings.WPF\SimplePad.Themes.Settings.WPF.csproj" />

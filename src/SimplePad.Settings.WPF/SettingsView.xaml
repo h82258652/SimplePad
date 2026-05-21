@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:settings="clr-namespace:SimplePad.Settings"
     xmlns:themes="clr-namespace:SimplePad.Themes;assembly=SimplePad.Themes.Settings.WPF"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -54,8 +55,11 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel x:Name="SettingsSection" Grid.ColumnSpan="3">
                         <TextBlock Text="Appearance" />
-                        <Expander Margin="0,12,0,0">
-                            <Expander.Header>
+                        <ui:CardExpander Margin="0,12,0,0">
+                            <ui:CardExpander.Icon>
+                                <ui:SymbolIcon Symbol="Color20" />
+                            </ui:CardExpander.Icon>
+                            <ui:CardExpander.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -64,15 +68,16 @@
                                     <TextBlock Text="App theme" />
                                     <TextBlock Grid.Row="1" Text="Select which app theme to display" />
                                 </Grid>
-                            </Expander.Header>
+                            </ui:CardExpander.Header>
                             <themes:ThemeSettingsControl />
-                        </Expander>
+                        </ui:CardExpander>
                         <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
-                        <Expander x:Name="FontSettingsExpander" Margin="0,12,0,0">
+                        <ui:CardExpander x:Name="FontSettingsExpander" Margin="0,12,0,0">
+                            <ui:CardExpander.Icon>
+                                <ui:SymbolIcon Symbol="TextFont20" />
+                            </ui:CardExpander.Icon>
                             <Expander.Header>
-                                <Grid>
-                                    <TextBlock Text="Font" />
-                                </Grid>
+                                <TextBlock Text="Font" />
                             </Expander.Header>
                             <StackPanel>
                                 <fonts:FontFamilyComboBox />
@@ -80,7 +85,50 @@
                                 <fonts:FontSizeComboBox />
                                 <fonts:PreviewFontTextControl />
                             </StackPanel>
-                        </Expander>
+                        </ui:CardExpander>
+                        <ui:CardControl Margin="0,12,0,0">
+                            <ui:CardControl.Icon>
+                                <ui:SymbolIcon Symbol="TextWrap20" />
+                            </ui:CardControl.Icon>
+                            <ui:CardControl.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Word wrap" />
+                                    <TextBlock Grid.Row="1" Text="Fit text within window by default" />
+                                </Grid>
+                            </ui:CardControl.Header>
+                            <ui:ToggleSwitch />
+                        </ui:CardControl>
+                        <TextBlock Margin="0,12,0,0" Text="Opening Simple Pad" />
+                        <ui:CardControl Margin="0,12,0,0">
+                            <ui:CardControl.Icon>
+                                <ui:SymbolIcon Symbol="Open20" />
+                            </ui:CardControl.Icon>
+                            <ui:CardControl.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Opening files" />
+                                    <TextBlock Grid.Row="1" Text="Choose where your files are opened" />
+                                </Grid>
+                            </ui:CardControl.Header>
+                            <ComboBox />
+                        </ui:CardControl>
+                        <TextBlock Margin="0,12,0,0" Text="Spelling" />
+                        <ui:CardControl Margin="0,12,0,0">
+                            <ui:CardControl.Icon>
+                                <ui:SymbolIcon Symbol="TextProofingTools20" />
+                            </ui:CardControl.Icon>
+                            <ui:CardControl.Header>
+                                <TextBlock Text="Spell check" />
+                            </ui:CardControl.Header>
+                            <ui:ToggleSwitch />
+                        </ui:CardControl>
                     </StackPanel>
                     <StackPanel
                         x:Name="AboutSection"
