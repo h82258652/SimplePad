@@ -5,8 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:menu="clr-namespace:SimplePad.Menu;assembly=SimplePad.Menu"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
     Header="Open"
     mc:Ignorable="d">
     <MenuItem.Command>

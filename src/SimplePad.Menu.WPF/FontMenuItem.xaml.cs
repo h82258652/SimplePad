@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Settings;
 
 namespace SimplePad.Menu;
 
 public partial class FontMenuItem : MenuItem
 {
+    private readonly SettingsState _settingsState;
+
     public FontMenuItem()
     {
+        _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
+
         InitializeComponent();
+    }
+
+    private void OnClick(object sender, RoutedEventArgs e)
+    {
+        _settingsState.IsVisible = true;
+        _settingsState.IsFontSettingsExpanded = true;
     }
 }

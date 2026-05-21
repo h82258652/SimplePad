@@ -1,6 +1,6 @@
-﻿using SimplePad.Editor;
+﻿using System.Windows;
+using SimplePad.Editor;
 using SimplePad.Tabs;
-using System.Windows;
 
 namespace SimplePad.Menu;
 
@@ -10,7 +10,7 @@ public partial class AppMenuBar : System.Windows.Controls.Menu
         nameof(Tab),
         typeof(Tab),
         typeof(AppMenuBar),
-        null);
+        new PropertyMetadata(null, OnTabChanged));
 
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
@@ -33,5 +33,13 @@ public partial class AppMenuBar : System.Windows.Controls.Menu
     {
         get => (IAppTextBox?)GetValue(TextBoxProperty);
         set => SetValue(TextBoxProperty, value);
+    }
+
+    private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppMenuBar self = (AppMenuBar)d;
+        Tab? tab = (Tab?)e.NewValue;
+
+        self.NewTabMenuItem.TabRoot = tab?.Root;
     }
 }
