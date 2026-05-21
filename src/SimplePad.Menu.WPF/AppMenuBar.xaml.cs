@@ -59,5 +59,10 @@ public sealed partial class AppMenuBar : System.Windows.Controls.Menu
         self.GoToLineMenuItem.TextBox = textBox;
         self.SelectAllMenuItem.TextBox = textBox;
         self.TimeDateMenuItem.TextBox = textBox;
+        self.ZoomInMenuItem.TextBox = textBox;
+        self.ZoomOutMenuItem.TextBox = textBox;
+        self.RestoreDefaultZoomMenuItem.TextBox = textBox;
+        self.IsStatusBarVisibleToggleMenuItem.TextBox = textBox;
+        self.IsWordWrapToggleMenuItem.TextBox = textBox;
     }
 }
