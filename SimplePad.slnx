@@ -28,6 +28,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Editor.Settings.WPF/SimplePad.Editor.Settings.WPF.csproj" Id="90dea775-0f35-4156-ae97-409c9e5b5eca" />
     <Project Path="src/SimplePad.Editor.UWP/SimplePad.Editor.UWP.csproj" Id="501647df-dd37-44eb-b036-5408009becdb">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
