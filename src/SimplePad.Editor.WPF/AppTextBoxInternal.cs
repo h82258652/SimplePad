@@ -112,7 +112,39 @@ internal sealed class AppTextBoxInternal : TextBox
 
     private void UpdateCursorPosition()
     {
-        CursorPosition = new CursorPosition(1, 1);// TODO
+        int endMarker = SelectionStart + SelectionLength;
+
+        if (endMarker == 0)
+        {
+            CursorPosition = new CursorPosition(1, 1);
+            return;
+        }
+
+        int i = 0;
+        int col = 1;
+        int row = 1;
+
+        for (; i < Text.Length;)
+        {
+            char c = Text[i];
+            i++;
+            col++;
+
+            if (c == '\r' || c == '\n')
+            {
+                i++;
+                row++;
+                col = 1;
+            }
+
+            if (i == endMarker)
+            {
+                CursorPosition = new CursorPosition(row, col);
+                return;
+            }
+        }
+
+        CursorPosition = new CursorPosition(row, col);
     }
 
     private void UpdateFontFamily()
