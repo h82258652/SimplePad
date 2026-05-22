@@ -4,6 +4,9 @@
     xmlns:settings="clr-namespace:SimplePad.Settings"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="settings:SettingsButton">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Border.CornerRadius" Value="4" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -11,5 +14,12 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+        <!--<Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="settings:SettingsButton">
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>-->
     </Style>
 </ResourceDictionary>
