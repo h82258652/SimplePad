@@ -14,12 +14,38 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-        <!--<Setter Property="Template" >
+        <Setter Property="ToolTip" Value="Settings" />
+        <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="settings:SettingsButton">
-
+                    <Border
+                        x:Name="ContentBorder"
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        MinWidth="{TemplateBinding MinWidth}"
+                        MinHeight="{TemplateBinding MinHeight}"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding Border.CornerRadius}">
+                        <ContentPresenter
+                            x:Name="ContentPresenter"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            RecognizesAccessKey="True"
+                            TextElement.Foreground="{TemplateBinding Foreground}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True" />
+                        <Trigger Property="IsPressed" Value="True" />
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>-->
+        </Setter>
     </Style>
 </ResourceDictionary>
