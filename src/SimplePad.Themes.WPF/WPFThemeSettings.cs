@@ -24,11 +24,14 @@ internal sealed class WPFThemeSettings : IThemeSettings
 
     public Task LoadAsync()
     {
-        throw new NotImplementedException();
+        AppTheme = (AppTheme)Properties.Settings.Default.AppTheme;
+        return Task.CompletedTask;
     }
 
     public Task SaveAsync()
     {
-        throw new NotImplementedException();
+        Properties.Settings.Default.AppTheme = (int)AppTheme;
+        Properties.Settings.Default.Save();
+        return Task.CompletedTask;
     }
 }
