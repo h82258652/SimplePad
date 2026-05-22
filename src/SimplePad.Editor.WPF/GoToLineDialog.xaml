@@ -19,7 +19,10 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Click="OnGoToButtonClick" Content="Go to" />
+            <Button
+                Click="OnGoToButtonClick"
+                Content="Go to"
+                Style="{StaticResource AccentButtonStyle}" />
             <Button
                 Grid.Column="1"
                 Click="OnCancelButtonClick"
