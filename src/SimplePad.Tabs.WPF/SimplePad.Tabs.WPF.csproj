@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dragablz" Version="0.0.3.234" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Editor.WPF\SimplePad.Editor.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Menu.WPF\SimplePad.Menu.WPF.csproj" />
     <ProjectReference Include="..\SimplePad.Settings.WPF\SimplePad.Settings.WPF.csproj" />
