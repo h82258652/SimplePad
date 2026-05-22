@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SimplePad.Core;
-using SimplePad.Editor;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
+using SimplePad.Editor;
 
 namespace SimplePad.Menu;
 
