@@ -11,7 +11,7 @@ public partial class App : Application
 {
     public App(IServiceProvider serviceProvider)
     {
-        ServiceLocator.SetLocatorProvider(serviceProvider);
+        ServiceLocator.SetGlobalLocatorProvider(serviceProvider);
 
         InitializeComponent();
     }
