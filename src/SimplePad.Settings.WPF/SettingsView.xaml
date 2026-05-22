@@ -112,7 +112,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel x:Name="SettingsSection" Grid.ColumnSpan="3">
                         <TextBlock Text="Appearance" />
-                        <ui:CardExpander Margin="0,12,0,0">
+                        <ui:CardExpander Margin="0,12,0,0" ContentPadding="52,16,14,16">
                             <ui:CardExpander.Icon>
                                 <ui:SymbolIcon Symbol="Color20" />
                             </ui:CardExpander.Icon>
@@ -129,7 +129,10 @@
                             <themes:ThemeSettingsControl />
                         </ui:CardExpander>
                         <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
-                        <ui:CardExpander x:Name="FontSettingsExpander" Margin="0,12,0,0">
+                        <ui:CardExpander
+                            x:Name="FontSettingsExpander"
+                            Margin="0,12,0,0"
+                            ContentPadding="0,0,0,0">
                             <ui:CardExpander.Icon>
                                 <ui:SymbolIcon Symbol="TextFont20" />
                             </ui:CardExpander.Icon>
@@ -137,9 +140,15 @@
                                 <TextBlock Text="Font" />
                             </Expander.Header>
                             <StackPanel>
-                                <fonts:FontFamilyComboBox />
-                                <fonts:FontStyleComboBox />
-                                <fonts:FontSizeComboBox />
+                                <ui:CardControl Padding="52,16,14,16" Header="Family">
+                                    <fonts:FontFamilyComboBox />
+                                </ui:CardControl>
+                                <ui:CardControl Padding="52,16,14,16" Header="Style">
+                                    <fonts:FontStyleComboBox />
+                                </ui:CardControl>
+                                <ui:CardControl Padding="52,16,14,16" Header="Size">
+                                    <fonts:FontSizeComboBox />
+                                </ui:CardControl>
                                 <fonts:PreviewFontTextControl />
                             </StackPanel>
                         </ui:CardExpander>
