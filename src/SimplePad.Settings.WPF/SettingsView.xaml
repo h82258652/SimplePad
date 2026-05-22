@@ -123,7 +123,11 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="App theme" />
-                                    <TextBlock Grid.Row="1" Text="Select which app theme to display" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Select which app theme to display" />
                                 </Grid>
                             </ui:CardExpander.Header>
                             <themes:ThemeSettingsControl />
@@ -163,7 +167,11 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Word wrap" />
-                                    <TextBlock Grid.Row="1" Text="Fit text within window by default" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Fit text within window by default" />
                                 </Grid>
                             </ui:CardControl.Header>
                             <ui:ToggleSwitch />
