@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimplePad.Core.Modularity;
 using SimplePad.Fonts;
+using SimplePad.Themes;
 
 namespace SimplePad.App;
 
@@ -17,6 +18,7 @@ public static class Program
         host.Start();
 
         host.Services.GetRequiredService<IFontSettings>().LoadAsync().GetAwaiter().GetResult();
+        host.Services.GetRequiredService<IThemeSettings>().LoadAsync().GetAwaiter().GetResult();
 
         App app = new(host.Services);
         app.Run();

@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SimplePad.Core;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Threading;
+using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core;
 
 namespace SimplePad.Themes;
 

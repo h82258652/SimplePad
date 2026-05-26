@@ -17,4 +17,8 @@
     <ProjectReference Include="..\SimplePad.Fonts\SimplePad.Fonts.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing.WPF\SimplePad.Windowing.WPF.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\icon.png" />
+    <Resource Include="Assets\icon.png" />
+  </ItemGroup>
 </Project>

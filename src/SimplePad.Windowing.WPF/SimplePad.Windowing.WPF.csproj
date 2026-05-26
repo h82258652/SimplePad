@@ -4,6 +4,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>SimplePad.Windowing</RootNamespace>
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Search.WPF\SimplePad.Search.WPF.csproj" />

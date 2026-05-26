@@ -12,10 +12,34 @@
     Title="ShellWindow"
     Width="800"
     Height="450"
+    Loaded="OnLoaded"
     mc:Ignorable="d">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" />
+    </WindowChrome.WindowChrome>
     <Grid>
         <Grid x:Name="ContentGrid">
-            <tabs:AppTabView x:Name="TabView" />
+            <tabs:AppTabView x:Name="TabView">
+                <tabs:AppTabView.HeaderPrefixContent>
+                    <Border Background="Transparent" MouseLeftButtonDown="OnTitleBarMouseLeftButtonDown">
+                        <Image
+                            Width="28"
+                            Height="28"
+                            Margin="9,0,5,0"
+                            IsHitTestVisible="False">
+                            <Image.Source>
+                                <BitmapImage UriSource="pack://application:,,,/SimplePad.WPF.App;component/Assets/icon.png" />
+                            </Image.Source>
+                        </Image>
+                    </Border>
+                </tabs:AppTabView.HeaderPrefixContent>
+                <tabs:AppTabView.HeaderSuffixContent>
+                    <Border
+                        Margin="0,0,144,0"
+                        Background="Transparent"
+                        MouseLeftButtonDown="OnTitleBarMouseLeftButtonDown" />
+                </tabs:AppTabView.HeaderSuffixContent>
+            </tabs:AppTabView>
             <search:SearchControl
                 MaxWidth="860"
                 Margin="8,88,8,0"
