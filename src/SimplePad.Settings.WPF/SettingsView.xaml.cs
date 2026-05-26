@@ -112,8 +112,18 @@ public sealed partial class SettingsView : UserControl
         }
     }
 
-    private void OnTitleBarMouseLeftButtonDown(object sender,  MouseButtonEventArgs e)
+    private void OnTitleBarMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        Window.GetWindow(this)?.DragMove();
+        if (Window.GetWindow(this) is { } window)
+        {
+            if (e.ClickCount == 2)
+            {
+                window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+            }
+            else
+            {
+                window.DragMove();
+            }
+        }
     }
 }

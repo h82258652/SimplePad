@@ -46,7 +46,14 @@ public partial class ShellWindow : ThemeWindow
 
     private void OnTitleBarMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        DragMove();
+        if (e.ClickCount == 2)
+        {
+            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        }
+        else
+        {
+            DragMove();
+        }
     }
 
     private void UpdateContentGridVisibility()
