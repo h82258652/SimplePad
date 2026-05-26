@@ -46,7 +46,7 @@ public partial class ShellWindow : ThemeWindow
 
     private void OnTitleBarMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        GetWindow(this)?.DragMove();
+        DragMove();
     }
 
     private void UpdateContentGridVisibility()

@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SimplePad.Settings;
 
@@ -109,5 +110,10 @@ public sealed partial class SettingsView : UserControl
             VisualStateManager.GoToState(this, nameof(Wide), true);
             TitleText.Style = (Style)FindResource("TitleLargeTextBlockStyle");
         }
+    }
+
+    private void OnTitleBarMouseLeftButtonDown(object sender,  MouseButtonEventArgs e)
+    {
+        Window.GetWindow(this)?.DragMove();
     }
 }

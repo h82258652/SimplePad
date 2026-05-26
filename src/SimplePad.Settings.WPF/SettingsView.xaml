@@ -89,6 +89,11 @@
                 VerticalAlignment="Center"
                 FontSize="12"
                 Text="Simple Pad" />
+            <Border
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Background="Transparent"
+                MouseLeftButtonDown="OnTitleBarMouseLeftButtonDown" />
         </Grid>
         <ScrollViewer
             x:Name="ContentScrollViewer"
