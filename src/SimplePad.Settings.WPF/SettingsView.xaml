@@ -157,7 +157,7 @@
                                         BorderBrush="Transparent"
                                         BorderThickness="0"
                                         Header="Family">
-                                        <fonts:FontFamilyComboBox />
+                                        <fonts:FontFamilyComboBox MinWidth="198" Style="{StaticResource DefaultComboBoxStyle}" />
                                     </ui:CardControl>
                                     <Separator />
                                     <ui:CardControl
@@ -166,7 +166,7 @@
                                         BorderBrush="Transparent"
                                         BorderThickness="0"
                                         Header="Style">
-                                        <fonts:FontStyleComboBox />
+                                        <fonts:FontStyleComboBox MinWidth="198" Style="{StaticResource DefaultComboBoxStyle}" />
                                     </ui:CardControl>
                                     <Separator />
                                     <ui:CardControl
@@ -175,7 +175,7 @@
                                         BorderBrush="Transparent"
                                         BorderThickness="0"
                                         Header="Size">
-                                        <fonts:FontSizeComboBox />
+                                        <fonts:FontSizeComboBox MinWidth="198" Style="{StaticResource DefaultComboBoxStyle}" />
                                     </ui:CardControl>
                                     <Separator />
                                     <fonts:PreviewFontTextControl Margin="0,32,0,32" />
@@ -221,7 +221,7 @@
                                         Text="Choose where your files are opened" />
                                 </Grid>
                             </ui:CardControl.Header>
-                            <tabs:OpenFileBehaviorComboBox />
+                            <tabs:OpenFileBehaviorComboBox MinWidth="148" Style="{StaticResource DefaultComboBoxStyle}" />
                         </ui:CardControl>
                         <TextBlock Margin="0,12,0,0" Text="Spelling" />
                         <ui:CardControl Margin="0,12,0,0">
