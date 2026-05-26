@@ -1,12 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using Dragablz;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 
 namespace SimplePad.Tabs;
 
-public partial class AppTabView : TabControl
+public partial class AppTabView : TabablzControl
 {
     public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
         nameof(TabRoot),
@@ -33,14 +34,13 @@ public partial class AppTabView : TabControl
         set => SetValue(TabRootProperty, value);
     }
 
-    protected override DependencyObject GetContainerForItemOverride()
+    public override void OnApplyTemplate()
     {
-        return new AppTabViewItem();
-    }
+        base.OnApplyTemplate();
 
-    protected override bool IsItemItsOwnContainerOverride(object item)
-    {
-        return item is AppTabViewItem;
+        Button defaultAddButton = (Button)GetTemplateChild("DefaultAddButton");
+        defaultAddButton.Command = null;
+        defaultAddButton.Click += OnDefaultAddButtonClick;
     }
 
     private static void OnTabRootChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -67,7 +67,7 @@ public partial class AppTabView : TabControl
         TabRoot?.AddBlankTab();
     }
 
-    private void OnAddTabButtonClick(object sender, RoutedEventArgs e)
+    private void OnDefaultAddButtonClick(object sender, RoutedEventArgs e)
     {
         AddBlankTab();
     }
