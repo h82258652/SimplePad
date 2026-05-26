@@ -113,7 +113,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel x:Name="SettingsSection" Grid.ColumnSpan="3">
                         <TextBlock Text="Appearance" />
-                        <ui:CardExpander Margin="0,12,0,0" ContentPadding="52,16,14,16">
+                        <ui:CardExpander Margin="0,12,0,0" ContentPadding="0">
                             <ui:CardExpander.Icon>
                                 <ui:SymbolIcon Symbol="Color20" />
                             </ui:CardExpander.Icon>
@@ -131,31 +131,56 @@
                                         Text="Select which app theme to display" />
                                 </Grid>
                             </ui:CardExpander.Header>
-                            <themes:ThemeSettingsControl />
+                            <Border
+                                Padding="52,16,14,16"
+                                Background="{DynamicResource ControlFillColorSecondaryBrush}"
+                                CornerRadius="0,0,4,4">
+                                <themes:ThemeSettingsControl />
+                            </Border>
                         </ui:CardExpander>
                         <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
                         <ui:CardExpander
                             x:Name="FontSettingsExpander"
                             Margin="0,12,0,0"
-                            ContentPadding="0,0,0,0">
+                            ContentPadding="0">
                             <ui:CardExpander.Icon>
                                 <ui:SymbolIcon Symbol="TextFont20" />
                             </ui:CardExpander.Icon>
                             <Expander.Header>
                                 <TextBlock Text="Font" />
                             </Expander.Header>
-                            <StackPanel>
-                                <ui:CardControl Padding="52,16,14,16" Header="Family">
-                                    <fonts:FontFamilyComboBox />
-                                </ui:CardControl>
-                                <ui:CardControl Padding="52,16,14,16" Header="Style">
-                                    <fonts:FontStyleComboBox />
-                                </ui:CardControl>
-                                <ui:CardControl Padding="52,16,14,16" Header="Size">
-                                    <fonts:FontSizeComboBox />
-                                </ui:CardControl>
-                                <fonts:PreviewFontTextControl />
-                            </StackPanel>
+                            <Border Background="{DynamicResource ControlFillColorSecondaryBrush}" CornerRadius="0,0,4,4">
+                                <StackPanel>
+                                    <ui:CardControl
+                                        Padding="52,16,14,16"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        Header="Family">
+                                        <fonts:FontFamilyComboBox />
+                                    </ui:CardControl>
+                                    <Separator />
+                                    <ui:CardControl
+                                        Padding="52,16,14,16"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        Header="Style">
+                                        <fonts:FontStyleComboBox />
+                                    </ui:CardControl>
+                                    <Separator />
+                                    <ui:CardControl
+                                        Padding="52,16,14,16"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="0"
+                                        Header="Size">
+                                        <fonts:FontSizeComboBox />
+                                    </ui:CardControl>
+                                    <Separator />
+                                    <fonts:PreviewFontTextControl Margin="0,32,0,32" />
+                                </StackPanel>
+                            </Border>
                         </ui:CardExpander>
                         <ui:CardControl Margin="0,12,0,0">
                             <ui:CardControl.Icon>
