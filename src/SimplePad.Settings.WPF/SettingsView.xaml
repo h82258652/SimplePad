@@ -188,7 +188,11 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Opening files" />
-                                    <TextBlock Grid.Row="1" Text="Choose where your files are opened" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Choose where your files are opened" />
                                 </Grid>
                             </ui:CardControl.Header>
                             <tabs:OpenFileBehaviorComboBox />
