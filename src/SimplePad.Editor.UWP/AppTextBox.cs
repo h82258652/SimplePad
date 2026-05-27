@@ -67,6 +67,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
         TextChanged += OnTextChanged;
         SelectionChanged += OnSelectionChanged;
+        KeyDown += OnKeyDown;
         RegisterPropertyChangedCallback(FontSizeProperty, OnFontSizeChanged);
     }
 
@@ -234,6 +235,20 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     private void OnFontSizeChanged(DependencyObject sender, DependencyProperty dp)
     {
         UpdateZoomedFontSize();
+    }
+
+    private void OnKeyDown(object sender, KeyRoutedEventArgs e)
+    {
+        if (e.Key == VirtualKey.Tab)
+        {
+            e.Handled = true;
+
+            string tabText = "\t";
+
+            SelectedText = tabText;
+            SelectionLength = 0;
+            SelectionStart = SelectionStart + tabText.Length;
+        }
     }
 
     private void OnRestoreDefaultZoomKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
