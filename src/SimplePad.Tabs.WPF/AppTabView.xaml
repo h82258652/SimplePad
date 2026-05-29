@@ -14,6 +14,13 @@
     ShowDefaultAddButton="True"
     ShowDefaultCloseButton="True"
     mc:Ignorable="d">
+    <dragablz:TabablzControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/SimplePad.Tabs.WPF;component/AddTabButtonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </dragablz:TabablzControl.Resources>
     <dragablz:TabablzControl.ContentTemplate>
         <DataTemplate DataType="tabs:Tab">
             <local:AppTabContentControl />

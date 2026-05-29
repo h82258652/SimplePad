@@ -39,6 +39,7 @@ public partial class AppTabView : TabablzControl
         base.OnApplyTemplate();
 
         Button defaultAddButton = (Button)GetTemplateChild("DefaultAddButton");
+        defaultAddButton.Style = (Style)Resources["AddTabButtonStyle"];
         defaultAddButton.Command = null;
         defaultAddButton.Click += OnDefaultAddButtonClick;
     }
