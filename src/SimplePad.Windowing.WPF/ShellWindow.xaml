@@ -12,10 +12,9 @@
     Title="ShellWindow"
     Width="800"
     Height="450"
-    Loaded="OnLoaded"
     mc:Ignorable="d">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0" />
+        <WindowChrome CaptionHeight="0" GlassFrameThickness="-1" />
     </WindowChrome.WindowChrome>
     <Grid>
         <Grid x:Name="ContentGrid">
