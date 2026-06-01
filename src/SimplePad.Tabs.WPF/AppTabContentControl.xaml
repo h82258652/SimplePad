@@ -31,7 +31,10 @@
             <settings:SettingsButton Grid.Column="1" Margin="0,0,8,0" />
         </Grid>
         <Separator Grid.Row="1" />
-        <editor:AppTextBox x:Name="TextBox" Grid.Row="2" />
+        <editor:AppTextBox
+            x:Name="TextBox"
+            Grid.Row="2"
+            TextChanged="OnTextBoxTextChanged" />
         <Separator x:Name="StatusBarDivider" Grid.Row="3" />
         <statusBar:AppStatusBar x:Name="StatusBar" Grid.Row="4" />
     </Grid>
