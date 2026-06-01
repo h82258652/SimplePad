@@ -7,7 +7,7 @@ using SimplePad.Core;
 
 namespace SimplePad.Tabs;
 
-public partial class AppTabView : TabablzControl
+public sealed partial class AppTabView : TabablzControl
 {
     public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
         nameof(TabRoot),
@@ -66,6 +66,16 @@ public partial class AppTabView : TabablzControl
     private void AddBlankTab()
     {
         TabRoot?.AddBlankTab();
+    }
+
+    private async void OnClosingItem(ItemActionCallbackArgs<TabablzControl> args)
+    {
+        args.Cancel();
+
+        if (args.DragablzItem.DataContext is Tab tab)
+        {
+            await _tabManager.CloseAsync(tab);
+        }
     }
 
     private void OnDefaultAddButtonClick(object sender, RoutedEventArgs e)
