@@ -180,7 +180,8 @@
                                     <Button
                                         Command="{x:Static dragablz:TabablzControl.CloseItemCommand}"
                                         CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                        Style="{StaticResource CloseItemCommandButtonStyle}">
+                                        Style="{StaticResource CloseItemCommandButtonStyle}"
+                                        ToolTip="Close tab (Ctrl+W)">
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource ShowDefaultCloseButtonConverter}">
                                                 <Binding Path="ShowDefaultCloseButton" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type dragablz:TabablzControl}}" />

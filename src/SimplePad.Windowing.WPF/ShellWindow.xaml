@@ -13,6 +13,8 @@
     Title="Simple Pad"
     Width="800"
     Height="450"
+    MinWidth="320"
+    MinHeight="195"
     Closing="OnClosing"
     mc:Ignorable="d">
     <WindowChrome.WindowChrome>
