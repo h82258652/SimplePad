@@ -16,9 +16,9 @@
     PrimaryButtonText="Go to"
     mc:Ignorable="d">
     <ui:ContentDialog.Style>
-        <Style BasedOn="{StaticResource {x:Type ui:ContentDialog}}" TargetType="local:GoToLineDialog2" />
+        <Style BasedOn="{StaticResource {x:Type ui:ContentDialog}}" TargetType="local:GoToLineDialog" />
     </ui:ContentDialog.Style>
-    <HeaderedContentControl Header="Line number">
+    <HeaderedContentControl MinWidth="318" Header="Line number">
         <ui:NumberBox
             x:Name="LineNumberBox"
             Margin="0,8,0,0"
