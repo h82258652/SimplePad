@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,10 +39,12 @@ public partial class ShellWindow : ThemeWindow
     {
         if (_closeByProgramming)
         {
+            _closeByProgramming = false;
             return;
         }
 
         e.Cancel = true;
+        await Task.Yield();
         // CloseAsync will modify the Tabs collection, we cast to List first to avoid the "Collection was modified" exception.
         foreach (Tab tab in _tabRoot.Tabs.ToList())
         {
