@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using Wpf.Ui.Controls;
 
 namespace SimplePad.Editor;
 
-public sealed partial class GoToLineDialog : Window
+public sealed partial class GoToLineDialog : ContentDialog
 {
     internal GoToLineDialog(int currentLine, int maxLine)
     {
@@ -14,16 +14,11 @@ public sealed partial class GoToLineDialog : Window
 
     internal int LineNumber { get; private set; }
 
-    private void OnCancelButtonClick(object sender, RoutedEventArgs e)
+    private void ContentDialog_ButtonClicked(ContentDialog sender, ContentDialogButtonClickEventArgs args)
     {
-        Close();
-    }
-
-    private void OnGoToButtonClick(object sender, RoutedEventArgs e)
-    {
-        LineNumber = (int)(LineNumberBox.Value ?? 0);
-
-        DialogResult = true;
-        Close();
+        if (args.Button == ContentDialogButton.Primary)
+        {
+            LineNumber = (int)(LineNumberBox.Value ?? 0);
+        }
     }
 }

@@ -8,6 +8,7 @@ using SimplePad.Core;
 using SimplePad.Settings;
 using SimplePad.Tabs;
 using SimplePad.Themes;
+using Wpf.Ui;
 
 namespace SimplePad.Windowing;
 
@@ -26,6 +27,7 @@ public partial class ShellWindow : ThemeWindow
         AppWindow = appWindow;
 
         InitializeComponent();
+        ServiceLocator.Current.GetRequiredService<ContentDialogService>().SetDialogHost(RootContentDialogHost);
         TabView.TabRoot = _tabRoot;
 
         UpdateContentGridVisibility();

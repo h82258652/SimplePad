@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,6 +8,8 @@ using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Fonts;
+using Wpf.Ui;
+using Wpf.Ui.Controls;
 
 namespace SimplePad.Editor;
 
@@ -51,6 +54,7 @@ public partial class AppTextBox : UserControl, IAppTextBox
     private readonly Dispatcher _dispatcher;
     private readonly EditorZoomState _editorZoomState;
     private readonly IFontSettings _fontSettings;
+    private readonly IContentDialogService _contentDialogService;
 
     private bool _internalCanUndo;
 
@@ -59,6 +63,7 @@ public partial class AppTextBox : UserControl, IAppTextBox
         _dispatcher = Dispatcher;
         _fontSettings = ServiceLocator.Current.GetRequiredService<IFontSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
+        _contentDialogService = ServiceLocator.Current.GetRequiredService<IContentDialogService>();
 
         CursorPosition = new CursorPosition(1, 1);
 
@@ -133,13 +138,14 @@ public partial class AppTextBox : UserControl, IAppTextBox
         _ = TextBoxInternal.Focus();
     }
 
-    public Task GoToLineAsync()
+    public async Task GoToLineAsync()
     {
         string text = Text;
         int totalLines = text.Split('\r').Length;
 
         GoToLineDialog goToLineDialog = new(CursorPosition.Row, totalLines);
-        if (goToLineDialog.ShowDialog() is true)
+        ContentDialogResult dialogResult = await _contentDialogService.ShowAsync(goToLineDialog, CancellationToken.None);
+        if (dialogResult == ContentDialogResult.Primary)
         {
             int selectionStart = 0;
             int row = 1;
@@ -157,8 +163,6 @@ public partial class AppTextBox : UserControl, IAppTextBox
 
             SelectionStart = selectionStart;
         }
-
-        return Task.CompletedTask;
     }
 
     public void PasteFromClipboard()

@@ -9,6 +9,7 @@
     xmlns:settings="clr-namespace:SimplePad.Settings;assembly=SimplePad.Settings.WPF"
     xmlns:tabs="clr-namespace:SimplePad.Tabs;assembly=SimplePad.Tabs.WPF"
     xmlns:themes="clr-namespace:SimplePad.Themes;assembly=SimplePad.Themes.WPF"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="Simple Pad"
     Width="800"
     Height="450"
@@ -46,5 +47,6 @@
                 VerticalAlignment="Top" />
         </Grid>
         <settings:SettingsView />
+        <ui:ContentDialogHost x:Name="RootContentDialogHost" />
     </Grid>
 </themes:ThemeWindow>

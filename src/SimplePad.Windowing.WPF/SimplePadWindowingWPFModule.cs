@@ -5,6 +5,7 @@ using SimplePad.Search;
 using SimplePad.Settings;
 using SimplePad.Tabs;
 using SimplePad.Themes;
+using Wpf.Ui;
 
 namespace SimplePad.Windowing;
 
@@ -22,6 +23,9 @@ public sealed class SimplePadWindowingWPFModule : AppModuleBase
         base.ConfigureServices(context);
 
         context.Services.AddSingleton<IAppWindowManager, WPFAppWindowManager>();
+
+        context.Services.AddScoped<ContentDialogService>();
+        context.Services.AddScoped<IContentDialogService, ContentDialogService>(serviceProvider => serviceProvider.GetRequiredService<ContentDialogService>());
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
