@@ -9,9 +9,10 @@
     xmlns:settings="clr-namespace:SimplePad.Settings;assembly=SimplePad.Settings.WPF"
     xmlns:tabs="clr-namespace:SimplePad.Tabs;assembly=SimplePad.Tabs.WPF"
     xmlns:themes="clr-namespace:SimplePad.Themes;assembly=SimplePad.Themes.WPF"
-    Title="ShellWindow"
+    Title="Simple Pad"
     Width="800"
     Height="450"
+    Closing="OnClosing"
     mc:Ignorable="d">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" GlassFrameThickness="-1" />

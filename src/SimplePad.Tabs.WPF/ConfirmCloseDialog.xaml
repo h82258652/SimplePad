@@ -1,32 +1,36 @@
 ﻿<Window
-    x:Class="SimplePad.Editor.GoToLineDialog"
+    x:Class="SimplePad.Tabs.ConfirmCloseDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:SimplePad.Editor"
+    xmlns:local="clr-namespace:SimplePad.Tabs"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    Title="Go to line"
+    Title="ConfirmCloseDialog"
     Width="800"
     Height="450"
     AllowsTransparency="True"
     WindowStyle="None"
     mc:Ignorable="d">
     <StackPanel>
-        <HeaderedContentControl Header="Line number">
-            <ui:NumberBox x:Name="LineNumberBox" />
+        <HeaderedContentControl Header="Simple Pad">
+            <TextBlock TextWrapping="Wrap"><Run Text="Do you want to save changes to " /><Run x:Name="FileNameText" /><Run Text="?" /></TextBlock>
         </HeaderedContentControl>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button
-                Click="OnGoToButtonClick"
-                Content="Go to"
-                Style="{StaticResource AccentButtonStyle}" />
+                Click="OnSaveButtonClick"
+                Content="Save"
+                Style="{DynamicResource AccentButtonStyle}" />
             <Button
                 Grid.Column="1"
+                Click="OnDontSaveButtonClick"
+                Content="Don't save" />
+            <Button
+                Grid.Column="2"
                 Click="OnCancelButtonClick"
                 Content="Cancel" />
         </Grid>
