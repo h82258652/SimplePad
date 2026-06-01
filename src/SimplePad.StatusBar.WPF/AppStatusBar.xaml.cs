@@ -126,7 +126,7 @@ public sealed partial class AppStatusBar : System.Windows.Controls.Primitives.St
             characterIndicatorTextBuilder.Append(" of ");
         }
 
-        int textLength = TextBox.Text.Length;
+        int textLength = TextBox.Text.ReplaceLineEndings("\n").Length;
         characterIndicatorTextBuilder.Append(textLength.ToString("N0"));
         if (textLength == 1)
         {

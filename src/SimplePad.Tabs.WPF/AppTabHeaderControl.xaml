@@ -7,5 +7,5 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContextChanged="OnDataContextChanged"
     mc:Ignorable="d">
-    <TextBlock x:Name="HeaderText" TextTrimming="CharacterEllipsis" />
+    <TextBlock x:Name="HeaderText" />
 </UserControl>

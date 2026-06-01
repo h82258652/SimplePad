@@ -12,6 +12,12 @@ namespace SimplePad.Editor;
 
 public partial class AppTextBox : UserControl, IAppTextBox
 {
+    public static readonly DependencyProperty ContentPaddingProperty = DependencyProperty.Register(
+        nameof(ContentPadding),
+        typeof(Thickness),
+        typeof(AppTextBox),
+        new PropertyMetadata(default(Thickness), OnContentPaddingChanged));
+
     public static readonly DependencyProperty CursorPositionProperty = DependencyProperty.Register(
         nameof(CursorPosition),
         typeof(CursorPosition),
@@ -75,6 +81,12 @@ public partial class AppTextBox : UserControl, IAppTextBox
     public event EventHandler<string>? TextChanged;
 
     public bool CanUndo => TextBoxInternal.CanUndo;
+
+    public Thickness ContentPadding
+    {
+        get => (Thickness)GetValue(ContentPaddingProperty);
+        set => SetValue(ContentPaddingProperty, value);
+    }
 
     public CursorPosition CursorPosition
     {
@@ -182,6 +194,13 @@ public partial class AppTextBox : UserControl, IAppTextBox
         }
 
         return value;
+    }
+
+    private static void OnContentPaddingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        AppTextBox self = (AppTextBox)d;
+        Thickness contentPadding = (Thickness)e.NewValue;
+        self.TextBoxInternal.Padding = contentPadding;
     }
 
     private static void OnCursorPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
