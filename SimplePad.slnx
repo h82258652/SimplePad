@@ -109,6 +109,7 @@
     <Project Path="src/SimplePad.Settings/SimplePad.Settings.csproj" Id="8c2a786b-e304-4f8c-954f-d8d2c49320c4" />
   </Folder>
   <Folder Name="/src/StatusBar/">
+    <Project Path="src/SimplePad.StatusBar.Avalonia/SimplePad.StatusBar.Avalonia.csproj" Id="e8bc681b-1ee7-42bd-b78a-2393e8c6df52" />
     <Project Path="src/SimplePad.StatusBar.UWP/SimplePad.StatusBar.UWP.csproj" Id="b9b42731-998c-4449-9d10-95a828816454">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
