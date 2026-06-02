@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Editor;
 using SimplePad.Fonts;
+using SimplePad.Search;
+using SimplePad.StatusBar;
+using SimplePad.Tabs;
 using SimplePad.Themes;
 using SimplePad.Windowing;
 
 namespace SimplePad.App;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
 public partial class App : Application
 {
     private readonly IServiceProvider _serviceProvider;
@@ -23,8 +25,13 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
-        _serviceProvider.GetRequiredService<IFontSettings>().SaveAsync().GetAwaiter().GetResult();
-        _serviceProvider.GetRequiredService<IThemeSettings>().SaveAsync().GetAwaiter().GetResult();
+        Task.WhenAll(
+            _serviceProvider.GetRequiredService<IEditorSettings>().SaveAsync(),
+            _serviceProvider.GetRequiredService<IFontSettings>().SaveAsync(),
+            _serviceProvider.GetRequiredService<ISearchSettings>().SaveAsync(),
+            _serviceProvider.GetRequiredService<IStatusBarSettings>().SaveAsync(),
+            _serviceProvider.GetRequiredService<ITabsSettings>().SaveAsync(),
+            _serviceProvider.GetRequiredService<IThemeSettings>().SaveAsync()).GetAwaiter().GetResult();
 
         base.OnExit(e);
     }
