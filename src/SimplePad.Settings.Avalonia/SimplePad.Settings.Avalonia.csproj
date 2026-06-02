@@ -4,4 +4,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>SimplePad.Settings</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.4" />
+  </ItemGroup>
 </Project>
