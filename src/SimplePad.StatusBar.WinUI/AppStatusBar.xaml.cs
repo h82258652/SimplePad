@@ -1,8 +1,10 @@
+using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SimplePad.Core;
 using SimplePad.Editor;
 using SimplePad.File;
-using System;
 
 namespace SimplePad.StatusBar;
 
@@ -20,8 +22,14 @@ public sealed partial class AppStatusBar : UserControl
         typeof(AppStatusBar),
         new PropertyMetadata(null, OnTextBoxChanged));
 
+    private readonly EditorZoomState _editorZoomState;
+    private readonly IStatusBarSettings _statusBarSettings;
+
     public AppStatusBar()
     {
+        _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
+        _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
+
         InitializeComponent();
     }
 
