@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace SimplePad.Menu;
 
-public partial class AppMenuBar : UserControl
+public partial class AppMenuBar : Avalonia.Controls.Menu
 {
     public AppMenuBar()
     {
