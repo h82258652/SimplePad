@@ -41,6 +41,7 @@
     <Project Path="src/SimplePad.Editor/SimplePad.Editor.csproj" Id="45aa27a6-2ed8-41a0-8aff-b5e0b306bd0d" />
   </Folder>
   <Folder Name="/src/File/">
+    <Project Path="src/SimplePad.File.Avalonia/SimplePad.File.Avalonia.csproj" Id="457d30a3-004d-4af0-a296-295ed68afc27" />
     <Project Path="src/SimplePad.File.UWP/SimplePad.File.UWP.csproj" Id="dcb5aecd-20b2-4d71-8595-58b545fc3064">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
