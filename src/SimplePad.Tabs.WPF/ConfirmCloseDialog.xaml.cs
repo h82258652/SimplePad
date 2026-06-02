@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace SimplePad.Tabs;
 
-public sealed partial class ConfirmCloseDialog : Window
+public sealed partial class ConfirmCloseDialog : ContentDialog
 {
-    public ConfirmCloseDialog(Tab tab)
+    internal ConfirmCloseDialog(Tab tab)
     {
         InitializeComponent();
         FileNameText.Text = GetFileName(tab);
@@ -24,21 +24,19 @@ public sealed partial class ConfirmCloseDialog : Window
         return title[..Math.Min(title.Length, 35)] + ".txt";
     }
 
-    private void OnCancelButtonClick(object sender, RoutedEventArgs e)
+    private void OnButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
     {
-        Result = ConfirmCloseResult.Cancel;
-        DialogResult = false;
-    }
-
-    private void OnDontSaveButtonClick(object sender, RoutedEventArgs e)
-    {
-        Result = ConfirmCloseResult.Discard;
-        DialogResult = true;
-    }
-
-    private void OnSaveButtonClick(object sender, RoutedEventArgs e)
-    {
-        Result = ConfirmCloseResult.Save;
-        DialogResult = true;
+        if (args.Button == ContentDialogButton.Primary)
+        {
+            Result = ConfirmCloseResult.Save;
+        }
+        else if (args.Button == ContentDialogButton.Secondary)
+        {
+            Result = ConfirmCloseResult.Discard;
+        }
+        else if (args.Button == ContentDialogButton.Close)
+        {
+            Result = ConfirmCloseResult.Cancel;
+        }
     }
 }
