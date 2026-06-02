@@ -153,11 +153,13 @@
     <Project Path="src/SimplePad.Themes/SimplePad.Themes.csproj" Id="3be60e45-351f-429a-8d79-d6579abbafb1" />
   </Folder>
   <Folder Name="/src/Windowing/">
+    <Project Path="src/SimplePad.Windowing.Avalonia/SimplePad.Windowing.Avalonia.csproj" Id="d0d5cdb8-5f9a-40e1-a6d5-69919fa7d9d2" />
     <Project Path="src/SimplePad.Windowing.UWP/SimplePad.Windowing.UWP.csproj" Id="1632a377-3080-4ece-bd07-569a6d825dd5">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Windowing.WinUI/SimplePad.Windowing.WinUI.csproj" Id="4d0e431f-548b-4795-903d-da30e6208b12" />
     <Project Path="src/SimplePad.Windowing.WPF/SimplePad.Windowing.WPF.csproj" Id="c607ff31-c79b-431e-8386-2b691bd5624d" />
     <Project Path="src/SimplePad.Windowing/SimplePad.Windowing.csproj" Id="07423f35-8b33-43d6-a883-b2eb2b9cb91b" />
   </Folder>
