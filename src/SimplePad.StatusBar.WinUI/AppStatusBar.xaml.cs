@@ -31,9 +31,28 @@ public sealed partial class AppStatusBar : UserControl
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         InitializeComponent();
+
+        UpdateVisibility();
+    }
+
+    public LineEndings LineEndings
+    {
+        get => (LineEndings)GetValue(LineEndingsProperty);
+        set => SetValue(LineEndingsProperty, value);
+    }
+
+    public IAppTextBox? TextBox
+    {
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
+        set => SetValue(TextBoxProperty, value);
     }
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void UpdateVisibility()
     {
         throw new NotImplementedException();
     }
