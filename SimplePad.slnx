@@ -120,6 +120,8 @@
     <Project Path="src/SimplePad.StatusBar/SimplePad.StatusBar.csproj" Id="95a45aed-93fc-4727-bfce-3e97e3afcf82" />
   </Folder>
   <Folder Name="/src/Tabs/">
+    <Project Path="src/SimplePad.Tabs.Avalonia/SimplePad.Tabs.Avalonia.csproj" Id="ec4ab405-c5d0-47fc-94f6-bc011fd91a85" />
+    <Project Path="src/SimplePad.Tabs.Settings.Avalonia/SimplePad.Tabs.Settings.Avalonia.csproj" Id="fb24c89f-e931-4ad0-93ed-4fe8969c5a51" />
     <Project Path="src/SimplePad.Tabs.Settings.UWP/SimplePad.Tabs.Settings.UWP.csproj" Id="8f18325c-3a40-4d3f-aa4b-af18f5bbbdcf">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
