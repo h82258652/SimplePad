@@ -14,6 +14,7 @@
     <Project Path="src/SimplePad.WPF.App/SimplePad.WPF.App.csproj" Id="5be448d1-a304-4d11-b03e-cd23b1c6248a" />
   </Folder>
   <Folder Name="/src/Core/">
+    <Project Path="src/SimplePad.Core.Avalonia/SimplePad.Core.Avalonia.csproj" Id="90a8433a-9e2c-44d5-ab67-2479a183fcbd" />
     <Project Path="src/SimplePad.Core.UWP/SimplePad.Core.UWP.csproj" Id="752857f5-0db1-41a1-89fa-90ee4ce3fbd6">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
