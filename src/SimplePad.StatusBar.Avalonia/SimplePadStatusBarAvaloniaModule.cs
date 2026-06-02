@@ -1,4 +1,5 @@
-﻿using SimplePad.Core.Modularity;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core.Modularity;
 
 namespace SimplePad.StatusBar;
 
