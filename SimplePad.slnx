@@ -91,6 +91,7 @@
     <Project Path="src/SimplePad.Menu/SimplePad.Menu.csproj" Id="77ef9037-73f6-48ae-b0ed-5f469feed9f7" />
   </Folder>
   <Folder Name="/src/Search/">
+    <Project Path="src/SimplePad.Search.Avalonia/SimplePad.Search.Avalonia.csproj" Id="1679693d-a4c7-4744-9c69-08de47df33f6" />
     <Project Path="src/SimplePad.Search.UWP/SimplePad.Search.UWP.csproj" Id="fd4b2fcb-c5fb-4d68-890d-06f751716e4c">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
