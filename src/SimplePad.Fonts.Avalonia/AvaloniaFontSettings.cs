@@ -1,4 +1,7 @@
-﻿namespace SimplePad.Fonts;
+﻿using System;
+using System.Threading.Tasks;
+
+namespace SimplePad.Fonts;
 
 internal sealed class AvaloniaFontSettings : IFontSettings
 {

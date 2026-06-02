@@ -1,4 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.Linq;
+using Avalonia.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 
