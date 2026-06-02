@@ -136,6 +136,7 @@
     <Project Path="src/SimplePad.Tabs/SimplePad.Tabs.csproj" Id="3f59faac-cb0c-4a91-a342-64ff8ecb02fd" />
   </Folder>
   <Folder Name="/src/Themes/">
+    <Project Path="src/SimplePad.Themes.Avalonia/SimplePad.Themes.Avalonia.csproj" Id="9e4f5d77-cf47-4f15-b5e0-0864a800c57d" />
     <Project Path="src/SimplePad.Themes.Settings.UWP/SimplePad.Themes.Settings.UWP.csproj" Id="6a0eb3e2-084b-43f4-9a29-ece3e377019c">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
