@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SimplePad.Tabs;
 
-internal class AvaloniaConfirmCloseService : IConfirmCloseService
+internal sealed class AvaloniaConfirmCloseService : IConfirmCloseService
 {
     public Task<ConfirmCloseResult> ConfirmCloseAsync(Tab tab)
     {
