@@ -42,8 +42,7 @@ public sealed partial class AppStatusBar : UserControl
         UpdateCharacterIndicator();
         UpdateZoomFactorIndicator();
 
-        _statusBarSettings.IsStatusBarVisibleChanged +=
-            OnStatusBarSettingsIsStatusBarVisibleChanged;
+        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
         _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
     }
 
