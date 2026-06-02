@@ -4,4 +4,12 @@
     <Nullable>enable</Nullable>
     <RootNamespace>SimplePad.Editor</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Core\SimplePad.Core.csproj" />
+    <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
+  </ItemGroup>
 </Project>
