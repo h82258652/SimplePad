@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimplePad.Core.Modularity;
 
-namespace SimplePad.Themes
+namespace SimplePad.Themes;
+
+public sealed class SimplePadThemesAvaloniaModule : AppModuleBase
 {
-    internal class SimplePadThemesAvaloniaModule
+    public override DependsOn DependModules => DependsOn.Create<SimplePadThemesModule>();
+
+    public override void ConfigureServices(ServiceConfigurationContext context)
     {
+        base.ConfigureServices(context);
+
+        context.Services.AddSingleton<IThemeSettings, AvaloniaThemeSettings>();
     }
 }
