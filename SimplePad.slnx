@@ -50,6 +50,7 @@
   </Folder>
   <Folder Name="/src/Fonts/">
     <Project Path="src/SimplePad.Fonts.Avalonia/SimplePad.Fonts.Avalonia.csproj" Id="75e08c73-0dce-4ddc-984a-792260b61c5f" />
+    <Project Path="src/SimplePad.Fonts.Settings.Avalonia/SimplePad.Fonts.Settings.Avalonia.csproj" Id="e2ed5f51-2e0d-4da9-b0f8-8c6deee6734d" />
     <Project Path="src/SimplePad.Fonts.Settings.UWP/SimplePad.Fonts.Settings.UWP.csproj" Id="0ff0dcd4-aa8f-4a12-bc61-67b7ed553841">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
