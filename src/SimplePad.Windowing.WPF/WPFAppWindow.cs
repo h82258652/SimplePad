@@ -9,7 +9,7 @@ internal sealed class WPFAppWindow : IAppWindow
 {
     private readonly IAppWindowManager _appWindowManager;
 
-    public WPFAppWindow(IAppWindowManager appWindowManager)
+    internal WPFAppWindow(IAppWindowManager appWindowManager)
     {
         _appWindowManager = appWindowManager;
 
