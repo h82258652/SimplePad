@@ -95,6 +95,7 @@
       <Platform Solution="*|x64" Project="x64" />
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="src/SimplePad.Menu.WinUI/SimplePad.Menu.WinUI.csproj" Id="0557ae22-9a86-42b0-8b2a-4e778fa98ad5" />
     <Project Path="src/SimplePad.Menu.WPF/SimplePad.Menu.WPF.csproj" Id="9e78b3f8-81d5-4096-beea-6c12c7f81200" />
     <Project Path="src/SimplePad.Menu/SimplePad.Menu.csproj" Id="77ef9037-73f6-48ae-b0ed-5f469feed9f7" />
   </Folder>
