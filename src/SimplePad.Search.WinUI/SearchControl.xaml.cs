@@ -15,6 +15,7 @@ public sealed partial class SearchControl : UserControl
     public SearchControl()
     {
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
+        _searchNotificationService = ServiceLocator.Current.GetRequiredService<UWPSearchNotificationService>();
 
         InitializeComponent();
         _searchNotificationService.Configure(ShowNotificationFlyout, HideNotificationFlyout, SetNotificationText);

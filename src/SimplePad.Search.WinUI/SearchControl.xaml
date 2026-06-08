@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Border>
+    <Border x:Name="RootContainer">
         <FlyoutBase.AttachedFlyout>
             <Flyout x:Name="NotificationFlyout" Placement="Bottom">
                 <TextBlock x:Name="NotificationText" />
