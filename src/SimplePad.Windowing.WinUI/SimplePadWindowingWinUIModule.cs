@@ -30,6 +30,6 @@ public sealed class SimplePadWindowingWinUIModule : AppModuleBase
     {
         base.OnApplicationInitialization(context);
 
-        ServiceLocator.SetScopeIdProvider(new WinUIServiceScopeIdProvider());
+        ServiceLocator.SetScopeIdProvider(new WinUIServiceScopeIdProvider(context.ServiceProvider.GetRequiredService<IAppWindowManager>()));
     }
 }
