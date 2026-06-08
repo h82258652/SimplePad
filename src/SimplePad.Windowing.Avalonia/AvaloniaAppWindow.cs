@@ -18,18 +18,24 @@ internal sealed class AvaloniaAppWindow : IAppWindow
 
     public TabRoot TabRoot { get; } = new TabRoot();
 
+    internal ShellWindow? ShellWindow { get; set; }
+
     public void Execute(Action<IAppWindow> action)
     {
-        throw new NotImplementedException();
+        ShellWindow?.Dispatcher.Invoke(() => action(this));
     }
 
     public Task ShowAsync()
     {
-        throw new NotImplementedException();
+        ShellWindow?.Show();
+        return Task.CompletedTask;
     }
 
-    private void OnTabsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    private async void OnTabsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (TabRoot.Tabs.Count == 0)
+        {
+            await _appWindowManager.CloseAsync(this);
+        }
     }
 }
