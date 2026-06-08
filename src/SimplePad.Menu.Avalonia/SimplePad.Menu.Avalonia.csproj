@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
+    <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
   </ItemGroup>
 </Project>

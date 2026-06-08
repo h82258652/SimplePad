@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace SimplePad.Menu;
 
-public partial class CopyMenuItem : UserControl
+public partial class CopyMenuItem : MenuItem
 {
     public CopyMenuItem()
     {
