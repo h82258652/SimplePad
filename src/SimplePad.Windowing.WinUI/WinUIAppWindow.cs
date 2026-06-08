@@ -6,7 +6,9 @@ namespace SimplePad.Windowing;
 
 internal sealed class WinUIAppWindow : IAppWindow
 {
-    public TabRoot TabRoot => throw new NotImplementedException();
+    public TabRoot TabRoot { get; } = new TabRoot();
+
+    internal ShellWindow? ShellWindow { get; set; }
 
     public void Execute(Action<IAppWindow> action)
     {
