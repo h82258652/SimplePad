@@ -22,8 +22,7 @@ public sealed partial class AppStatusBar : UserControl
         nameof(TextBox),
         typeof(IAppTextBox),
         typeof(AppStatusBar),
-        new PropertyMetadata(null, OnTextBoxChanged)
-    );
+        new PropertyMetadata(null, OnTextBoxChanged));
 
     private readonly CoreDispatcher _dispatcher;
     private readonly EditorZoomState _editorZoomState;

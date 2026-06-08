@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -33,6 +34,12 @@ public sealed partial class AppStatusBar : UserControl
         InitializeComponent();
 
         UpdateVisibility();
+        UpdateCursorPositionIndicator();
+        UpdateCharacterIndicator();
+        UpdateZoomFactorIndicator();
+
+        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
+        _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
     }
 
     public LineEndings LineEndings
@@ -49,11 +56,103 @@ public sealed partial class AppStatusBar : UserControl
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        throw new NotImplementedException();
+        AppStatusBar self = (AppStatusBar)d;
+        IAppTextBox? oldTextBox = (IAppTextBox?)e.OldValue;
+        if (oldTextBox is not null)
+        {
+            oldTextBox.CursorPositionChanged -= self.OnTextBoxCursorPositionChanged;
+            oldTextBox.TextChanged -= self.OnTextBoxTextChanged;
+            oldTextBox.SelectionChanged -= self.OnTextBoxSelectionChanged;
+        }
+
+        IAppTextBox? newTextBox = (IAppTextBox?)e.NewValue;
+        if (newTextBox is not null)
+        {
+            newTextBox.CursorPositionChanged += self.OnTextBoxCursorPositionChanged;
+            newTextBox.TextChanged += self.OnTextBoxTextChanged;
+            newTextBox.SelectionChanged += self.OnTextBoxSelectionChanged;
+        }
+
+        self.UpdateCursorPositionIndicator();
+        self.UpdateCharacterIndicator();
+    }
+
+    private void OnEditorZoomStateZoomFactorChanged(object? sender, double e)
+    {
+        UpdateZoomFactorIndicator();
+    }
+
+    private void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
+    {
+        UpdateVisibility();
+    }
+
+    private void OnTextBoxCursorPositionChanged(object? sender, CursorPosition e)
+    {
+        UpdateCursorPositionIndicator();
+    }
+
+    private void OnTextBoxSelectionChanged(object? sender, EventArgs e)
+    {
+        UpdateCharacterIndicator();
+    }
+
+    private void OnTextBoxTextChanged(object? sender, string e)
+    {
+        UpdateCharacterIndicator();
+    }
+
+    private void UpdateCharacterIndicator()
+    {
+        if (TextBox is null)
+        {
+            CharacterIndicator.Text = string.Empty;
+            return;
+        }
+
+        StringBuilder characterIndicatorTextBuilder = new();
+        if (TextBox.SelectionLength > 0)
+        {
+            characterIndicatorTextBuilder.Append(TextBox.SelectionLength.ToString("N0"));
+            characterIndicatorTextBuilder.Append(" of ");
+        }
+
+        int textLength = TextBox.Text.Length;
+        characterIndicatorTextBuilder.Append(textLength.ToString("N0"));
+        if (textLength == 1)
+        {
+            characterIndicatorTextBuilder.Append(" character");
+        }
+        else
+        {
+            characterIndicatorTextBuilder.Append(" characters");
+        }
+
+        CharacterIndicator.Text = characterIndicatorTextBuilder.ToString();
+    }
+
+    private void UpdateCursorPositionIndicator()
+    {
+        if (TextBox is null)
+        {
+            CursorPositionText.Text = string.Empty;
+        }
+        else
+        {
+            CursorPositionText.Text =
+                $"Ln {TextBox.CursorPosition.Row}, Col {TextBox.CursorPosition.Column}";
+        }
     }
 
     private void UpdateVisibility()
     {
-        throw new NotImplementedException();
+        Visibility = _statusBarSettings.IsStatusBarVisible
+            ? Visibility.Visible
+            : Visibility.Collapsed;
+    }
+
+    private void UpdateZoomFactorIndicator()
+    {
+        ZoomFactorIndicator.Text = $"{_editorZoomState.ZoomFactor:P0}";
     }
 }

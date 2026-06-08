@@ -6,6 +6,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="IndicatorStyle" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+            </Style>
+            <Style x:Key="DividerStyle" TargetType="Rectangle">
+                <Setter Property="Width" Value="1" />
+                <Setter Property="Height" Value="16" />
+                <Setter Property="Margin" Value="12,0" />
+                <Setter Property="Fill" Value="{ThemeResource DividerStrokeColorDefaultBrush}" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid MinHeight="32" Padding="20,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -17,12 +32,23 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="CursorPositionText" />
-        <Rectangle Grid.Column="1" />
-        <TextBlock x:Name="CharacterIndicator" Grid.Column="2" />
-        <Rectangle Grid.Column="4" />
-        <TextBlock Grid.Column="5" />
-        <Rectangle Grid.Column="6" />
-        <TextBlock Grid.Column="7" MinWidth="134" />
+        <TextBlock x:Name="CursorPositionText" Style="{StaticResource IndicatorStyle}" />
+        <Rectangle Grid.Column="1" Style="{StaticResource DividerStyle}" />
+        <TextBlock
+            x:Name="CharacterIndicator"
+            Grid.Column="2"
+            Style="{StaticResource IndicatorStyle}" />
+        <Rectangle Grid.Column="4" Style="{StaticResource DividerStyle}" />
+        <TextBlock
+            x:Name="ZoomFactorIndicator"
+            Grid.Column="5"
+            MinWidth="44"
+            Style="{StaticResource IndicatorStyle}" />
+        <Rectangle Grid.Column="6" Style="{StaticResource DividerStyle}" />
+        <TextBlock
+            Grid.Column="7"
+            MinWidth="134"
+            Style="{StaticResource IndicatorStyle}"
+            Text="{x:Bind LineEndings.Name, Mode=OneWay}" />
     </Grid>
 </UserControl>
