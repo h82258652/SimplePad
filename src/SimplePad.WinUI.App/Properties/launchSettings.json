@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SimplePad.WinUI.App (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SimplePad.WinUI.App (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

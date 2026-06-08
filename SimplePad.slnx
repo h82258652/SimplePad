@@ -11,6 +11,12 @@
       <Platform Solution="*|x86" Project="x86" />
       <Deploy />
     </Project>
+    <Project Path="src/SimplePad.WinUI.App/SimplePad.WinUI.App.csproj" Id="21d790b8-cd7a-41e9-94f8-191b229e2195">
+      <Platform Solution="*|arm64" Project="ARM64" />
+      <Platform Solution="*|x64" Project="x64" />
+      <Platform Solution="*|x86" Project="x86" />
+      <Deploy />
+    </Project>
     <Project Path="src/SimplePad.WPF.App/SimplePad.WPF.App.csproj" Id="5be448d1-a304-4d11-b03e-cd23b1c6248a" />
   </Folder>
   <Folder Name="/src/Core/">
