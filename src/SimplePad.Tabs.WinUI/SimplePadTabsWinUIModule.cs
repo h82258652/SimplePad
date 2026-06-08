@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core.Modularity;
 using SimplePad.Editor;
+using SimplePad.Menu;
 using SimplePad.Settings;
 using SimplePad.StatusBar;
 

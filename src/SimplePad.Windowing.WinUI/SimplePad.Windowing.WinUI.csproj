@@ -15,6 +15,11 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.1.3" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.File.WinUI\SimplePad.File.WinUI.csproj" />
+    <ProjectReference Include="..\SimplePad.Search.WinUI\SimplePad.Search.WinUI.csproj" />
+    <ProjectReference Include="..\SimplePad.Settings.WinUI\SimplePad.Settings.WinUI.csproj" />
+    <ProjectReference Include="..\SimplePad.Tabs.WinUI\SimplePad.Tabs.WinUI.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.WinUI\SimplePad.Themes.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Windowing\SimplePad.Windowing.csproj" />
   </ItemGroup>
   <ItemGroup>
