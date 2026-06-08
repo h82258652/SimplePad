@@ -9,18 +9,18 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class ZoomInMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class ZoomInMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(ZoomInMenuFlyoutItem),
+        typeof(ZoomInMenuItem),
         null);
 
     private readonly CoreDispatcher _dispatcher;
     private readonly EditorZoomState _editorZoomState;
 
-    public ZoomInMenuFlyoutItem()
+    public ZoomInMenuItem()
     {
         _dispatcher = Dispatcher;
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
