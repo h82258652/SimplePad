@@ -27,9 +27,7 @@ public sealed partial class FontStyleComboBox : ComboBox
         ];
 
         DefaultStyleKey = typeof(FontStyleComboBox);
-        DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Fonts.Settings.UWP/FontStyleComboBox.xaml"
-        );
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Fonts.Settings.UWP/FontStyleComboBox.xaml");
 
         ItemsSource = _items;
         UpdateSelectedItem();

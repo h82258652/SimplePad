@@ -1,7 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SimplePad.Fonts">
-
+    xmlns:fonts="using:SimplePad.Fonts">
+    <Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="fonts:FontSizeComboBox">
+        <Setter Property="TextBoxStyle">
+            <Setter.Value>
+                <Style BasedOn="{StaticResource ComboBoxTextBoxStyle}" TargetType="TextBox">
+                    <Setter Property="InputScope" Value="Digits" />
+                    <Setter Property="MaxLength" Value="2" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
