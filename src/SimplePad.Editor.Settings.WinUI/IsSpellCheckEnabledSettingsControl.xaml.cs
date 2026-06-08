@@ -1,28 +1,37 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using SimplePad.Core;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace SimplePad.Editor;
 
-namespace SimplePad.Editor
+public sealed partial class IsSpellCheckEnabledSettingsControl : UserControl
 {
-    public sealed partial class IsSpellCheckEnabledSettingsControl : UserControl
+    private readonly IEditorSettings _editorSettings;
+
+    public IsSpellCheckEnabledSettingsControl()
     {
-        public IsSpellCheckEnabledSettingsControl()
-        {
-            InitializeComponent();
-        }
+        _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
+
+        InitializeComponent();
+
+        UpdateIsSpellCheckEnabledToggleSwitch();
+
+        _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
+    }
+
+    private void OnEditorSettingsIsSpellCheckEnabledChanged(object sender, bool e)
+    {
+        UpdateIsSpellCheckEnabledToggleSwitch();
+    }
+
+    private void OnIsSpellCheckEnabledToggleSwitchToggled(object sender, RoutedEventArgs e)
+    {
+        _editorSettings.IsSpellCheckEnabled = IsSpellCheckEnabledToggleSwitch.IsOn;
+    }
+
+    private void UpdateIsSpellCheckEnabledToggleSwitch()
+    {
+        IsSpellCheckEnabledToggleSwitch.IsOn = _editorSettings.IsSpellCheckEnabled;
     }
 }

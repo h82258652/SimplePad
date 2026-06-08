@@ -16,6 +16,9 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.1.3" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="IsWordWrapSettingsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
