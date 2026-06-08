@@ -9,7 +9,25 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="AppTabView.xaml" />
+    <None Remove="AppTabViewItem.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
+    <ProjectReference Include="..\SimplePad.Tabs\SimplePad.Tabs.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AppTabViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AppTabView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
