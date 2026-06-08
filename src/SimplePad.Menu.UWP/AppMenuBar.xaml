@@ -55,7 +55,7 @@
         <menu:SelectAllMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:TimeDateMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
-        <menu:FontMenuFlyoutItem MinWidth="230" />
+        <menu:FontMenuItem MinWidth="230" />
     </MenuBarItem>
     <MenuBarItem
         Title="View"

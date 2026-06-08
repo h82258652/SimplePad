@@ -6,11 +6,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class FontMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class FontMenuItem : MenuFlyoutItem
 {
     private readonly SettingsState _settingsState;
 
-    public FontMenuFlyoutItem()
+    public FontMenuItem()
     {
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
