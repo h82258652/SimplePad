@@ -4,15 +4,15 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class GoToLineMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class GoToLineMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(GoToLineMenuFlyoutItem),
+        typeof(GoToLineMenuItem),
         null);
 
-    public GoToLineMenuFlyoutItem()
+    public GoToLineMenuItem()
     {
         InitializeComponent();
     }
