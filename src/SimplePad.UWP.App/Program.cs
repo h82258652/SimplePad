@@ -24,7 +24,7 @@ public static class Program
         host.Start();
 
         await Task.WhenAll(
-            host.Services.GetRequiredService<IEditorSettings>().LoadAsync(), 
+            host.Services.GetRequiredService<IEditorSettings>().LoadAsync(),
             host.Services.GetRequiredService<IFontSettings>().LoadAsync(),
             host.Services.GetRequiredService<ISearchSettings>().LoadAsync(),
             host.Services.GetRequiredService<IStatusBarSettings>().LoadAsync(),
@@ -34,9 +34,7 @@ public static class Program
         Application.Start(
             (p) =>
             {
-                DispatcherQueueSynchronizationContext context = new(
-                    DispatcherQueue.GetForCurrentThread()
-                );
+                DispatcherQueueSynchronizationContext context = new(DispatcherQueue.GetForCurrentThread());
                 SynchronizationContext.SetSynchronizationContext(context);
                 _ = new App(host.Services);
             }
