@@ -7,4 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.0.4" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
+  </ItemGroup>
 </Project>
