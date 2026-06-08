@@ -15,5 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Editor\SimplePad.Editor.csproj" />
+    <ProjectReference Include="..\SimplePad.Fonts.WinUI\SimplePad.Fonts.WinUI.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.WinUI\SimplePad.Themes.WinUI.csproj" />
   </ItemGroup>
 </Project>
