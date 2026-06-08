@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.WinUI\SimplePad.Themes.WinUI.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="SearchControl.xaml">

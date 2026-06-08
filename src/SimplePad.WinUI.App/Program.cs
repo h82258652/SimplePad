@@ -3,7 +3,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using SimplePad.Core.Modularity;
+using SimplePad.Editor;
+using SimplePad.Fonts;
+using SimplePad.Search;
+using SimplePad.StatusBar;
 using SimplePad.Tabs;
+using SimplePad.Themes;
 using System.Threading;
 using System.Threading.Tasks;
 using WinRT;
@@ -32,7 +37,7 @@ public static class Program
         {
             DispatcherQueueSynchronizationContext context = new(DispatcherQueue.GetForCurrentThread());
             SynchronizationContext.SetSynchronizationContext(context);
-            _ = new App();
+            _ = new App(host.Services);
         });
     }
 }
