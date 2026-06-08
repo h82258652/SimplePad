@@ -1,15 +1,26 @@
 ﻿using System;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.FileProperties;
+using Windows.Storage.Streams;
 
 namespace SimplePad.File;
 
 public sealed class WinUIFile : IFile
 {
+    private readonly StorageFile _storageFile;
     private LineEndings _lineEndings = LineEndings.CRLF;
+
+    public WinUIFile(StorageFile storageFile)
+    {
+        _storageFile = storageFile;
+    }
 
     public event EventHandler<LineEndings>? LineEndingsChanged;
 
-    public string FileName => throw new NotImplementedException();
+    public string FileName => _storageFile.Name;
 
     public LineEndings LineEndings
     {
@@ -24,20 +35,53 @@ public sealed class WinUIFile : IFile
         }
     }
 
-    public string Path => throw new NotImplementedException();
+    public string Path => _storageFile.Path;
 
-    public Task<DateTimeOffset> GetModificationTimeAsync()
+    public async Task<DateTimeOffset> GetModificationTimeAsync()
     {
-        throw new NotImplementedException();
+        BasicProperties basicProperties = await _storageFile.GetBasicPropertiesAsync();
+        return basicProperties.DateModified;
     }
 
-    public Task<string> ReadAllTextAsync()
+    public async Task<string> ReadAllTextAsync()
     {
-        throw new NotImplementedException();
+        IBuffer buffer = await FileIO.ReadBufferAsync(_storageFile);
+        string text = Encoding.UTF8.GetString(buffer.ToArray());
+        DetectLineEndings(text);
+
+        // Use CR \r in app to adapt the WinUI TextBox
+        if (LineEndings == LineEndings.CRLF)
+        {
+            text = text.Replace(LineEndings.CRLF.NewLine, LineEndings.CR.NewLine);
+        }
+        else if (LineEndings == LineEndings.LF)
+        {
+            text = text.Replace(LineEndings.LF.NewLine, LineEndings.CR.NewLine);
+        }
+
+        return text;
     }
 
-    public Task WriteAllTextAsync(string text)
+    public async Task WriteAllTextAsync(string text)
     {
-        throw new NotImplementedException();
+        text = string.Join(LineEndings.NewLine, text.Split([LineEndings.CRLF.NewLine, LineEndings.CR.NewLine, LineEndings.LF.NewLine], StringSplitOptions.None));
+
+        await FileIO.WriteTextAsync(_storageFile, text);
+    }
+
+    private void DetectLineEndings(string text)
+    {
+        if (text.Contains(LineEndings.CRLF.NewLine))
+        {
+            LineEndings = LineEndings.CRLF;
+        }
+        else if (text.Contains(LineEndings.CR.NewLine))
+        {
+            LineEndings = LineEndings.CR;
+        }
+        else if (text.Contains(LineEndings.LF.NewLine))
+        {
+            LineEndings = LineEndings.LF;
+        }
     }
 }
