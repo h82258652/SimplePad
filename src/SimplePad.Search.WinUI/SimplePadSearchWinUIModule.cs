@@ -9,6 +9,7 @@ public sealed class SimplePadSearchWinUIModule : AppModuleBase
     public override DependsOn DependModules => DependsOn.Create<
         SimplePadSearchModule,
         SimplePadThemesWinUIModule>();
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         base.ConfigureServices(context);
