@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SimplePad.Core.Modularity;
 
-namespace SimplePad.Windowing
+namespace SimplePad.Windowing;
+
+public sealed class SimplePadWindowingWinUIModule : AppModuleBase
 {
-    internal class SimplePadWindowingWinUIModule
-    {
-    }
 }
