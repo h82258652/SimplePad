@@ -2,9 +2,9 @@
 
 namespace SimplePad.Menu;
 
-public sealed partial class FindMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class FindMenuItem : MenuFlyoutItem
 {
-    public FindMenuFlyoutItem()
+    public FindMenuItem()
     {
         InitializeComponent();
     }
