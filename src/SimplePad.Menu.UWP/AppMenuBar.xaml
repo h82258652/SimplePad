@@ -33,7 +33,7 @@
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:CloseTabMenuItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:CloseWindowMenuItem MinWidth="230" />
-        <menu:ExitMenuFlyoutItem MinWidth="230" />
+        <menu:ExitMenuItem MinWidth="230" />
     </MenuBarItem>
     <MenuBarItem
         Title="Edit"
