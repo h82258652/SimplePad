@@ -41,7 +41,7 @@
         Style="{StaticResource AppMenuBarItemStyle}">
         <menu:UndoMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
-        <menu:CutMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:CutMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:CopyMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:PasteMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:DeleteMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
