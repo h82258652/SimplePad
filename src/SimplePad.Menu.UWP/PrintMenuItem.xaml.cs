@@ -10,12 +10,12 @@ using Windows.UI.Xaml.Printing;
 
 namespace SimplePad.Menu;
 
-public sealed partial class PrintMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class PrintMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
         nameof(Tab),
         typeof(Tab),
-        typeof(PrintMenuFlyoutItem),
+        typeof(PrintMenuItem),
         null);
 
     private PrintDocument? _printDocument;
@@ -24,7 +24,7 @@ public sealed partial class PrintMenuFlyoutItem : MenuFlyoutItem
     private string _contentToPrint = string.Empty;
     private string _printTaskTitle = "SimplePad";
 
-    public PrintMenuFlyoutItem()
+    public PrintMenuItem()
     {
         InitializeComponent();
     }
