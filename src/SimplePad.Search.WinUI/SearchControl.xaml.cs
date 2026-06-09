@@ -1,9 +1,11 @@
+using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Hosting;
 using SimplePad.Core;
-using System;
 
 namespace SimplePad.Search;
 
@@ -25,6 +27,14 @@ public sealed partial class SearchControl : UserControl
         _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
     }
 
+    private void Hide()
+    {
+        Visual visual = ElementCompositionPreview.GetElementVisual(this);
+        Compositor compositor = visual.Compositor;
+
+        throw new NotImplementedException();
+    }
+
     private void HideNotificationFlyout()
     {
         NotificationFlyout.Hide();
@@ -32,7 +42,7 @@ public sealed partial class SearchControl : UserControl
 
     private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        UpdateVisibility();
     }
 
     private void SetNotificationText(string notificationText)
@@ -40,8 +50,25 @@ public sealed partial class SearchControl : UserControl
         NotificationText.Text = notificationText;
     }
 
+    private void Show()
+    {
+        throw new NotImplementedException();
+    }
+
     private void ShowNotificationFlyout()
     {
         FlyoutBase.ShowAttachedFlyout(RootContainer);
+    }
+
+    private void UpdateVisibility()
+    {
+        if (_searchViewState.IsVisible)
+        {
+            Show();
+        }
+        else
+        {
+            Hide();
+        }
     }
 }
