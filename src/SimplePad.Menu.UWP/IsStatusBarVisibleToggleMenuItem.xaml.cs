@@ -9,18 +9,18 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class IsStatusBarVisibleToggleMenuFlyoutItem : ToggleMenuFlyoutItem
+public sealed partial class IsStatusBarVisibleToggleMenuItem : ToggleMenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(IsStatusBarVisibleToggleMenuFlyoutItem),
+        typeof(IsStatusBarVisibleToggleMenuItem),
         null);
 
     private readonly CoreDispatcher _dispatcher;
     private readonly IStatusBarSettings _statusBarSettings;
 
-    public IsStatusBarVisibleToggleMenuFlyoutItem()
+    public IsStatusBarVisibleToggleMenuItem()
     {
         _dispatcher = Dispatcher;
         _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
