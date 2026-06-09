@@ -4,15 +4,15 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class TimeDateMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class TimeDateMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(TimeDateMenuFlyoutItem),
+        typeof(TimeDateMenuItem),
         null);
 
-    public TimeDateMenuFlyoutItem()
+    public TimeDateMenuItem()
     {
         InitializeComponent();
     }
