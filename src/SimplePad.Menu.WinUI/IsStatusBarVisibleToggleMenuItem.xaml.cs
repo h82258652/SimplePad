@@ -1,28 +1,52 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using SimplePad.Core;
+using SimplePad.Editor;
+using SimplePad.StatusBar;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace SimplePad.Menu;
 
-namespace SimplePad.Menu
+public sealed partial class IsStatusBarVisibleToggleMenuItem : ToggleMenuFlyoutItem
 {
-    public sealed partial class IsStatusBarVisibleToggleMenuItem : UserControl
+    public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
+        nameof(TextBox),
+        typeof(IAppTextBox),
+        typeof(IsStatusBarVisibleToggleMenuItem),
+        null);
+
+    private readonly IStatusBarSettings _statusBarSettings;
+
+    public IsStatusBarVisibleToggleMenuItem()
     {
-        public IsStatusBarVisibleToggleMenuItem()
-        {
-            InitializeComponent();
-        }
+        _statusBarSettings = ServiceLocator.Current.GetRequiredService<IStatusBarSettings>();
+
+        InitializeComponent();
+
+        UpdateIsChecked();
+
+        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
+    }
+
+    public IAppTextBox? TextBox
+    {
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
+        set => SetValue(TextBoxProperty, value);
+    }
+
+    private void OnClick(object sender, RoutedEventArgs e)
+    {
+        _statusBarSettings.IsStatusBarVisible = IsChecked;
+        TextBox?.Focus();
+    }
+
+    private void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
+    {
+        UpdateIsChecked();
+    }
+
+    private void UpdateIsChecked()
+    {
+        IsChecked = _statusBarSettings.IsStatusBarVisible;
     }
 }
