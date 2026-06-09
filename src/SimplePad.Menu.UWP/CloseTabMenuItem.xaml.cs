@@ -6,17 +6,17 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class CloseTabMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class CloseTabMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
         nameof(Tab),
         typeof(Tab),
-        typeof(CloseTabMenuFlyoutItem),
+        typeof(CloseTabMenuItem),
         null);
 
     private readonly TabManager _tabManager;
 
-    public CloseTabMenuFlyoutItem()
+    public CloseTabMenuItem()
     {
         _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
 

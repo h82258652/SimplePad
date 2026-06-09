@@ -31,7 +31,7 @@
         <!--<MenuFlyoutSeparator MinWidth="230" />
         <menu:PrintMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />-->
         <MenuFlyoutSeparator MinWidth="230" />
-        <menu:CloseTabMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
+        <menu:CloseTabMenuItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:CloseWindowMenuFlyoutItem MinWidth="230" />
         <menu:ExitMenuFlyoutItem MinWidth="230" />
     </MenuBarItem>
