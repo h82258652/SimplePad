@@ -15,7 +15,8 @@
         <menu:ExitMenuItem />
     </MenuBarItem>
     <MenuBarItem Title="Edit">
-        <menu:UndoMenuItem />
+        <menu:UndoMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <MenuFlyoutSeparator MinWidth="230" />
         <menu:CopyMenuItem />
         <menu:PasteMenuItem />
     </MenuBarItem>
