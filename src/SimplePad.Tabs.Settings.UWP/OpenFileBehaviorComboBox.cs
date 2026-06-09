@@ -49,8 +49,6 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
 
     private void UpdateSelectedItem()
     {
-        SelectedItem = _items.FirstOrDefault(item =>
-            item.Value == _tabsSettings.OpenFileBehavior.Value
-        );
+        SelectedItem = _items.FirstOrDefault(item => item.Value == _tabsSettings.OpenFileBehavior.Value);
     }
 }
