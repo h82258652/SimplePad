@@ -7,17 +7,17 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class RestoreDefaultZoomMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class RestoreDefaultZoomMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(RestoreDefaultZoomMenuFlyoutItem),
+        typeof(RestoreDefaultZoomMenuItem),
         null);
 
     private readonly EditorZoomState _editorZoomState;
 
-    public RestoreDefaultZoomMenuFlyoutItem()
+    public RestoreDefaultZoomMenuItem()
     {
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
