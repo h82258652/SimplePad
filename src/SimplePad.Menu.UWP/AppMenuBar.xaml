@@ -39,7 +39,7 @@
         Title="Edit"
         Margin="4,0,0,0"
         Style="{StaticResource AppMenuBarItemStyle}">
-        <menu:UndoMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:UndoMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:CutMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:CopyMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />

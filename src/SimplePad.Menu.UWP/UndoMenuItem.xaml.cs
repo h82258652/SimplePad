@@ -4,15 +4,15 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class UndoMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class UndoMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(UndoMenuFlyoutItem),
+        typeof(UndoMenuItem),
         new PropertyMetadata(null, OnTextBoxChanged));
 
-    public UndoMenuFlyoutItem()
+    public UndoMenuItem()
     {
         InitializeComponent();
     }
@@ -25,7 +25,7 @@ public sealed partial class UndoMenuFlyoutItem : MenuFlyoutItem
 
     private static void OnTextBoxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        UndoMenuFlyoutItem self = (UndoMenuFlyoutItem)d;
+        UndoMenuItem self = (UndoMenuItem)d;
         IAppTextBox? oldTextBox = (IAppTextBox?)e.OldValue;
         if (oldTextBox is not null)
         {
