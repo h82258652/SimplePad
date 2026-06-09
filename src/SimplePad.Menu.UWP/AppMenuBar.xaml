@@ -47,7 +47,7 @@
         <menu:DeleteMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:FindMenuFlyoutItem MinWidth="230" />
-        <menu:FindNextMenuFlyoutItem MinWidth="230" />
+        <menu:FindNextMenuItem MinWidth="230" />
         <menu:FindPreviousMenuFlyoutItem MinWidth="230" />
         <menu:ReplaceMenuFlyoutItem MinWidth="230" />
         <menu:GoToLineMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
