@@ -2,9 +2,9 @@
 
 namespace SimplePad.Search;
 
-public sealed partial class ReplaceAllMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class ReplaceAllMenuItem : MenuFlyoutItem
 {
-    public ReplaceAllMenuFlyoutItem()
+    public ReplaceAllMenuItem()
     {
         InitializeComponent();
     }

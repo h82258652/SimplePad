@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <winui:SplitButton.Flyout>
         <MenuFlyout Placement="Bottom">
-            <search:ReplaceAllMenuFlyoutItem />
+            <search:ReplaceAllMenuItem />
         </MenuFlyout>
     </winui:SplitButton.Flyout>
     <winui:SplitButton.Command>
