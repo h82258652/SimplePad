@@ -7,8 +7,16 @@
     xmlns:local="using:SimplePad.Search"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
     <Border x:Name="RootContainer">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="883" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <FlyoutBase.AttachedFlyout>
             <Flyout x:Name="NotificationFlyout" Placement="Bottom">
                 <TextBlock x:Name="NotificationText" />
