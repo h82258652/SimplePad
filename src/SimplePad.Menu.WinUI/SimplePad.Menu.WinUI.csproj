@@ -14,6 +14,10 @@
     <None Remove="CopyMenuItem.xaml" />
     <None Remove="CutMenuItem.xaml" />
     <None Remove="ExitMenuItem.xaml" />
+    <None Remove="FindMenuItem.xaml" />
+    <None Remove="FindNextMenuItem.xaml" />
+    <None Remove="FindPreviousMenuItem.xaml" />
+    <None Remove="FontMenuItem.xaml" />
     <None Remove="NewTabMenuItem.xaml" />
     <None Remove="NewWindowMenuItem.xaml" />
     <None Remove="OpenMenuItem.xaml" />
@@ -31,6 +35,26 @@
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="FontMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="FindPreviousMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="FindNextMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="FindMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ExitMenuItem.xaml">
