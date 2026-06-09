@@ -23,7 +23,7 @@
         Margin="4,0,0,0"
         Style="{StaticResource AppMenuBarItemStyle}">
         <menu:NewTabMenuItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
-        <menu:NewWindowMenuFlyoutItem MinWidth="230" />
+        <menu:NewWindowMenuItem MinWidth="230" />
         <menu:OpenMenuItem MinWidth="230" />
         <menu:SaveMenuItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:SaveAsMenuItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />

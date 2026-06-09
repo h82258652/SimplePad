@@ -6,11 +6,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class NewWindowMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class NewWindowMenuItem : MenuFlyoutItem
 {
     private readonly IAppWindowManager _appWindowManager;
 
-    public NewWindowMenuFlyoutItem()
+    public NewWindowMenuItem()
     {
         _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
 
