@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml;
@@ -52,7 +53,22 @@ public sealed partial class SearchControl : UserControl
 
     private void Show()
     {
-        throw new NotImplementedException();
+        Visibility = Visibility.Visible;
+        Visual visual = ElementCompositionPreview.GetElementVisual(this);
+        Compositor compositor = visual.Compositor;
+
+        Vector3KeyFrameAnimation scaleAnimation = compositor.CreateVector3KeyFrameAnimation();
+        scaleAnimation.InsertKeyFrame(0f, Vector3.Zero);
+        scaleAnimation.InsertKeyFrame(1f, Vector3.One);
+        scaleAnimation.Duration = TimeSpan.FromSeconds(0.3);
+
+        ScalarKeyFrameAnimation opacityAnimation = compositor.CreateScalarKeyFrameAnimation();
+        opacityAnimation.InsertKeyFrame(0f, 0f);
+        opacityAnimation.InsertKeyFrame(1f, 1f);
+        opacityAnimation.Duration = TimeSpan.FromSeconds(0.3);
+
+        visual.StartAnimation(nameof(visual.Scale), scaleAnimation);
+        visual.StartAnimation(nameof(visual.Opacity), opacityAnimation);
     }
 
     private void ShowNotificationFlyout()
