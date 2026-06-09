@@ -12,6 +12,7 @@
         <menu:NewWindowMenuItem MinWidth="230" />
         <menu:OpenMenuItem />
         <menu:CloseTabMenuItem />
+        <menu:ExitMenuItem />
     </MenuBarItem>
     <MenuBarItem Title="Edit">
         <menu:UndoMenuItem />
