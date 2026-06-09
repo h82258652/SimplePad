@@ -4,15 +4,15 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class NewTabMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class NewTabMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
         nameof(TabRoot),
         typeof(TabRoot),
-        typeof(NewTabMenuFlyoutItem),
+        typeof(NewTabMenuItem),
         null);
 
-    public NewTabMenuFlyoutItem()
+    public NewTabMenuItem()
     {
         InitializeComponent();
     }
