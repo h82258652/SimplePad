@@ -16,8 +16,8 @@
     <Button Style="{StaticResource SearchControlIconButtonStyle}" ToolTipService.ToolTip="More options">
         <Button.Flyout>
             <MenuFlyout Placement="Bottom">
-                <search:IsMatchCaseToggleMenuFlyoutItem />
-                <search:IsWrapAroundToggleMenuFlyoutItem />
+                <search:IsMatchCaseToggleMenuItem />
+                <search:IsWrapAroundToggleMenuItem />
             </MenuFlyout>
         </Button.Flyout>
         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE9E9;" />

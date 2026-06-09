@@ -3,9 +3,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Search;
 
-public sealed partial class MoveDownMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class MoveDownMenuItem : MenuFlyoutItem
 {
-    public MoveDownMenuFlyoutItem()
+    public MoveDownMenuItem()
     {
         InitializeComponent();
     }

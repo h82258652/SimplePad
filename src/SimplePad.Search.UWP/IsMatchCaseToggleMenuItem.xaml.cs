@@ -7,12 +7,12 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Search;
 
-public sealed partial class IsMatchCaseToggleMenuFlyoutItem : ToggleMenuFlyoutItem
+public sealed partial class IsMatchCaseToggleMenuItem : ToggleMenuFlyoutItem
 {
     private readonly CoreDispatcher _dispatcher;
     private readonly ISearchSettings _searchSettings;
 
-    public IsMatchCaseToggleMenuFlyoutItem()
+    public IsMatchCaseToggleMenuItem()
     {
         _dispatcher = Dispatcher;
         _searchSettings = ServiceLocator.Current.GetRequiredService<ISearchSettings>();

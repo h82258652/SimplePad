@@ -20,11 +20,11 @@
                     <MenuFlyoutSubItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE9E9;" />
                     </MenuFlyoutSubItem.Icon>
-                    <search:IsMatchCaseToggleMenuFlyoutItem />
-                    <search:IsWrapAroundToggleMenuFlyoutItem />
+                    <search:IsMatchCaseToggleMenuItem />
+                    <search:IsWrapAroundToggleMenuItem />
                 </MenuFlyoutSubItem>
-                <search:MoveUpMenuFlyoutItem />
-                <search:MoveDownMenuFlyoutItem />
+                <search:MoveUpMenuItem />
+                <search:MoveDownMenuItem />
             </MenuFlyout>
         </Button.Flyout>
         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" />
