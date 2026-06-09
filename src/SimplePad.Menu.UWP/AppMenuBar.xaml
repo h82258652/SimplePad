@@ -52,7 +52,7 @@
         <menu:ReplaceMenuItem MinWidth="230" />
         <menu:GoToLineMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
-        <menu:SelectAllMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:SelectAllMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:TimeDateMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:FontMenuItem MinWidth="230" />
