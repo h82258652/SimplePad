@@ -13,6 +13,7 @@
     <None Remove="CloseTabMenuItem.xaml" />
     <None Remove="CopyMenuItem.xaml" />
     <None Remove="CutMenuItem.xaml" />
+    <None Remove="DeleteMenuItem.xaml" />
     <None Remove="ExitMenuItem.xaml" />
     <None Remove="FindMenuItem.xaml" />
     <None Remove="FindNextMenuItem.xaml" />
@@ -39,6 +40,11 @@
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="DeleteMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="IsWordWrapToggleMenuItem.xaml">

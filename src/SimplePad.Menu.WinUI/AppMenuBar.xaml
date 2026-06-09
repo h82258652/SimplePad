@@ -18,7 +18,8 @@
         <menu:UndoMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:CopyMenuItem />
-        <menu:PasteMenuItem />
+        <menu:PasteMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:DeleteMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
     </MenuBarItem>
     <MenuBarItem Title="View" />
 </MenuBar>
