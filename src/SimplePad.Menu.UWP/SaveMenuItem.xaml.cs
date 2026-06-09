@@ -6,17 +6,17 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class SaveMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class SaveMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
         nameof(Tab),
         typeof(Tab),
-        typeof(SaveMenuFlyoutItem),
+        typeof(SaveMenuItem),
         null);
 
     private readonly TabManager _tabManager;
 
-    public SaveMenuFlyoutItem()
+    public SaveMenuItem()
     {
         _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
 
