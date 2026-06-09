@@ -5,6 +5,7 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/src/">
+    <Project Path="src/SimplePad.Avalonia.App/SimplePad.Avalonia.App.csproj" Id="276f5ffb-aa84-4e33-8637-721c76d32332" />
     <Project Path="src/SimplePad.UWP.App/SimplePad.UWP.App.csproj" Id="92198b67-4390-4eba-b8ab-e10b51409a38">
       <Platform Solution="*|arm64" Project="arm64" />
       <Platform Solution="*|x64" Project="x64" />
