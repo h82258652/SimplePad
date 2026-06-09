@@ -42,7 +42,7 @@
         <menu:UndoMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
         <menu:CutMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
-        <menu:CopyMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:CopyMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:PasteMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:DeleteMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />

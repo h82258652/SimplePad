@@ -4,15 +4,15 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class CopyMenuFlyoutItem : MenuFlyoutItem
+public sealed partial class CopyMenuItem : MenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(CopyMenuFlyoutItem),
+        typeof(CopyMenuItem),
         null);
 
-    public CopyMenuFlyoutItem()
+    public CopyMenuItem()
     {
         InitializeComponent();
     }
