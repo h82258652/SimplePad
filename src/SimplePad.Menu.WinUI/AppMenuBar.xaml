@@ -8,9 +8,15 @@
     xmlns:menu="using:SimplePad.Menu"
     mc:Ignorable="d">
     <MenuBarItem Title="File">
-        <menu:NewTabMenuItem />
+        <menu:NewTabMenuItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
+        <menu:NewWindowMenuItem MinWidth="230" />
+        <menu:OpenMenuItem />
         <menu:CloseTabMenuItem />
     </MenuBarItem>
-    <MenuBarItem Title="Edit" />
+    <MenuBarItem Title="Edit">
+        <menu:UndoMenuItem />
+        <menu:CopyMenuItem />
+        <menu:PasteMenuItem />
+    </MenuBarItem>
     <MenuBarItem Title="View" />
 </MenuBar>
