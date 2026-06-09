@@ -27,7 +27,7 @@
         <menu:OpenMenuItem MinWidth="230" />
         <menu:SaveMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
         <menu:SaveAsMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
-        <menu:SaveAllMenuFlyoutItem MinWidth="230" />
+        <menu:SaveAllMenuItem MinWidth="230" />
         <!--<MenuFlyoutSeparator MinWidth="230" />
         <menu:PrintMenuFlyoutItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />-->
         <MenuFlyoutSeparator MinWidth="230" />
