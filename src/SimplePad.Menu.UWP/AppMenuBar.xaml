@@ -70,6 +70,6 @@
             <menu:RestoreDefaultZoomMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         </MenuFlyoutSubItem>
         <menu:IsStatusBarVisibleToggleMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
-        <menu:IsWordWrapToggleMenuFlyoutItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:IsWordWrapToggleMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
     </MenuBarItem>
 </MenuBar>

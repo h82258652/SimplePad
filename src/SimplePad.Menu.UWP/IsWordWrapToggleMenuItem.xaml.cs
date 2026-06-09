@@ -8,18 +8,18 @@ using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class IsWordWrapToggleMenuFlyoutItem : ToggleMenuFlyoutItem
+public sealed partial class IsWordWrapToggleMenuItem : ToggleMenuFlyoutItem
 {
     public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
         nameof(TextBox),
         typeof(IAppTextBox),
-        typeof(IsWordWrapToggleMenuFlyoutItem),
+        typeof(IsWordWrapToggleMenuItem),
         null);
 
     private readonly CoreDispatcher _dispatcher;
     private readonly IEditorSettings _editorSettings;
 
-    public IsWordWrapToggleMenuFlyoutItem()
+    public IsWordWrapToggleMenuItem()
     {
         _dispatcher = Dispatcher;
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
