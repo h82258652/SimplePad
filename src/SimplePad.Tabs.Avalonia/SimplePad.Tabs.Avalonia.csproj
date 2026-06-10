@@ -5,6 +5,9 @@
     <RootNamespace>SimplePad.Tabs</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.4" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Tabs\SimplePad.Tabs.csproj" />
   </ItemGroup>
 </Project>
