@@ -20,6 +20,7 @@
     <None Remove="FindNextMenuItem.xaml" />
     <None Remove="FindPreviousMenuItem.xaml" />
     <None Remove="FontMenuItem.xaml" />
+    <None Remove="GoToLineMenuItem.xaml" />
     <None Remove="IsStatusBarVisibleToggleMenuItem.xaml" />
     <None Remove="IsWordWrapToggleMenuItem.xaml" />
     <None Remove="NewTabMenuItem.xaml" />
@@ -45,6 +46,11 @@
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="GoToLineMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SaveAllMenuItem.xaml">
