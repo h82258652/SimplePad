@@ -10,9 +10,14 @@
     <MenuBarItem Title="File">
         <menu:NewTabMenuItem MinWidth="230" TabRoot="{x:Bind Tab.Root, Mode=OneWay}" />
         <menu:NewWindowMenuItem MinWidth="230" />
-        <menu:OpenMenuItem />
-        <menu:CloseTabMenuItem />
-        <menu:ExitMenuItem />
+        <menu:OpenMenuItem MinWidth="230" />
+        <menu:SaveMenuItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
+        <menu:SaveAsMenuItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
+        <menu:SaveAllMenuItem MinWidth="230" />
+        <MenuFlyoutSeparator MinWidth="230" />
+        <menu:CloseTabMenuItem MinWidth="230" Tab="{x:Bind Tab, Mode=OneWay}" />
+        <menu:CloseWindowMenuItem MinWidth="230" />
+        <menu:ExitMenuItem MinWidth="230" />
     </MenuBarItem>
     <MenuBarItem Title="Edit">
         <menu:UndoMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
