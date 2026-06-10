@@ -1,24 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using SimplePad.Core;
+using SimplePad.Editor;
 
 namespace SimplePad.Menu;
 
 public sealed partial class RestoreDefaultZoomMenuItem : MenuFlyoutItem
 {
+    public static readonly DependencyProperty TextBoxProperty = DependencyProperty.Register(
+        nameof(TextBox),
+        typeof(IAppTextBox),
+        typeof(RestoreDefaultZoomMenuItem),
+        null);
+
+    private readonly EditorZoomState _editorZoomState;
+
     public RestoreDefaultZoomMenuItem()
     {
+        _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
+
         InitializeComponent();
+    }
+
+    public IAppTextBox? TextBox
+    {
+        get => (IAppTextBox?)GetValue(TextBoxProperty);
+        set => SetValue(TextBoxProperty, value);
+    }
+
+    private async void OnClick(object sender, RoutedEventArgs e)
+    {
+        _editorZoomState.ResetZoomFactor();
+        await Task.Yield();
+        TextBox?.Focus();
     }
 }
