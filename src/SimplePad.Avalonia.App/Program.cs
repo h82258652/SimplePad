@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
 
-namespace SimplePad.Avalonia.App
+namespace SimplePad.App
 {
     internal class Program
     {

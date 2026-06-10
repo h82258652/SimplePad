@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace SimplePad.Avalonia.App
+namespace SimplePad.App
 {
     public partial class MainWindow : Window
     {
