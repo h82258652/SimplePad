@@ -22,9 +22,22 @@
     <MenuBarItem Title="Edit">
         <menu:UndoMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <MenuFlyoutSeparator MinWidth="230" />
-        <menu:CopyMenuItem />
+        <menu:CutMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:CopyMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:PasteMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
         <menu:DeleteMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:SelectAllMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:TimeDateMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <MenuFlyoutSeparator MinWidth="230" />
+        <menu:FontMenuItem MinWidth="230" />
     </MenuBarItem>
-    <MenuBarItem Title="View" />
+    <MenuBarItem Title="View">
+        <MenuFlyoutSubItem>
+            <menu:ZoomInMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+            <menu:ZoomOutMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+            <menu:RestoreDefaultZoomMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        </MenuFlyoutSubItem>
+        <menu:IsStatusBarVisibleToggleMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+        <menu:IsWordWrapToggleMenuItem MinWidth="230" TextBox="{x:Bind TextBox, Mode=OneWay}" />
+    </MenuBarItem>
 </MenuBar>
