@@ -6,6 +6,9 @@
     <RootNamespace>SimplePad.Search</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
   </ItemGroup>
   <ItemGroup>
