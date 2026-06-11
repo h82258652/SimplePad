@@ -28,7 +28,7 @@
                     <Button Grid.Column="2" />
                     <Button Grid.Column="4" />
                     <Button Grid.Column="6" />
-                    <Button Grid.Column="8" />
+                    <search:ExitFindAndReplaceButton Grid.Column="8" />
                 </Grid>
             </Expander.Header>
             <Grid>
