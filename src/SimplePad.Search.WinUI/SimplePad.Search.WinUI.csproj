@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="CompactMoreOptionsButton.xaml" />
+    <None Remove="MoveDownMenuItem.xaml" />
+    <None Remove="MoveUpMenuItem.xaml" />
     <None Remove="SearchControl.xaml" />
     <None Remove="SearchTextBox.xaml" />
   </ItemGroup>
@@ -21,6 +23,16 @@
     <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.WinUI\SimplePad.Themes.WinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MoveDownMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MoveUpMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="CompactMoreOptionsButton.xaml">
