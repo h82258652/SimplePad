@@ -1,5 +1,5 @@
-﻿<UserControl
-    x:Class="SimplePad.Search.SearchUpButton"
+﻿<Button
+    x:Class="SimplePad.Search.ExandedMoreOptionsButton"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    ToolTip="More options"
     mc:Ignorable="d">
-    <Grid />
-</UserControl>
+    <Button.ContextMenu>
+        <ContextMenu>
+            <MenuItem IsCheckable="True" />
+            <MenuItem IsCheckable="True" />
+        </ContextMenu>
+    </Button.ContextMenu>
+</Button>

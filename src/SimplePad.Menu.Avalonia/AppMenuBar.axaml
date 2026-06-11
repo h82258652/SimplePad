@@ -11,7 +11,7 @@
     <MenuItem Header="File">
         <menu:NewTabMenuItem />
         <menu:NewWindowMenuItem />
-        <menu:OpenMenuItem/>
+        <menu:OpenMenuItem />
         <menu:CloseTabMenuItem />
         <menu:CloseWindowMenuItem />
     </MenuItem>

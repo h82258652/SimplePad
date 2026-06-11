@@ -9,8 +9,8 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Border>
-        <Expander>
-            <Expander.Header>
+        <search:SearchControlExpander>
+            <search:SearchControlExpander.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -25,12 +25,12 @@
                     </Grid.ColumnDefinitions>
                     <search:SearchTextBox />
                     <Button Grid.Column="2" Grid.ColumnSpan="5" />
-                    <Button Grid.Column="2" />
-                    <Button Grid.Column="4" />
+                    <search:SearchDownButton Grid.Column="2" />
+                    <search:SearchUpButton Grid.Column="4" />
                     <Button Grid.Column="6" />
                     <search:ExitFindAndReplaceButton Grid.Column="8" />
                 </Grid>
-            </Expander.Header>
+            </search:SearchControlExpander.Header>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -44,6 +44,6 @@
                 <search:ReplaceButton Grid.Column="2" />
                 <search:ReplaceAllButton Grid.Column="4" />
             </Grid>
-        </Expander>
+        </search:SearchControlExpander>
     </Border>
 </UserControl>
