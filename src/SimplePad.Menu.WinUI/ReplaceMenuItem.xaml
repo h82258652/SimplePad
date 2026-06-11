@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MenuFlyoutItem
-    x:Class="SimplePad.Menu.CloseWindowMenuItem"
+    x:Class="SimplePad.Menu.ReplaceMenuItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:SimplePad.Menu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Click="OnClick"
-    Text="Close window"
+    xmlns:menu="using:SimplePad.Menu"
+    Text="Replace"
     mc:Ignorable="d">
     <MenuFlyoutItem.KeyboardAccelerators>
-        <KeyboardAccelerator Key="W" Modifiers="Control,Shift" />
+        <KeyboardAccelerator Key="H" Modifiers="Control" />
     </MenuFlyoutItem.KeyboardAccelerators>
+    <MenuFlyoutItem.Command>
+        <menu:ReplaceCommand />
+    </MenuFlyoutItem.Command>
 </MenuFlyoutItem>

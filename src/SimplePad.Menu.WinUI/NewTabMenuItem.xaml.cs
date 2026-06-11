@@ -22,4 +22,9 @@ public sealed partial class NewTabMenuItem : MenuFlyoutItem
         get => (TabRoot?)GetValue(TabRootProperty);
         set => SetValue(TabRootProperty, value);
     }
+
+    private void OnClick(object sender, RoutedEventArgs e)
+    {
+        TabRoot?.AddBlankTab();
+    }
 }

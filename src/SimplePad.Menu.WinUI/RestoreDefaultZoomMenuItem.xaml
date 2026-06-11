@@ -6,4 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SimplePad.Menu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" />
+    Click="OnClick"
+    Text="Restore default zoom"
+    mc:Ignorable="d">
+    <MenuFlyoutItem.KeyboardAccelerators>
+        <KeyboardAccelerator Key="Number0" Modifiers="Control" />
+        <KeyboardAccelerator Key="NumberPad0" Modifiers="Control" />
+    </MenuFlyoutItem.KeyboardAccelerators>
+</MenuFlyoutItem>

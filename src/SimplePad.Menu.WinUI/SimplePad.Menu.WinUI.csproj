@@ -27,6 +27,7 @@
     <None Remove="NewWindowMenuItem.xaml" />
     <None Remove="OpenMenuItem.xaml" />
     <None Remove="PasteMenuItem.xaml" />
+    <None Remove="ReplaceMenuItem.xaml" />
     <None Remove="RestoreDefaultZoomMenuItem.xaml" />
     <None Remove="SaveAllMenuItem.xaml" />
     <None Remove="SaveAsMenuItem.xaml" />
@@ -46,6 +47,11 @@
     <ProjectReference Include="..\SimplePad.Menu\SimplePad.Menu.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.StatusBar\SimplePad.StatusBar.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ReplaceMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="GoToLineMenuItem.xaml">

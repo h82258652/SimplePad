@@ -2,9 +2,9 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace SimplePad.Menu;
 
-public sealed partial class FindPreviousMenuItem : MenuFlyoutItem
+public sealed partial class ReplaceMenuItem : MenuFlyoutItem
 {
-    public FindPreviousMenuItem()
+    public ReplaceMenuItem()
     {
         InitializeComponent();
     }

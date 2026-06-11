@@ -6,4 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:SimplePad.Menu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" />
+    Click="OnClick"
+    Text="Save as"
+    mc:Ignorable="d">
+    <MenuFlyoutItem.KeyboardAccelerators>
+        <KeyboardAccelerator Key="S" Modifiers="Control,Shift" />
+    </MenuFlyoutItem.KeyboardAccelerators>
+</MenuFlyoutItem>

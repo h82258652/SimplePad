@@ -1,28 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using SimplePad.Core;
+using SimplePad.Tabs;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace SimplePad.Menu;
 
-namespace SimplePad.Menu
+public sealed partial class SaveAsMenuItem : MenuFlyoutItem
 {
-    public sealed partial class SaveAsMenuItem : MenuFlyoutItem
+    public static readonly DependencyProperty TabProperty = DependencyProperty.Register(
+        nameof(Tab),
+        typeof(Tab),
+        typeof(SaveAsMenuItem),
+        null);
+
+    private readonly TabManager _tabManager;
+
+    public SaveAsMenuItem()
     {
-        public SaveAsMenuItem()
+        _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
+
+        InitializeComponent();
+    }
+
+    public Tab? Tab
+    {
+        get => (Tab?)GetValue(TabProperty);
+        set => SetValue(TabProperty, value);
+    }
+
+    private async void OnClick(object sender, RoutedEventArgs e)
+    {
+        if (Tab is { } tab)
         {
-            InitializeComponent();
+            _ = await _tabManager.SaveToAnotherFileAsync(tab);
         }
     }
 }
