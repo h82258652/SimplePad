@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="SearchControl.xaml" />
+    <None Remove="SearchTextBox.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
@@ -19,6 +20,11 @@
     <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.WinUI\SimplePad.Themes.WinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SearchTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SearchControl.xaml">
