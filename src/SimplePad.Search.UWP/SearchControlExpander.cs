@@ -16,6 +16,8 @@ public sealed partial class SearchControlExpander : Expander
         DefaultStyleKey = typeof(SearchControlExpander);
         DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Search.UWP/SearchControlExpander.xaml");
 
+        UpdateIsExpanded();
+
         Expanding += OnExpanding;
         Collapsed += OnCollapsed;
         _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
