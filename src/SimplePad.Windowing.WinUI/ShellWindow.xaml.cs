@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using SimplePad.Core;
 using SimplePad.Settings;
+using System;
 
 namespace SimplePad.Windowing;
 
@@ -10,8 +11,10 @@ public sealed partial class ShellWindow : Window
     private readonly IAppWindowManager _appWindowManager;
     private readonly SettingsState _settingsState;
 
-    public ShellWindow(IAppWindow appWindow)
+    public ShellWindow(IAppWindow appWindow, IServiceProvider scopeServiceProvider)
     {
+        ServiceLocator.SetScopedLocatorProvider(AppWindow.Id, scopeServiceProvider);
+
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
         _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
 
