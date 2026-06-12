@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,7 +42,7 @@ public sealed class AppTextBox : TextBox, IAppTextBox
 
     public void Focus()
     {
-        throw new NotImplementedException();
+        Focus(FocusState.Programmatic);
     }
 
     public Task GoToLineAsync()

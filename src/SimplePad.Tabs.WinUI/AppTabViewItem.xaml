@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:editor="using:SimplePad.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Header="TODO"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
