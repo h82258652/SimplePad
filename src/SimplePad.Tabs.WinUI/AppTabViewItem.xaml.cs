@@ -12,9 +12,9 @@ public sealed partial class AppTabViewItem : TabViewItem
         typeof(AppTabViewItem),
         new PropertyMetadata(null, OnTabChanged));
 
-    private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    public AppTabViewItem()
     {
-        throw new NotImplementedException();
+        InitializeComponent();
     }
 
     public Tab? Tab
@@ -23,8 +23,25 @@ public sealed partial class AppTabViewItem : TabViewItem
         set => SetValue(TabProperty, value);
     }
 
-    public AppTabViewItem()
+    private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        InitializeComponent();
+        AppTabViewItem self = (AppTabViewItem)d;
+        Tab? oldTab = (Tab?)e.OldValue;
+        if (oldTab is not null)
+        {
+        }
+
+        Tab? newTab = (Tab?)e.NewValue;
+        if (newTab is not null)
+        {
+
+        }
+
+        self.UpdateTextBox();
+    }
+
+    private void UpdateTextBox()
+    {
+        TextBox.Text = Tab?.Content ?? string.Empty;
     }
 }
