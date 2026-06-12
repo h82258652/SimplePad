@@ -11,7 +11,7 @@ internal sealed class WPFServiceScopeIdProvider : IServiceScopeIdProvider
         _appWindowManager = appWindowManager;
     }
 
-    public int? Get()
+    public object? Get()
     {
         if (_appWindowManager.CurrentWindow is { } currentWindow)
         {
