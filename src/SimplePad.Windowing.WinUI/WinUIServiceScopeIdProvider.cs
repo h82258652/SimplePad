@@ -1,5 +1,4 @@
 ﻿using SimplePad.Core;
-using System;
 
 namespace SimplePad.Windowing;
 
@@ -12,11 +11,11 @@ internal sealed class WinUIServiceScopeIdProvider : IServiceScopeIdProvider
         _appWindowManager = appWindowManager;
     }
 
-    public int? Get()
+    public object? Get()
     {
-        if (_appWindowManager.CurrentWindow is { } currentWindow)
+        if (_appWindowManager.CurrentWindow is WinUIAppWindow currentWindow)
         {
-            return currentWindow.GetHashCode();
+            return currentWindow.ShellWindow?.AppWindow.Id;
         }
 
         return null;
