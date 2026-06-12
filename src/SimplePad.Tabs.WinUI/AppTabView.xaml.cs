@@ -5,7 +5,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace SimplePad.Tabs;
 
-public sealed partial class AppTabView : UserControl
+public sealed partial class AppTabView : TabView
 {
     public static readonly DependencyProperty TabRootProperty = DependencyProperty.Register(
         nameof(TabRoot),
