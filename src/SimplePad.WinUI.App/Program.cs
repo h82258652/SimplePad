@@ -9,6 +9,8 @@ using SimplePad.Search;
 using SimplePad.StatusBar;
 using SimplePad.Tabs;
 using SimplePad.Themes;
+using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using WinRT;
@@ -39,5 +41,13 @@ public static class Program
             SynchronizationContext.SetSynchronizationContext(context);
             _ = new App(host.Services);
         });
+
+        await Task.WhenAll(
+            host.Services.GetRequiredService<IEditorSettings>().SaveAsync(),
+            host.Services.GetRequiredService<IFontSettings>().SaveAsync(),
+            host.Services.GetRequiredService<ISearchSettings>().SaveAsync(),
+            host.Services.GetRequiredService<IStatusBarSettings>().SaveAsync(),
+            host.Services.GetRequiredService<ITabsSettings>().SaveAsync(),
+            host.Services.GetRequiredService<IThemeSettings>().SaveAsync());
     }
 }
