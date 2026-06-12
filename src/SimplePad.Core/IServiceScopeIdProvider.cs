@@ -2,5 +2,5 @@
 
 public interface IServiceScopeIdProvider
 {
-    int? Get();
+    object? Get();
 }

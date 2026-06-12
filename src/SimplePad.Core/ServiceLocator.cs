@@ -8,7 +8,7 @@ namespace SimplePad.Core;
 /// </summary>
 public static class ServiceLocator
 {
-    private static readonly Dictionary<int, IServiceProvider> _scopedProviders = [];
+    private static readonly Dictionary<object, IServiceProvider> _scopedProviders = [];
     private static IServiceProvider? _globalProvider;
     private static IServiceScopeIdProvider? _scopeIdProvider;
 
@@ -24,10 +24,10 @@ public static class ServiceLocator
                 throw new InvalidOperationException("The service provider ID provider has not been set.");
             }
 
-            int? providerId = idProvider.Get();
-            if (providerId.HasValue)
+            object? providerId = idProvider.Get();
+            if (providerId is not null)
             {
-                if (_scopedProviders.TryGetValue(providerId.Value, out IServiceProvider? serviceProvider))
+                if (_scopedProviders.TryGetValue(providerId, out IServiceProvider? serviceProvider))
                 {
                     return serviceProvider;
                 }
@@ -63,7 +63,7 @@ public static class ServiceLocator
     /// </summary>
     /// <param name="scopeId">TODO</param>
     /// <param name="serviceProvider">The <see cref="IServiceProvider"/> instance.</param>
-    public static void SetScopedLocatorProvider(int scopeId, IServiceProvider serviceProvider)
+    public static void SetScopedLocatorProvider(object scopeId, IServiceProvider serviceProvider)
     {
         if (!_scopedProviders.TryAdd(scopeId, serviceProvider))
         {
