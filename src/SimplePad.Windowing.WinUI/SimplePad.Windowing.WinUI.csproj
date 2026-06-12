@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.File.WinUI\SimplePad.File.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Search.WinUI\SimplePad.Search.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Settings.WinUI\SimplePad.Settings.WinUI.csproj" />
