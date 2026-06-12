@@ -1,7 +1,9 @@
-using System;
-using System.Collections.Specialized;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SimplePad.Core;
+using SimplePad.Settings;
+using System.Collections.Specialized;
 
 namespace SimplePad.Tabs;
 
@@ -13,8 +15,12 @@ public sealed partial class AppTabView : TabView
         typeof(AppTabView),
         new PropertyMetadata(null, OnTabRootChanged));
 
+    private readonly SettingsState _settingsState;
+
     public AppTabView()
     {
+        _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
+
         InitializeComponent();
     }
 
@@ -46,16 +52,17 @@ public sealed partial class AppTabView : TabView
 
     private void OnTabRootSelectedTabChanged(object? sender, Tab? e)
     {
-        throw new NotImplementedException();
+        UpdateSelectedItem();
     }
 
     private void OnTabRootTabsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        throw new NotImplementedException();
+        // If the Tabs collection is changed (eg. Open a file), close the settings view to ensure the new tab is visible
+        _settingsState.IsVisible = false;
     }
 
     private void UpdateSelectedItem()
     {
-        throw new NotImplementedException();
+        SelectedItem = TabRoot?.SelectedTab;
     }
 }
