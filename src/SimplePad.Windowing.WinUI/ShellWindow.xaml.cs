@@ -11,12 +11,14 @@ public sealed partial class ShellWindow : Window
     private readonly IAppWindowManager _appWindowManager;
     private readonly SettingsState _settingsState;
 
-    public ShellWindow(IAppWindow appWindow, IServiceProvider scopeServiceProvider)
+    internal ShellWindow(WinUIAppWindow appWindow, IServiceProvider scopeServiceProvider)
     {
+        appWindow.ShellWindow = this;
         ServiceLocator.SetScopedLocatorProvider(AppWindow.Id, scopeServiceProvider);
 
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
         _appWindowManager = ServiceLocator.Current.GetRequiredService<IAppWindowManager>();
+        AppWindowInstance = appWindow;
 
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
@@ -25,6 +27,8 @@ public sealed partial class ShellWindow : Window
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
     }
+
+    internal IAppWindow AppWindowInstance { get; }
 
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
