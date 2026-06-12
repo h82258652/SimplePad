@@ -17,5 +17,26 @@ public sealed partial class ShellWindow : Window
 
         InitializeComponent();
         TabView.TabRoot = appWindow.TabRoot;
+
+        UpdateContentGridVisibility();
+
+        _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
+    }
+
+    private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
+    {
+        UpdateContentGridVisibility();
+    }
+
+    private void UpdateContentGridVisibility()
+    {
+        if (_settingsState.IsVisible)
+        {
+            ContentGrid.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            ContentGrid.Visibility = Visibility.Visible;
+        }
     }
 }
