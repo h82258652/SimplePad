@@ -5,7 +5,7 @@ namespace SimplePad.Windowing;
 
 internal sealed class UWPServiceScopeIdProvider : IServiceScopeIdProvider
 {
-    public int? Get()
+    public object? Get()
     {
         return Environment.CurrentManagedThreadId;
     }
