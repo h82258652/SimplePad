@@ -16,13 +16,18 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace SimplePad.Tabs
+namespace SimplePad.Tabs;
+
+public sealed partial class AppTabViewItem : UserControl
 {
-    public sealed partial class AppTabViewItem : UserControl
+    public Tab? Tab
     {
-        public AppTabViewItem()
-        {
-            InitializeComponent();
-        }
+        get;
+        set;
+    }
+
+    public AppTabViewItem()
+    {
+        InitializeComponent();
     }
 }
