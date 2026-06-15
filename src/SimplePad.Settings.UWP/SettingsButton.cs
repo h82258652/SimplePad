@@ -25,5 +25,7 @@ public sealed partial class SettingsButton : Button
     private void OnClick(object sender, RoutedEventArgs e)
     {
         _settingsState.IsVisible = true;
+
+        // TODO Scroll to the top of the settings page
     }
 }
