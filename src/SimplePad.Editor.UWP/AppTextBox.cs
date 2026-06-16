@@ -140,10 +140,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         contentElement.PointerWheelChanged += OnContentElementPointerWheelChanged;
     }
 
-    private static void OnCursorPositionChanged(
-        DependencyObject d,
-        DependencyPropertyChangedEventArgs e
-    )
+    private static void OnCursorPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppTextBox self = (AppTextBox)d;
         CursorPosition cursorPosition = (CursorPosition)e.NewValue;
