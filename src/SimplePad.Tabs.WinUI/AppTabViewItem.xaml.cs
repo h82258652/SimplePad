@@ -5,7 +5,6 @@ using SimplePad.Core;
 using SimplePad.File;
 using SimplePad.Search;
 using SimplePad.StatusBar;
-using System;
 using System.Threading.Tasks;
 
 namespace SimplePad.Tabs;
