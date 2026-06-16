@@ -51,6 +51,7 @@ public sealed partial class AppTabViewItem : TabViewItem
         {
             oldTab.TitleChanged -= self.OnTabTitleChanged;
             oldTab.IsModifiedChanged -= self.OnTabIsModifiedChanged;
+            oldTab.ContentChanged -= self.OnTabContentChanged;
         }
 
         Tab? newTab = (Tab?)e.NewValue;
@@ -58,11 +59,17 @@ public sealed partial class AppTabViewItem : TabViewItem
         {
             newTab.TitleChanged += self.OnTabTitleChanged;
             newTab.IsModifiedChanged += self.OnTabIsModifiedChanged;
+            newTab.ContentChanged += self.OnTabContentChanged;
         }
 
         self.UpdateHeader();
         self.UpdateTextBox();
         self.UpdateStatusBarLineEndings();
+    }
+
+    private void OnTabContentChanged(object? sender, string e)
+    {
+        throw new NotImplementedException();
     }
 
     private void OnTabIsModifiedChanged(object? sender, bool e)
