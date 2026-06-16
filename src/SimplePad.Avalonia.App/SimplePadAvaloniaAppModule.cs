@@ -7,6 +7,6 @@ namespace SimplePad.App;
 public sealed class SimplePadAvaloniaAppModule : AppModuleBase
 {
     public override DependsOn DependModules => DependsOn.Create<
-        SimplePadWindowingModule,
+        SimplePadWindowingAvaloniaModule,
         SimplePadFileAvaloniaModule>();
 }

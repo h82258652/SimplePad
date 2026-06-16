@@ -8,6 +8,7 @@
     <PackageReference Include="Avalonia" Version="12.0.4" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.File.Avalonia\SimplePad.File.Avalonia.csproj" />
     <ProjectReference Include="..\SimplePad.Search.Avalonia\SimplePad.Search.Avalonia.csproj" />
     <ProjectReference Include="..\SimplePad.Settings.Avalonia\SimplePad.Settings.Avalonia.csproj" />
     <ProjectReference Include="..\SimplePad.Tabs.Avalonia\SimplePad.Tabs.Avalonia.csproj" />

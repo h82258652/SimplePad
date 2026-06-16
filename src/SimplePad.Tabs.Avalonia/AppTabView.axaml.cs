@@ -1,12 +1,17 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using System;
 
 namespace SimplePad.Tabs;
 
-public partial class AppTabView : TabControl
+public sealed partial class AppTabView : TabControl
 {
     public static readonly StyledProperty<TabRoot?> TabRootProperty = AvaloniaProperty.Register<AppTabView, TabRoot?>(nameof(TabRoot));
+
+    static AppTabView()
+    {
+        TabRootProperty.Changed.AddClassHandler<AppTabView>(OnTabRootChanged);
+    }
 
     public AppTabView()
     {
@@ -17,5 +22,10 @@ public partial class AppTabView : TabControl
     {
         get => GetValue(TabRootProperty);
         set => SetValue(TabRootProperty, value);
+    }
+
+    private static void OnTabRootChanged(AppTabView view, AvaloniaPropertyChangedEventArgs args)
+    {
+        throw new NotImplementedException();
     }
 }
