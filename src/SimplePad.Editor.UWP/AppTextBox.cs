@@ -46,9 +46,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
         DefaultStyleKey = typeof(AppTextBox);
-        DefaultStyleResourceUri = new Uri(
-            "ms-appx:///SimplePad.Editor.UWP/AppTextBox.xaml"
-        );
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.UWP/AppTextBox.xaml");
         InitializeKeyboardAccelerators();
 
         _internalCanUndo = CanUndo;
