@@ -8,4 +8,10 @@ public sealed partial class SettingsView : UserControl
     {
         InitializeComponent();
     }
+
+
+    internal void ScrollToTop()
+    {
+
+    }
 }
