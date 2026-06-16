@@ -5,11 +5,11 @@ using SimplePad.Core;
 
 namespace SimplePad.Settings;
 
-public sealed partial class BackButton : Button
+internal sealed partial class BackButton : Button
 {
     private readonly SettingsState _settingsState;
 
-    public BackButton()
+    internal BackButton()
     {
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
