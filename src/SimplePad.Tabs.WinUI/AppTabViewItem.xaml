@@ -9,7 +9,6 @@
     xmlns:menu="using:SimplePad.Menu"
     xmlns:settings="using:SimplePad.Settings"
     xmlns:statusbar="using:SimplePad.StatusBar"
-    Header="TODO"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
