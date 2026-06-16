@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimplePad.Core.Modularity;
 using SimplePad.Editor;
+using SimplePad.Fonts;
 using SimplePad.Search;
 using SimplePad.StatusBar;
 using SimplePad.Tabs;
