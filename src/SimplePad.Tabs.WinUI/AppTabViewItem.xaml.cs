@@ -27,6 +27,13 @@ public sealed partial class AppTabViewItem : TabViewItem
 
         InitializeComponent();
 
+        UpdateTextBoxPadding();
+        UpdateStatusBarDividerVisibility();
+        UpdateStatusBarLineEndings();
+
+        _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
+        _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
+        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
         RegisterPropertyChangedCallback(IsSelectedProperty, OnIsSelectedChanged);
     }
 
@@ -43,21 +50,24 @@ public sealed partial class AppTabViewItem : TabViewItem
         if (oldTab is not null)
         {
             oldTab.TitleChanged -= self.OnTabTitleChanged;
+            oldTab.IsModifiedChanged -= self.OnTabIsModifiedChanged;
         }
 
         Tab? newTab = (Tab?)e.NewValue;
         if (newTab is not null)
         {
             newTab.TitleChanged += self.OnTabTitleChanged;
+            newTab.IsModifiedChanged += self.OnTabIsModifiedChanged;
         }
 
         self.UpdateHeader();
         self.UpdateTextBox();
+        self.UpdateStatusBarLineEndings();
     }
 
-    private void OnTabTitleChanged(object? sender, string e)
+    private void OnTabIsModifiedChanged(object? sender, bool e)
     {
-        UpdateHeader();
+        throw new NotImplementedException();
     }
 
     private async void OnIsSelectedChanged(DependencyObject sender, DependencyProperty dp)
@@ -68,6 +78,26 @@ public sealed partial class AppTabViewItem : TabViewItem
             await Task.Yield();
             TextBox.Focus();
         }
+    }
+
+    private void OnSearchViewStateIsReplaceModeChanged(object? sender, bool e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
+    {
+        UpdateTextBoxPadding();
+    }
+
+    private void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnTabTitleChanged(object? sender, string e)
+    {
+        UpdateHeader();
     }
 
     private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
@@ -83,8 +113,23 @@ public sealed partial class AppTabViewItem : TabViewItem
         Header = Tab?.Title ?? TabConstants.DefaultTabTitle;
     }
 
+    private void UpdateStatusBarDividerVisibility()
+    {
+        // TODO
+    }
+
+    private void UpdateStatusBarLineEndings()
+    {
+        // TODO
+    }
+
     private void UpdateTextBox()
     {
         TextBox.Text = Tab?.Content ?? string.Empty;
+    }
+
+    private void UpdateTextBoxPadding()
+    {
+        // TODO
     }
 }
