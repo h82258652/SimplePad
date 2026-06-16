@@ -22,6 +22,7 @@
     <ProjectReference Include="..\SimplePad.Fonts.Settings.WinUI\SimplePad.Fonts.Settings.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.Tabs.Settings.WinUI\SimplePad.Tabs.Settings.WinUI.csproj" />
+    <ProjectReference Include="..\SimplePad.Themes.Settings.WinUI\SimplePad.Themes.Settings.WinUI.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="SettingsView.xaml">

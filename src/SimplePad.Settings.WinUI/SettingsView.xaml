@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:settings="using:SimplePad.Settings"
     xmlns:tabs="using:SimplePad.Tabs"
+    xmlns:themes="using:SimplePad.Themes"
     xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
     <Grid>
@@ -19,9 +20,32 @@
         </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <VisualState x:Name="Narrow" />
-                <VisualState x:Name="Middle" />
-                <VisualState x:Name="Wide" />
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="646" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitleText.Margin" Value="0,22" />
+                        <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="958" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitleText.Margin" Value="0,22" />
+                        <Setter Target="TitleText.Style" Value="{StaticResource TitleLargeTextBlockStyle}" />
+                        <Setter Target="ContentScrollViewer.Padding" Value="54,0" />
+                        <Setter Target="SettingsSection.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="SettingsSection.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="AboutSection.(Grid.Column)" Value="1" />
+                        <Setter Target="AboutSection.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="AboutSection.(Grid.Row)" Value="0" />
+                        <Setter Target="AboutSection.(Grid.RowSpan)" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid>
@@ -30,8 +54,13 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Margin="6,0,0,0" VerticalAlignment="Center" />
-            <Image />
+            <settings:BackButton Margin="6,0,0,0" VerticalAlignment="Center" />
+            <Image
+                Grid.Column="1"
+                Width="28"
+                Height="28"
+                Margin="6,0,0,0"
+                VerticalAlignment="Center" />
             <TextBlock
                 Grid.Column="2"
                 Margin="10,0,0,0"
@@ -48,6 +77,7 @@
                 <TextBlock
                     x:Name="TitleText"
                     Margin="0,14"
+                    Style="{StaticResource TitleTextBlockStyle}"
                     Text="Settings" />
                 <Grid
                     Margin="0,0,0,20"
@@ -63,7 +93,19 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel x:Name="SettingsSection" Grid.ColumnSpan="2">
                         <TextBlock Text="Appearance" />
-                        <toolkit:SettingsExpander />
+                        <toolkit:SettingsExpander
+                            Margin="0,12,0,0"
+                            Description="Select which app theme to display"
+                            Header="App theme">
+                            <toolkit:SettingsExpander.HeaderIcon>
+                                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE790;" />
+                            </toolkit:SettingsExpander.HeaderIcon>
+                            <toolkit:SettingsExpander.Items>
+                                <toolkit:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" ContentAlignment="Left">
+                                    <themes:ThemeSettingsControl />
+                                </toolkit:SettingsCard>
+                            </toolkit:SettingsExpander.Items>
+                        </toolkit:SettingsExpander>
                         <StackPanel x:Name="PanelBelowAppThemeSettingsExpander">
                             <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
                             <toolkit:SettingsExpander x:Name="FontSettingsExpander" Margin="0,12,0,0">
