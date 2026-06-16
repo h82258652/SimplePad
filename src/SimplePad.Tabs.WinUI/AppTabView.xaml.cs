@@ -16,9 +16,11 @@ public sealed partial class AppTabView : TabView
         new PropertyMetadata(null, OnTabRootChanged));
 
     private readonly SettingsState _settingsState;
+    private readonly TabManager _tabManager;
 
     public AppTabView()
     {
+        _tabManager = ServiceLocator.Current.GetRequiredService<TabManager>();
         _settingsState = ServiceLocator.Current.GetRequiredService<SettingsState>();
 
         InitializeComponent();
@@ -69,6 +71,14 @@ public sealed partial class AppTabView : TabView
     {
         // If the Tabs collection is changed (eg. Open a file), close the settings view to ensure the new tab is visible
         _settingsState.IsVisible = false;
+    }
+
+    private async void OnTabViewTabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+    {
+        if (args.Item is Tab tab)
+        {
+            await _tabManager.CloseAsync(tab);
+        }
     }
 
     private void UpdateSelectedItem()

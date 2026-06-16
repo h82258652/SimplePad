@@ -8,6 +8,7 @@
     xmlns:tabs="using:SimplePad.Tabs"
     VerticalAlignment="Stretch"
     AddTabButtonClick="OnAddTabButtonClick"
+    TabCloseRequested="OnTabViewTabCloseRequested"
     TabItemsSource="{x:Bind TabRoot.Tabs, Mode=OneWay}"
     mc:Ignorable="d">
     <TabView.TabItemTemplate>
