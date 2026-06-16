@@ -42,7 +42,7 @@ public sealed partial class SettingsView : UserControl
 
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
-        _settingsState.IsFontSettingsExpanded = true;
+        UpdateVisibility();
     }
 
     private void UpdateFontSettingsExpander()
