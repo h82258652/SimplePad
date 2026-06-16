@@ -9,6 +9,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="BackButton.xaml" />
     <None Remove="SettingsView.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -23,6 +24,11 @@
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
     <ProjectReference Include="..\SimplePad.Tabs.Settings.WinUI\SimplePad.Tabs.Settings.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.Settings.WinUI\SimplePad.Themes.Settings.WinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="BackButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SettingsView.xaml">
