@@ -52,6 +52,7 @@ public sealed partial class AppTabViewItem : TabViewItem
             oldTab.TitleChanged -= self.OnTabTitleChanged;
             oldTab.IsModifiedChanged -= self.OnTabIsModifiedChanged;
             oldTab.ContentChanged -= self.OnTabContentChanged;
+            oldTab.LineEndingsChanged -= self.OnTabLineEndingsChanged;
         }
 
         Tab? newTab = (Tab?)e.NewValue;
@@ -60,26 +61,12 @@ public sealed partial class AppTabViewItem : TabViewItem
             newTab.TitleChanged += self.OnTabTitleChanged;
             newTab.IsModifiedChanged += self.OnTabIsModifiedChanged;
             newTab.ContentChanged += self.OnTabContentChanged;
+            newTab.LineEndingsChanged += self.OnTabLineEndingsChanged;
         }
 
         self.UpdateHeader();
         self.UpdateTextBox();
         self.UpdateStatusBarLineEndings();
-    }
-
-    private void OnTabContentChanged(object? sender, string e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void OnTabIsModifiedChanged(object? sender, bool e)
-    {
-        UpdateModifiedIndicatorVisibility();
-    }
-
-    private void UpdateModifiedIndicatorVisibility()
-    {
-        // TODO
     }
 
     private async void OnIsSelectedChanged(DependencyObject sender, DependencyProperty dp)
@@ -107,6 +94,21 @@ public sealed partial class AppTabViewItem : TabViewItem
         throw new NotImplementedException();
     }
 
+    private void OnTabContentChanged(object? sender, string e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnTabIsModifiedChanged(object? sender, bool e)
+    {
+        UpdateModifiedIndicatorVisibility();
+    }
+
+    private void OnTabLineEndingsChanged(object? sender, File.LineEndings e)
+    {
+        throw new NotImplementedException();
+    }
+
     private void OnTabTitleChanged(object? sender, string e)
     {
         UpdateHeader();
@@ -123,6 +125,11 @@ public sealed partial class AppTabViewItem : TabViewItem
     private void UpdateHeader()
     {
         Header = Tab?.Title ?? TabConstants.DefaultTabTitle;
+    }
+
+    private void UpdateModifiedIndicatorVisibility()
+    {
+        // TODO
     }
 
     private void UpdateStatusBarDividerVisibility()
