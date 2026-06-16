@@ -27,6 +27,11 @@ public sealed partial class SettingsView : UserControl
 
     public UIElement TitleBar => TitleBarElement;
 
+    internal void ScrollToTop()
+    {
+        ContentScrollViewer.ChangeView(null, 0, null);
+    }
+
     private void InitializeVersionText()
     {
         PackageVersion version = Package.Current.Id.Version;

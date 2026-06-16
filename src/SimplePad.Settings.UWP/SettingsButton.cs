@@ -1,4 +1,5 @@
 ﻿using System;
+using CommunityToolkit.WinUI;
 using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using Windows.UI.Xaml;
@@ -26,6 +27,6 @@ public sealed partial class SettingsButton : Button
     {
         _settingsState.IsVisible = true;
 
-        // TODO Scroll to the top of the settings page
+        Window.Current.Content.FindDescendant<SettingsView>()?.ScrollToTop();
     }
 }
