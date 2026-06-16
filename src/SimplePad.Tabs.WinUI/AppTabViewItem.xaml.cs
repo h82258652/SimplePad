@@ -67,7 +67,12 @@ public sealed partial class AppTabViewItem : TabViewItem
 
     private void OnTabIsModifiedChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        UpdateModifiedIndicatorVisibility();
+    }
+
+    private void UpdateModifiedIndicatorVisibility()
+    {
+        // TODO
     }
 
     private async void OnIsSelectedChanged(DependencyObject sender, DependencyProperty dp)
