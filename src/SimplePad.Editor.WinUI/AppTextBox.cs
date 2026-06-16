@@ -174,6 +174,16 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private void OnTextChanged(object sender, TextChangedEventArgs e)
     {
+        UpdateInternalCanUndo();
+
+        foreach (EventHandler<string>? handler in _textChangedHandler)
+        {
+            handler?.Invoke(this, Text);
+        }
+    }
+
+    private void UpdateInternalCanUndo()
+    {
         throw new NotImplementedException();
     }
 
