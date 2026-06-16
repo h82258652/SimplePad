@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
+using System;
 using Windows.ApplicationModel;
 
 namespace SimplePad.Settings;
@@ -33,6 +34,16 @@ public sealed partial class SettingsView : UserControl
     {
         PackageVersion version = Package.Current.Id.Version;
         VersionText.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+    }
+
+    private void OnFontSettingsExpanderCollapsed(object sender, EventArgs e)
+    {
+        _settingsState.IsFontSettingsExpanded = false;
+    }
+
+    private void OnFontSettingsExpanderExpanded(object sender, EventArgs e)
+    {
+        _settingsState.IsFontSettingsExpanded = true;
     }
 
     private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)
