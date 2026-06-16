@@ -9,8 +9,6 @@ using SimplePad.Search;
 using SimplePad.StatusBar;
 using SimplePad.Tabs;
 using SimplePad.Themes;
-using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using WinRT;
