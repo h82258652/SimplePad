@@ -28,6 +28,11 @@ public sealed partial class SettingsView : UserControl
         _settingsState.IsFontSettingsExpandedChanged += OnSettingsStateIsFontSettingsExpandedChanged;
     }
 
+    internal void ScrollToTop()
+    {
+        ContentScrollViewer.ScrollToTop();
+    }
+
     private void InitializeVersionText()
     {
         Version version = (Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly()).GetName().Version ?? new Version(1, 0, 0, 0);
@@ -54,6 +59,21 @@ public sealed partial class SettingsView : UserControl
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();
+    }
+
+    private void OnTitleBarMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        if (Window.GetWindow(this) is { } window)
+        {
+            if (e.ClickCount == 2)
+            {
+                window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+            }
+            else
+            {
+                window.DragMove();
+            }
+        }
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
@@ -109,21 +129,6 @@ public sealed partial class SettingsView : UserControl
         {
             VisualStateManager.GoToState(this, nameof(Wide), true);
             TitleText.Style = (Style)FindResource("TitleLargeTextBlockStyle");
-        }
-    }
-
-    private void OnTitleBarMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-        if (Window.GetWindow(this) is { } window)
-        {
-            if (e.ClickCount == 2)
-            {
-                window.WindowState = window.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-            }
-            else
-            {
-                window.DragMove();
-            }
         }
     }
 }

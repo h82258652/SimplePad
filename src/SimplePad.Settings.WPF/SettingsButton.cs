@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EMA.ExtendedWPFVisualTreeHelper;
+using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,5 +25,7 @@ public sealed class SettingsButton : Button
     private void OnClick(object sender, RoutedEventArgs e)
     {
         _settingsState.IsVisible = true;
+
+        Window.GetWindow(this).FindChild<SettingsView>()?.ScrollToTop();
     }
 }
