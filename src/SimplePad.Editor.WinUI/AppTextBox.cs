@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using SimplePad.Core;
 using SimplePad.Fonts;
 using System;
@@ -19,6 +20,13 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         typeof(AppTextBox),
         PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged));
 
+    private static readonly DependencyProperty ZoomedFontSizeProperty = DependencyProperty.Register(
+        nameof(ZoomedFontSize),
+        typeof(double),
+        typeof(AppTextBox),
+        new PropertyMetadata(14d)
+    );
+
     private readonly IEditorSettings _editorSettings;
     private readonly EditorZoomState _editorZoomState;
     private readonly IFontSettings _fontSettings;
@@ -32,8 +40,8 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
-        DefaultStyleKey = typeof(AppTextBox);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.WinUI/AppTextBox.xaml");
+        //DefaultStyleKey = typeof(AppTextBox);
+        //DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.WinUI/AppTextBox.xaml");
 
         _internalCanUndo = CanUndo;
         UpdateFontFamily();
@@ -75,6 +83,12 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
     {
         get => (CursorPosition)GetValue(CursorPositionProperty);
         private set => SetValue(CursorPositionProperty, value);
+    }
+
+    private double ZoomedFontSize
+    {
+        get => (double)GetValue(ZoomedFontSizeProperty);
+        set => SetValue(ZoomedFontSizeProperty, value);
     }
 
     public void Focus()
@@ -185,11 +199,6 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         }
     }
 
-    private void UpdateInternalCanUndo()
-    {
-        throw new NotImplementedException();
-    }
-
     private void UpdateCursorPosition()
     {
         int endMarker = SelectionStart + SelectionLength;
@@ -227,18 +236,23 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private void UpdateFontFamily()
     {
-        throw new NotImplementedException();
+        FontFamily = new FontFamily(_fontSettings.FontFamily);
     }
 
     private void UpdateFontSize()
     {
-        throw new NotImplementedException();
+        FontSize = _fontSettings.FontSize;
     }
 
     private void UpdateFontStyle()
     {
         FontStyle = _fontSettings.FontStyle.GetWinUIFontStyle();
         FontWeight = _fontSettings.FontStyle.GetWinUIFontWeight();
+    }
+
+    private void UpdateInternalCanUndo()
+    {
+        // TODO
     }
 
     private void UpdateIsSpellCheckEnabled()
@@ -253,6 +267,6 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private void UpdateZoomedFontSize()
     {
-        throw new NotImplementedException();
+        ZoomedFontSize = FontSize * _editorZoomState.ZoomFactor;
     }
 }
