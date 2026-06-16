@@ -50,6 +50,16 @@ public sealed partial class AppTabView : TabView
         self.UpdateSelectedItem();
     }
 
+    private void AddBlankTab()
+    {
+        TabRoot?.AddBlankTab();
+    }
+
+    private void OnAddTabButtonClick(TabView sender, object args)
+    {
+        AddBlankTab();
+    }
+
     private void OnTabRootSelectedTabChanged(object? sender, Tab? e)
     {
         UpdateSelectedItem();
