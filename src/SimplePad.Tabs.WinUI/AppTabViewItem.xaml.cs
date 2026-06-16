@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
+using SimplePad.File;
 using SimplePad.Search;
 using SimplePad.StatusBar;
 using System;
@@ -65,6 +66,7 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
 
         self.UpdateHeader();
+        self.UpdateModifiedIndicatorVisibility();
         self.UpdateTextBox();
         self.UpdateStatusBarLineEndings();
     }
@@ -81,7 +83,7 @@ public sealed partial class AppTabViewItem : TabViewItem
 
     private void OnSearchViewStateIsReplaceModeChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        UpdateTextBoxPadding();
     }
 
     private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
@@ -91,12 +93,12 @@ public sealed partial class AppTabViewItem : TabViewItem
 
     private void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
     {
-        throw new NotImplementedException();
+        UpdateStatusBarDividerVisibility();
     }
 
     private void OnTabContentChanged(object? sender, string e)
     {
-        throw new NotImplementedException();
+        UpdateTextBox();
     }
 
     private void OnTabIsModifiedChanged(object? sender, bool e)
@@ -104,9 +106,9 @@ public sealed partial class AppTabViewItem : TabViewItem
         UpdateModifiedIndicatorVisibility();
     }
 
-    private void OnTabLineEndingsChanged(object? sender, File.LineEndings e)
+    private void OnTabLineEndingsChanged(object? sender, LineEndings e)
     {
-        throw new NotImplementedException();
+        UpdateStatusBarLineEndings();
     }
 
     private void OnTabTitleChanged(object? sender, string e)
@@ -134,12 +136,19 @@ public sealed partial class AppTabViewItem : TabViewItem
 
     private void UpdateStatusBarDividerVisibility()
     {
-        // TODO
+        if (_statusBarSettings.IsStatusBarVisible)
+        {
+            StatusBarDivider.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            StatusBarDivider.Visibility = Visibility.Collapsed;
+        }
     }
 
     private void UpdateStatusBarLineEndings()
     {
-        // TODO
+        StatusBar.LineEndings = Tab?.LineEndings ?? LineEndings.CRLF;
     }
 
     private void UpdateTextBox()
@@ -149,6 +158,19 @@ public sealed partial class AppTabViewItem : TabViewItem
 
     private void UpdateTextBoxPadding()
     {
-        // TODO
+        Thickness padding = new(16);
+        if (_searchViewState.IsVisible)
+        {
+            if (_searchViewState.IsReplaceMode)
+            {
+                padding.Top = 120;
+            }
+            else
+            {
+                padding.Top = 80;
+            }
+        }
+
+        TextBox.Padding = padding;
     }
 }
