@@ -32,6 +32,9 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
+        DefaultStyleKey = typeof(AppTextBox);
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.WinUI/AppTextBox.xaml");
+
         _internalCanUndo = CanUndo;
         UpdateFontFamily();
         UpdateFontStyle();
