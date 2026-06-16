@@ -1,8 +1,7 @@
-using System;
-using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
+using System.Linq;
 
 namespace SimplePad.Tabs;
 
@@ -19,9 +18,6 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
             OpenFileBehavior.NewTab,
             OpenFileBehavior.NewWindow
         ];
-
-        DefaultStyleKey = typeof(OpenFileBehaviorComboBox);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Tabs.Settings.WinUI/OpenFileBehaviorComboBox.xaml");
 
         ItemsSource = _items;
         UpdateSelectedItem();
