@@ -37,11 +37,25 @@ public sealed partial class AppTabViewItem : TabViewItem
 
         }
 
+        self.UpdateHeader();
         self.UpdateTextBox();
+    }
+
+    private void UpdateHeader()
+    {
+        Header = Tab?.Title ?? TabConstants.DefaultTabTitle;
     }
 
     private void UpdateTextBox()
     {
         TextBox.Text = Tab?.Content ?? string.Empty;
+    }
+
+    private void OnTextBoxTextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (Tab is { } tab)
+        {
+            tab.Content = TextBox.Text;
+        }
     }
 }

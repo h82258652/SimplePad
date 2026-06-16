@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
-using System;
+using Windows.ApplicationModel;
 
 namespace SimplePad.Settings;
 
@@ -31,7 +31,8 @@ public sealed partial class SettingsView : UserControl
 
     private void InitializeVersionText()
     {
-        throw new NotImplementedException();
+        PackageVersion version = Package.Current.Id.Version;
+        VersionText.Text = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 
     private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)
@@ -51,7 +52,7 @@ public sealed partial class SettingsView : UserControl
 
     private void UpdateVisibility()
     {
-        if (_settingsState is { IsVisible : true})
+        if (_settingsState is { IsVisible: true })
         {
             Visibility = Visibility.Visible;
         }
