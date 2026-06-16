@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimplePad.Editor.Settings.WinUI\SimplePad.Editor.Settings.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Fonts.Settings.WinUI\SimplePad.Fonts.Settings.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Settings\SimplePad.Settings.csproj" />
   </ItemGroup>
