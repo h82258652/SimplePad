@@ -64,15 +64,15 @@
                         <toolkit:SettingsExpander />
                         <StackPanel x:Name="PanelBelowAppThemeSettingsExpander">
                             <TextBlock Margin="0,12,0,0" Text="Text Formatting" />
-                            <toolkit:SettingsExpander Margin="0,12,0,0">
+                            <toolkit:SettingsExpander x:Name="FontSettingsExpander" Margin="0,12,0,0">
                                 <toolkit:SettingsExpander.Items>
-                                    <toolkit:SettingsCard>
+                                    <toolkit:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" Header="Family">
                                         <fonts:FontFamilyComboBox MinWidth="198" />
                                     </toolkit:SettingsCard>
-                                    <toolkit:SettingsCard>
+                                    <toolkit:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" Header="Style">
                                         <fonts:FontStyleComboBox MinWidth="198" />
                                     </toolkit:SettingsCard>
-                                    <toolkit:SettingsCard>
+                                    <toolkit:SettingsCard Background="{ThemeResource ControlFillColorSecondaryBrush}" Header="Size">
                                         <fonts:FontSizeComboBox MinWidth="198" />
                                     </toolkit:SettingsCard>
                                     <toolkit:SettingsCard
