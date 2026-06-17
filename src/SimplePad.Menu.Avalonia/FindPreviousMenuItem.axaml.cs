@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace SimplePad.Menu;
 
-public partial class FindPreviousMenuItem : UserControl
+public partial class FindPreviousMenuItem : MenuItem
 {
     public FindPreviousMenuItem()
     {
