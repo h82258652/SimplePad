@@ -20,6 +20,11 @@
         <menu:UndoMenuItem />
         <menu:CutMenuItem />
         <menu:CopyMenuItem />
+        <menu:PasteMenuItem />
+        <menu:DeleteMenuItem />
+        <menu:FindMenuItem />
+        <menu:FindNextMenuItem />
+        <menu:FindPreviousMenuItem />
     </MenuItem>
     <MenuItem Header="View" />
 </Menu>
