@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="800" Click="OnClick"
-    mc:Ignorable="d" Header="Close tab"> 
-    
-</MenuItem>
+    d:DesignWidth="800"
+    Click="OnClick"
+    Header="Close tab"
+    mc:Ignorable="d" />

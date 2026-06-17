@@ -16,10 +16,10 @@
         <menu:CloseTabMenuItem />
         <menu:CloseWindowMenuItem />
     </MenuItem>
-    <MenuItem Header="Edit" >
+    <MenuItem Header="Edit">
         <menu:UndoMenuItem />
         <menu:CutMenuItem />
-        <menu:CopyMenuItem></menu:CopyMenuItem>
+        <menu:CopyMenuItem />
     </MenuItem>
     <MenuItem Header="View" />
 </Menu>
