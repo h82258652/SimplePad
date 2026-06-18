@@ -6,7 +6,8 @@ namespace SimplePad.Menu;
 
 public partial class CopyMenuItem : MenuItem
 {
-    public static readonly StyledProperty<IAppTextBox?> TextBoxProperty = AvaloniaProperty.Register<CopyMenuItem, IAppTextBox?>(nameof(TextBox));
+    public static readonly StyledProperty<IAppTextBox?> TextBoxProperty =
+        AvaloniaProperty.Register<CopyMenuItem, IAppTextBox?>(nameof(TextBox));
 
     public CopyMenuItem()
     {
