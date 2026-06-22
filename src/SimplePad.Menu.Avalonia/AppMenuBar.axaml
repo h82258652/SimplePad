@@ -13,18 +13,28 @@
         <menu:NewWindowMenuItem />
         <menu:OpenMenuItem />
         <menu:SaveMenuItem Tab="{Binding $self.Tab}" />
+        <Separator />
         <menu:CloseTabMenuItem />
         <menu:CloseWindowMenuItem />
+        <menu:ExitMenuItem />
     </MenuItem>
     <MenuItem Header="Edit">
         <menu:UndoMenuItem />
+        <Separator />
         <menu:CutMenuItem />
         <menu:CopyMenuItem />
         <menu:PasteMenuItem />
         <menu:DeleteMenuItem />
+        <Separator />
         <menu:FindMenuItem />
         <menu:FindNextMenuItem />
         <menu:FindPreviousMenuItem />
+        <menu:ReplaceMenuItem />
+        <menu:GoToLineMenuItem />
+        <Separator />
+        <menu:SelectAllMenuItem />
+        <menu:TimeDateMenuItem />
+        <menu:FontMenuItem />
     </MenuItem>
     <MenuItem Header="View" />
 </Menu>
