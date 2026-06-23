@@ -21,9 +21,11 @@ public sealed partial class ShellWindow : Window
         AppWindowInstance = appWindow;
 
         InitializeComponent();
+        ExtendsContentIntoTitleBar = true;
         TabView.TabRoot = appWindow.TabRoot;
 
         UpdateContentGridVisibility();
+        UpdateTitleBar();
 
         _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
     }
@@ -33,6 +35,7 @@ public sealed partial class ShellWindow : Window
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateContentGridVisibility();
+        UpdateTitleBar();
     }
 
     private void UpdateContentGridVisibility()
@@ -44,6 +47,18 @@ public sealed partial class ShellWindow : Window
         else
         {
             ContentGrid.Visibility = Visibility.Visible;
+        }
+    }
+
+    private void UpdateTitleBar()
+    {
+        if (_settingsState.IsVisible)
+        {
+            // TODO
+        }
+        else
+        {
+            // TODO
         }
     }
 }

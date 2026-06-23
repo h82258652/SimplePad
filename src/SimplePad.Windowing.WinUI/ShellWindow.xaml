@@ -22,6 +22,6 @@
                 Margin="8,88,8,0"
                 VerticalAlignment="Top" />
         </Grid>
-        <settings:SettingsView />
+        <settings:SettingsView x:Name="SettingsView" />
     </Grid>
 </Window>
