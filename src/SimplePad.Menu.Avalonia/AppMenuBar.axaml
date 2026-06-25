@@ -13,8 +13,10 @@
         <menu:NewWindowMenuItem />
         <menu:OpenMenuItem />
         <menu:SaveMenuItem Tab="{Binding $self.Tab}" />
+        <menu:SaveAsMenuItem Tab="{Binding $self.Tab}" />
+        <menu:SaveAllMenuItem />
         <Separator />
-        <menu:CloseTabMenuItem />
+        <menu:CloseTabMenuItem Tab="{Binding $self.Tab}" />
         <menu:CloseWindowMenuItem />
         <menu:ExitMenuItem />
     </MenuItem>

@@ -6,9 +6,11 @@ namespace SimplePad.Menu;
 
 public sealed partial class AppMenuBar : Avalonia.Controls.Menu
 {
-    public static readonly StyledProperty<Tab?> TabProperty = AvaloniaProperty.Register<AppMenuBar, Tab?>(nameof(Tab));
+    public static readonly StyledProperty<Tab?> TabProperty =
+        AvaloniaProperty.Register<AppMenuBar, Tab?>(nameof(Tab));
 
-    public static readonly StyledProperty<IAppTextBox?> TextBoxProperty = AvaloniaProperty.Register<AppMenuBar, IAppTextBox?>(nameof(TextBox));
+    public static readonly StyledProperty<IAppTextBox?> TextBoxProperty =
+        AvaloniaProperty.Register<AppMenuBar, IAppTextBox?>(nameof(TextBox));
 
     public AppMenuBar()
     {
