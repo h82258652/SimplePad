@@ -10,6 +10,6 @@
     Header="Copy"
     mc:Ignorable="d">
     <MenuItem.Command>
-        <menu:CopyCommand TextBox="{Binding $parent[menu:CopyMenuItem].TextBox}" />
+        <menu:CopyCommand TextBox="{Binding $self.TextBox}" />
     </MenuItem.Command>
 </MenuItem>
