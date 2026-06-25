@@ -40,8 +40,11 @@
     </MenuItem>
     <MenuItem Header="View">
         <MenuItem Header="Zoom">
-            <menu:ZoomInMenuItem />
-            <menu:ZoomOutMenuItem />
+            <menu:ZoomInMenuItem TextBox="{Binding $self.TextBox}" />
+            <menu:ZoomOutMenuItem TextBox="{Binding $self.TextBox}" />
+            <menu:RestoreDefaultZoomMenuItem TextBox="{Binding $self.TextBox}" />
         </MenuItem>
+        <menu:IsStatusBarVisibleToggleMenuItem TextBox="{Binding $self.TextBox}" />
+        <menu:IsWordWrapToggleMenuItem TextBox="{Binding $self.TextBox}" />
     </MenuItem>
 </Menu>
