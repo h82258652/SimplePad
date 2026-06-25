@@ -5,12 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
+    xmlns:search="SimplePad.Search"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Border>
         <Expander>
             <Expander.Header>
-                <Grid>
+                <Grid ColumnSpacing="8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
@@ -18,6 +19,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
+                    <search:SearchTextBox />
                 </Grid>
             </Expander.Header>
         </Expander>
