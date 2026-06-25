@@ -21,21 +21,22 @@
         <menu:ExitMenuItem />
     </MenuItem>
     <MenuItem Header="Edit">
-        <menu:UndoMenuItem />
+        <menu:UndoMenuItem TextBox="{Binding $self.TextBox}" />
         <Separator />
-        <menu:CutMenuItem />
-        <menu:CopyMenuItem />
-        <menu:PasteMenuItem />
-        <menu:DeleteMenuItem />
+        <menu:CutMenuItem TextBox="{Binding $self.TextBox}" />
+        <menu:CopyMenuItem TextBox="{Binding $self.TextBox}" />
+        <menu:PasteMenuItem TextBox="{Binding $self.TextBox}" />
+        <menu:DeleteMenuItem TextBox="{Binding $self.TextBox}" />
         <Separator />
         <menu:FindMenuItem />
         <menu:FindNextMenuItem />
         <menu:FindPreviousMenuItem />
         <menu:ReplaceMenuItem />
-        <menu:GoToLineMenuItem />
+        <menu:GoToLineMenuItem TextBox="{Binding $self.TextBox}" />
         <Separator />
-        <menu:SelectAllMenuItem />
-        <menu:TimeDateMenuItem />
+        <menu:SelectAllMenuItem TextBox="{Binding $self.TextBox}" />
+        <menu:TimeDateMenuItem TextBox="{Binding $self.TextBox}" />
+        <Separator />
         <menu:FontMenuItem />
     </MenuItem>
     <MenuItem Header="View">

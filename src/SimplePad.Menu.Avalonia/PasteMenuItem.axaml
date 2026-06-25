@@ -10,6 +10,6 @@
     Header="Paste"
     mc:Ignorable="d">
     <MenuItem.Command>
-        <menu:PasteCommand />
+        <menu:PasteCommand TextBox="{Binding $self.TextBox}" />
     </MenuItem.Command>
 </MenuItem>
