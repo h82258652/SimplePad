@@ -36,5 +36,10 @@
         <menu:TimeDateMenuItem />
         <menu:FontMenuItem />
     </MenuItem>
-    <MenuItem Header="View" />
+    <MenuItem Header="View">
+        <MenuItem Header="Zoom">
+            <menu:ZoomInMenuItem />
+            <menu:ZoomOutMenuItem />
+        </MenuItem>
+    </MenuItem>
 </Menu>
