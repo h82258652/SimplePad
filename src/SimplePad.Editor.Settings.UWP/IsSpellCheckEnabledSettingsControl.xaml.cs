@@ -20,8 +20,6 @@ public sealed partial class IsSpellCheckEnabledSettingsControl : UserControl
         InitializeComponent();
 
         UpdateIsSpellCheckEnabledToggleSwitch();
-
-        _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
     }
 
     private async void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
@@ -32,6 +30,18 @@ public sealed partial class IsSpellCheckEnabledSettingsControl : UserControl
     private void OnIsSpellCheckEnabledToggleSwitchToggled(object sender, RoutedEventArgs e)
     {
         _editorSettings.IsSpellCheckEnabled = IsSpellCheckEnabledToggleSwitch.IsOn;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
+
+        UpdateIsSpellCheckEnabledToggleSwitch();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _editorSettings.IsSpellCheckEnabledChanged -= OnEditorSettingsIsSpellCheckEnabledChanged;
     }
 
     private void UpdateIsSpellCheckEnabledToggleSwitch()

@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
     d:DesignWidth="400"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     mc:Ignorable="d">
     <ToggleSwitch x:Name="IsWordWrapToggleSwitch" Toggled="OnIsWordWrapToggleSwitchToggled" />
 </UserControl>

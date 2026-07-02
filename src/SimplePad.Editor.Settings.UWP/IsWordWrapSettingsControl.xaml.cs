@@ -20,8 +20,6 @@ public sealed partial class IsWordWrapSettingsControl : UserControl
         InitializeComponent();
 
         UpdateIsWordWrapToggleSwitch();
-
-        _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
     }
 
     private async void OnEditorSettingsIsWordWrapChanged(object? sender, bool e)
@@ -32,6 +30,18 @@ public sealed partial class IsWordWrapSettingsControl : UserControl
     private void OnIsWordWrapToggleSwitchToggled(object sender, RoutedEventArgs e)
     {
         _editorSettings.IsWordWrap = IsWordWrapToggleSwitch.IsOn;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
+
+        UpdateIsWordWrapToggleSwitch();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _editorSettings.IsWordWrapChanged -= OnEditorSettingsIsWordWrapChanged;
     }
 
     private void UpdateIsWordWrapToggleSwitch()
