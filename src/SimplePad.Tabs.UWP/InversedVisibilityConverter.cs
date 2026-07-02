@@ -2,9 +2,9 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace SimplePad.Core.Converters;
+namespace SimplePad.Tabs;
 
-public sealed partial class InversedVisibilityConverter : IValueConverter
+internal sealed partial class InversedVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {
