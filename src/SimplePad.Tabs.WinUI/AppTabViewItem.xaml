@@ -33,6 +33,7 @@
         <editor:AppTextBox
             x:Name="TextBox"
             Grid.Row="2"
+            x:FieldModifier="internal"
             TextChanged="OnTextBoxTextChanged" />
         <Rectangle
             x:Name="StatusBarDivider"

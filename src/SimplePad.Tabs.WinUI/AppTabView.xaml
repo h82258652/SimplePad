@@ -8,9 +8,37 @@
     xmlns:tabs="using:SimplePad.Tabs"
     VerticalAlignment="Stretch"
     AddTabButtonClick="OnAddTabButtonClick"
+    IsTabStop="False"
     TabCloseRequested="OnTabViewTabCloseRequested"
     TabItemsSource="{x:Bind TabRoot.Tabs, Mode=OneWay}"
     mc:Ignorable="d">
+    <TabView.KeyboardAccelerators>
+        <KeyboardAccelerator
+            Key="N"
+            Invoked="OnNewTabKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+        <KeyboardAccelerator
+            Key="S"
+            Invoked="OnSaveKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+        <KeyboardAccelerator
+            Key="S"
+            Invoked="OnSaveAsKeyboardAcceleratorInvoked"
+            Modifiers="Control,Shift" />
+        <KeyboardAccelerator
+            Key="S"
+            Invoked="OnSaveAllKeyboardAcceleratorInvoked"
+            Modifiers="Control,Menu" />
+        <KeyboardAccelerator
+            Key="W"
+            Invoked="OnCloseTabKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+        <KeyboardAccelerator
+            Key="G"
+            Invoked="OnGoToLineKeyboardAcceleratorInvoked"
+            Modifiers="Control" />
+        <KeyboardAccelerator Key="F5" Invoked="OnTimeDateKeyboardAcceleratorInvoked" />
+    </TabView.KeyboardAccelerators>
     <TabView.TabItemTemplate>
         <DataTemplate x:DataType="tabs:Tab">
             <tabs:AppTabViewItem Tab="{x:Bind}" />

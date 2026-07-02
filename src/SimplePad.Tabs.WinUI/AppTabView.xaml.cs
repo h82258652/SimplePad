@@ -1,7 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using SimplePad.Core;
+using SimplePad.Menu;
 using SimplePad.Settings;
 using System.Collections.Specialized;
 
@@ -60,6 +62,60 @@ public sealed partial class AppTabView : TabView
     private void OnAddTabButtonClick(TabView sender, object args)
     {
         AddBlankTab();
+    }
+
+    private async void OnCloseTabKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (TabRoot?.SelectedTab is { } selectedTab)
+        {
+            await _tabManager.CloseAsync(selectedTab);
+        }
+    }
+
+    private void OnGoToLineKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (SelectedItem is { } selectedItem
+            && ContainerFromItem(selectedItem) is AppTabViewItem tabViewItem)
+        {
+            GoToLineCommand goToLineCommand = new()
+            {
+                TextBox = tabViewItem.TextBox
+            };
+            goToLineCommand.Execute(null);
+        }
+    }
+
+    private void OnNewTabKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        AddBlankTab();
+    }
+
+    private void OnSaveAllKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        SaveAllCommand saveAllCommand = new();
+        saveAllCommand.Execute(null);
+    }
+
+    private async void OnSaveAsKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (TabRoot?.SelectedTab is { } selectedTab)
+        {
+            _ = await _tabManager.SaveToAnotherFileAsync(selectedTab);
+        }
+    }
+
+    private async void OnSaveKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        if (TabRoot?.SelectedTab is { } selectedTab)
+        {
+            _ = await _tabManager.SaveAsync(selectedTab);
+        }
     }
 
     private void OnTabRootSelectedTabChanged(object? sender, Tab? e)
