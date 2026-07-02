@@ -20,15 +20,13 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         nameof(CursorPosition),
         typeof(CursorPosition),
         typeof(AppTextBox),
-        PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged)
-    );
+        PropertyMetadata.Create(() => new CursorPosition(1, 1), OnCursorPositionChanged));
 
     private static readonly DependencyProperty ZoomedFontSizeProperty = DependencyProperty.Register(
         nameof(ZoomedFontSize),
         typeof(double),
         typeof(AppTextBox),
-        new PropertyMetadata(14d)
-    );
+        new PropertyMetadata(14d));
 
     private readonly CoreDispatcher _dispatcher;
     private readonly IEditorSettings _editorSettings;

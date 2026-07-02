@@ -24,8 +24,7 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         nameof(ZoomedFontSize),
         typeof(double),
         typeof(AppTextBox),
-        new PropertyMetadata(14d)
-    );
+        new PropertyMetadata(14d));
 
     private readonly IEditorSettings _editorSettings;
     private readonly EditorZoomState _editorZoomState;
@@ -40,8 +39,9 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         _editorSettings = ServiceLocator.Current.GetRequiredService<IEditorSettings>();
         _editorZoomState = ServiceLocator.Current.GetRequiredService<EditorZoomState>();
 
-        //DefaultStyleKey = typeof(AppTextBox);
-        //DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.WinUI/AppTextBox.xaml");
+        DefaultStyleKey = typeof(AppTextBox);
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Editor.WinUI/AppTextBox.xaml");
+        InitializeKeyboardAccelerators();
 
         _internalCanUndo = CanUndo;
         UpdateFontFamily();
@@ -123,11 +123,72 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         }
     }
 
+    protected override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        ScrollViewer contentElement = (ScrollViewer)GetTemplateChild("ContentElement");
+        contentElement.PointerWheelChanged -= OnContentElementPointerWheelChanged;
+        contentElement.PointerWheelChanged += OnContentElementPointerWheelChanged;
+    }
+
     private static void OnCursorPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         AppTextBox self = (AppTextBox)d;
         CursorPosition cursorPosition = (CursorPosition)e.NewValue;
         self.CursorPositionChanged?.Invoke(self, cursorPosition);
+    }
+
+    private void InitializeKeyboardAccelerators()
+    {
+        KeyboardAccelerator zoomInKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.Add,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        zoomInKeyboardAccelerator.Invoked += OnZoomInKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(zoomInKeyboardAccelerator);
+
+        KeyboardAccelerator zoomOutKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.Subtract,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        zoomOutKeyboardAccelerator.Invoked += OnZoomOutKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(zoomOutKeyboardAccelerator);
+
+        KeyboardAccelerator restoreDefaultZoomKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.Number0,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        restoreDefaultZoomKeyboardAccelerator.Invoked += OnRestoreDefaultZoomKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(restoreDefaultZoomKeyboardAccelerator);
+        restoreDefaultZoomKeyboardAccelerator = new()
+        {
+            Key = VirtualKey.NumberPad0,
+            Modifiers = VirtualKeyModifiers.Control
+        };
+        restoreDefaultZoomKeyboardAccelerator.Invoked += OnRestoreDefaultZoomKeyboardAcceleratorInvoked;
+        KeyboardAccelerators.Add(restoreDefaultZoomKeyboardAccelerator);
+    }
+
+    private void OnContentElementPointerWheelChanged(object sender, PointerRoutedEventArgs e)
+    {
+        if (e.KeyModifiers.HasFlag(VirtualKeyModifiers.Control))
+        {
+            e.Handled = true;
+
+            int mouseWheelDelta = e.GetCurrentPoint(this).Properties.MouseWheelDelta;
+            if (mouseWheelDelta > 0)
+            {
+                _editorZoomState.ZoomIn();
+            }
+            else
+            {
+                _editorZoomState.ZoomOut();
+            }
+        }
     }
 
     private void OnEditorSettingsIsSpellCheckEnabledChanged(object? sender, bool e)
@@ -179,6 +240,12 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         }
     }
 
+    private void OnRestoreDefaultZoomKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        _editorZoomState.ResetZoomFactor();
+    }
+
     private void OnSelectionChanged(object sender, RoutedEventArgs e)
     {
         UpdateCursorPosition();
@@ -197,6 +264,18 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         {
             handler?.Invoke(this, Text);
         }
+    }
+
+    private void OnZoomInKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        _editorZoomState.ZoomIn();
+    }
+
+    private void OnZoomOutKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+        _editorZoomState.ZoomOut();
     }
 
     private void UpdateCursorPosition()
@@ -252,7 +331,12 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
 
     private void UpdateInternalCanUndo()
     {
-        // TODO
+        bool canUndo = CanUndo;
+        if (_internalCanUndo != canUndo)
+        {
+            _internalCanUndo = canUndo;
+            CanUndoChanged?.Invoke(this, canUndo);
+        }
     }
 
     private void UpdateIsSpellCheckEnabled()
