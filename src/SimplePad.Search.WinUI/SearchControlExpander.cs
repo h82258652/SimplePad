@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
+using System;
 
 namespace SimplePad.Search;
 
@@ -11,6 +12,9 @@ public sealed partial class SearchControlExpander : Expander
     public SearchControlExpander()
     {
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
+
+        DefaultStyleKey = typeof(SearchControlExpander);
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Search.WinUI/SearchControlExpander.xaml");
 
         UpdateIsExpanded();
 

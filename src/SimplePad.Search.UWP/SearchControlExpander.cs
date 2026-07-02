@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
+using System;
 
 namespace SimplePad.Search;
 
