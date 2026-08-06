@@ -1,7 +1,7 @@
-﻿using System;
-using System.Numerics;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
+using System;
+using System.Numerics;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,8 +24,6 @@ public sealed partial class SearchControl : UserControl
         _searchNotificationService.Configure(ShowNotificationFlyout, HideNotificationFlyout, SetNotificationText);
 
         Visibility = _searchViewState.IsVisible ? Visibility.Visible : Visibility.Collapsed;
-
-        _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
     }
 
     private void Hide()
@@ -62,9 +60,21 @@ public sealed partial class SearchControl : UserControl
         NotificationFlyout.Hide();
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
+
+        Visibility = _searchViewState.IsVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
     private void OnSearchViewStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _searchViewState.IsVisibleChanged -= OnSearchViewStateIsVisibleChanged;
     }
 
     private void SetNotificationText(string notificationText)

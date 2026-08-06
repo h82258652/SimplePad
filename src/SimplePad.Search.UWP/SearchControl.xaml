@@ -10,6 +10,8 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     toolkit:VisualExtensions.NormalizedCenterPoint="0.5,0.5"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     mc:Ignorable="d">
     <Border x:Name="RootContainer">
         <VisualStateManager.VisualStateGroups>
