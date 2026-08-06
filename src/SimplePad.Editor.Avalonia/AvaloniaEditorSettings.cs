@@ -1,9 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using SimplePad.Core.Settings;
+using System;
+using System.Collections.Generic;
 
 namespace SimplePad.Editor;
 
-internal sealed class AvaloniaEditorSettings : IEditorSettings
+internal sealed class AvaloniaEditorSettings : AppSettingsBase, IEditorSettings
 {
     private bool _isSpellCheckEnabled = true;
     private bool _isWordWrap = true;
@@ -38,13 +39,25 @@ internal sealed class AvaloniaEditorSettings : IEditorSettings
         }
     }
 
-    public Task LoadAsync()
+    protected override Dictionary<string, object?> GetSettings()
     {
-        throw new NotImplementedException();
+        return new Dictionary<string, object?>()
+        {
+            { nameof(IsSpellCheckEnabled), IsSpellCheckEnabled },
+            { nameof(IsWordWrap), IsWordWrap }
+        };
     }
 
-    public Task SaveAsync()
+    protected override void SetSettings(Dictionary<string, object?> settings)
     {
-        throw new NotImplementedException();
+        if (settings.TryGetValue(nameof(IsSpellCheckEnabled), out var isSpellCheckEnabled) && isSpellCheckEnabled is bool spellCheckEnabled)
+        {
+            IsSpellCheckEnabled = spellCheckEnabled;
+        }
+
+        if (settings.TryGetValue(nameof(IsWordWrap), out var isWordWrap) && isWordWrap is bool wordWrap)
+        {
+            IsWordWrap = wordWrap;
+        }
     }
 }
