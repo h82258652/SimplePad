@@ -5,6 +5,7 @@ using SimplePad.Core;
 using SimplePad.File;
 using SimplePad.Search;
 using SimplePad.StatusBar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,11 +20,12 @@ public sealed partial class AppTabViewItem : TabViewItem
         typeof(AppTabViewItem),
         new PropertyMetadata(null, OnTabChanged));
 
+    private const string CommonStatesGroupName = "CommonStates";
     private const string LayoutRootTemplateName = "LayoutRoot";
     private const string ModifiedIndicatorTemplateName = "PART_ModifiedIndicator";
     private readonly SearchViewState _searchViewState;
     private readonly IStatusBarSettings _statusBarSettings;
-
+    private VisualStateGroup? _commonStates;
     private UIElement? _modifiedIndicator;
 
     public AppTabViewItem()
@@ -92,6 +94,11 @@ public sealed partial class AppTabViewItem : TabViewItem
         self.UpdateModifiedIndicatorVisibility();
         self.UpdateTextBox();
         self.UpdateStatusBarLineEndings();
+    }
+
+    private void OnCommonStatesCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 
     private async void OnIsSelectedChanged(DependencyObject sender, DependencyProperty dp)

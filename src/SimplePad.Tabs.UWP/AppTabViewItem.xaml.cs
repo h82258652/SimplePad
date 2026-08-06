@@ -47,9 +47,6 @@ public sealed partial class AppTabViewItem : TabViewItem
         UpdateStatusBarDividerVisibility();
         UpdateStatusBarLineEndings();
 
-        _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
-        _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
-        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
         RegisterPropertyChangedCallback(IsSelectedProperty, OnIsSelectedChanged);
     }
 
@@ -122,6 +119,16 @@ public sealed partial class AppTabViewItem : TabViewItem
         }
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _searchViewState.IsVisibleChanged += OnSearchViewStateIsVisibleChanged;
+        _searchViewState.IsReplaceModeChanged += OnSearchViewStateIsReplaceModeChanged;
+        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
+
+        UpdateTextBoxPadding();
+        UpdateStatusBarDividerVisibility();
+    }
+
     private void OnSearchViewStateIsReplaceModeChanged(object? sender, bool e)
     {
         UpdateTextBoxPadding();
@@ -163,6 +170,13 @@ public sealed partial class AppTabViewItem : TabViewItem
         {
             tab.Content = TextBox.Text;
         }
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _searchViewState.IsVisibleChanged -= OnSearchViewStateIsVisibleChanged;
+        _searchViewState.IsReplaceModeChanged -= OnSearchViewStateIsReplaceModeChanged;
+        _statusBarSettings.IsStatusBarVisibleChanged -= OnStatusBarSettingsIsStatusBarVisibleChanged;
     }
 
     private void UpdateHeader()
