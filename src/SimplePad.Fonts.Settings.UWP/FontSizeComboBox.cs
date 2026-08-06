@@ -57,9 +57,10 @@ public sealed partial class FontSizeComboBox : ComboBox
 
         IsEditable = true;
 
-        _fontSettings.FontSizeChanged += OnFontSettingsFontSizeChanged;
         TextSubmitted += OnTextSubmitted;
         SelectionChanged += OnSelectionChanged;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     private async void OnFontSettingsFontSizeChanged(object? sender, int e)
@@ -67,11 +68,11 @@ public sealed partial class FontSizeComboBox : ComboBox
         await _dispatcher.SafeRunAsync(UpdateSelectedItem);
     }
 
-    private void UpdateSelectedItem()
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
-        SelectedItem = Items
-            .OfType<ComboBoxItem>()
-            .FirstOrDefault(comboBoxItem => Equals(comboBoxItem.Content, _fontSettings.FontSize));
+        _fontSettings.FontSizeChanged += OnFontSettingsFontSizeChanged;
+
+        UpdateSelectedItem();
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -100,5 +101,17 @@ public sealed partial class FontSizeComboBox : ComboBox
         }
 
         UpdateSelectedItem();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _fontSettings.FontSizeChanged -= OnFontSettingsFontSizeChanged;
+    }
+
+    private void UpdateSelectedItem()
+    {
+        SelectedItem = Items
+            .OfType<ComboBoxItem>()
+            .FirstOrDefault(comboBoxItem => Equals(comboBoxItem.Content, _fontSettings.FontSize));
     }
 }
