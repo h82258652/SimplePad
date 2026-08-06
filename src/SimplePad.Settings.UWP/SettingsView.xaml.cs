@@ -20,9 +20,6 @@ public sealed partial class SettingsView : UserControl
 
         UpdateVisibility();
         UpdateFontSettingsExpander();
-
-        _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
-        _settingsState.IsFontSettingsExpandedChanged += OnSettingsStateIsFontSettingsExpandedChanged;
     }
 
     public UIElement TitleBar => TitleBarElement;
@@ -48,6 +45,15 @@ public sealed partial class SettingsView : UserControl
         _settingsState.IsFontSettingsExpanded = true;
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
+        _settingsState.IsFontSettingsExpandedChanged += OnSettingsStateIsFontSettingsExpandedChanged;
+
+        UpdateVisibility();
+        UpdateFontSettingsExpander();
+    }
+
     private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)
     {
         UpdateFontSettingsExpander();
@@ -56,6 +62,12 @@ public sealed partial class SettingsView : UserControl
     private void OnSettingsStateIsVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _settingsState.IsVisibleChanged -= OnSettingsStateIsVisibleChanged;
+        _settingsState.IsFontSettingsExpandedChanged -= OnSettingsStateIsFontSettingsExpandedChanged;
     }
 
     private void UpdateFontSettingsExpander()

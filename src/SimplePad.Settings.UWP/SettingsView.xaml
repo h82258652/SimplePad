@@ -13,6 +13,8 @@
     xmlns:toolkit="using:CommunityToolkit.WinUI.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
