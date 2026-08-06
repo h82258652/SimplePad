@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="using:SimplePad.Search"
     mc:Ignorable="d">
-
     <Button ToolTipService.ToolTip="More options">
         <Button.Flyout>
             <MenuFlyout Placement="Bottom">
@@ -15,9 +14,13 @@
                     <MenuFlyoutSubItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE9E9;" />
                     </MenuFlyoutSubItem.Icon>
-
+                    <search:IsMatchCaseToggleMenuItem />
+                    <search:IsWrapAroundToggleMenuItem />
                 </MenuFlyoutSubItem>
+                <search:MoveUpMenuItem />
+                <search:MoveDownMenuItem />
             </MenuFlyout>
         </Button.Flyout>
+        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" />
     </Button>
 </UserControl>
