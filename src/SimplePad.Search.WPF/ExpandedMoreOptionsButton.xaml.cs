@@ -2,9 +2,9 @@
 
 namespace SimplePad.Search;
 
-public partial class ExandedMoreOptionsButton : Button
+public partial class ExpandedMoreOptionsButton : Button
 {
-    public ExandedMoreOptionsButton()
+    public ExpandedMoreOptionsButton()
     {
         InitializeComponent();
     }
