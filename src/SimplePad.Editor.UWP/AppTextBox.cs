@@ -55,15 +55,11 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         UpdateIsSpellCheckEnabled();
         UpdateZoomedFontSize();
 
-        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
-        _fontSettings.FontStyleChanged += OnFontSettingsFontStyleChanged;
-        _fontSettings.FontSizeChanged += OnFontSettingsFontSizeChanged;
-        _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
-        _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
-        _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
         TextChanged += OnTextChanged;
         SelectionChanged += OnSelectionChanged;
         KeyDown += OnKeyDown;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
         RegisterPropertyChangedCallback(FontSizeProperty, OnFontSizeChanged);
     }
 
@@ -244,6 +240,23 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         }
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
+        _fontSettings.FontStyleChanged += OnFontSettingsFontStyleChanged;
+        _fontSettings.FontSizeChanged += OnFontSettingsFontSizeChanged;
+        _editorSettings.IsWordWrapChanged += OnEditorSettingsIsWordWrapChanged;
+        _editorSettings.IsSpellCheckEnabledChanged += OnEditorSettingsIsSpellCheckEnabledChanged;
+        _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
+
+        UpdateFontFamily();
+        UpdateFontStyle();
+        UpdateFontSize();
+        UpdateTextWrapping();
+        UpdateIsSpellCheckEnabled();
+        UpdateZoomedFontSize();
+    }
+
     private void OnRestoreDefaultZoomKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
         args.Handled = true;
@@ -268,6 +281,16 @@ public sealed partial class AppTextBox : TextBox, IAppTextBox
         {
             handler?.Invoke(this, Text);
         }
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _fontSettings.FontFamilyChanged -= OnFontSettingsFontFamilyChanged;
+        _fontSettings.FontStyleChanged -= OnFontSettingsFontStyleChanged;
+        _fontSettings.FontSizeChanged -= OnFontSettingsFontSizeChanged;
+        _editorSettings.IsWordWrapChanged -= OnEditorSettingsIsWordWrapChanged;
+        _editorSettings.IsSpellCheckEnabledChanged -= OnEditorSettingsIsSpellCheckEnabledChanged;
+        _editorZoomState.ZoomFactorChanged -= OnEditorZoomStateZoomFactorChanged;
     }
 
     private void OnZoomInKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
