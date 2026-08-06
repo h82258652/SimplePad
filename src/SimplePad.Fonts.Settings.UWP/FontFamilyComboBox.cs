@@ -5,6 +5,7 @@ using Microsoft.Graphics.Canvas.Text;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Fonts;
@@ -30,13 +31,21 @@ public sealed partial class FontFamilyComboBox : ComboBox
 
         IsEditable = true;
 
-        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
         SelectionChanged += OnSelectionChanged;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
     private async void OnFontSettingsFontFamilyChanged(object? sender, string e)
     {
         await _dispatcher.SafeRunAsync(UpdateSelectedItem);
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _fontSettings.FontFamilyChanged += OnFontSettingsFontFamilyChanged;
+
+        UpdateSelectedItem();
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,6 +61,11 @@ public sealed partial class FontFamilyComboBox : ComboBox
         {
             UpdateSelectedItem();
         }
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _fontSettings.FontFamilyChanged -= OnFontSettingsFontFamilyChanged;
     }
 
     private void UpdateSelectedItem()
