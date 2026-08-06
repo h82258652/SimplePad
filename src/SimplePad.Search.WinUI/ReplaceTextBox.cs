@@ -1,8 +1,8 @@
-﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using System;
 
 namespace SimplePad.Search;
 
@@ -15,7 +15,7 @@ internal sealed partial class ReplaceTextBox : TextBox
         _searchViewState = ServiceLocator.Current.GetRequiredService<SearchViewState>();
 
         DefaultStyleKey = typeof(ReplaceTextBox);
-        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Search.UWP/ReplaceTextBox.xaml");
+        DefaultStyleResourceUri = new Uri("ms-appx:///SimplePad.Search.WinUI/ReplaceTextBox.xaml");
 
         UpdateText();
 

@@ -4,8 +4,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:SimplePad.Search"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:search="using:SimplePad.Search"
+    xmlns:toolkit="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
     <Border x:Name="RootContainer">
         <VisualStateManager.VisualStateGroups>
@@ -17,6 +18,47 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        <search:SearchControlExpander>
+            <search:SearchControlExpander.Header>
+                <Grid ColumnSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <search:SearchTextBox />
+                    <search:CompactMoreOptionsButton Grid.Column="1" Grid.ColumnSpan="3" />
+                    <search:SearchDownButton
+                        x:Name="SearchDownButton"
+                        Grid.Column="1"
+                        Visibility="Collapsed" />
+                    <search:SearchUpButton
+                        x:Name="SearchUpButton"
+                        Grid.Column="2"
+                        Visibility="Collapsed" />
+                    <search:ExpandedMoreOptionsButton
+                        x:Name="ExpandedMoreOptionsButton"
+                        Grid.Column="3"
+                        Visibility="Collapsed" />
+                    <search:ExitFindAndReplaceButton Grid.Column="4" />
+                </Grid>
+            </search:SearchControlExpander.Header>
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <search:ReplaceTextBox />
+                <search:ReplaceSplitButton Grid.Column="1" Grid.ColumnSpan="2" />
+                <search:ReplaceButton
+                    x:Name="ReplaceButton"
+                    Grid.Column="1"
+                    MinWidth="88" />
+            </Grid>
+        </search:SearchControlExpander>
         <FlyoutBase.AttachedFlyout>
             <Flyout x:Name="NotificationFlyout" Placement="Bottom">
                 <TextBlock x:Name="NotificationText" />

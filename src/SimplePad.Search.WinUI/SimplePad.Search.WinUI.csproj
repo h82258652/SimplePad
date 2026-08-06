@@ -10,15 +10,20 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="CompactMoreOptionsButton.xaml" />
+    <None Remove="ExitFindAndReplaceButton.xaml" />
+    <None Remove="ExpandedMoreOptionsButton.xaml" />
     <None Remove="IsMatchCaseToggleMenuItem.xaml" />
     <None Remove="IsWrapAroundToggleMenuItem.xaml" />
     <None Remove="MoveDownMenuItem.xaml" />
     <None Remove="MoveUpMenuItem.xaml" />
     <None Remove="SearchControl.xaml" />
     <None Remove="SearchControlExpander.xaml" />
+    <None Remove="SearchDownButton.xaml" />
     <None Remove="SearchTextBox.xaml" />
+    <None Remove="SearchUpButton.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.WinUI.Animations" Version="8.2.251219" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.2.0" />
   </ItemGroup>
@@ -26,6 +31,26 @@
     <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.WinUI\SimplePad.Themes.WinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ExitFindAndReplaceButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ExpandedMoreOptionsButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SearchUpButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SearchDownButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="IsWrapAroundToggleMenuItem.xaml">
