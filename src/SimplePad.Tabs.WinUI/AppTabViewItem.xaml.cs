@@ -5,6 +5,8 @@ using SimplePad.Core;
 using SimplePad.File;
 using SimplePad.Search;
 using SimplePad.StatusBar;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SimplePad.Tabs;
@@ -17,8 +19,12 @@ public sealed partial class AppTabViewItem : TabViewItem
         typeof(AppTabViewItem),
         new PropertyMetadata(null, OnTabChanged));
 
+    private const string LayoutRootTemplateName = "LayoutRoot";
+    private const string ModifiedIndicatorTemplateName = "PART_ModifiedIndicator";
     private readonly SearchViewState _searchViewState;
     private readonly IStatusBarSettings _statusBarSettings;
+
+    private UIElement? _modifiedIndicator;
 
     public AppTabViewItem()
     {
@@ -41,6 +47,24 @@ public sealed partial class AppTabViewItem : TabViewItem
     {
         get => (Tab?)GetValue(TabProperty);
         set => SetValue(TabProperty, value);
+    }
+
+    protected override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        FrameworkElement layoutRoot = (FrameworkElement)GetTemplateChild(LayoutRootTemplateName);
+        _modifiedIndicator = (UIElement)GetTemplateChild(ModifiedIndicatorTemplateName);
+
+        IList<VisualStateGroup> visualStateGroups = VisualStateManager.GetVisualStateGroups(layoutRoot);
+        _commonStates = visualStateGroups.FirstOrDefault(visualStateGroup => visualStateGroup.Name == CommonStatesGroupName);
+        if (_commonStates is not null)
+        {
+            UpdateModifiedIndicatorVisibility();
+
+            _commonStates.CurrentStateChanged -= OnCommonStatesCurrentStateChanged;
+            _commonStates.CurrentStateChanged += OnCommonStatesCurrentStateChanged;
+        }
     }
 
     private static void OnTabChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
