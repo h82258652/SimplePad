@@ -16,6 +16,8 @@
     <None Remove="IsWrapAroundToggleMenuItem.xaml" />
     <None Remove="MoveDownMenuItem.xaml" />
     <None Remove="MoveUpMenuItem.xaml" />
+    <None Remove="ReplaceAllMenuItem.xaml" />
+    <None Remove="ReplaceSplitButton.xaml" />
     <None Remove="SearchControl.xaml" />
     <None Remove="SearchControlExpander.xaml" />
     <None Remove="SearchDownButton.xaml" />
@@ -31,6 +33,16 @@
     <ProjectReference Include="..\SimplePad.Core.WinUI\SimplePad.Core.WinUI.csproj" />
     <ProjectReference Include="..\SimplePad.Search\SimplePad.Search.csproj" />
     <ProjectReference Include="..\SimplePad.Themes.WinUI\SimplePad.Themes.WinUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ReplaceAllMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ReplaceSplitButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ExitFindAndReplaceButton.xaml">
