@@ -20,8 +20,6 @@ public sealed partial class ThemeSettingsControl : UserControl
         InitializeComponent();
 
         UpdateRadioButtons();
-
-        _themeSettings.AppThemeChanged += OnThemeSettingsAppThemeChanged;
     }
 
     private void OnDarkThemeRadioButtonChecked(object sender, RoutedEventArgs e)
@@ -34,9 +32,21 @@ public sealed partial class ThemeSettingsControl : UserControl
         _themeSettings.AppTheme = AppTheme.Light;
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _themeSettings.AppThemeChanged += OnThemeSettingsAppThemeChanged;
+
+        UpdateRadioButtons();
+    }
+
     private async void OnThemeSettingsAppThemeChanged(object? sender, AppTheme e)
     {
         await _dispatcherQueue.SafeRunAsync(UpdateRadioButtons);
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _themeSettings.AppThemeChanged -= OnThemeSettingsAppThemeChanged;
     }
 
     private void OnUseSystemSettingsThemeRadioButtonChecked(object sender, RoutedEventArgs e)
