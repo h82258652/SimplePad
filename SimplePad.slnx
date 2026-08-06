@@ -86,9 +86,6 @@
     <Project Path="src/SimplePad.Fonts.WPF/SimplePad.Fonts.WPF.csproj" Id="4e3d3ac9-6e28-451a-b565-ba0c2e43cfe7" />
     <Project Path="src/SimplePad.Fonts/SimplePad.Fonts.csproj" Id="ae213d3d-1755-4b75-9f8e-60282907e9e0" />
   </Folder>
-  <Folder Name="/src/Legacy/">
-    <Project Path="src/SimplePad.UWP.UI/SimplePad.UWP.UI.csproj" Id="412a0a39-7710-453d-a7e7-aa394412b863" />
-  </Folder>
   <Folder Name="/src/Menu/">
     <Project Path="src/SimplePad.Menu.Avalonia/SimplePad.Menu.Avalonia.csproj" Id="52291951-669b-4a25-98c6-9ef9799b47d0" />
     <Project Path="src/SimplePad.Menu.UWP/SimplePad.Menu.UWP.csproj" Id="f027335a-18c4-49a1-af28-8a3dd6723ac1">
