@@ -23,9 +23,6 @@ public sealed partial class SettingsView : UserControl
 
         UpdateVisibility();
         UpdateFontSettingsExpander();
-
-        _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
-        _settingsState.IsFontSettingsExpandedChanged += OnSettingsStateIsFontSettingsExpandedChanged;
     }
 
     internal void ScrollToTop()
@@ -49,6 +46,12 @@ public sealed partial class SettingsView : UserControl
         }
 
         UpdateVisualState();
+
+        _settingsState.IsVisibleChanged += OnSettingsStateIsVisibleChanged;
+        _settingsState.IsFontSettingsExpandedChanged += OnSettingsStateIsFontSettingsExpandedChanged;
+
+        UpdateVisibility();
+        UpdateFontSettingsExpander();
     }
 
     private void OnSettingsStateIsFontSettingsExpandedChanged(object? sender, bool e)
@@ -84,6 +87,9 @@ public sealed partial class SettingsView : UserControl
         }
 
         _window = null;
+
+        _settingsState.IsVisibleChanged -= OnSettingsStateIsVisibleChanged;
+        _settingsState.IsFontSettingsExpandedChanged -= OnSettingsStateIsFontSettingsExpandedChanged;
     }
 
     private void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
