@@ -1,20 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
-using SimplePad.Core.Extensions;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Search;
 
 public sealed partial class IsWrapAroundToggleMenuItem : ToggleMenuFlyoutItem
 {
-    private readonly CoreDispatcher _dispatcher;
     private readonly ISearchSettings _searchSettings;
 
     public IsWrapAroundToggleMenuItem()
     {
-        _dispatcher = Dispatcher;
         _searchSettings = ServiceLocator.Current.GetRequiredService<ISearchSettings>();
 
         InitializeComponent();
@@ -34,9 +30,9 @@ public sealed partial class IsWrapAroundToggleMenuItem : ToggleMenuFlyoutItem
         UpdateIsChecked();
     }
 
-    private async void OnSearchSettingsIsWrapAroundChanged(object? sender, bool e)
+    private void OnSearchSettingsIsWrapAroundChanged(object? sender, bool e)
     {
-        await _dispatcher.SafeRunAsync(UpdateIsChecked);
+        UpdateIsChecked();
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
