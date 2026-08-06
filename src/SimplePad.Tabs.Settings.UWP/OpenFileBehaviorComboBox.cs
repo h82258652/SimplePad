@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SimplePad.Core;
 using SimplePad.Core.Extensions;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SimplePad.Tabs;
@@ -30,8 +31,16 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
         ItemsSource = _items;
         UpdateSelectedItem();
 
-        _tabsSettings.OpenFileBehaviorChanged += OnTabsSettingsOpenFileBehaviorChanged;
         SelectionChanged += OnSelectionChanged;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _tabsSettings.OpenFileBehaviorChanged += OnTabsSettingsOpenFileBehaviorChanged;
+
+        UpdateSelectedItem();
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -45,6 +54,11 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
     private async void OnTabsSettingsOpenFileBehaviorChanged(object? sender, OpenFileBehavior e)
     {
         await _dispatcher.SafeRunAsync(UpdateSelectedItem);
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _tabsSettings.OpenFileBehaviorChanged -= OnTabsSettingsOpenFileBehaviorChanged;
     }
 
     private void UpdateSelectedItem()
