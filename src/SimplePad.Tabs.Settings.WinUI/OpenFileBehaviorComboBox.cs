@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using System.Linq;
@@ -22,8 +23,16 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
         ItemsSource = _items;
         UpdateSelectedItem();
 
-        _tabsSettings.OpenFileBehaviorChanged += OnTabsSettingsOpenFileBehaviorChanged;
         SelectionChanged += OnSelectionChanged;
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _tabsSettings.OpenFileBehaviorChanged += OnTabsSettingsOpenFileBehaviorChanged;
+
+        UpdateSelectedItem();
     }
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -37,6 +46,11 @@ public sealed partial class OpenFileBehaviorComboBox : ComboBox
     private void OnTabsSettingsOpenFileBehaviorChanged(object sender, OpenFileBehavior e)
     {
         UpdateSelectedItem();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _tabsSettings.OpenFileBehaviorChanged -= OnTabsSettingsOpenFileBehaviorChanged;
     }
 
     private void UpdateSelectedItem()
