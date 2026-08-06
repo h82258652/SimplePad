@@ -1,11 +1,11 @@
-using System;
-using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimplePad.Core;
 using SimplePad.Editor;
 using SimplePad.File;
+using System;
+using System.Text;
 
 namespace SimplePad.StatusBar;
 
@@ -37,9 +37,6 @@ public sealed partial class AppStatusBar : UserControl
         UpdateCursorPositionIndicator();
         UpdateCharacterIndicator();
         UpdateZoomFactorIndicator();
-
-        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
-        _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
     }
 
     public LineEndings LineEndings
@@ -82,6 +79,15 @@ public sealed partial class AppStatusBar : UserControl
         UpdateZoomFactorIndicator();
     }
 
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        _statusBarSettings.IsStatusBarVisibleChanged += OnStatusBarSettingsIsStatusBarVisibleChanged;
+        _editorZoomState.ZoomFactorChanged += OnEditorZoomStateZoomFactorChanged;
+
+        UpdateVisibility();
+        UpdateZoomFactorIndicator();
+    }
+
     private void OnStatusBarSettingsIsStatusBarVisibleChanged(object? sender, bool e)
     {
         UpdateVisibility();
@@ -100,6 +106,12 @@ public sealed partial class AppStatusBar : UserControl
     private void OnTextBoxTextChanged(object? sender, string e)
     {
         UpdateCharacterIndicator();
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _statusBarSettings.IsStatusBarVisibleChanged -= OnStatusBarSettingsIsStatusBarVisibleChanged;
+        _editorZoomState.ZoomFactorChanged -= OnEditorZoomStateZoomFactorChanged;
     }
 
     private void UpdateCharacterIndicator()
