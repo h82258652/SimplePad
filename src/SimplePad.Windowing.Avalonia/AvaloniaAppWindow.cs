@@ -18,6 +18,8 @@ internal sealed class AvaloniaAppWindow : IAppWindow
 
     public TabRoot TabRoot { get; } = new TabRoot();
 
+    public object Id => throw new NotImplementedException();
+
     internal ShellWindow? ShellWindow { get; set; }
 
     public void Execute(Action<IAppWindow> action)

@@ -36,7 +36,9 @@ internal sealed class UWPAppWindow : IAppWindow
 
         UpdateTitleBarButtons();
 
-        ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 195));
+        ApplicationView currentApplicationView = ApplicationView.GetForCurrentView();
+        Id = currentApplicationView.Id;
+        currentApplicationView.SetPreferredMinSize(new Size(320, 195));
 
         _themeSettings.AppThemeChanged += OnThemeSettingsAppThemeChanged;
         _themeListener.ThemeChanged += OnThemeListenerThemeChanged;
@@ -44,6 +46,8 @@ internal sealed class UWPAppWindow : IAppWindow
         TabRoot.Tabs.CollectionChanged += OnTabsCollectionChanged;
         SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += OnAppWindowCloseRequested;
     }
+
+    public object Id { get; }
 
     public TabRoot TabRoot { get; } = new TabRoot();
 
