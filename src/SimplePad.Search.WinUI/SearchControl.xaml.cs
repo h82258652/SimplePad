@@ -33,7 +33,28 @@ public sealed partial class SearchControl : UserControl
         Visual visual = ElementCompositionPreview.GetElementVisual(this);
         Compositor compositor = visual.Compositor;
 
-        throw new NotImplementedException();
+        Vector3KeyFrameAnimation scaleAnimation = compositor.CreateVector3KeyFrameAnimation();
+        scaleAnimation.InsertKeyFrame(0f, Vector3.One);
+        scaleAnimation.InsertKeyFrame(1f, Vector3.Zero);
+        scaleAnimation.Duration = TimeSpan.FromSeconds(0.3);
+
+        ScalarKeyFrameAnimation opacityAnimation = compositor.CreateScalarKeyFrameAnimation();
+        opacityAnimation.InsertKeyFrame(0f, 1f);
+        opacityAnimation.InsertKeyFrame(1f, 0f);
+        opacityAnimation.Duration = TimeSpan.FromSeconds(0.3);
+
+        CompositionScopedBatch scopedBatch = compositor.CreateScopedBatch(CompositionBatchTypes.Animation);
+        scopedBatch.Completed += (sender, e) =>
+        {
+            if (_searchViewState.IsVisible)
+            {
+                Visibility = Visibility.Collapsed;
+            }
+        };
+
+        visual.StartAnimation(nameof(visual.Scale), scaleAnimation);
+        visual.StartAnimation(nameof(visual.Opacity), opacityAnimation);
+        scopedBatch.End();
     }
 
     private void HideNotificationFlyout()
