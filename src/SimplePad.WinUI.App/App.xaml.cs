@@ -5,7 +5,7 @@ using System;
 
 namespace SimplePad.App;
 
-public partial class App : Application
+public sealed partial class App : Application
 {
     private readonly IServiceProvider _serviceProvider;
 
